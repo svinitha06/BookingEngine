@@ -1,0 +1,16 @@
+.bookNowDiv{
+    background: url('../../asset/bookNow1.jpeg');
+    overflow: hidden;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    min-height: 100%;
+}
+
+.bookCard{
+    width: 70% !important
+}
+
+.cardDiv{
+    margin: 15% !important
+}
