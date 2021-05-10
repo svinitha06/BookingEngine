@@ -17,6 +17,7 @@ class BookNow extends React.Component {
                                     <div className="row">
                                         <div className="col">Arrival</div>
                                         <div className="col">Departure</div>
+                                        <div>Date</div>
                                     </div>
                                 </div>
                                 <div className="col">Rooms</div>
