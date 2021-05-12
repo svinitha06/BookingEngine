@@ -25,7 +25,7 @@ const propertyMasterSchema=new mongoose.Schema({
     
     logo:{
         type: String,
-        required: true 
+        required:true 
     },  
 
     ratings:{
@@ -35,7 +35,7 @@ const propertyMasterSchema=new mongoose.Schema({
     
     website:{
         type: String,
-        required: true
+        required:true
 
     },
 
