@@ -14,24 +14,40 @@ const propertyMasterSchema=new mongoose.Schema({
     },
 
     location:{
-       type= String
-    },
+       type: String,
+       required: true
+      },
     
     description:{
-      type: Number,
+      type: String,
       required:true
     },
-    star:{
-        type:String
+    
+    logo:{
+        type: String,
+        required:true 
+    },  
+
+    ratings:{
+        type: String
 
     },
+    
     website:{
-        type:String,
+        type: String,
         required:true
 
-    }
+    },
 
-    
+    contact:{
+        type: Number,
+        required: true
+    },
+
+    Address:{
+        type: String,
+        required: true
+    }
 })
 
 module.exports=propertyMaster=mongoose.model('propertyMaster',propertyMasterSchema);

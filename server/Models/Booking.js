@@ -42,7 +42,7 @@ const bookingSchema= new mongoose.Schema({
         type: Number,
         required:true
     },
-    stayDuration:{
+    noOfNights:{
         type: Number,
         required:true
     },
