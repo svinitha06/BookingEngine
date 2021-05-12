@@ -8,9 +8,34 @@
 }
 
 .bookCard{
-    width: 70% !important
+    width: 70% !important;
+    margin-left: auto;
 }
 
 .cardDiv{
     margin: 15% !important
+    
+}
+.search{
+    padding: 10px;
+    
+}
+.col{
+    padding: 10px;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+#arrDate{
+    padding: 5px;
+}
+#depDate{
+    padding: 5px;
+}
+#rooms{
+    padding: 5px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
