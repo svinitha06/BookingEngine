@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.3",
-    "@syncfusion/ej2-react-calendars": "^19.1.56",
+    "@syncfusion/ej2-react-calendars": "^19.1.63",
     "axios": "^0.19.2",
     "bootstrap": "^4.6.0",
     "daterangepicker": "^3.1.0",

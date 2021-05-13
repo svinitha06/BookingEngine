@@ -12,9 +12,11 @@ const RoomNum = (props) => {
         
     {list.map(function(i){
         return (<div >
-            <div id="RoomNum">Room-{i}</div>
+            
+            <div id="RoomNum">Room-{i}:</div>
             <div class="col-md-offset-5 col-md-10 d-flex ">
-                <label  >Adults</label>
+                
+                <label  >Adult(s)</label>
                 <input type="number" min="1" max="7" className="col-md-5 mx-2" name="adults" />
                 <label>Child</label>
                 <input type="number" min="0" max="7" className="col-md-5 mx-2" name="child" />

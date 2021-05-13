@@ -1,3 +1,5 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
 .bookNowDiv{
     background: url('../../asset/bookNow1.jpeg');
     overflow: hidden;
@@ -15,63 +17,82 @@
 
 .cardDiv{
     margin: 15% !important
-    
-}
-.search{
-    padding: 10px;
-    
-}
-.col{
-    padding: 10px !important;
-    margin-right: auto !important
-}
-#arrDate{
-    padding: 5px;
-}
-#depDate{
-    padding: 5px;
 }
 #rooms{
-    /* padding: 5px; */
-    /* height: auto; */
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; 
+    width: 15rem;
+    margin-left: 30px;
+    height: 3rem;
 }
 .ui.card, .ui.cards>.card {
-    background: rgba(100,100,100,0.5) !important;
-    margin: auto !important;
+    background: rgba(100,100,100,0.6) !important;
     border: none !important;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    
 }
-.Text{
-    font: 900;
-    font-size: large;
-    font-weight: 900;
-    display: flex;
-    flex-direction: row;
 
-}
-.room-drop{
-    /* display: flex; */
-    flex-direction: row;
-}
 .ui.card>.content, .ui.cards>.card>.content {
     border: none !important;
 }
 #all-rooms {
     width: 500px;
-    height: 60px;
+    /* height: 100px; */
     overflow-y: scroll;
     overflow-x: hidden;
-    border-radius: 1rem;
-    margin-left: 100px;
-    margin-bottom: auto;
+    border-radius: 0.5rem;
+    margin-left: 80px;
+    margin-bottom: 20px;
     margin-top: auto;
     font-weight: 900;
-    font-size: large;
-    /* background-color: blue; */
+    color: white;
    }
    #RoomNum{
        font-weight: 900;
-       font-size: medium;
+       }
+   .parent-div{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 1em;
+    grid-auto-rows: minmax(100px, auto);
+    height: 70px;
    }
+   .ui.inverted.olive.button, .ui.inverted.olive.buttons .button {
+       background-color: olive !important;
+    box-shadow: 0 0 0 2px #d9e778 inset!important;
+    color: white !important;
+    align-items: center !important;
+    
+}
+.Text{
+    color: white;
+    font-weight: 900;
+}
+.date{
+    height: 30px;
+}
+.ml-2, .mx-2 {
+    margin-left: .5rem!important;
+    opacity: 0.6 !important;
+    font-size: medium !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+}
+select {
+    opacity: 0.6 !important;
+    font-weight: 500 !important;
+    padding: 4px !important;
+}
+.go{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.e-input-group input.e-input, .e-input-group textarea.e-input, .e-input-group input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]), .e-input-group.e-control-wrapper input.e-input, .e-input-group.e-control-wrapper textarea.e-input, .e-input-group.e-control-wrapper input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group.e-control-wrapper textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
+    border: 0 solid;
+    border-width: 0;
+    font-weight: 500 !important;
+}
