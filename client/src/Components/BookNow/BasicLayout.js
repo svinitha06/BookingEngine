@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import './BasicLayout.css'
 import ImageTile from '../BookNow/Image.jpeg' 
 import ImageOne from '../BookNow/Cover.jpeg'
-
+import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'react-dates/initialize'
-import 'react-dates/lib/css/_datepicker.css'
-import {DateRangePicker} from 'react-dates'
+
 
 export class BasicLayout extends Component {
 
@@ -14,13 +12,19 @@ export class BasicLayout extends Component {
         super(props)
     
         this.state = {
-             startDate: null,
-             endDate: null
+             
         }
     }
     
 
     render() {
+        const startValue = null;
+    const endValue = null;
+    const minValue = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate()
+    );
         return (
             <div>
                 <div className='wrapImage'>
@@ -28,15 +32,14 @@ export class BasicLayout extends Component {
                 </div>
                 {/* DatePicker */}
                 <div>  
-                    <DateRangePicker
-                        startDate={this.state.startDate} 
-                        startDateId="your_unique_start_date_id" 
-                        endDate={this.state.endDate} 
-                        endDateId="your_unique_end_date_id" 
-                        onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} 
-                        focusedInput={this.state.focusedInput} 
-                        onFocusChange={focusedInput => this.setState({ focusedInput })} 
-                        />
+                <DateRangePickerComponent
+                      placeholder="Check-in/Check-out"
+                      startDate={startValue}
+                      endDate={endValue}
+                      min={minValue}
+                      format={"dd-MMM-yy"}
+                      color={"white"}
+                    ></DateRangePickerComponent>
                 </div>
                 <div className='wrapper'>
                     <div >

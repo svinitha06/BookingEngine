@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card } from "semantic-ui-react";
+import { Link, NavLink } from 'react-router-dom'
 import { Button, Icon } from "semantic-ui-react";
 import RoomNum from "./RoomNum";
 import ReactDOM from "react-dom";
@@ -21,6 +22,8 @@ class BookNow extends React.Component {
       document.getElementById("all-rooms")
     );
   };
+
+  
 
   render() {
     const startValue = null;
@@ -73,11 +76,14 @@ class BookNow extends React.Component {
 
                 <div id="all-rooms"></div>
                 <div className="go">
-                  <Button  animated inverted color="olive">
-                    <Button.Content visible className="Text">Search</Button.Content>
+                  <Button  as={NavLink} to='/basiclayout' animated inverted color="olive">
+                        
+                    <Button.Content visible className="Text"  >Search
+                    </Button.Content>
                     <Button.Content hidden>
                       <Icon name="arrow right" />
                     </Button.Content>
+                    
                   </Button>
                 </div>
               </div>

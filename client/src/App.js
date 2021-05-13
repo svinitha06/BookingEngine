@@ -16,10 +16,11 @@ class App extends Component {
       <div className="App">
         <Header/>
         <Switch>
-          <Route exact path="/"> <BasicLayout /> </Route> 
+        <Route exact path="/"> <Home /> </Route> 
           <Route path="/booknow"> <BookNow /> </Route> 
           <Route path='/aboutUs'><AboutUs/></Route>
           <Route path='/accommodation'><Accommodation/></Route>
+          <Route path="/basiclayout"><BasicLayout/></Route>
         </Switch>
       </div>
     );

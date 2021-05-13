@@ -12,7 +12,7 @@
 .bookCard{
     width: 70% !important;
     margin-left: auto;
-    background: rgba(100,100,100,0.3);
+    background: rgba(209, 139, 139, 0.4);
 }
 
 .cardDiv{
@@ -95,4 +95,5 @@ select {
     border: 0 solid;
     border-width: 0;
     font-weight: 500 !important;
+    color: white;
 }
