@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./BasicLayout.css";
-import ImageTile from "../BookNow/Image.jpeg";
+
 import ImageOne from "../BookNow/Cover.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { DateRangePicker } from "react-dates";
+import DisplayTile from "../DisplayTile/DisplayTile";
 
 export class BasicLayout extends Component {
   constructor(props) {
@@ -38,12 +39,9 @@ export class BasicLayout extends Component {
             onFocusChange={(focusedInput) => this.setState({ focusedInput })}
           />
         </div>
-        <div className="wrapper">
-          <div>
-            <img className="ImageTile" src={ImageTile}></img>
-          </div>
-          <div>jsncjkdnkjdscnjksndjcnsjkdjksnd</div>
-        </div>
+        <DisplayTile />
+        <DisplayTile />
+        <DisplayTile />
       </div>
     );
   }
