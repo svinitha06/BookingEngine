@@ -17,26 +17,25 @@ const router = express.Router()
 
 // GET API  
 
-router.get('/Property',function(req,res)
-{
-    try{
-        propertyMaster.find(function(err,response){
-            if(err)
-            res.status(400).send(err)
+router.get('/Property', function (req, res) {
+    try {
+        propertyMaster.find(function (err, response) {
+            if (err)
+                res.status('400').send(err)
             else
-            res.send(response)
+                res.send(response)
         })
     }
-    catch(error){
+    catch (error) {
         console.log(error)
     }
-})
+});
 
 
 router.post('/addProperty', (req, res) => {
     console.log("get req", req.body)
     var newProperty = new propertyMaster({
-        PropertyId: 243,
+        PropertyId: 241379,
         name: req.body.name,
         location: req.body.location,
         description: req.body.description,
