@@ -43,11 +43,11 @@ export class Header extends Component {
                 Book Now
               </Button>
               {/* {this.state.clicked ? } */}
-              <GiHamburgerMenu
+              {/* <GiHamburgerMenu
                 className="hamburger"
                 size="30px"
                 onClick={this.handleClick}
-              />
+              /> */}
             </Menu.Item>
           </Menu>
         </Segment>

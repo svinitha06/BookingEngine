@@ -1,0 +1,148 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
+.bookNowDiv{
+    background: url('../../asset/bookNow1.jpeg');
+    overflow: hidden;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    min-height: 100%;
+}
+
+.bookCard{
+    width: 70% !important;
+    margin-left: auto;
+    background: rgba(209, 139, 139, 0.4);
+}
+
+.cardDiv{
+    margin: 15% !important
+}
+#rooms{
+    display: flex;
+    flex-direction: column; 
+    width: 15rem;
+    margin-left: 30px;
+    height: 3rem;
+}
+.ui.card, .ui.cards>.card {
+    background: rgba(100,100,100,0.6) !important;
+    border: none !important;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    
+}
+
+.ui.card>.content, .ui.cards>.card>.content {
+    border: none !important;
+}
+#all-rooms {
+    width: 500px;
+    /* height: 100px; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-radius: 0.5rem;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    font-weight: 900;
+    color: white;
+   }
+   #RoomNum{
+       font-weight: 900;
+       }
+   .parent-div{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 1em;
+    grid-auto-rows: minmax(70px, auto);
+    height: 70px;
+    width: 75%;
+   }
+   .ui.inverted.olive.button, .ui.inverted.olive.buttons .button {
+       background-color: olive !important;
+    box-shadow: 0 0 0 2px #d9e778 inset!important;
+    color: white !important;
+    align-items: center !important;
+    
+}
+.Text{
+    color: white;
+    font-weight: 900;
+    height: 20px;
+    position: relative;
+}
+.date{
+    height: 30px;
+}
+.ml-2, .mx-2 {
+    margin-left: .5rem!important;
+    opacity: 0.6 !important;
+    font-size: medium !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+}
+select {
+    opacity: 0.6 !important;
+    font-weight: 500 !important;
+    padding: 4px !important;
+}
+.go{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 1em;
+    height: 100px;
+}
+.e-input-group input.e-input, .e-input-group textarea.e-input, .e-input-group input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]), .e-input-group.e-control-wrapper input.e-input, .e-input-group.e-control-wrapper textarea.e-input, .e-input-group.e-control-wrapper input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group.e-control-wrapper textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
+    border: 0 solid;
+    border-width: 0;
+    font-weight: 500 !important;
+    color: white;
+}
+@media only screen and (max-width:1060px){
+    .parent-div{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 1em;
+    grid-auto-rows: minmax(70px, auto);
+    height: 70px;
+    width: 50%;
+    }
+    #all-rooms {
+        width: 400px;
+        /* height: 100px; */
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-radius: 0.5rem;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        margin-top: 50px;
+        font-weight: 900;
+        color: white;
+       }
+}
+@media only screen and (max-width:960px){
+    .parent-div{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 1em;
+        grid-auto-rows: minmax(70px, auto);
+        height: 70px;
+        width: 50%;
+        }
+        #all-rooms {
+            width: 300px;
+            /* height: 100px; */
+            overflow-y: scroll;
+            overflow-x: hidden;
+            border-radius: 0.5rem;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            font-weight: 900;
+            color: white;
+           }
+}
