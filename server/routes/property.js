@@ -34,7 +34,7 @@ router.get('/Property',function(req,res)
 
 
 router.post('/addProperty', (req, res) => {
-    console.log("get req", req.body.name)
+    console.log("get req", req.body)
     var newProperty = new propertyMaster({
         PropertyId: 243,
         name: req.body.name,
