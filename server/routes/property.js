@@ -22,10 +22,14 @@ router.get('/Property',function(req,res)
 {
     try{
         propertyMaster.find(function(err,response){
+            if(err)
+            res.status(400).send(err)
+            else
             res.send(response)
         })
-    }catch{
-        console.log(err)
+    }
+    catch(error){
+        console.log(error)
     }
 })
 
