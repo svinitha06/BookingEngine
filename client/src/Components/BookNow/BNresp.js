@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Button, Icon } from "semantic-ui-react";
 import RoomNum from "./RoomNum";
 import ReactDOM from "react-dom";
-import "./BookNow.css";
+import "./BNresp.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 
@@ -39,12 +39,11 @@ class BookNow extends React.Component {
         <div className="cardDiv">
           <Card className="bookCard">
             <Card.Content>
-              <div className="div">
                 <div className="parent-div">
-                  <div className="date">
                   <div className="Text">
-                    Check-in/Check-out
+                    Start/End
                     </div>
+                  <div className="date">
                     <DateRangePickerComponent
                       placeholder="Check-in/Check-out"
                       startDate={startValue}
@@ -55,10 +54,10 @@ class BookNow extends React.Component {
                     ></DateRangePickerComponent>
                   </div>
 
-                  <div id="rooms" className="Text">
-                    <label className="Text" for="rooms">
+                  <div className="Text">
                       Rooms
-                    </label>
+                      </div>
+                      <div className="date">
                     <select
                       name="Rooms"
                       placeholder="Select Value"
@@ -86,7 +85,7 @@ class BookNow extends React.Component {
                     
                   </Button>
                 </div>
-              </div>
+              
             </Card.Content>
           </Card>
         </div>
