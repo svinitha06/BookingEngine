@@ -4,49 +4,49 @@ const propertyMasterSchema=new mongoose.Schema({
 
     PropertyId:{
         type: Number,
-        required:true,
-        unique:true
+        required: false
     },
     
     name:{
        type: String,
-       required:true
+       required: false
     },
 
     location:{
        type: String,
-       required: true
+       required: false
       },
     
     description:{
       type: String,
-      required:true
+      required: false
     },
     
     logo:{
         type: String,
-        required:true 
+        required: false
     },  
 
     ratings:{
-        type: String
+        type: String,
+        required: false
 
     },
     
     website:{
         type: String,
-        required:true
+        required: false
 
     },
 
     contact:{
-        type: Number,
-        required: true
+        type: String,
+        required: false
     },
 
     Address:{
         type: String,
-        required: true
+        required: false
     }
 })
 
