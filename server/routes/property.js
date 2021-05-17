@@ -10,14 +10,24 @@ mongoose.connect('mongodb+srv://badrinaths:Subudhi1@cluster0.f4kvq.mongodb.net/t
  
 const router = express.Router();
 
-
- 
 // router.get('/', isAuth, cartController.getCart);
 // router.post('/add', isAuth, cartController.addToCart);
 // router.post('/delete', isAuth, cartController.removeFromCart);
 // router.post('/update', isAuth, cartController.updateCart);
 // router.post('/sync', isAuth, cartController.syncCart);
- 
+
+// GET API  
+
+router.get('/Property',function(req,res)
+{
+    try{
+        propertyMaster.find(function(err,response){
+            res.send(response)
+        })
+    }catch{
+        console.log(err)
+    }
+})
 
 router.post('/addProperty', (req, res) => {
     console.log("get req")
