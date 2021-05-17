@@ -41,12 +41,12 @@
 #all-rooms {
     width: 500px;
     /* height: 100px; */
-    /* overflow-y: scroll;
-    overflow-x: hidden; */
+    overflow-y: scroll;
+    overflow-x: hidden;
     border-radius: 0.5rem;
-    margin-left: 80px;
-    margin-bottom: auto !important;
-    margin-top: auto !important;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    margin-top: 50px;
     font-weight: 900;
     color: white;
    }
@@ -56,10 +56,10 @@
    .parent-div{
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-gap: 7em !important;
-    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 1em;
+    grid-auto-rows: minmax(70px, auto);
     height: 70px;
-    margin-left: 10px;
+    width: 75%;
    }
    .ui.inverted.olive.button, .ui.inverted.olive.buttons .button {
        background-color: olive !important;
@@ -71,6 +71,8 @@
 .Text{
     color: white;
     font-weight: 900;
+    height: 20px;
+    position: relative;
 }
 .date{
     height: 30px;
@@ -91,11 +93,56 @@ select {
     display: grid;
     justify-content: center;
     align-items: center;
-    height: 70px !important;
+    grid-gap: 1em;
+    height: 100px;
 }
 .e-input-group input.e-input, .e-input-group textarea.e-input, .e-input-group input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]), .e-input-group.e-control-wrapper input.e-input, .e-input-group.e-control-wrapper textarea.e-input, .e-input-group.e-control-wrapper input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group.e-control-wrapper textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
     border: 0 solid;
     border-width: 0;
     font-weight: 500 !important;
     color: white;
+}
+@media only screen and (max-width:1060px){
+    .parent-div{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 1em;
+    grid-auto-rows: minmax(70px, auto);
+    height: 70px;
+    width: 50%;
+    }
+    #all-rooms {
+        width: 400px;
+        /* height: 100px; */
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-radius: 0.5rem;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        margin-top: 50px;
+        font-weight: 900;
+        color: white;
+       }
+}
+@media only screen and (max-width:960px){
+    .parent-div{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 1em;
+        grid-auto-rows: minmax(70px, auto);
+        height: 70px;
+        width: 50%;
+        }
+        #all-rooms {
+            width: 300px;
+            /* height: 100px; */
+            overflow-y: scroll;
+            overflow-x: hidden;
+            border-radius: 0.5rem;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            font-weight: 900;
+            color: white;
+           }
 }
