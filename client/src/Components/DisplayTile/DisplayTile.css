@@ -1,6 +1,9 @@
+.display {
+  font-family: "Montserrat", sans-serif !important;
+}
 .wrapper {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 60%;
   grid-gap: 1em;
   grid-auto-rows: minmax(100px, auto);
 }
@@ -28,4 +31,124 @@ p {
   color: black;
   background: none;
   font-size: medium;
+}
+.childWrapper {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-gap: 2em;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.childWrapper p {
+  color: black;
+  background: none;
+}
+/* .img {
+  height: 80% !important;
+} */
+/* .price {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: space-around;
+}
+.price h1 {
+  margin: 0%;
+} */
+.thebutton {
+  cursor: pointer;
+  border-radius: 2px;
+  width: 30px;
+  height: 30px;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.priceh2 {
+  display: inline-block;
+}
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+h5:last-child {
+  margin-left: 50px;
+}
+.price {
+  display: grid;
+}
+.block1 p {
+  margin-left: 20px;
+}
+.block1 h2 {
+  margin-left: 20px;
+}
+.button-price,
+.reserve {
+  margin-left: 20px;
+}
+.reserve:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.reserve {
+  background-image: linear-gradient(
+    to right,
+    #f5bf75 0%,
+    #e7d08c 51%,
+    #e9dcca 100%
+  );
+}
+.reserve {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  border: none;
+}
+
+.reserve:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: brown;
+  text-decoration: none;
+}
+.thebutton {
+  background-image: linear-gradient(
+    to right,
+    #f5bf75 0%,
+    #e7d08c 51%,
+    #e9dcca 100%
+  );
+  color: black;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  border: none;
+}
+.reserve-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  margin-right: 10px;
+}
+.reserve-content span {
+  margin-left: -34px !important;
+}
+.reserve-content button {
+  margin-left: 31%;
 }
