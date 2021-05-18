@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card } from "semantic-ui-react";
 import { Link, NavLink } from 'react-router-dom'
@@ -13,16 +13,56 @@ import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 class BookNow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      start: null,
+      end:null,
+      dateError:"",
+      roomError:"",
+      room:null,
+      clicked:false
+    };
   }
   setRooms = (event) => {
-    // console.log(event.target.value)
+    var rooms=document.getElementById("Rooms").value
+    if(rooms!=0){
+      this.setState({
+        roomError:"",
+        clicked:false
+      })
+    }
     ReactDOM.render(
       <RoomNum total={event.target.value} />,
       document.getElementById("all-rooms")
     );
+
   };
 
+  handleDate=(e)=>{
+    this.setState({
+      start:e.value[0],
+      end: e.value[1],
+      dateError:"",
+      clicked:false
+    })}
+
+  handleValidate=(e)=>{
+    this.setState({
+      clicked:true
+    })
+    var rooms=document.getElementById("Rooms").value
+      if(this.state.start == null){
+        this.setState({
+          dateError:"Please select the date"
+        })
+      }
+      if(rooms==0){
+        this.setState({
+          roomError:"Please select rooms "
+        })
+      }
+      
+  }
+  
   
 
   render() {
@@ -52,6 +92,7 @@ class BookNow extends React.Component {
                       min={minValue}
                       format={"dd-MMM-yy"}
                       color={"white"}
+                      onChange={this.handleDate}
                     ></DateRangePickerComponent>
                   </div>
 
@@ -60,7 +101,7 @@ class BookNow extends React.Component {
                       Rooms
                     </label>
                     <select
-                      name="Rooms"
+                      id="Rooms"
                       placeholder="Select Value"
                       onChange={this.setRooms}
                     >
@@ -76,8 +117,21 @@ class BookNow extends React.Component {
 
                 <div id="all-rooms"></div>
                 <div className="go">
-                  <Button  as={NavLink} to='/basiclayout' animated inverted color="olive">
-                        
+                  <div className="error">
+                    {this.state.dateError}
+                  </div>
+                  <div className="error">
+                    {this.state.roomError}
+                  </div>
+                  <Button id="search" animated inverted color="olive" onClick={this.handleValidate}>
+                    <div >
+                    {(this.state.dateError=="" && this.state.roomError=="" && this.state.clicked)?
+        
+                    <Redirect to="/basiclayout" />
+                      :null }
+                    </div>
+                       
+                           {/* {this.checkClick} */}
                     <Button.Content visible className="Text"  >Search
                     </Button.Content>
                     <Button.Content hidden>

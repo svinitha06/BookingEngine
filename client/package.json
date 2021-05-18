@@ -13,6 +13,7 @@
     "react-dates": "^21.8.0",
     "react-dom": "^16.14.0",
     "react-redux": "^7.2.3",
+    "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-scripts": "0.9.x",
     "reactstrap": "^8.9.0",
