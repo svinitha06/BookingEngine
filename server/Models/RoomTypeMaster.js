@@ -14,7 +14,7 @@ const roomTypeMasterSchema=new mongoose.Schema({
     },
 
     roomImage:{
-       type= String
+       type: String
     },
     
     description:{
