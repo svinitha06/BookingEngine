@@ -43,7 +43,7 @@ router.post('/addRoomType', async (req, res) => {
 //Specific Post
 router.get('/:postId', async (req, res) => {
     try{
-        const post = await RoomTypeMaster.findById(req.params.postId);
+        const post = await RoomTypeMaster.find(Number(req.params.postId));
     } catch(err){
         res.json({ message: err});
     }
