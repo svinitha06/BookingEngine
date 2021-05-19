@@ -20,7 +20,7 @@
   padding: 5px;
   margin: auto;
   display: inline-flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .e-input-group input.e-input,
 .e-input-group textarea.e-input,
@@ -35,4 +35,53 @@
 .e-input-group.e-control-wrapper
   textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
   color: black;
+}
+.date-container {
+  display: flex;
+  flex-direction: row;
+}
+.reserve {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  border: none;
+}
+
+.reserve:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: brown;
+  text-decoration: none;
+}
+.reserve {
+  margin-left: 20px;
+}
+.reserve:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.reserve {
+  background-image: linear-gradient(
+    to right,
+    #f5bf75 0%,
+    #e7d08c 51%,
+    #e9dcca 100%
+  );
+}
+.btn-placement {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 11.5%;
 }
