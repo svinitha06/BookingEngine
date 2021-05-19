@@ -13,6 +13,14 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongodb": "^3.6.6",
-    "mongoose": "^5.12.4"
-  }
+    "mongoose": "^5.12.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MS396584/BookingEngine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MS396584/BookingEngine/issues"
+  },
+  "homepage": "https://github.com/MS396584/BookingEngine#readme"
 }
