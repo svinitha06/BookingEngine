@@ -1,58 +1,46 @@
 import React from "react";
 import "./Home.css";
-import { withRouter } from "react-router-dom";
-<<<<<<< HEAD
-import { connect } from 'react-redux';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import hotel1 from "./home1.jpg"
+import hotel2 from "./home2.jpg"
+import hotel3 from "./home3.jpg"
 import { Carousel } from 'react-responsive-carousel';
-import hotel1 from "../Home/home1.jpg"
-import hotel2 from "../Home/home2.jpg"
-import hotel3 from "../Home/home3.jpg"
-
-class Home extends React.Component{
-    
-    render(){
-        return(
-            <div className="homeDiv">
-                <Carousel style={{"width":"600px"}}  autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false} showIndicators={false} showArrows={false}>
-                <div>
-                    <img src={hotel1} height="400px" />
-                    
-                </div>
-                <div>
-                    <img src={hotel2}  height="400px"  />
-                    
-                </div>
-                <div>
-                    <img src={hotel3}  height="400px" />
-                    
-                </div>
-            </Carousel>
-                </div>
-                
-            
-
-        )
-    }
-
-=======
-import { connect } from "react-redux";
-// npm i @material-ui/icons
-// npm i @material-ui/core
+import { withRouter } from "react-router-dom";
 import LanguageIcon from "@material-ui/icons/Language";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 import StarIcon from "@material-ui/icons/Star";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import { connect } from "react-redux";
+// npm i @material-ui/icons
+// npm i @material-ui/core
+
 
 import ImageTile from "../DisplayTile/Image.jpeg";
 
 class Home extends React.Component {
   render() {
     return (
+        
       <div className="homeDiv">
-        <div className="homeContainer">
+          <div>
+            <Carousel style={{"height":"100px"}}  autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false} showIndicators={false} showArrows={false} interval="2000">
+                <div>
+                    <img src={hotel1} width="500px" height="450px"/>
+                    
+                </div>
+                <div>
+                    <img src={hotel2}  width="500px" height="450px"  />
+                    
+                </div>
+                <div>
+                    <img src={hotel3}  width="500px" height="450px" />
+                    
+                </div>
+            </Carousel>
+
+            <div className="homeContainer">
           <div className="wrapper">
             <div>
               <img className="ImageTile" src={ImageTile}></img>
@@ -101,10 +89,11 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
+        </div>
+        
       </div>
     );
   }
->>>>>>> refs/remotes/origin/main
 }
 
 export default connect(null, null)(withRouter(Home));

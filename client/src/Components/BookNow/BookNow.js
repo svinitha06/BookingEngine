@@ -9,6 +9,10 @@ import ReactDOM from "react-dom";
 import "./BookNow.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
+import {date,room} from "../../actions/index"
+import {bindActionCreators} from "redux"
+import {get} from "lodash"
+
 
 class BookNow extends React.Component {
   constructor(props) {
@@ -24,6 +28,9 @@ class BookNow extends React.Component {
   }
   setRooms = (event) => {
     var rooms=document.getElementById("Rooms").value
+    this.props.room({
+      rooms
+    })
     if(rooms!=0){
       this.setState({
         roomError:"",
@@ -38,6 +45,10 @@ class BookNow extends React.Component {
   };
 
   handleDate=(e)=>{
+    this.props.date({
+      start:e.value[0],
+      end: e.value[1]
+    })
     this.setState({
       start:e.value[0],
       end: e.value[1],
@@ -60,14 +71,11 @@ class BookNow extends React.Component {
           roomError:"Please select rooms "
         })
       }
-      
   }
   
   
 
   render() {
-    const startValue = null;
-    const endValue = null;
     const minValue = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
@@ -81,18 +89,19 @@ class BookNow extends React.Component {
             <Card.Content>
               <div className="div">
                 <div className="parent-div">
-                  <div className="date">
+                  <div className={`date ${this.state.dateError !== '' ? "dateError" : ""}`}>
                   <div className="Text">
                     Check-in/Check-out
                     </div>
                     <DateRangePickerComponent
                       placeholder="Check-in/Check-out"
-                      startDate={startValue}
-                      endDate={endValue}
+                      startDate={this.state.start}
+                      endDate={this.state.end}
                       min={minValue}
                       format={"dd-MMM-yy"}
                       color={"white"}
                       onChange={this.handleDate}
+                      className={`${this.state.dateError !== '' ? "dateError" : "great"}`}
                     ></DateRangePickerComponent>
                   </div>
 
@@ -104,6 +113,8 @@ class BookNow extends React.Component {
                       id="Rooms"
                       placeholder="Select Value"
                       onChange={this.setRooms}
+      
+                      className={this.state.roomError !== '' ? "roomError" : "hello"}
                     >
                       <option value="0">No.of Room(s)</option>
                       <option value="1">1</option>
@@ -148,5 +159,15 @@ class BookNow extends React.Component {
     );
   }
 }
+const mapDispatchToProps=(dispatch)=> {
+  return {
+      date: bindActionCreators(date, dispatch),
+      room: bindActionCreators(room,dispatch)
+  }
+}
+const mapStateToProps = state => ({
+  dateRange:  get(state,"dateRange", [])
+  
+});
 
-export default connect(null, null)(withRouter(BookNow));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BookNow));

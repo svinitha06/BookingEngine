@@ -15,7 +15,6 @@
   background: rgba(209, 139, 139, 0.4);
 }
 
-<<<<<<< HEAD
 .cardDiv{
     margin: 15% !important
 }
@@ -34,26 +33,6 @@
     margin-left: auto !important;
     margin-right: auto !important;
     
-=======
-.cardDiv {
-  margin: 15% !important;
-}
-#rooms {
-  display: flex;
-  flex-direction: column;
-  width: 15rem;
-  margin-left: 30px;
-  height: 3rem;
-}
-.ui.card,
-.ui.cards > .card {
-  background: rgba(100, 100, 100, 0.6) !important;
-  border: none !important;
-  margin-top: 50px !important;
-  margin-bottom: 50px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
->>>>>>> refs/remotes/origin/main
 }
 
 .ui.card > .content,
@@ -61,7 +40,7 @@
   border: none !important;
 }
 #all-rooms {
-<<<<<<< HEAD
+
     /* height: 20px !important; */
     width: 635px !important;
     border-radius: 0.5rem;
@@ -95,6 +74,10 @@
 }
 .date{
     height: 30px;
+    width: 1180px !important;
+    color: white;
+    
+
 }
 .ml-2, .mx-2 {
     margin-left: .5rem!important;
@@ -108,9 +91,7 @@ select {
     font-weight: 500 !important;
     padding: 4px !important;
 }
-select:invalid:required{
-    border-color: red;
-}
+
 .go{
     display: grid;
     justify-content: center;
@@ -130,95 +111,19 @@ select:invalid:required{
     font-weight: 1000;
     /* margin-top: -5px;
     margin-bottom: 10px; */
-    /* background: rgb(172, 172, 127); */
+    background-color: white;
     /* opacity: 0.7; */
   box-shadow: rosybrown;
+
     
 
 }
-=======
-  width: 500px;
-  /* height: 100px; */
-  /* overflow-y: scroll;
-    overflow-x: hidden; */
-  border-radius: 0.5rem;
-  margin-left: 80px;
-  margin-bottom: auto !important;
-  margin-top: auto !important;
-  font-weight: 900;
-  color: white;
+.roomError{
+    border: 2px solid red;
+    
 }
-#RoomNum {
-  font-weight: 900;
-}
-.parent-div {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 8em !important;
-  grid-auto-rows: minmax(100px, auto);
-  height: 70px;
-  margin-left: 70px !important;
-}
-.ui.inverted.olive.button,
-.ui.inverted.olive.buttons .button {
-  background-color: olive !important;
-  box-shadow: 0 0 0 2px #d9e778 inset !important;
-  color: white !important;
-  align-items: center !important;
-}
-.Text {
-  color: white;
-  font-weight: 900;
-}
-.date {
-  height: 30px;
-}
-.ml-2,
-.mx-2 {
-  margin-left: 0.5rem !important;
-  opacity: 0.6 !important;
-  font-size: medium !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-}
-select {
-  opacity: 0.6 !important;
-  font-weight: 500 !important;
-  padding: 4px !important;
-}
-.go {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  height: 70px !important;
-}
-.e-input-group input.e-input,
-.e-input-group textarea.e-input,
-.e-input-group
-  input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus),
-.e-input-group
-  textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]),
-.e-input-group.e-control-wrapper input.e-input,
-.e-input-group.e-control-wrapper textarea.e-input,
-.e-input-group.e-control-wrapper
-  input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus),
-.e-input-group.e-control-wrapper
-  textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
-  border: 0 solid;
-  border-width: 0;
-  font-weight: 500 !important;
-  color: white;
-}
-.e-input-group:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left),
-.e-input-group.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap,
-.e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left),
-.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap,
-.e-float-input.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap,
-.e-float-input.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap {
-  width: 70% !important;
-}
->>>>>>> refs/remotes/origin/main
+.dateError span{
+     
+        border: 2px solid red;
+    
+    }

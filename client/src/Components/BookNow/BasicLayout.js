@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./BasicLayout.css";
-
+import { connect } from "react-redux";
 import ImageOne from "../BookNow/Cover.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import {get} from "lodash"
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import RoomNum from "./RoomNum";
@@ -21,7 +21,13 @@ export class BasicLayout extends Component {
       // endDate: null,
     };
   }
-
+  componentDidMount() {
+    console.log(this.props, 'here');
+    this.setState({
+      start: this.props.dateRange.start,
+      end:this.props.dateRange.end
+    })
+  }
   setRooms = (event) => {
     // console.log(event.target.value)
     ReactDOM.render(
@@ -30,8 +36,6 @@ export class BasicLayout extends Component {
     );
   };
   render() {
-    const startValue = null;
-    const endValue = null;
     const minValue = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
@@ -47,8 +51,8 @@ export class BasicLayout extends Component {
         <div className="container">
           <DateRangePickerComponent
             placeholder="Check-in/Check-out"
-            startDate={startValue}
-            endDate={endValue}
+            startDate={this.state.start}
+            endDate={this.state.end}
             min={minValue}
             format={"dd-MMM-yy"}
             color={"black"}
@@ -58,6 +62,7 @@ export class BasicLayout extends Component {
             name="Rooms"
             placeholder="Select Value"
             onChange={this.setRooms}
+            value={this.props.roomRange.rooms}
           >
             <option value="0">No.of Room(s)</option>
             <option value="1">1</option>
@@ -75,5 +80,9 @@ export class BasicLayout extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  dateRange:  get(state,"dateRange", []),
+  roomRange:  get(state,"roomRange",[])
+});
 
-export default BasicLayout;
+export default connect(mapStateToProps,null)(BasicLayout);
