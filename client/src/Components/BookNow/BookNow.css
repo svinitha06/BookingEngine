@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   width: 15rem;
-  margin-left: 30px;
+  margin-left: 10px !important;
   height: 3rem;
 }
 .ui.card,
@@ -40,12 +40,10 @@
   border: none !important;
 }
 #all-rooms {
-  width: 500px;
-  /* height: 100px; */
-  /* overflow-y: scroll;
-    overflow-x: hidden; */
+  /* height: 20px !important; */
+  width: 635px !important;
   border-radius: 0.5rem;
-  margin-left: 80px;
+  margin-left: 10px !important;
   margin-bottom: auto !important;
   margin-top: auto !important;
   font-weight: 900;
@@ -56,11 +54,11 @@
 }
 .parent-div {
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 8em !important;
+  grid-template-columns: 53% 47% !important;
+  grid-gap: 7em !important;
   grid-auto-rows: minmax(100px, auto);
   height: 70px;
-  margin-left: 70px !important;
+  margin-left: 10px;
 }
 .ui.inverted.olive.button,
 .ui.inverted.olive.buttons .button {
@@ -75,6 +73,8 @@
 }
 .date {
   height: 30px;
+  width: 1180px !important;
+  color: white;
 }
 .ml-2,
 .mx-2 {
@@ -89,11 +89,14 @@ select {
   font-weight: 500 !important;
   padding: 4px !important;
 }
+
 .go {
   display: grid;
   justify-content: center;
   align-items: center;
   height: 70px !important;
+  margin-bottom: 16px;
+  margin-top: 9px;
 }
 .e-input-group input.e-input,
 .e-input-group textarea.e-input,
@@ -112,15 +115,18 @@ select {
   font-weight: 500 !important;
   color: white;
 }
-.e-input-group:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left),
-.e-input-group.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap,
-.e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error):not(.e-float-icon-left),
-.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap,
-.e-float-input.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap,
-.e-float-input.e-control-wrapper.e-float-icon-left:not(.e-success):not(.e-warning):not(.e-error)
-  .e-input-in-wrap {
-  width: 70% !important;
+.error {
+  color: red;
+  font-weight: 1000;
+  /* margin-top: -5px;
+    margin-bottom: 10px; */
+  background-color: white;
+  /* opacity: 0.7; */
+  box-shadow: rosybrown;
+}
+.roomError {
+  border: 2px solid red;
+}
+.dateError span {
+  border: 2px solid red;
 }

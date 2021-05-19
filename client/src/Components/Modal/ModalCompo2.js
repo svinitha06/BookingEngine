@@ -41,7 +41,7 @@ const ModalCompo2 = (props) => {
         className="modal-wrapper"
       >
         <RoomNum total={props.total} />
-        <div>
+        <div className="btn-container">
           <button className="modal-close" onClick={closeModal}>
             Close
           </button>
