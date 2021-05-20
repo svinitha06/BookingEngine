@@ -5,7 +5,7 @@ const rateMasterSchema=new mongoose.Schema({
     PropertyId:{
         type: Number,
         required:true,
-        unique:true
+        
     },
     
     roomType:{

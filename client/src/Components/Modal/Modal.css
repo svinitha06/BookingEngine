@@ -59,6 +59,7 @@
 .btn-container,
 .modal-close {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: flex-end;
+  margin-top: 8%;
 }

@@ -5,6 +5,7 @@ const roomTypeMasterSchema=new mongoose.Schema({
     PropertyId:{
         type: Number,
         required:true
+        
     },
     
     roomType:{

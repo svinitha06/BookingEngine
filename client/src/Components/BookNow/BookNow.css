@@ -39,7 +39,7 @@
 
 .ui.card > .content,
 .ui.cards > .card > .content {
-    background: rgba(180, 243, 250,0.2) !important;
+  background: rgba(180, 243, 250, 0.2) !important;
   border: none !important;
 }
 #all-rooms {

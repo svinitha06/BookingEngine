@@ -13,7 +13,12 @@ import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import DisplayTile from "../DisplayTile/DisplayTile";
 import ModalCompo2 from "../Modal/ModalCompo2";
 import { Room } from "@material-ui/icons";
-
+import Details from "../DisplayTile/roomTypeDetail.json";
+// import PseudoDisplay from "../DisplayTile/DisplayTileTwo";
+import DisplayTileTwo from "../DisplayTile/DisplayTileTwo";
+import { NavLink } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 export class BasicLayout extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +41,9 @@ export class BasicLayout extends Component {
       document.getElementById("all-rooms")
     );
   };
+  // handleRedirect = () =>{
+  //   history.pus
+  // }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -75,8 +83,19 @@ export class BasicLayout extends Component {
           <div id="all-rooms"></div>
         </div>
         <DisplayTile />
+        {/* <DisplayTileTwo /> */}
+        <div className="total-price">
+          <h3>
+            <span>Total Price: 0000</span>
+          </h3>
+        </div>
         <div className="btn-placement">
-          <button className="reserve">Reserve</button>
+          {/* <button className="reserve" onClick={this.handleRedirect}>
+            Reserve
+          </button> */}
+          <Button className="reserve" as={NavLink} to="/form">
+            Reserve
+          </Button>
         </div>
       </div>
     );

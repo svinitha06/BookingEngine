@@ -7,7 +7,7 @@ import WifiRoundedIcon from "@material-ui/icons/WifiRounded";
 import FreeBreakfastRoundedIcon from "@material-ui/icons/FreeBreakfastRounded";
 import CheckCircleSharpIcon from "@material-ui/icons/CheckCircleSharp";
 
-class DisplayTile extends Component {
+class DisplayTileTwo extends Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +17,7 @@ class DisplayTile extends Component {
     };
   }
 
-  handleMinus = () => {
+  handleMinus = (id) => {
     if (this.state.count > 0) {
       this.setState({
         count: this.state.count - 1,
@@ -26,7 +26,7 @@ class DisplayTile extends Component {
     }
   };
 
-  handlePlus = () => {
+  handlePlus = (id) => {
     if (this.state.count < 5) {
       this.setState({
         count: this.state.count + 1,
@@ -56,11 +56,17 @@ class DisplayTile extends Component {
                       <h2>{post.price}</h2>
                     </div>
                     <div className="button-price">
-                      <button className="thebutton" onClick={this.handleMinus}>
+                      <button
+                        className="thebutton"
+                        onClick={this.handleMinus(post.id)}
+                      >
                         -
                       </button>
                       <button className="thebutton">{this.state.count}</button>
-                      <button className="thebutton" onClick={this.handlePlus}>
+                      <button
+                        className="thebutton"
+                        onClick={this.handlePlus(post.id)}
+                      >
                         +
                       </button>
                     </div>
@@ -68,20 +74,17 @@ class DisplayTile extends Component {
                   <div>
                     <div className="facilities">
                       <WifiRoundedIcon
-                        className="icon"
                         style={{ color: "#6D6B68" }}
                       ></WifiRoundedIcon>
-                      <p className="icon">{post.three}</p>
+                      <p>{post.three}</p>
                       <FreeBreakfastRoundedIcon
-                        className="icon"
                         style={{ color: "#DE7A34" }}
                       ></FreeBreakfastRoundedIcon>{" "}
-                      <p className="icon">{post.four}</p>
+                      <p>{post.four}</p>
                       <CheckCircleSharpIcon
-                        className="icon"
                         style={{ color: "#0E8C11" }}
                       ></CheckCircleSharpIcon>
-                      <p className="icon">{post.five}</p>
+                      <p>{post.five}</p>
                     </div>
                   </div>
                   <div>
@@ -110,4 +113,4 @@ class DisplayTile extends Component {
   }
 }
 
-export default DisplayTile;
+export default DisplayTileTwo;

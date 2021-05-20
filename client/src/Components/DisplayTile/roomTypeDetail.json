@@ -1,15 +1,16 @@
 [
   {
     "id": 1,
+
     "Rname": "Superior AC",
     "Desc": "Renovated & are located at the heart of the resort close to the pool and activity area with a separate veranda for a relaxing sit-out. They are well furnished with one double bed and fully equipped with air-conditioner, LCD TV, tea/coffee maker, Refrigerator and telephone. Occupancy of a minimum 5 to 6 Persons.",
     "price": 9000,
     "img": "../DisplayTile/Image.jpeg",
     "one": "Bar",
     "two": "Free Cancellation",
-    "three": "Free Wifi",
-    "four": "Free BreakFast",
-    "five": "Sanitized"
+    "three": "Free Wifi ",
+    "four": "Free BreakFast ",
+    "five": "Sanitized "
   },
 
   {
@@ -20,9 +21,9 @@
     "img": "./Image.jpeg",
     "one": "Fitness Center",
     "two": "Room Service",
-    "three": "Free Wifi",
-    "four": "Free BreakFast",
-    "five": "Sanitized"
+    "three": "Free Wifi ",
+    "four": "Free BreakFast ",
+    "five": "Sanitized "
   },
   {
     "id": 3,
@@ -32,8 +33,8 @@
     "img": "Image.jpeg",
     "one": "Room Service",
     "two": "someyhin",
-    "three": "Free Wifi",
-    "four": "Free BreakFast",
-    "five": "Sanitized"
+    "three": "Free Wifi ",
+    "four": "Free BreakFast ",
+    "five": "Sanitized "
   }
 ]
