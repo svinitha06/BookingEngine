@@ -35,6 +35,7 @@ p {
 .childWrapper {
   display: grid;
   grid-template-columns: 60% 40%;
+  grid-template-rows: 55% 45%;
   grid-gap: 2em;
   grid-auto-rows: minmax(100px, auto);
 }
@@ -140,15 +141,57 @@ h5:last-child {
 }
 .reserve-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: baseline;
+  /* align-items: center; */
   flex-wrap: nowrap;
-  margin-right: 10px;
+  margin-left: 15px;
 }
-.reserve-content span {
+/* .reserve-content span {
   margin-left: -34px !important;
+} */
+.ImageTile img {
+  width: 550px;
+  height: 340px;
 }
-.reserve-content button {
-  margin-left: 31%;
+.reserve-content div {
+  display: flex;
 }
+.reserve-content div h3 {
+  margin: 0;
+  padding: 5px;
+}
+
+.facilities {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+/* Super AC
+Bar
+Pet Friendly
+Swimming pool
+Free Cancellation
+Fitness Center
+Health CLub
+Jacuzzi
+Sanetized
+
+Delux AC
+Free Cancellation
+Fitness Center
+Sanetized
+Room service
+Free Breakfast
+Free Wifi
+Sanetized
+
+Standard AC
+Room service
+Free Breakfast
+Free Wifi
+Sanetized
+
+siickm */

@@ -3,6 +3,10 @@ import ImageTile from "../DisplayTile/Image.jpeg";
 import Details from "./roomTypeDetail.json";
 import "./DisplayTile.css";
 
+import WifiRoundedIcon from "@material-ui/icons/WifiRounded";
+import FreeBreakfastRoundedIcon from "@material-ui/icons/FreeBreakfastRounded";
+import CheckCircleSharpIcon from "@material-ui/icons/CheckCircleSharp";
+
 class DisplayTile extends Component {
   constructor(props) {
     super(props);
@@ -61,23 +65,39 @@ class DisplayTile extends Component {
                       </button>
                     </div>
                   </div>
+                  <div>
+                    <div className="facilities">
+                      <WifiRoundedIcon
+                        style={{ color: "#6D6B68" }}
+                      ></WifiRoundedIcon>
+                      <p>{post.three}</p>
+                      <FreeBreakfastRoundedIcon
+                        style={{ color: "#DE7A34" }}
+                      ></FreeBreakfastRoundedIcon>{" "}
+                      <p>{post.four}</p>
+                      <CheckCircleSharpIcon
+                        style={{ color: "#0E8C11" }}
+                      ></CheckCircleSharpIcon>
+                      <p>{post.five}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="reserve-content">
+                      <div className="roomdiv">
+                        <h3>Total Rooms :</h3>
+                        <h3>{this.state.count}</h3>
+                      </div>
+                      <div className="roomdiv">
+                        <h3>Total Price :</h3>
+                        <h3 className="priceh2">
+                          {post.price * this.state.count}
+                        </h3>
+                      </div>
+                      {/* <button className="reserve">Reserve</button> */}
+                    </div>
+                  </div>
                 </div>
                 <div></div>
-                <div className="reserve-content">
-                  <span>
-                    <h3>Total Rooms :</h3>
-                  </span>
-                  <span>
-                    <h3>{this.state.count}</h3>
-                  </span>
-                  <span>
-                    <h3>Total Price :</h3>
-                  </span>
-                  <span>
-                    <h2 className="priceh2">{post.price * this.state.count}</h2>
-                  </span>
-                  <button className="reserve">Reserve</button>
-                </div>
               </div>
             );
           })}
