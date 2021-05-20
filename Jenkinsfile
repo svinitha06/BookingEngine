@@ -8,7 +8,7 @@ pipeline{
         }
         stage('Soanr Analysis'){
             steps {
-                sh 'sonar.projectKey=Booking sonar.projectName=BookingEngine sonar.sources=.'
+                sh ''
             }
         }
     }
