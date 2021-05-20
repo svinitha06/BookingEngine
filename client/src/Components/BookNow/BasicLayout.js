@@ -24,8 +24,7 @@ export class BasicLayout extends Component {
     super(props);
 
     this.state = {
-      // startDate: null,
-      // endDate: null,
+      
     };
   }
   componentDidMount() {

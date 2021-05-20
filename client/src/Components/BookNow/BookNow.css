@@ -1,7 +1,7 @@
 @import url("https://cdn.syncfusion.com/ej2/material.css");
 
 .bookNowDiv {
-  background: url("../../asset/bookNow1.jpeg");
+  background: url("../../asset/bell.jpg");
   overflow: hidden;
   background-size: cover;
   -webkit-background-size: cover;
@@ -37,6 +37,7 @@
 
 .ui.card > .content,
 .ui.cards > .card > .content {
+  background: rgba(180, 243, 250, 0.2) !important;
   border: none !important;
 }
 #all-rooms {

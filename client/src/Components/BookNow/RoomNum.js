@@ -8,7 +8,7 @@ const RoomNum = (props) => {
     list.push(i);
   }
   return (
-    <div>
+    <div className="space">
       {list.map(function (i) {
         return (
           <div>

@@ -12,6 +12,7 @@ import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { date, room } from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { get } from "lodash";
+import ErrorIcon from "@material-ui/icons/Error";
 
 class BookNow extends React.Component {
   constructor(props) {
@@ -24,6 +25,13 @@ class BookNow extends React.Component {
       room: null,
       clicked: false,
     };
+  }
+  componentDidMount() {
+    console.log(this.props, "here");
+    this.setState({
+      start: this.props.dateRange.start,
+      end: this.props.dateRange.end,
+    });
   }
   setRooms = (event) => {
     var rooms = document.getElementById("Rooms").value;
@@ -91,47 +99,59 @@ class BookNow extends React.Component {
                       this.state.dateError !== "" ? "dateError" : ""
                     }`}
                   >
-                    <div className="Text">Check-in/Check-out</div>
-                    <DateRangePickerComponent
-                      placeholder="Check-in/Check-out"
-                      startDate={this.state.start}
-                      endDate={this.state.end}
-                      min={minValue}
-                      format={"dd-MMM-yy"}
-                      color={"white"}
-                      onChange={this.handleDate}
-                      className={`${
-                        this.state.dateError !== "" ? "dateError" : "great"
-                      }`}
-                    ></DateRangePickerComponent>
+                    <div className="Text">Check-in / Check-out</div>
+                    <div className="d-flex w-100">
+                      <DateRangePickerComponent
+                        placeholder="Check-in/Check-out"
+                        startDate={this.state.start}
+                        endDate={this.state.end}
+                        min={minValue}
+                        format={"dd-MMM-yy"}
+                        color={"white"}
+                        onChange={this.handleDate}
+                        showClearButton={false}
+                        allowEdit={false}
+                      />
+                      {this.state.dateError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2" />
+                      )}
+                    </div>
+                    <div className="error-date">{this.state.dateError}</div>
                   </div>
 
                   <div id="rooms" className="Text">
                     <label className="Text" for="rooms">
                       Rooms
                     </label>
-                    <select
-                      id="Rooms"
-                      placeholder="Select Value"
-                      onChange={this.setRooms}
-                      className={
-                        this.state.roomError !== "" ? "roomError" : "hello"
-                      }
-                    >
-                      <option value="0">No.of Room(s)</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
+                    <div className="d-flex">
+                      <select
+                        id="Rooms"
+                        placeholder="Select Value"
+                        onChange={this.setRooms}
+                        className={
+                          this.state.roomError !== ""
+                            ? "roomError w-100"
+                            : "hello w-100"
+                        }
+                      >
+                        <option value="0">No.of Room(s)</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      {this.state.roomError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2" />
+                      )}
+                    </div>
+
+                    <div className="error">{this.state.roomError}</div>
                   </div>
                 </div>
 
                 <div id="all-rooms"></div>
                 <div className="go">
-                  <div className="error">{this.state.dateError}</div>
-                  <div className="error">{this.state.roomError}</div>
                   <Button
                     id="search"
                     animated
@@ -147,7 +167,6 @@ class BookNow extends React.Component {
                       ) : null}
                     </div>
 
-                    {/* {this.checkClick} */}
                     <Button.Content visible className="Text">
                       Search
                     </Button.Content>
