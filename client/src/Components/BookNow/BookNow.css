@@ -27,21 +27,14 @@
 }
 .ui.card,
 .ui.cards > .card {
-<<<<<<< HEAD
   background: rgba(180, 243, 250,0.3) !important;
   /* background: rgba(152, 219, 226, 0.829) !important; */
-=======
-  background: rgba(100, 100, 100, 0.6) !important;
->>>>>>> 4983660a035ec3cecbcbf2eaede33989915e231e
   border: none !important;
   margin-top: 50px !important;
   margin-bottom: 50px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-<<<<<<< HEAD
   /* opacity: 0.925; */
-=======
->>>>>>> 4983660a035ec3cecbcbf2eaede33989915e231e
 }
 
 .ui.card > .content,
@@ -80,11 +73,8 @@
 .Text {
   color: white;
   font-weight: 900;
-<<<<<<< HEAD
   margin-bottom: 4px;
   font-size: medium;
-=======
->>>>>>> 4983660a035ec3cecbcbf2eaede33989915e231e
 }
 .date {
   height: 30px;
@@ -103,10 +93,7 @@ select {
   opacity: 0.6 !important;
   font-weight: 500 !important;
   padding: 4px !important;
-<<<<<<< HEAD
   width: 20px !important;
-=======
->>>>>>> 4983660a035ec3cecbcbf2eaede33989915e231e
 }
 
 .go {
@@ -114,11 +101,7 @@ select {
   justify-content: center;
   align-items: center;
   height: 70px !important;
-<<<<<<< HEAD
-  margin-bottom: 5px;
-=======
   margin-bottom: 16px;
->>>>>>> 4983660a035ec3cecbcbf2eaede33989915e231e
   margin-top: 9px;
 }
 .e-input-group input.e-input,
@@ -141,7 +124,6 @@ select {
 .error {
   color: red;
   font-weight: 1000;
-<<<<<<< HEAD
   box-shadow: rosybrown;
   margin-top: 4px;
   font-size:14px;
@@ -161,17 +143,4 @@ select {
 }
 .space{
     margin-top: 15px;
-=======
-  /* margin-top: -5px;
-    margin-bottom: 10px; */
-  background-color: white;
-  /* opacity: 0.7; */
-  box-shadow: rosybrown;
-}
-.roomError {
-  border: 2px solid red;
-}
-.dateError span {
-  border: 2px solid red;
->>>>>>> 4983660a035ec3cecbcbf2eaede33989915e231e
 }

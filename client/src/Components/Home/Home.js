@@ -6,7 +6,7 @@ import hotel1 from "./home1.jpg";
 import hotel2 from "./home2.jpg";
 import hotel3 from "./home3.jpg";
 import { Carousel } from "react-responsive-carousel";
-import { withRouter } from "react-router-dom";
+import { withRouter,Link } from "react-router-dom";
 import LanguageIcon from "@material-ui/icons/Language";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
@@ -122,7 +122,150 @@ class Home extends React.Component {
                     </span>
                   </div>
                   <div className="viewDetails">
-                  <button class="ui inverted green button" >View Details</button>
+                  <Link to="/basiclayout">
+                  <button class="ui inverted green button" >View Details</button></Link>
+                  </div>
+                  <div className="Booknow-button">
+                  <Link to="/booknow">
+                  <button class="ui inverted red button" >Book Now</button></Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="homeContainer">
+          <div className="wrapper">
+            <div>
+              <img
+                className="ImageTile"
+                src={hotel2}
+                style={{
+                  height: "182px",
+                  width: "500px",
+                  paddingLeft: "193px",
+                }}
+              ></img>
+            </div>
+            <div>
+              <h2>The Palmera</h2>
+              <h6>Luxury stay in heart of Goa</h6>
+              <div className="childWrapper">
+                <div>
+                  <div className="pin">
+                    <PinDropIcon style={{ color: "#FF5733" }}></PinDropIcon>
+                    <p className="pin-des">
+                      Main street, Umta Vado, Calanguta, Goa
+                    </p>
+                  </div>
+                  <div>
+                    <LanguageIcon style={{ color: "#FFC300" }}></LanguageIcon>
+                    <a href="#" className="pin-des">
+                      www.thepalmera.com
+                    </a>
+                  </div>
+                  <div className="pin">
+                    <PhoneInTalkIcon></PhoneInTalkIcon>
+                    <p className="pin-des">0823-2131456, 7867383822</p>
+                  </div>
+                  <div className="pin">
+                    <WhatsAppIcon style={{ color: "#44C323" }}></WhatsAppIcon>
+                    <p className="pin-des">23456889</p>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <StarIcon style={{ color: "#EED336" }}></StarIcon>
+                    4.5
+                  </div>
+                  <div>
+                    <LocalOfferIcon
+                      style={{ color: "#2ECC71" }}
+                    ></LocalOfferIcon>
+                    5%
+                  </div>
+                  <div>
+                    Pricing :₹<s>2500</s>
+                    <span>
+                      <h2>₹ 2375</h2>
+                    </span>
+                  </div>
+                  <div className="viewDetails">
+                  <Link to="/basiclayout">
+                  <button class="ui inverted green button" >View Details</button></Link>
+                  </div>
+                  <div className="Booknow-button">
+                  <Link to="/booknow">
+                  <button class="ui inverted red button" >Book Now</button></Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="homeContainer">
+          <div className="wrapper">
+            <div>
+              <img
+                className="ImageTile"
+                src={hotel3}
+                style={{
+                  height: "182px",
+                  width: "500px",
+                  paddingLeft: "193px",
+                }}
+              ></img>
+            </div>
+            <div>
+              <h2>Hyaat Residency</h2>
+              <h6>Luxury stay in heart of Goa</h6>
+              <div className="childWrapper">
+                <div>
+                  <div className="pin">
+                    <PinDropIcon style={{ color: "#FF5733" }}></PinDropIcon>
+                    <p className="pin-des">
+                      Main street, Umta Vado, Calanguta, Goa
+                    </p>
+                  </div>
+                  <div>
+                    <LanguageIcon style={{ color: "#FFC300" }}></LanguageIcon>
+                    <a href="#" className="pin-des">
+                      www.hyaatresidency.com
+                    </a>
+                  </div>
+                  <div className="pin">
+                    <PhoneInTalkIcon></PhoneInTalkIcon>
+                    <p className="pin-des">0823-2131456, 7867383822</p>
+                  </div>
+                  <div className="pin">
+                    <WhatsAppIcon style={{ color: "#44C323" }}></WhatsAppIcon>
+                    <p className="pin-des">23456889</p>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <StarIcon style={{ color: "#EED336" }}></StarIcon>
+                    4.5
+                  </div>
+                  <div>
+                    <LocalOfferIcon
+                      style={{ color: "#2ECC71" }}
+                    ></LocalOfferIcon>
+                    5%
+                  </div>
+                  <div>
+                    Pricing :₹<s>2500</s>
+                    <span>
+                      <h2>₹ 2375</h2>
+                    </span>
+                  </div>
+                  <div className="viewDetails">
+                  <Link to="/basiclayout">
+                  <button class="ui inverted green button" >View Details</button></Link>
+                  </div>
+                  <div className="Booknow-button">
+                  <Link to="/booknow">
+                  <button class="ui inverted red button" >Book Now</button></Link>
                   </div>
                 </div>
               </div>
