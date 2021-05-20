@@ -36,17 +36,20 @@ router.post('/addRoomType', async (req, res) => {
         const savedPost = await post.save();
         res.json(savedPost);
     } catch (err){
-        res.json({message:err});
+        res.status(400).send({message:err});
     }
 });
 
 //Specific Post
-router.get('/:postId', async (req, res) => {
-    try{
-        const post = await RoomTypeMaster.find(Number(req.params.postId));
-    } catch(err){
-        res.json({ message: err});
-    }
-});
+ router.get('/getRoomType/:PropertyId', async (req, res) => {
+     try{
+         const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
+         res.json(post);
+     } catch(err){
+         res.status(400).send(err)
+         
+     }
+ });
+
 
 module.exports = router;
