@@ -37,9 +37,9 @@ router.post('/addProperty', (req, res) => {
     var newProperty = new propertyMaster({
         PropertyId: req.body.PropertyId,
         name: req.body.name,
+        Image: req.body.Image,
         location: req.body.location,
         description: req.body.description,
-        logo: req.body.logo,
         ratings: req.body.ratings,
         website: req.body.website,
         contact: req.body.contact,

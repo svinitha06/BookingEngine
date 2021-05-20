@@ -13,12 +13,12 @@ const propertyMasterSchema = new mongoose.Schema({
     },
 
     Image: {
-        type: [String],
+        type: Array,
         required: false
     },
 
     location: {
-        type: [String],
+        type: Array,
         required: false
     },
 

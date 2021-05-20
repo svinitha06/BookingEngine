@@ -1,5 +1,5 @@
 require('../db/mongoose');
-const IdentityCountersSchema= new mongoose.Schema({
+const countersSchema= new mongoose.Schema({
  
     count:{
         type: Number,
@@ -20,6 +20,6 @@ const IdentityCountersSchema= new mongoose.Schema({
     }
 })
  
-module.exports=IdentityCounter=mongoose.model('IdentityCounter',IdentityCounterSchema);
+module.exports=counters=mongoose.model('counters',countersSchema);
 
 

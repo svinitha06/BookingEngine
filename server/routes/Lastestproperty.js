@@ -1,7 +1,7 @@
-const propertyMaster = require('../Models/counters');
+const counters = require('../Models/counters');
 const mongoose = require('mongoose');
 const express = require('express');
-const { get } = require('./property');
+var User = await User.find().countDocuments()
  
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -11,25 +11,23 @@ mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@
 
 const router = express.Router()
 
-router.post('/Latest', (req, res) => {
-    console.log("get req", req.body)
-    var newProperty = new IdentityCounters({
+router.post('/Latest', async (req, res) => {
+    const post = new counters({
         count: req.body.count,
         model: req.body.model,
         field: req.body.field
     })
+    try {
+        const savedPost = await post.save();
+        res.json(savedPost);
+    } catch (err){
+        res.status(400).send({message:err});
+    }
 });
-function getNextSequence(name) {
-    var ret = db.counters.findAndModify(
-           {
-             query: { _id: Count },
-             update: { $inc: { seq: 1 } },
-             new: true,
-             upsert: true
-           }
-    );
-    return ret.seq;
- }
+counters.countDocuments({}, function(err, count) {
+    if (err) { return handleError(err) } //handle possible errors
+    res.send(count)
+});
 
 
 module.exports = router;
