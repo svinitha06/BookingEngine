@@ -4,29 +4,36 @@ const roomTypeMasterSchema=new mongoose.Schema({
 
     PropertyId:{
         type: Number,
-        required:false,
-        unique:false
+        required:true
+        
     },
     
     roomType:{
        type: String,
-       required:false
+       required:true
     },
 
     roomImage:{
-       type= String
+       type: String,
+       required: true
     },
     
     description:{
       type:String,
-      required:false
+      required:true
     },
 
     numberofRooms:{
          type: Number,
-        required:false
+        required:true
 
-    }
+    },
+
+    availability:{
+        type: Number,
+       required:true
+
+   }
 })
 
 module.exports=roomTypeMaster=mongoose.model('roomTypeMaster',roomTypeMasterSchema);

@@ -4,7 +4,7 @@ const rateMasterSchema=new mongoose.Schema({
  
     PropertyId:{
         type: Number,
-        required:true,
+        required:true
         
     },
     

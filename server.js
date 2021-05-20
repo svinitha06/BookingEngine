@@ -1,5 +1,5 @@
 const express = require('express');
-
+const RoomTypeRoute = require('./server/Routes/AddingRooms');
 const app = express();
 const port = process.env.PORT || 5000;
 const property = require('./server/routes/property')
@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
 app.use('/property',property);
 app.use('/IdentityCounter',IdentityCounter);
+app.use('/rooms',RoomTypeRoute);
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
