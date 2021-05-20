@@ -9,12 +9,6 @@ const countersSchema= new mongoose.Schema({
  
     },
  
-    model:{
-        type: String,
-        required:false
- 
-    },
- 
     field:{
         type: String,
         required:false

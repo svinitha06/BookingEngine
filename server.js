@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/property',property);
-app.use('/IdentityCounter',IdentityCounter);
+// app.use('/IdentityCounter',IdentityCounter);
 app.use('/rooms',RoomTypeRoute);
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));

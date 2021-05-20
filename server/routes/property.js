@@ -1,4 +1,5 @@
 const propertyMaster = require('../Models/propertyMaster');
+const counters = require('../Models/counters');
 const mongoose = require('mongoose');
 const express = require('express');
  
@@ -32,10 +33,25 @@ router.get('/Property',function(req,res)
     }
 })
  
-router.post('/addProperty', (req, res) => {
+router.post('/addProperty', async(req, res) => {
     console.log("get req", req.body)
+    try{
+        let oldCount =  await counters.findOne({
+            field: "PropertyId"
+        });
+        console.log("oldCount",oldCount);
+        let newCount = await counters.findOneAndUpdate({
+            field: "PropertyId"
+        },
+        {
+            count: oldCount.count + 1
+        },{
+            new: true
+        })
+        console.log("newCount",newCount);
+
     var newProperty = new propertyMaster({
-        PropertyId: req.body.PropertyId,
+        PropertyId: newCount.count,
         name: req.body.name,
         Image: req.body.Image,
         location: req.body.location,
@@ -51,6 +67,10 @@ router.post('/addProperty', (req, res) => {
         else
             res.send(Person)
     })
+}
+catch(error){
+    console.log("catch",error)
+}
 });
  
 module.exports = router;
