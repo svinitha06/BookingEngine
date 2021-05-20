@@ -202,3 +202,18 @@ siickm */
   margin-right: 4px;
   margin-left: 1px;
 }
+.btn-placement {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 11.5%;
+}
+.total-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 12%;
+}

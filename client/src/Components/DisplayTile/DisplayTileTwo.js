@@ -12,11 +12,17 @@ class DisplayTileTwo extends Component {
     super(props);
 
     this.state = {
-      count: 0,
-      // price1: 0,
+      arr: [],
     };
   }
 
+  // var obj = Details.map(data=>{
+  //   return{
+  //     id:data.id,
+  //     count:0
+  //   }
+  // })
+  // console.log("length of deatils = ", Details.length);
   handleMinus = (id) => {
     if (this.state.count > 0) {
       this.setState({
@@ -36,12 +42,17 @@ class DisplayTileTwo extends Component {
   };
 
   render() {
+    // console.log("length of deatils = ", {Details.length});
     return (
       <div className="display">
         <div>
+          {/* <h1>Details length = {Details.length}</h1> */}
+          {/* {console.log("length of deatils = ", Details.length);} */}
           {Details.map((post, index) => {
             return (
               <div className="wrapper">
+                <h1>Details length = {Details.length}</h1>
+
                 <div className="ImageTile">
                   <img src={ImageTile}></img>
                 </div>
