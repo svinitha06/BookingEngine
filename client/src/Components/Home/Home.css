@@ -8,6 +8,38 @@
     width: 100%;
     /* margin-left: 15%; */
 }
+.Home-head{
+    display: flex;
+    margin: 12px;
+    justify-content: center;
+    background-color:rgb(180, 226, 226);
+    border: 1px solid black;
+
+}
+.check-in{
+    margin-right: 12px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+.pin{
+    display: flex;
+}
+.pin-des{
+    padding-left: 4px;
+}
+.wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 40% 60%;
+    grid-template-columns: 50% 50% !important;
+    grid-gap: 1em;
+    grid-auto-rows: minmax(100px, auto);
+    margin-left: 210px;
+}
+.viewDetails{
+    margin-right: 20px;
+}
 
 @media only screen and (max-width:768px){
     .homeDiv{
