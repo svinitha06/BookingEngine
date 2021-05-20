@@ -28,8 +28,10 @@ router.post('/addRoomType', async (req, res) => {
     const post = new RoomTypeMaster({
         PropertyId: req.body.PropertyId,
         roomType: req.body.roomType,
+        roomImage: req.body.roomImage,
         description: req.body.description,
-        numberofRooms: req.body.numberofRooms
+        numberofRooms: req.body.numberofRooms,
+        availability: req.body.availability
 
     });
     try {

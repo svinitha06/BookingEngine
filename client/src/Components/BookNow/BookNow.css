@@ -27,12 +27,14 @@
 }
 .ui.card,
 .ui.cards > .card {
-  background: rgba(100, 100, 100, 0.6) !important;
+  background: rgba(180, 243, 250,0.3) !important;
+  /* background: rgba(152, 219, 226, 0.829) !important; */
   border: none !important;
   margin-top: 50px !important;
   margin-bottom: 50px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  /* opacity: 0.925; */
 }
 
 .ui.card > .content,
@@ -71,6 +73,8 @@
 .Text {
   color: white;
   font-weight: 900;
+  margin-bottom: 4px;
+  font-size: medium;
 }
 .date {
   height: 30px;
@@ -89,6 +93,7 @@ select {
   opacity: 0.6 !important;
   font-weight: 500 !important;
   padding: 4px !important;
+  width: 20px !important;
 }
 
 .go {
@@ -119,15 +124,23 @@ select {
 .error {
   color: red;
   font-weight: 1000;
-  /* margin-top: -5px;
-    margin-bottom: 10px; */
-  background-color: white;
-  /* opacity: 0.7; */
   box-shadow: rosybrown;
+  margin-top: 4px;
+  font-size:14px;
+
 }
 .roomError {
-  border: 2px solid red;
+  border: 1.5px solid red;
 }
-.dateError span {
-  border: 2px solid red;
+.dateError .e-date-range-wrapper {
+  border: 1px solid red !important;
+}
+.error-date {
+  color: red;
+  font-weight: 1000;
+  width: 20%;
+  margin-top: 1px;
+}
+.space{
+    margin-top: 15px;
 }

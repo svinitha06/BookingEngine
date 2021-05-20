@@ -1,53 +1,60 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
-const propertyMasterSchema=new mongoose.Schema({
+const propertyMasterSchema = new mongoose.Schema({
 
-    PropertyId:{
+    PropertyId: {
         type: Number,
         required: false
     },
-    
-    name:{
-       type: String,
-       required: false
-    },
 
-    location:{
-       type: String,
-       required: false
-      },
-    
-    description:{
-      type: String,
-      required: false
-    },
-    
-    logo:{
-        type: String,
-        required: false
-    },  
-
-    ratings:{
-        type: String,
-        required: false
-
-    },
-    
-    website:{
-        type: String,
-        required: false
-
-    },
-
-    contact:{
+    name: {
         type: String,
         required: false
     },
 
-    Address:{
+    Image: {
+        type: Array,
+        required: false
+    },
+
+    location: {
+        type: Array,
+        required: false
+    },
+
+    description: {
+        type: String,
+        required: false
+    },
+
+    // logo: {
+    //     type: String,
+    //     required: false
+    // },
+
+    ratings: {
+        type: String,
+        required: false
+
+    },
+
+    website: {
+        type: String,
+        required: false
+
+    },
+
+    contact: {
+        type: String,
+        required: false
+    },
+
+    Address: {
         type: String,
         required: false
     }
 })
 
-module.exports=propertyMaster=mongoose.model('propertyMaster',propertyMasterSchema);
+
+
+module.exports = propertyMaster = mongoose.model('propertyMaster', propertyMasterSchema);

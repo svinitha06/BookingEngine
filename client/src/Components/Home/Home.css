@@ -40,6 +40,10 @@
 .viewDetails{
     margin-right: 20px;
 }
+.Booknow-button{
+    margin-left: -109px;
+    margin-top: -36px;
+}
 
 @media only screen and (max-width:768px){
     .homeDiv{
