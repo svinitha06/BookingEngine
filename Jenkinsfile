@@ -7,7 +7,7 @@ pipeline{
                 sh 'npm install'
             }
         }
-       stage('Soanr Analysis'){
+       stage('Sonar Analysis'){
             steps {
                  withSonarQubeEnv("scan") {
                  sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Booking -Dsonar.projectName=BookingEngine -Dsonar.sources=."
