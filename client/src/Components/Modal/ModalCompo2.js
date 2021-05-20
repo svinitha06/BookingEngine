@@ -40,11 +40,15 @@ const ModalCompo2 = (props) => {
         //   contentLabel="Example Modal"
         className="modal-wrapper"
       >
-        <RoomNum total={props.total} />
-        <div className="btn-container">
-          <button className="modal-close" onClick={closeModal}>
-            Close
-          </button>
+        <div>
+          <div>
+            <RoomNum total={props.total} />
+          </div>
+          <div className="btn-container">
+            <button className="modal-close" onClick={closeModal}>
+              Close
+            </button>
+          </div>
         </div>
       </Modal>
     </div>

@@ -151,8 +151,8 @@ h5:last-child {
   margin-left: -34px !important;
 } */
 .ImageTile img {
-  width: 550px;
-  height: 340px;
+  width: 100%;
+  height: 100%;
 }
 .reserve-content div {
   display: flex;
@@ -165,8 +165,10 @@ h5:last-child {
 .facilities {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: nowrap;
   flex-direction: row;
-  align-items: stretch;
+  /* align-items: stretch; */
+  /* margin-top: 5%; */
 }
 
 /* Super AC
@@ -195,3 +197,7 @@ Free Wifi
 Sanetized
 
 siickm */
+.icon {
+  margin-right: 4px;
+  margin-left: 1px;
+}
