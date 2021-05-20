@@ -4,7 +4,12 @@
     "Rname": "Superior AC",
     "Desc": "Renovated & are located at the heart of the resort close to the pool and activity area with a separate veranda for a relaxing sit-out. They are well furnished with one double bed and fully equipped with air-conditioner, LCD TV, tea/coffee maker, Refrigerator and telephone. Occupancy of a minimum 5 to 6 Persons.",
     "price": 9000,
-    "img": "../DisplayTile/Image.jpeg"
+    "img": "../DisplayTile/Image.jpeg",
+    "one": "Bar",
+    "two": "Free Cancellation",
+    "three": "Free Wifi",
+    "four": "Free BreakFast",
+    "five": "Sanitized"
   },
 
   {
@@ -12,13 +17,23 @@
     "Rname": "Delux AC",
     "Desc": "Pool view and situated on the first floor. They are well furnished with one Double bed and Equipped with colour TV , telephone and air-conditioner, they can comfortably accommodate 4 persons, i.e. 2 adults and 2 children of ages up to 12 years",
     "price": 8000,
-    "img": "./Image.jpeg"
+    "img": "./Image.jpeg",
+    "one": "Fitness Center",
+    "two": "Room Service",
+    "three": "Free Wifi",
+    "four": "Free BreakFast",
+    "five": "Sanitized"
   },
   {
     "id": 3,
     "Rname": "Standard AC",
     "Desc": "These are located in the lower floor and are well furnished with one bed, TV and telephone. Suitable for couples and for families with 2 adults and 2 children of ages up to 12 years",
     "price": 6000,
-    "img": "Image.jpeg"
+    "img": "Image.jpeg",
+    "one": "Room Service",
+    "two": "someyhin",
+    "three": "Free Wifi",
+    "four": "Free BreakFast",
+    "five": "Sanitized"
   }
 ]
