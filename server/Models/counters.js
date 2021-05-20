@@ -1,25 +1,27 @@
-require('../db/mongoose');
+
+const mongoose = require('mongoose');
+
 const countersSchema= new mongoose.Schema({
  
     count:{
         type: Number,
-        required:true
+        required:false
  
     },
  
     model:{
         type: String,
-        required:true
+        required:false
  
     },
  
     field:{
         type: String,
-        required:true
+        required:false
  
     }
 })
  
-module.exports=counters=mongoose.model('counters',countersSchema);
+module.exports =counters = mongoose.model('counters',countersSchema);
 
 

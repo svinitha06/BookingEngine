@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const property = require('./server/routes/property')
-const Latestproperty = require('./server/routes/Latestproperty')
+const IdentityCounter = require('./server/routes/IdentityCounter')
 app.use(express.json())
 
 app.use((req, res, next) => {
@@ -22,8 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/property',property);
-app.use('/Latestproperty',Latestproperty);
-
+app.use('/IdentityCounter',IdentityCounter);
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
