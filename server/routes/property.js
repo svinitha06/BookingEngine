@@ -1,41 +1,41 @@
 const propertyMaster = require('../Models/propertyMaster');
 const mongoose = require('mongoose');
 const express = require('express');
-
+ 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 })
-
-
+ 
 const router = express.Router()
 // router.get('/', isAuth, cartController.getCart);
 // router.post('/add', isAuth, cartController.addToCart);
 // router.post('/delete', isAuth, cartController.removeFromCart);
 // router.post('/update', isAuth, cartController.updateCart);
 // router.post('/sync', isAuth, cartController.syncCart);
-
+ 
 // GET API  
-
-router.get('/Property', function (req, res) {
-    try {
-        propertyMaster.find(function (err, response) {
-            if (err)
-                res.status('400').send(err)
+ 
+router.get('/Property',function(req,res)
+{
+    try{
+        propertyMaster.find(function(err,response){
+            if(err)
+            res.status(400).send(err)
             else
-                res.send(response)
+            res.send(response)
         })
     }
-    catch (error) {
-        console.log(error)
+    catch(error){
+        res.send(error)
     }
-});
-
-
+})
+ 
 router.post('/addProperty', (req, res) => {
     console.log("get req", req.body)
     var newProperty = new propertyMaster({
-        PropertyId: 241379,
+        PropertyId: req.body.PropertyId,
         name: req.body.name,
         location: req.body.location,
         description: req.body.description,
@@ -52,5 +52,5 @@ router.post('/addProperty', (req, res) => {
             res.send(Person)
     })
 });
-
+ 
 module.exports = router;

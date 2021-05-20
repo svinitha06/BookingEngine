@@ -4,13 +4,13 @@ const roomTypeMasterSchema=new mongoose.Schema({
 
     PropertyId:{
         type: Number,
-        required:true,
-        unique:true
+        required:false,
+        unique:false
     },
     
     roomType:{
        type: String,
-       required:true
+       required:false
     },
 
     roomImage:{
@@ -19,12 +19,12 @@ const roomTypeMasterSchema=new mongoose.Schema({
     
     description:{
       type:String,
-      required:true
+      required:false
     },
 
     numberofRooms:{
          type: Number,
-        required:true
+        required:false
 
     }
 })
