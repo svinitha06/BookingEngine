@@ -1,19 +1,25 @@
 pipeline{
     agent any
     stages {
-        stage('build'){
+        stage('CheckOut'){
             steps {
                 git branch: 'main', url: 'https://github.com/MS396584/BookingEngine.git'
-                sh 'npm install'
             }
         }
+       stage('Build'){
+           steps{
+             script{
+                dockerImage = docker.build booking
+                   }
+                }
+           }
        stage('Sonar Analysis'){
             steps {
                  withSonarQubeEnv("scan") {
                  sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Booking -Dsonar.projectName=BookingEngine -Dsonar.sources=."
                 
                                        }
-            }
-        }
+                 }
+           }
     }
 }
