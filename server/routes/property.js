@@ -73,27 +73,5 @@ catch(error){
 }
 });
 
-// router.post('/Rate', async (req, res) => {
-//     console.log(req.body)
-//     try{
-//             var newRate = new RateMaster({
-//             roomType: req.body.roomType,
-//             fromDate: req.body.fromDate,
-//             toDate: req.body.toDate,
-//             perDayRate: req.body.perDayRate,
-//             plan: req.body.plan
-//             });
- 
-//             newRate.save(function (err, Person) {
-// //                 if (err)
-// //                     res.status('400').send(err)
-//                 else
-//                     res.send(Person)
-//             })
-//         }
-//     catch(error){
-//             console.log("catch",error)
-//         }
-// });
  
 module.exports = router;

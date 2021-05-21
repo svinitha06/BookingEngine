@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const RateMaster = require('../Models/RateMaster');
-const ratemasters = require('../Models/RateMaster');
- 
+
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -23,15 +22,15 @@ router.post("/rate",(req,res) => {
     })
 })
 
-router.post("/rate",(req,res) => {
-    console.log(req.body);
-    const rate = new RateMaster(req.body)
-    rate.save().then(() => {
-        res.status(201).send(rate);
-    }).catch((err) => {
-        res.status(400).send(err);
-    })
-})
+// router.post("/rate",(req,res) => {
+//     console.log(req.body);
+//     const rate = new RateMaster(req.body)
+//     rate.save().then(() => {
+//         res.status(201).send(rate);
+//     }).catch((err) => {
+//         res.status(400).send(err);
+//     })
+// })
 
 module.exports = router;
 
