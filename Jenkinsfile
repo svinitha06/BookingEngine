@@ -27,9 +27,9 @@ pipeline{
            }
         stage('nexus'){
             steps{
-                sh 'docker tag bookingengine localhost:8095/booking/bookingengine:${currentBuild.number}'
+                sh 'docker tag bookingengine localhost:8095/booking/bookingengine'
                 sh 'docker login -u admin -p admin123 localhost:8095'
-                sh 'docker push localhost:8095/booking/bookingengine:${currentBuild.number}'
+                sh 'docker push localhost:8095/booking/bookingengine'
             }
         }
     }
