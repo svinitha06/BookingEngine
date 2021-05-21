@@ -2,7 +2,7 @@ const propertyMaster = require('../Models/propertyMaster');
 const counters = require('../Models/counters');
 const mongoose = require('mongoose');
 const express = require('express');
- 
+
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -72,5 +72,28 @@ catch(error){
     console.log("catch",error)
 }
 });
+
+// router.post('/Rate', async (req, res) => {
+//     console.log(req.body)
+//     try{
+//             var newRate = new RateMaster({
+//             roomType: req.body.roomType,
+//             fromDate: req.body.fromDate,
+//             toDate: req.body.toDate,
+//             perDayRate: req.body.perDayRate,
+//             plan: req.body.plan
+//             });
+ 
+//             newRate.save(function (err, Person) {
+// //                 if (err)
+// //                     res.status('400').send(err)
+//                 else
+//                     res.send(Person)
+//             })
+//         }
+//     catch(error){
+//             console.log("catch",error)
+//         }
+// });
  
 module.exports = router;
