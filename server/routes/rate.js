@@ -23,6 +23,16 @@ router.post("/rate",(req,res) => {
     })
 })
 
+router.post("/rate",(req,res) => {
+    console.log(req.body);
+    const rate = new RateMaster(req.body)
+    rate.save().then(() => {
+        res.status(201).send(rate);
+    }).catch((err) => {
+        res.status(400).send(err);
+    })
+})
+
 module.exports = router;
 
 // data given through POSTMAN using POST API

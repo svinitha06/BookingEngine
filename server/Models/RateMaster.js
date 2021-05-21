@@ -24,15 +24,15 @@ const rateMasterSchema=new mongoose.Schema({
     default:Date.now
     },
 
-    perDayRate:{
+    perDayRate:[{
     type: Number,
     required:false
-    },
+    }],
 
-    plan:{
+    plan:[{
     type : String,
     required:false
-    }
+    }]
 
     
 })
