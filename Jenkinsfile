@@ -1,7 +1,6 @@
 pipeline{
     environment {
-    imagename = "booking"
-    registryCredential = 'yenigul-dockerhub'
+    imagename = "bookingengine"
     dockerImage = ''
   }
     agent any
@@ -26,5 +25,11 @@ pipeline{
                                        }
                  }
            }
+        stage('nexus'){
+            steps{
+                sh 'docker tag bookingengine localhost:8095/booking/bookingengine'
+                sh 'docker login -u admin -p admin123 localhost:8095'
+            }
+        }
     }
 }
