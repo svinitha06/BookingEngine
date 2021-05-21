@@ -6,3 +6,63 @@
     #e9dcca 100%
   );
 } */
+.form h2 {
+  background-color: rgb(82, 80, 77);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-form {
+  width: 40%;
+  height: 70%;
+  background-color: rgb(226, 224, 221);
+  margin-top: 5%;
+  margin-left: 28%;
+}
+.form-contents {
+  padding: 2%;
+  margin-right: 33%;
+  margin-left: 24%;
+  display: grid;
+  margin-top: 5%;
+}
+.form {
+  border: 5px solid rgb(31, 30, 28);
+  /* border-radius: 2%; */
+}
+.form-contents input {
+  padding: 1%;
+  border-radius: 1%;
+}
+.form-date {
+  /* display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 1%;
+  margin-right: 5%; */
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+.final-date {
+  display: inline-grid;
+  margin-left: 50%;
+  margin-top: 2%;
+}
+/* .datepicker{
+
+} */
+
+/* .datepicker {
+  width: 60% !important;
+} */
+/* .final-date .form-datepicker {
+  width: 60% !important;
+} */
+
+.form-btn {
+  padding: 11% !important;
+}
+#datepickeridform {
+  width: 60% !important;
+}

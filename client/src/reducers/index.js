@@ -18,6 +18,12 @@ export default (state = initialState, action) => {
             ...state,
             roomRange: action.data
         };
+        case 'GET_LIST_PROPERTY':
+            console.log(action,"hey")
+        return{
+            ...state,
+            propertyList:action.data
+        }
         default:
             return state
     }

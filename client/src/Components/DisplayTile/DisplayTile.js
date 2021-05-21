@@ -12,34 +12,52 @@ class DisplayTile extends Component {
     super(props);
 
     this.state = {
-      count: 0,
+      isChange: true,
       // price1: 0,
+      countObj: [],
     };
   }
 
-  handleMinus = () => {
-    if (this.state.count > 0) {
-      this.setState({
-        count: this.state.count - 1,
-        // price1: this.state.price1 * this.state.count,
-      });
-    }
+  componentDidMount() {
+    var countObj = Details.map((data) => {
+      return {
+        id: data.id,
+        count: 0,
+      };
+    });
+    this.setState({
+      countObj: countObj,
+    });
+  }
+
+  handleMinus = (id) => {
+    var count = this.state.countObj;
+    count.forEach((data) => {
+      if (data.id === id) data.count -= 1;
+    });
+    this.setState({ countObj: count });
   };
 
-  handlePlus = () => {
-    if (this.state.count < 5) {
-      this.setState({
-        count: this.state.count + 1,
-        // price1: this.state.price1 * this.state.count,
-      });
-    }
+  handlePlus = (id) => {
+    var count = this.state.countObj;
+    count.forEach((data) => {
+      if (data.id === id) data.count += 1;
+    });
+    this.setState({ countObj: count });
   };
 
   render() {
+    console.log("state  ", this.state);
+
     return (
       <div className="display">
         <div>
           {Details.map((post, index) => {
+            let room = 0;
+            var count = this.state.countObj;
+            count.forEach((data) => {
+              if (data.id === post.id) room = data.count;
+            });
             return (
               <div className="wrapper">
                 <div className="ImageTile">
@@ -56,11 +74,17 @@ class DisplayTile extends Component {
                       <h2>{post.price}</h2>
                     </div>
                     <div className="button-price">
-                      <button className="thebutton" onClick={this.handleMinus}>
+                      <button
+                        className="thebutton"
+                        onClick={() => this.handleMinus(post.id)}
+                      >
                         -
                       </button>
-                      <button className="thebutton">{this.state.count}</button>
-                      <button className="thebutton" onClick={this.handlePlus}>
+                      <button className="thebutton">{room}</button>
+                      <button
+                        className="thebutton"
+                        onClick={() => this.handlePlus(post.id)}
+                      >
                         +
                       </button>
                     </div>
@@ -88,14 +112,13 @@ class DisplayTile extends Component {
                     <div className="reserve-content">
                       <div className="roomdiv">
                         <h3>Total Rooms :</h3>
-                        <h3>{this.state.count}</h3>
+                        <h3>{room}</h3>
                       </div>
                       <div className="roomdiv">
                         <h3>Total Price :</h3>
-                        <h3 className="priceh2">
-                          {post.price * this.state.count}
-                        </h3>
+                        <h3 className="priceh2">{post.price * room}</h3>
                       </div>
+
                       {/* <button className="reserve">Reserve</button> */}
                     </div>
                   </div>

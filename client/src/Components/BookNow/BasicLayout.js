@@ -23,10 +23,11 @@ export class BasicLayout extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      
-    };
+    this.state = {};
   }
+  getRoomNum = (numOfRooms) => {
+    console.log("checking it", numOfRooms);
+  };
   componentDidMount() {
     console.log(this.props, "here");
     this.setState({
@@ -82,17 +83,15 @@ export class BasicLayout extends Component {
           </select>
           <div id="all-rooms"></div>
         </div>
-        <DisplayTile />
+        <DisplayTile data={Details.id} myFunc={this.getRoomNum} />
         {/* <DisplayTileTwo /> */}
+
         <div className="total-price">
           <h3>
-            <span>Total Price: 0000</span>
+            <span>Total Price: 0</span>
           </h3>
         </div>
         <div className="btn-placement">
-          {/* <button className="reserve" onClick={this.handleRedirect}>
-            Reserve
-          </button> */}
           <Button className="reserve" as={NavLink} to="/form">
             Reserve
           </Button>
