@@ -1,4 +1,9 @@
 pipeline{
+    environment {
+    imagename = "booking"
+    registryCredential = 'yenigul-dockerhub'
+    dockerImage = ''
+  }
     agent any
     stages {
         stage('CheckOut'){
@@ -9,7 +14,7 @@ pipeline{
        stage('Build'){
            steps{
              script{
-                dockerImage = docker.build booking
+                dockerImage = docker.build imagename
                    }
                 }
            }
