@@ -1,5 +1,8 @@
 FROM node:8
+RUN mkdir /app
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
-EXPOSE 8088
+RUN npm run build
+EXPOSE 9090
 CMD ["npm","start"]
