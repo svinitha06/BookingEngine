@@ -4,8 +4,8 @@ const rate = require('./server/routes/rate');
 const app = express();
 const port = process.env.PORT || 5000;
 const property = require('./server/routes/property')
-// const IdentityCounter = require('./server/routes/IdentityCounter')
 
+// const IdentityCounter = require('./server/routes/IdentityCounter')
 app.use(express.json())
 
 
@@ -25,7 +25,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/property',property);
+app.use('/rate',RoomTypeRoute);
 app.use('/rooms',RoomTypeRoute);
-app.use('/rate',rate);
+
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
