@@ -73,4 +73,28 @@ catch(error){
 }
 });
  
+<<<<<<< Updated upstream
+=======
+
+//Fetching property based on location
+
+// fetch('http://localhost:5000/property/property')
+//     .then(response => response.json())
+//     .then(PropertyId =>console.log(PropertyId));
+
+
+
+//Getting property based on locations
+    router.get('/Property/:location', async (req, res) => {
+        try{
+            const post = await propertyMaster.find({location:(req.params.location)});
+            res.json(post);
+        } catch(err){
+            res.status(400).send(err)
+            
+        }
+    });
+   
+
+>>>>>>> Stashed changes
 module.exports = router;

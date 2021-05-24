@@ -42,7 +42,7 @@ router.post('/addRoomType', async (req, res) => {
     }
 });
 
-//Getting rooms by Proprty ID
+//Getting rooms by ProprtyID
  router.get('/getRoomType/:PropertyId', async (req, res) => {
      try{
          const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
