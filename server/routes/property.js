@@ -2,7 +2,7 @@ const propertyMaster = require('../Models/propertyMaster');
 const counters = require('../Models/counters');
 const mongoose = require('mongoose');
 const express = require('express');
-
+ 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -72,6 +72,5 @@ catch(error){
     console.log("catch",error)
 }
 });
-
  
 module.exports = router;

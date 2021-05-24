@@ -22,6 +22,15 @@ router.post("/rate",(req,res) => {
     })
 })
 
+router.get('/getRoomType/:PropertyId', async (req, res) => {
+    try{
+        const post = await RateMaster.find({PropertyId:(req.params.PropertyId)});
+        res.json(post);
+    } catch(err){
+        res.status(400).send(err)
+        
+    }
+});
 // router.post("/rate",(req,res) => {
 //     console.log(req.body);
 //     const rate = new RateMaster(req.body)
