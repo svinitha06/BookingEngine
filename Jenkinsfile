@@ -25,14 +25,14 @@ pipeline{
                                        }
                  }
            }
-        stage('run the container'){
+        stage('nexus'){
             steps{
                 sh 'docker tag bookingengine localhost:8095/booking/bookingengine:2.0'
                 sh 'docker login -u admin -p admin123 localhost:8095'
                 sh 'docker push localhost:8095/booking/bookingengine:2.0'
             }
         }
-        stage('nexus'){
+        stage('run the container'){
             steps{
                 sh 'docker pull localhost:8095/booking/bookingengine:2.0'
                 sh 'docker run --name booking -p 8089:9090 localhost:8095/booking/bookingengine:2.0'
