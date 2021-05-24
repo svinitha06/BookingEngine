@@ -42,8 +42,13 @@ router.post('/addRoomType', async (req, res) => {
     }
 });
 
+<<<<<<< Updated upstream
 //Getting rooms by Proprty ID
  router.get('/getRoomType/:PropertyId', async (req, res) => {
+=======
+//Getting rooms by ProprtyID
+ router.get('/:PropertyId', async (req, res) => {
+>>>>>>> Stashed changes
      try{
          const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
          res.json(post);
