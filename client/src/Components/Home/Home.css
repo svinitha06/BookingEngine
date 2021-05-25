@@ -1,11 +1,11 @@
 
 .homeContainer {
-    width: 50%;
+    width: 85%;
     border: 1px solid black;
     margin-top: 1em;
-    margin-left: 1em;
+    margin-left: 7em;
     border-radius: 1em;
-    height: 20em;
+    height: 22em !important;
 }
 .Home-head{
     display: -ms-flexbox;
@@ -13,26 +13,39 @@
     margin: 12px;
     -ms-flex-pack: center;
     justify-content: center;
-   
-    left: 15%;
     position: absolute;
     top: 60%;
     /* border: 2px solid green; */
     background: rgba(180, 243, 250, 0.2) !important;
     padding-top: 12px;
+    border-radius: 22px;
    
 }
-
-
-.check-in{
-    margin-right: 12px;
-    padding-top: 15px;
-    display: flex;
-    justify-content: center;
-    border: 1px solid;
-    background: black;
-    color: white;
-    padding: 12px;
+.e-date-range-wrapper{
+    margin-bottom: 1% !important;
+    border: 1px solid black !important;
+    padding: 10px !important;
+    background-color: rgba(162, 255, 250, 0.4) !important;
+    border-radius: 22px !important;
+    
+}
+::-webkit-input-placeholder {
+    color:black !important;
+    font-weight: 700 !important;
+}
+.dateError .e-date-range-wrapper {
+    border: 1px solid red !important;
+  }
+  
+.roomRange{
+    width: 250% !important;
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+    /* padding-right: 16px !important; */
+    border-radius: 22px !important;
+    background-color: rgba(162, 255, 250, 0.4) !important;
+    margin-bottom: 10px !important;
+    border: 1px solid black !important;
 }
 .pin{
     display: flex;
@@ -50,31 +63,47 @@
     margin-left: 210px;
 }
 .nameDes{
-    margin-top: -5px;
-    margin-left: -2em;
+    margin-left: -12em;
+    padding: 36px;
+    margin-right: 2em;
 }
 .childWrapper{
     grid-template-columns: 30% 30% !important;
 }
+.roomText{
+    width: 0%;
+}
+.menu-drop{
+    padding:5px
+}
 .viewDetails{
     margin-right: -100px !important;
-    margin-top: 25%;
-    margin-left: 68%;
+    margin-top: -6%;
+    margin-left: 77%;
+}
+.value{
+    margin-left: 25px;
+    margin-top: -23px !important;
+    font-size: 85%;
+    font-weight: 900 !important;
 }
 .Booknow-button{
     margin-left: -109px;
     margin-top: -36px;
 }
 .roomDetails{
-    display: flex;
     align-items: center;
     justify-content: center;
-    width: 35%;
+    width: 10%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 .ImageTile{
-        width: 100% !important;
-        max-height: 100%;
-        height: 182px !important;
+    width: 100% !important;
+    max-height: 106%;
+    height: 226px !important;
+    margin-left: -175px;
+    margin-top: 39px;
 }
 .decre{
     margin-left: 28px;
@@ -93,6 +122,10 @@
 }
 .c-incre{
     margin-left: 2px;
+}
+.checkButton{
+    margin-top: 5px;
+    padding-right: 12px;
 }
 
 @media only screen and (max-width:768px){

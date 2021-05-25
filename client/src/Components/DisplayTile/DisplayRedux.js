@@ -88,9 +88,7 @@ class DisplayRedux extends Component {
     console.log("inside render checking state", this.state);
     return (
       <div className="displayOne">
-        am I visible?
         <div>
-          am I visible 2?
           {this.state.list.map((post, index) => {
             let room = 0;
             var count = this.state.countObj;

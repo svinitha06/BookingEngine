@@ -5,11 +5,7 @@ pipeline{
   }
     agent any
     stages {
-        stage('clean'){
-            steps {
-                 deleteDir()
-            }
-        }
+       
         stage('CheckOut'){
             steps {
                 git branch: 'main', url: 'https://github.com/MS396584/BookingEngine.git'
@@ -25,8 +21,14 @@ pipeline{
        stage('Sonar Analysis'){
             steps {
                  withSonarQubeEnv("scan") {
-                 sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Booking -Dsonar.projectName=BookingEngine -Dsonar.sources=server/"
-                
+                 sh "${tool("scan")}/bin/sonar-scanner \
+                     -Dsonar.projectKey=Booking \
+                     -Dsonar.projectName=BookingEngine \
+                     -Dsonar.sources=server/ \
+                     -Dsonar.tests=server/ \
+                     -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info \
+                     -Dsonar.testExecutionReportPaths=/var/jenkins_home/workspace/sonar_result_test/xunit.xml \
+                     -Dsonar.verbose=true"
                                        }
                  }
            }
