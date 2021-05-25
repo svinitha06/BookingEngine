@@ -2,7 +2,8 @@ import React from "react";
 import "./Home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { get } from "lodash";
-import Button from "@material-ui/core/Button";
+import button from "@material-ui/core/Button";
+import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
 import hotel3 from "./home3.jpg";
 import hotel from "../../asset/hotel.jpg";
@@ -30,6 +31,10 @@ class Home extends React.Component {
       adultValue: 1,
       childValue: 0,
       listOfProperties: [],
+      dateError: "",
+      roomError: "",
+      clicked: false,
+
     };
   }
   componentDidMount() {
@@ -40,7 +45,7 @@ class Home extends React.Component {
     this.props.property(res);
     console.log(res, "sherin");
   };
-  componentDidUpdate() {
+  componentDidUpdate=()=> {
     console.log(this.props, "hello");
     if (!this.state.listOfProperties.length) {
       this.setState({
@@ -60,6 +65,16 @@ class Home extends React.Component {
       clicked: false,
     });
   };
+  handleValidate=()=>{
+    this.setState({
+      clicked: true,
+    });
+    if (this.state.start == null) {
+      this.setState({
+        dateError: "Please select the date",
+      });
+    }
+  }
   // handleCount=()=>{
   //   let count=0;
   //   if(this.state.childValue<=this.state.adultValue){
@@ -136,27 +151,42 @@ class Home extends React.Component {
       <div>
         <div>
           <img className="banner" src={hotel}></img>
-          <div className="contain">
-            <div className="Home-head d-flex">
-              <p className="check-in">Check-in / Check-out</p>
+          <div className={`date ${
+                      this.state.dateError !== "" ? "dateError" : ""
+                    }`}>
+            <div
+              className="Home-head d-flex w-98"
+              style={{ width: "-webkit-fill-available" }}
+            >
+              
               <DateRangePickerComponent
                 placeholder="Check-in/Check-out"
                 startDate={this.state.start}
                 endDate={this.state.end}
                 min={minValue}
                 format={"dd-MMM-yy"}
-                color={"white"}
+                color={"black"}
                 onChange={this.handleDate}
+                className="datePicker w-100"
+                showClearButton={false}
+                allowEdit={false}
               />
+              {this.state.dateError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                      )}
+              
+              
               <div className="roomDetails">
-                <p className="check-in">Rooms</p>
                 <div className="d-flex">
                   <Button
                     aria-controls="simple-menu"
                     aria-haspopup="true"
                     onClick={this.handleClick}
+                    className="roomRange"
                   >
-                    <i class="users icon ">{this.state.adultValue}</i>
+                    <p className="roomText">
+                      <i class="users icon ">{this.state.adultValue + this.state.childValue}Guests</i>
+                    </p>
                   </Button>
                   <Menu
                     id="simple-menu"
@@ -177,7 +207,7 @@ class Home extends React.Component {
                   >
                     <div className="d-flex">
                       {/* <button onClick={this.handleDec}>-</button> */}
-                      <p>Rooms</p>
+                      <p className="menu-drop">Rooms</p>
                       <div className="decre">
                         <button
                           class="circular ui icon button"
@@ -197,7 +227,7 @@ class Home extends React.Component {
                       </div>
                     </div>
                     <div className="d-flex">
-                      <p>Adults</p>
+                      <p className="menu-drop">Adults</p>
                       <div className="a-decre">
                         <button
                           class="circular ui icon button"
@@ -217,7 +247,7 @@ class Home extends React.Component {
                       </div>
                     </div>
                     <div className="d-flex">
-                      <p>Children</p>
+                      <p className="menu-drop">Children</p>
                       <div className="c-decre">
                         <button
                           class="circular ui icon button"
@@ -239,15 +269,26 @@ class Home extends React.Component {
                   </Menu>
                 </div>
               </div>
+              <div className="checkButton">
+                <Button animated onClick={this.handleValidate} olive
+                >
+                  <Button.Content visible>
+                    <p>Search</p>
+                  </Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="arrow right" />
+                  </Button.Content>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
-        {this.state.listOfProperties.map((data) => (
+        {this.state.listOfProperties.map((data,index) => (
           <div className="homeContainer">
             <div className="wrapper">
               <div>
-                <img className="ImageTile" src={hotel3}></img>
+                <img className="ImageTile" key={index} src={get(data,"Image","--")}></img>
               </div>
               <div className="nameDes">
                 <h2>{get(data, "name", "--")}</h2>
