@@ -5,11 +5,7 @@ pipeline{
   }
     agent any
     stages {
-        stage('clean'){
-            steps {
-                 deleteDir()
-            }
-        }
+       
         stage('CheckOut'){
             steps {
                 git branch: 'main', url: 'https://github.com/MS396584/BookingEngine.git'
