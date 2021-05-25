@@ -3,6 +3,8 @@ const counters = require('../Models/counters');
 const mongoose = require('mongoose');
 const express = require('express');
  
+//const { response} = require ('express');
+ 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -49,7 +51,7 @@ router.post('/addProperty', async(req, res) => {
             new: true
         })
         console.log("newCount",newCount);
-
+ 
     var newProperty = new propertyMaster({
         PropertyId: newCount.count,
         name: req.body.name,
@@ -72,29 +74,18 @@ catch(error){
     console.log("catch",error)
 }
 });
+
+
+
  
-<<<<<<< Updated upstream
-=======
-
-//Fetching property based on location
-
-// fetch('http://localhost:5000/property/property')
-//     .then(response => response.json())
-//     .then(PropertyId =>console.log(PropertyId));
-
-
-
 //Getting property based on locations
-    router.get('/Property/:location', async (req, res) => {
-        try{
-            const post = await propertyMaster.find({location:(req.params.location)});
-            res.json(post);
-        } catch(err){
-            res.status(400).send(err)
-            
-        }
-    });
-   
-
->>>>>>> Stashed changes
+router.get('/Property/:location', async (req, res) => {
+    try{
+        const post = await propertyMaster.find({location:(req.params.location)});
+        res.json(post);
+    } catch(err){
+        res.status(400).send(err)
+        
+    }
+});
 module.exports = router;

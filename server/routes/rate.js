@@ -31,6 +31,16 @@ router.get('/getRoomType/:PropertyId', async (req, res) => {
         
     }
 });
+
+router.get('/getperDayRate/:roomTypeId/:fromDate/:toDate', async (req, res) => {
+    try{
+        const post = await RateMaster.find({roomTypeId:(req.params.roomTypeIdId),fromDate:(req.params.fromDate),toDate:(req.params.toDate)});
+        res.json(post);
+    } catch(err){
+        res.status(400).send(err)
+        
+    }
+});
 // router.post("/rate",(req,res) => {
 //     console.log(req.body);
 //     const rate = new RateMaster(req.body)
