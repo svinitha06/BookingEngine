@@ -33,7 +33,8 @@ pipeline{
       stage('run the container'){
             steps{
                 sh 'docker pull localhost:8095/booking/bookingengine-client:2.0'
-               
+               sh 'docker stop booking-client'
+                sh 'docker rm booking-client'
                 sh 'docker run --name booking-client -p 3000:3000 localhost:8095/booking/bookingengine-client:2.0'
             }
         }
