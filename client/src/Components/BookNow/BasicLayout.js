@@ -19,6 +19,8 @@ import DisplayTileTwo from "../DisplayTile/DisplayTileTwo";
 import { NavLink } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import DisplayAgain from "../DisplayTile/DisplayAgain";
+import DisplayRedux from "../DisplayTile/DisplayRedux";
 export class BasicLayout extends Component {
   constructor(props) {
     super(props);
@@ -54,11 +56,11 @@ export class BasicLayout extends Component {
 
     return (
       <div>
-        <div className="wrapImage">
+        <div className="wrapImageBasic">
           <img src={ImageOne}></img>
         </div>
         {/* DatePicker */}
-        <div className="container">
+        <div className="containerBasic">
           <DateRangePickerComponent
             placeholder="Check-in/Check-out"
             startDate={this.state.start}
@@ -66,7 +68,7 @@ export class BasicLayout extends Component {
             min={minValue}
             format={"dd-MMM-yy"}
             color={"black"}
-            className="datepicker"
+            className="datepickerBasic"
           ></DateRangePickerComponent>
           <select
             name="Rooms"
@@ -83,9 +85,11 @@ export class BasicLayout extends Component {
           </select>
           <div id="all-rooms"></div>
         </div>
-        <DisplayTile data={Details.id} myFunc={this.getRoomNum} />
+        {/* <DisplayTile data={Details.id} myFunc={this.getRoomNum} /> */}
         {/* <DisplayTileTwo /> */}
-
+        {/* <DisplayTileTwo /> */}
+        <DisplayRedux />
+        {/* <DisplayAgain /> */}
         <div className="total-price">
           <h3>
             <span>Total Price: 0</span>
