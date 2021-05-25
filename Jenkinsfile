@@ -20,7 +20,7 @@ pipeline{
        stage('Sonar Analysis'){
             steps {
                  withSonarQubeEnv("scan") {
-                 sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Booking -Dsonar.projectName=BookingEngine -Dsonar.sources=."
+                 sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Booking -Dsonar.projectName=BookingEngine -Dsonar.sources=server/"
                 
                                        }
                  }
