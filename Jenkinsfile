@@ -27,7 +27,8 @@ pipeline{
                      -Dsonar.sources=server/ \
                      -Dsonar.tests=server/ \
                      -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info \
-                     -Dsonar.testExecutionReportPaths=/var/jenkins_home/workspace/sonar_result_test/xunit.xml"
+                     -Dsonar.testExecutionReportPaths=/var/jenkins_home/workspace/sonar_result_test/xunit.xml \
+                     -Dsonar.verbose=true"
                                        }
                  }
            }
