@@ -12,9 +12,7 @@ pipeline{
         }
        stage('Build'){
            steps{
-             script{
-                dockerImage = docker.build imagename
-                   }
+                sh 'docker build -f client/Dockerfile .'
                 }
            }
        stage('Sonar Analysis'){
