@@ -1,42 +1,42 @@
 const mongoose=require('mongoose');
 const rateMasterSchema=new mongoose.Schema({
- 
- 
-    PropertyId:{
-        type: Number,
-        required:true
-        
+
+    roomTypeId:{
+        type: String,
+        required: false
     },
-    
+
     roomType:{
        type: String,
-       required:true
+       required: false
     },
 
    
     fromDate:{
     type:Date,
-    required:true,
+    required:false,
     default:Date.now
-},
+    },
 
- toDate:{
+    toDate:{
     type:Date,
-    required:true,
+    required:false,
     default:Date.now
-},
-perDayRate:{
-    type: Number,
-    required:true
-},
+    },
 
-plan:{
+    perDayRate:[{
+    type: Number,
+    required:false
+    }],
+
+    plan:[{
     type : String,
-    required:true
-}
+    required:false
+    }]
 
     
 })
 
 
-module.exports=rateMaster=mongoose.model('rateMaster',rateMasterSchema);
+module.exports=Rate=mongoose.model('Rate',rateMasterSchema);
+

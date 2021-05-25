@@ -15,7 +15,7 @@
   width: 20% !important;
   /* color: brown; */
 }
-.container {
+.containerBasic {
   margin: 2px;
   padding: 2px;
   display: inline-flex;
@@ -37,10 +37,10 @@
   textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
   color: black;
 }
-.date-container {
+/* .date-container {
   display: flex;
   flex-direction: row;
-}
+} */
 .reserve {
   margin: 10px !important;
   padding: 15px 45px !important;
@@ -93,4 +93,13 @@
   flex-direction: row;
   justify-content: flex-end;
   margin-right: 12%;
+}
+.wrapImageBasic,
+.wrapImageBasic img {
+  width: 100% !important;
+  height: 70% !important;
+}
+.wrapImageBasic {
+  height: 50% !important;
+  width: 100%;
 }

@@ -89,6 +89,7 @@ class Home extends React.Component {
   //     })
   //   }
   // }
+
   handleDec = () => {
     if (this.state.roomValue !== 1) {
       this.setState({
