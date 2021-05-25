@@ -14,13 +14,29 @@ router.use(express.json());
 // POST API
 router.post("/rate",(req,res) => {
     console.log(req.body);
-    const rate = new RateMaster(req.body)
+    const rate = new Rate(req.body)
     rate.save().then(() => {
         res.status(201).send(rate);
     }).catch((err) => {
         res.status(400).send(err);
     })
 })
+
+// GET API
+// router.get('/rate',function(req,res)
+// {
+//     try{
+//         RateMaster.find(function(err,response){
+//             if(err)
+//             res.status(400).send(err)
+//             else
+//             res.send(response)
+//         })
+//     }
+//     catch(error){
+//         res.send(error)
+//     }
+// })
 
 // router.post("/rate",(req,res) => {
 //     console.log(req.body);

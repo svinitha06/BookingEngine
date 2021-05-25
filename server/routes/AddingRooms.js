@@ -12,7 +12,7 @@ mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@
 
 const router = express.Router()
 
-//get back all the posts
+//get back all the rooms
 router.get('/getRoomType',async(req,res) =>{
     try{
         const posts = await RoomTypeMaster.find();
@@ -23,7 +23,7 @@ router.get('/getRoomType',async(req,res) =>{
 })
 
 
-//Submit a post
+//Submit a post for rooms
 router.post('/addRoomType', async (req, res) => {
     const post = new RoomTypeMaster({
         PropertyId: req.body.PropertyId,
@@ -42,8 +42,13 @@ router.post('/addRoomType', async (req, res) => {
     }
 });
 
-//Specific Post
+<<<<<<< Updated upstream
+//Getting rooms by Proprty ID
  router.get('/getRoomType/:PropertyId', async (req, res) => {
+=======
+//Getting rooms by ProprtyID
+ router.get('/:PropertyId', async (req, res) => {
+>>>>>>> Stashed changes
      try{
          const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
          res.json(post);

@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 const rateMasterSchema=new mongoose.Schema({
 
     roomTypeId:{
-        type: Number,
+        type: String,
         required: false
     },
 
@@ -38,5 +38,5 @@ const rateMasterSchema=new mongoose.Schema({
 })
 
 
-module.exports=RateMaster=mongoose.model('RateMaster',rateMasterSchema);
+module.exports=Rate=mongoose.model('Rate',rateMasterSchema);
 
