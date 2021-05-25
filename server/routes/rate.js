@@ -14,7 +14,7 @@ router.use(express.json());
 // POST API
 router.post("/rate",(req,res) => {
     console.log(req.body);
-    const rate = new Rate(req.body)
+    const rate = new RateMaster(req.body)
     rate.save().then(() => {
         res.status(201).send(rate);
     }).catch((err) => {
@@ -22,22 +22,25 @@ router.post("/rate",(req,res) => {
     })
 })
 
-// GET API
-// router.get('/rate',function(req,res)
-// {
-//     try{
-//         RateMaster.find(function(err,response){
-//             if(err)
-//             res.status(400).send(err)
-//             else
-//             res.send(response)
-//         })
-//     }
-//     catch(error){
-//         res.send(error)
-//     }
-// })
+router.get('/getRoomType/:PropertyId', async (req, res) => {
+    try{
+        const post = await RateMaster.find({PropertyId:(req.params.PropertyId)});
+        res.json(post);
+    } catch(err){
+        res.status(400).send(err)
+        
+    }
+});
 
+router.get('/getperDayRate/:roomTypeId/:fromDate/:toDate', async (req, res) => {
+    try{
+        const post = await RateMaster.find({roomTypeId:(req.params.roomTypeIdId),fromDate:(req.params.fromDate),toDate:(req.params.toDate)});
+        res.json(post);
+    } catch(err){
+        res.status(400).send(err)
+        
+    }
+});
 // router.post("/rate",(req,res) => {
 //     console.log(req.body);
 //     const rate = new RateMaster(req.body)
