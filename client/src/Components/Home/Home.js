@@ -75,20 +75,20 @@ class Home extends React.Component {
       });
     }
   }
-  // handleCount=()=>{
-  //   let count=0;
-  //   if(this.state.childValue<=this.state.adultValue){
-  //     this.setState({
-  //       roomValue:Math.floor(this.state.adultValue/2)
-  //     })
+  handleCount=()=>{
+    let count=0;
+    if((this.state.childValue+this.state.adultValue)/4){
+      this.setState({
+        roomValue:Math.ceil(this.state.adultValue/2)
+      })
 
-  //   }
-  //   else{
-  //     this.setState({
-  //       roomValue:Math.floor(this.state.childValue/2)
-  //     })
-  //   }
-  // }
+    }
+    else{
+      this.setState({
+        roomValue:Math.ceil(this.state.childValue/2)
+      })
+    }
+  }
 
   handleDec = () => {
     if (this.state.roomValue !== 1) {
@@ -103,7 +103,7 @@ class Home extends React.Component {
         adultValue: this.state.adultValue - 1,
       });
     }
-    // this.handleCount()
+    this.handleCount()
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
@@ -111,7 +111,7 @@ class Home extends React.Component {
         childValue: this.state.childValue - 1,
       });
     }
-    // this.handleCount()
+    this.handleCount()
   };
   handleInc = () => {
     this.setState({
@@ -122,13 +122,13 @@ class Home extends React.Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    // this.handleCount()
+    this.handleCount()
   };
   handleIncChild = () => {
     this.setState({
       childValue: this.state.childValue + 1,
     });
-    // this.handleCount()
+    this.handleCount()
   };
   handleClick = (event) => {
     this.setState({
@@ -186,7 +186,9 @@ class Home extends React.Component {
                     className="roomRange"
                   >
                     <p className="roomText">
-                      <i class="users icon ">{this.state.adultValue + this.state.childValue}Guests</i>
+                      <i class="users icon ">
+                        <p className="value">{`${this.state.roomValue}Rooms`}</p>
+                      </i>
                     </p>
                   </Button>
                   <Menu
@@ -303,10 +305,6 @@ class Home extends React.Component {
                     <div className="pin">
                       <PhoneInTalkIcon></PhoneInTalkIcon>
                       <p className="pin-des">{get(data, "contact", "--")}</p>
-                    </div>
-                    <div className="pin">
-                      <WhatsAppIcon style={{ color: "#44C323" }}></WhatsAppIcon>
-                      <p className="pin-des">8939067356</p>
                     </div>
                   </div>
                   <div>
