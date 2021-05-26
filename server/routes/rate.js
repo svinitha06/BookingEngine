@@ -11,6 +11,21 @@ mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@
 const router = express.Router()
 router.use(express.json());
 
+// GET API
+router.get('/rate',function(req,res)
+{
+    try{
+        RateMaster.find(function(err,response){
+            if(err)
+            res.status(400).send(err)
+            else
+            res.send(response)
+        })
+    }
+    catch(error){
+        res.send(error)
+    }
+})
 // POST API
 router.post("/rate",(req,res) => {
     console.log(req.body);
@@ -22,26 +37,26 @@ router.post("/rate",(req,res) => {
     })
 })
 
-router.get('/getRoomType/:PropertyId', async (req, res) => {
-    try{
-        const post = await RateMaster.find({PropertyId:(req.params.PropertyId)});
-        res.json(post);
-    } catch(err){
-        res.status(400).send(err)
+// router.get('/getRoomType/:PropertyId', async (req, res) => {
+//     try{
+//         const post = await RateMaster.find({PropertyId:(req.params.PropertyId)});
+//         res.json(post);
+//     } catch(err){
+//         res.status(400).send(err)
         
-    }
-});
+//     }
+// });
 
-router.get('/getperDayRate/:roomTypeId/:fromDate/:toDate', async (req, res) => {
+router.get('/getroomType/:roomTypeId', async (req, res) => {
     try{
-        const post = await RateMaster.find({roomTypeId:(req.params.roomTypeIdId),fromDate:(req.params.fromDate),toDate:(req.params.toDate)});
+        const post = await RateMaster.find({roomTypeId:(req.params.roomTypeId)});
         res.json(post);
     } catch(err){
         res.status(400).send(err)
         
     }
 });
-// router.post("/rate",(req,res) => {
+// // router.post("/rate",(req,res) => {
 //     console.log(req.body);
 //     const rate = new RateMaster(req.body)
 //     rate.save().then(() => {
@@ -84,19 +99,5 @@ module.exports = router;
     
 //     createDocument();
 
-//GET API
-// router.get('/rate',function(req,res)
-// {
-//     try{
-//         RateMaster.find(function(err,response){
-//             if(err)
-//             res.status(400).send(err)
-//             else
-//             res.send(response)
-//         })
-//     }
-//     catch(error){
-//         res.send(error)
-//     }
-// })
+
        

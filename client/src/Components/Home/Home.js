@@ -406,7 +406,11 @@ class Home extends React.Component {
                   </div>
                   <div>
                     <div className="viewDetails">
+<<<<<<< HEAD
                       <Link to={`/basiclayout/${data.PropertyId}`}>
+=======
+                      <Link to="/basiclayout" id="2">
+>>>>>>> e55a2a041456aab450c00dd9fc071ba0d216c097
                         <button class="ui inverted green button">
                           View Details
                         </button>

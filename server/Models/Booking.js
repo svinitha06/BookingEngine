@@ -1,4 +1,6 @@
 const mongoose=require ("mongoose");
+const validator=require("validator");
+
 const bookingSchema= new mongoose.Schema({
 
     propertyId:{
@@ -20,13 +22,19 @@ const bookingSchema= new mongoose.Schema({
     },
     mobile:{ 
         type: Number,
-        required:true
-
+        required:true,
+        unique:true,
+        min: 10
     },
     email:{
-         type: String,
-        required:true
-
+        type: String,
+        required:true,
+        unique:true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error("Invalid Email")
+            }
+        }
     },
     Adults:{
          type: Number,
@@ -38,11 +46,12 @@ const bookingSchema= new mongoose.Schema({
         required:true
 
     },
-    mealType:{
-        type: Number,
+    planType:{
+        type: String,
         required:true
     },
-    noOfNights:{
+    
+    stayingDays:{
         type: Number,
         required:true
     },
@@ -55,4 +64,4 @@ const bookingSchema= new mongoose.Schema({
 
 })
 
-module.exports=booking=mongoose.Model('booking',bookingSchema);
+module.exports=Booking=mongoose.model('Booking',bookingSchema);

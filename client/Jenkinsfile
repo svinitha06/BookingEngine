@@ -18,7 +18,7 @@ pipeline{
        stage('Sonar Analysis'){
             steps {
                  withSonarQubeEnv("scan") {
-                 sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Bookingfe -Dsonar.projectName=BookingEngine-fe -Dsonar.sources=."
+                 sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Bookingfe -Dsonar.projectName=BookingEngine-fe -Dsonar.sources=client"
                 
                                        }
                  }
@@ -33,9 +33,8 @@ pipeline{
       stage('run the container'){
             steps{
                 sh 'docker pull localhost:8095/booking/bookingengine-client:2.0'
-               sh 'docker stop booking-client'
-                sh 'docker rm booking-client'
-                sh 'docker run --name booking-client -p 3000:3000 localhost:8095/booking/bookingengine-client:2.0'
+                sh 'docker rm booking-clinet'
+                sh 'docker run --name booking-client -p 5001:5000 localhost:8095/booking/bookingengine-client:2.0'
             }
         }
     }

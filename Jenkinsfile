@@ -24,11 +24,7 @@ pipeline{
                  sh "${tool("scan")}/bin/sonar-scanner \
                      -Dsonar.projectKey=Booking \
                      -Dsonar.projectName=BookingEngine \
-                     -Dsonar.sources=server/ \
-                     -Dsonar.tests=server/ \
-                     -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info \
-                     -Dsonar.testExecutionReportPaths=/var/jenkins_home/workspace/sonar_result_test/xunit.xml \
-                     -Dsonar.verbose=true"
+                     -Dsonar.sources=server/"
                                        }
                  }
            }
@@ -44,7 +40,7 @@ pipeline{
                 sh 'docker pull localhost:8095/booking/bookingengine:2.0'
                 sh 'docker stop booking'
                 sh 'docker rm booking'
-                sh 'docker run --name booking -p 5000:5000 localhost:8095/booking/bookingengine:2.0'
+                sh 'docker run -d --name booking -p 5000:5000 localhost:8095/booking/bookingengine:2.0'
             }
         }
     }

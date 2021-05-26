@@ -21,32 +21,44 @@ import { Redirect } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import DisplayAgain from "../DisplayTile/DisplayAgain";
 import DisplayRedux from "../DisplayTile/DisplayRedux";
+import axios from "axios";
+
 export class BasicLayout extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      listBasic: [],
+      idObj: [],
+    };
   }
   getRoomNum = (numOfRooms) => {
     console.log("checking it", numOfRooms);
   };
   componentDidMount() {
-    console.log(this.props, "here");
+    axios
+      .get("http://localhost:5000/rooms/getRoomType")
+      .then((responseBasic) => {
+        this.setState({
+          listBasic: responseBasic.data,
+        });
+        console.log("listBasic = ", this.state.listBasic._id);
+      })
+      .catch((error) => {
+        console.log(" BasicLayout Error gtting data", error);
+      });
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
   }
   setRooms = (event) => {
-    // console.log(event.target.value)
     ReactDOM.render(
       <ModalCompo2 total={event.target.value} open={true} />,
       document.getElementById("all-rooms")
     );
   };
-  // handleRedirect = () =>{
-  //   history.pus
-  // }
+
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -56,7 +68,7 @@ export class BasicLayout extends Component {
 
     return (
       <div>
-        <div className="wrapImageBasic">
+        <div className="adjustHeight">
           <img src={ImageOne}></img>
         </div>
         {/* DatePicker */}
@@ -85,7 +97,7 @@ export class BasicLayout extends Component {
           </select>
           <div id="all-rooms"></div>
         </div>
-        {/* <DisplayTile data={Details.id} myFunc={this.getRoomNum} /> */}
+        {/* <DisplayTile /> */}
         {/* <DisplayTileTwo /> */}
         {/* <DisplayTileTwo /> */}
         <DisplayRedux />
