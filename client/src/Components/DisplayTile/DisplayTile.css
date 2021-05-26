@@ -219,3 +219,8 @@ siickm */
   justify-content: flex-end;
   margin-right: 12%;
 }
+/* .roomDesc {
+  text-overflow: ellipsis;
+  white-space: pre;
+  overflow: hidden;
+} */

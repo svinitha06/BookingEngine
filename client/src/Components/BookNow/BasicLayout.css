@@ -94,7 +94,7 @@
   justify-content: flex-end;
   margin-right: 12%;
 }
-.wrapImageBasic,
+/* .wrapImageBasic,
 .wrapImageBasic img {
   width: 100% !important;
   height: 70% !important;
@@ -102,4 +102,10 @@
 .wrapImageBasic {
   height: 50% !important;
   width: 100%;
+} */
+.adjustHeight {
+  height: 70% !important;
+}
+.adjustHeight img {
+  width: 100% !important;
 }

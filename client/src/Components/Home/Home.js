@@ -286,7 +286,7 @@ class Home extends React.Component {
                       </span>
                     </div> */}
                     <div className="viewDetails">
-                      <Link to="/basiclayout">
+                      <Link to="/basiclayout" id="2">
                         <button class="ui inverted green button">
                           View Details
                         </button>

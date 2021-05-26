@@ -12,7 +12,7 @@ class DisplayTile extends Component {
     super(props);
 
     this.state = {
-      isChange: true,
+      // isChange: true,
       // price1: 0,
       countObj: [],
     };
@@ -25,6 +25,8 @@ class DisplayTile extends Component {
         count: 0,
       };
     });
+    console.log("Inside DidMount var countObj=", countObj);
+
     this.setState({
       countObj: countObj,
     });
@@ -32,18 +34,23 @@ class DisplayTile extends Component {
 
   handleMinus = (id) => {
     var count = this.state.countObj;
+    console.log("Inside HandleMinus var count=", count);
+
     count.forEach((data) => {
       if (data.id === id) data.count -= 1;
     });
     this.setState({ countObj: count });
+    console.log("Inside HandleMinus countObj=", this.state.countObj);
   };
 
   handlePlus = (id) => {
     var count = this.state.countObj;
+    console.log("Inside HandlePlus var count=", count);
     count.forEach((data) => {
       if (data.id === id) data.count += 1;
     });
     this.setState({ countObj: count });
+    console.log("Inside HandlePlus countObj=", this.state.countObj);
   };
 
   render() {
