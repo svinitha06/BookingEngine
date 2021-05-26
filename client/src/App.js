@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import "./App.css";
 import Home from "./Components/Home/Home";
 import BookNow from "./Components/BookNow/BookNow";
-import BNresp from "./Components/BookNow/BNresp";
 import Header from "./Components/Header/Header";
 import AboutUs from "./Components/About/AboutUs";
 import Accommodation from "./Components/Accommodation/Accommodation";
@@ -29,7 +28,7 @@ class App extends Component {
           <Route path="/accommodation">
             <Accommodation />
           </Route>
-          <Route path="/basiclayout">
+          <Route path="/basiclayout/:id">
             <BasicLayout />
           </Route>
           <Route path="/form">

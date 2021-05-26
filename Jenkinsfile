@@ -5,11 +5,7 @@ pipeline{
   }
     agent any
     stages {
-        stage('clean'){
-            steps {
-                 deleteDir()
-            }
-        }
+       
         stage('CheckOut'){
             steps {
                 git branch: 'main', url: 'https://github.com/MS396584/BookingEngine.git'
@@ -25,8 +21,10 @@ pipeline{
        stage('Sonar Analysis'){
             steps {
                  withSonarQubeEnv("scan") {
-                 sh "${tool("scan")}/bin/sonar-scanner -Dsonar.projectKey=Booking -Dsonar.projectName=BookingEngine -Dsonar.sources=server/"
-                
+                 sh "${tool("scan")}/bin/sonar-scanner \
+                     -Dsonar.projectKey=Booking \
+                     -Dsonar.projectName=BookingEngine \
+                     -Dsonar.sources=server/"
                                        }
                  }
            }
@@ -42,7 +40,7 @@ pipeline{
                 sh 'docker pull localhost:8095/booking/bookingengine:2.0'
                 sh 'docker stop booking'
                 sh 'docker rm booking'
-                sh 'docker run --name booking -p 5000:5000 localhost:8095/booking/bookingengine:2.0'
+                sh 'docker run -d --name booking -p 5000:5000 localhost:8095/booking/bookingengine:2.0'
             }
         }
     }
