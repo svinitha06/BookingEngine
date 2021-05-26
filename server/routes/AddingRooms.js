@@ -43,6 +43,7 @@ router.post("/addRoomType", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 //Getting rooms by ProprtyID
 router.get("/:PropertyId", async (req, res) => {
   try {
@@ -54,5 +55,18 @@ router.get("/:PropertyId", async (req, res) => {
     res.status(400).send(err);
   }
 });
+=======
+
+//Getting rooms by Proprty ID
+//  router.get('/getRoomType/:availability', async (req, res) => {
+//      try{
+//          const post = await RoomTypeMaster.find({availability: {$gte : 11}});
+//          res.json(post);
+//      } catch(err){
+//          res.status(400).send(err)        
+//      }
+//  });
+
+>>>>>>> 658cff62b2d6750ccfbd1dc494abfaacd63792ed
 
 module.exports = router;

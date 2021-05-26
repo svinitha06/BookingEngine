@@ -25,30 +25,30 @@ export class Header extends Component {
         <Segment className="my-seg">
           <Menu secondary className="my-menu">
             <div className="logo">
-              <MenuItem>
+              <MenuItem as={NavLink} to="/">
                 <h1>Booking Engine</h1>
               </MenuItem>
             </div>
-            <Menu.Item position="right" as={NavLink} to="/" exact>
+            {/* <Menu.Item position="right" as={NavLink} to="/" exact>
               Home
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item position="right" as={NavLink} to="/aboutUs">
               About Us
             </Menu.Item>
-            <Menu.Item position="right" as={NavLink} to="/accommodation">
+            {/* <Menu.Item position="right" as={NavLink} to="/accommodation">
               Accomodation
-            </Menu.Item>
-            <Menu.Item position="right">
+            </Menu.Item> */}
+            {/* <Menu.Item position="right">
               <Button as={NavLink} to="/booknow">
                 Book Now
-              </Button>
+              </Button> */}
               {/* {this.state.clicked ? } */}
               {/* <GiHamburgerMenu
                 className="hamburger"
                 size="30px"
                 onClick={this.handleClick}
               /> */}
-            </Menu.Item>
+            {/* </Menu.Item> */}
           </Menu>
         </Segment>
       </div>
