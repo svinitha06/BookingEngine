@@ -16,9 +16,12 @@ const propertyMaster = require('../Models/propertyMaster');
 const counters = require('../Models/counters');
 const mongoose = require('mongoose');
 const express = require('express');
+<<<<<<< Updated upstream
  
 //const { response} = require ('express');
  
+=======
+>>>>>>> Stashed changes
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
 >>>>>>> 658cff62b2d6750ccfbd1dc494abfaacd63792ed
     useNewUrlParser: true,
@@ -94,7 +97,11 @@ catch(error){
     console.log("catch",error)
 }
 });
+<<<<<<< Updated upstream
 >>>>>>> 658cff62b2d6750ccfbd1dc494abfaacd63792ed
+=======
+ 
+>>>>>>> Stashed changes
 
 router.get("/Property", function (req, res) {
   try {
@@ -107,6 +114,7 @@ router.get("/Property", function (req, res) {
   }
 });
 
+<<<<<<< Updated upstream
 router.post("/addProperty", async (req, res) => {
   console.log("get req", req.body);
   try {
@@ -161,6 +169,36 @@ router.get("/Property/:location", async (req, res) => {
   }
 });
 <<<<<<< HEAD
+=======
+//Getting property based on locations & availability
+router.get('/Property/search', async (req, res) => {
+    console.log(req.headers)
+    try{
+        let props = propertyMaster.find({location:(req.headers.location)});
+        let newProps =props.filter( (prop) =>{
+
+            let totalAvailability = 0;
+            
+            let post =  RoomTypeMaster.find({PropertyId:(prop.PropertyId)})
+            
+            post.forEach( room => {
+                totalAvailability +=(room.availability)
+            })
+            
+            if(totalAvailability >= (req.headers.roomsRequired) )
+            
+            return true
+            
+            });
+            res.send(newProps)
+        
+    } catch(err){
+        res.status(400).send(err)
+        
+    }
+});
+
+>>>>>>> Stashed changes
 
 module.exports = router;
 =======

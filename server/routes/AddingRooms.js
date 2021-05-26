@@ -57,6 +57,7 @@ router.get("/:PropertyId", async (req, res) => {
 });
 =======
 
+<<<<<<< Updated upstream
 //Getting rooms by Proprty ID
 //  router.get('/getRoomType/:availability', async (req, res) => {
 //      try{
@@ -70,3 +71,150 @@ router.get("/:PropertyId", async (req, res) => {
 >>>>>>> 658cff62b2d6750ccfbd1dc494abfaacd63792ed
 
 module.exports = router;
+=======
+
+
+//getting rooms by PropertyId
+ router.get('/getRoomType/:PropertyId', async (req, res) => {
+     try{
+         const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
+         res.json(post);
+     } catch(err){
+         res.status(400).send(err)
+         
+     }
+ });
+
+
+ //import React, { Component } from 'react';
+//  class Availablility extends Component {
+//     constructor() {
+//       super();
+//       this.state = {
+//         availablility: '',
+//         isLoading: true,
+//       };
+//     }
+  
+    // componentDidMount() {
+    //   axios
+    //     .get('http://localhost:5000/rooms/getRoomType/1')
+    //     .then(({ data }) => {
+    //       console.log(data);
+    //       this.setState({
+    //         availablility: data.availablility,
+    //         isLoading: false
+    //       });
+    //     })
+    //     .catch(err => {});
+    // };
+//      componentDidMount() {
+//          axios
+//              .get('http://localhost:5000/rooms/getRoomType/1')
+//              .then(({ data }) => {
+//              var sum = 0;
+//              if(typeof data == 'object'){
+//                  data.forEach(rooms => {
+//                      sum += parseFloat(rooms.availability);
+//                 });
+//             }
+//             this.setState({
+//                 availability: sum,
+//                 isLoading: false
+//             });
+//         })
+//         .catch(err => {});
+//     }
+//  }
+//exports default RoomTypeMaster;
+
+
+// const totalz2 = () => {
+//     let total2 = 0;
+//     for (let i = 0; i < props.availablility.length; i++) {
+//       total2 += props.availablility[i].RoomTypeMaster;
+//     }
+//     //return total2;
+//     console.log(total2);
+//   };
+
+
+// router.get('/roomsavailability/:PropertyId', async (req, res) => {
+//     try{
+//         const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
+//         post.forEach(({ availability }) => {
+//             var sum = 0;
+            
+//                 post.forEach(post => {
+//                     sum += parseFloat(post.availability);
+//                });
+//             })
+            
+//         res.json(sum);
+//         } catch(err){
+//         res.status(400).send(err)
+        
+//     }
+// });
+
+// router.get('/roomsavailability/:PropertyId', async (req, res) => {
+//     try{
+//         const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
+        
+//         var sum = 0;
+            
+//         post.forEach(rooms => {
+//                     sum += parseFloat(rooms.availability);
+//                });
+            
+            
+//         res.json(sum);
+//     } catch(err){
+//         res.status(400).send(err)
+        
+//     }
+// });
+
+//   /api/v1/products?price=gte:5.00
+
+
+// router.get('/getRoomType/:PropertyId', async (req, res) => {
+//      try{
+//          const post = await RoomTypeMaster.find({PropertyId:(req.params.PropertyId)});
+//          res.json(post);
+//      } catch(err){
+//          res.status(400).send(err)
+         
+//      }
+//  });
+
+// router.get('/getRoomType/:requiredRooms', async (req, res) => {
+//     try{
+//         const post = await RoomTypeMaster.find({availability:(req.params.availability)});
+        
+        //var sum = 0;
+            
+       // post.forEach(rooms => {
+        //            sum += parseFloat(rooms.availability);
+        //       });
+            
+            
+//         res.json(post);
+//     } catch(err){
+//         res.status(400).send(err)
+        
+//     }
+// });
+
+// router.get('/getRoomType/:availability', async (req, res) => {
+//     try{
+//         const post = await RoomTypeMaster.find({availability:(req.params.availability)});
+//         res.json(post);
+//     } catch(err){
+//         res.status(400).send(err)
+        
+//     }
+// });
+
+module.exports = router;
+>>>>>>> Stashed changes
