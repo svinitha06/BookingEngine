@@ -35,6 +35,8 @@
 ::-webkit-input-placeholder {
     color:black !important;
     font-weight: 700 !important;
+    font-family: ui-rounded;
+    font-size: 15px;
 }
 .dateError .e-date-range-wrapper {
     border: 1px solid red !important;
@@ -98,8 +100,9 @@
 .value{
     margin-left: 25px;
     margin-top: -23px !important;
-    font-size: 85%;
-    font-weight: 900 !important;
+    font-weight: 800 !important;
+    font-family: ui-rounded;
+    font-size: 15px;
 }
 .Booknow-button{
     margin-left: -109px;
@@ -151,7 +154,9 @@
     margin-right: 2em !important;
 } */
 #browser{
-    opacity: 0.6;
+    /* opacity: 0.6; */
+    background-color: #e0dddd !important;
+    font-size: 15px;
     width: 88%;
     height: 87%;
     margin-left: 0em;
@@ -160,6 +165,8 @@
     border: 1px solid black;
     color:black !important;
     font-weight: 700 !important;
+    font-family: ui-rounded;
+
     /* margin-right: 1em; */
     /* padding-right: 1em; */
 }
