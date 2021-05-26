@@ -25,10 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/property', property);
-app.use('/rate', RoomTypeRoute);
+app.use('/rate', rate);
 app.use('/rooms', RoomTypeRoute);
-app.use('/rate', rate);
-app.use('/rate', rate);
-
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));

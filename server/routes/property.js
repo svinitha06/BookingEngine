@@ -88,4 +88,8 @@ router.get('/Property/:location', async (req, res) => {
         
     }
 });
+   
+ 
 module.exports = router;
+
+
