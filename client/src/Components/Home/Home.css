@@ -1,11 +1,13 @@
 
 .homeContainer {
     width: 85%;
-    border: 1px solid black;
     margin-top: 1em;
     margin-left: 7em;
     border-radius: 1em;
-    height: 22em !important;
+    height: 24em !important;
+    margin-bottom: 4em;
+    background-color: #F8F8FF;
+    box-shadow: 10px 10px 5px #aaaaaa;
 }
 .Home-head{
     display: -ms-flexbox;
@@ -25,7 +27,8 @@
     margin-bottom: 1% !important;
     border: 1px solid black !important;
     padding: 10px !important;
-    background-color: rgba(162, 255, 250, 0.4) !important;
+    /* background-color: rgba(162, 255, 250, 0.4) !important; */
+    background-color: #e0dddd !important;
     border-radius: 22px !important;
     
 }
@@ -36,6 +39,9 @@
 .dateError .e-date-range-wrapper {
     border: 1px solid red !important;
   }
+  .cityError {
+    border: 1px solid red !important;
+  }
   
 .roomRange{
     width: 250% !important;
@@ -43,7 +49,7 @@
     padding-bottom: 16px !important;
     /* padding-right: 16px !important; */
     border-radius: 22px !important;
-    background-color: rgba(162, 255, 250, 0.4) !important;
+    /* background-color: rgba(162, 255, 250, 0.4) !important; */
     margin-bottom: 10px !important;
     border: 1px solid black !important;
 }
@@ -64,8 +70,12 @@
 }
 .nameDes{
     margin-left: -12em;
-    padding: 36px;
+    /* padding: 45px; */
+    padding-top: 2em;
+    padding-left: 1em;
+    /* padding-bottom: 2em !important; */
     margin-right: 2em;
+    /* margin-bottom: 10em; */
 }
 .childWrapper{
     grid-template-columns: 30% 30% !important;
@@ -79,7 +89,11 @@
 .viewDetails{
     margin-right: -100px !important;
     margin-top: -6%;
-    margin-left: 77%;
+    margin-left: 70%;
+}
+.starFill{
+    /* margin-left: 10em; */
+    margin-top: -13px;
 }
 .value{
     margin-left: 25px;
@@ -101,7 +115,7 @@
 .ImageTile{
     width: 100% !important;
     max-height: 106%;
-    height: 226px !important;
+    height: 244px !important;
     margin-left: -175px;
     margin-top: 39px;
 }
@@ -126,6 +140,35 @@
 .checkButton{
     margin-top: 5px;
     padding-right: 12px;
+}
+/* .city-input{
+    border-radius: 22px !important;
+    border: 1px solid black !important;
+    background-color: rgba(162, 255, 250, 0.4) !important;
+    padding: 2px !important;
+    width: 20% !important;
+    margin-bottom: 11px !important  ;
+    margin-right: 2em !important;
+} */
+#browser{
+    opacity: 0.6;
+    width: 88%;
+    height: 87%;
+    margin-left: 0em;
+    border-radius: 22px;
+    margin-top: -2px;
+    border: 1px solid black;
+    color:black !important;
+    font-weight: 700 !important;
+    /* margin-right: 1em; */
+    /* padding-right: 1em; */
+}
+.iconUI{
+    margin-top: 1em;
+}
+#input-with-icon-textfield{
+    margin-left: 24px !important;
+    margin-top: 7px !important;
 }
 
 @media only screen and (max-width:768px){

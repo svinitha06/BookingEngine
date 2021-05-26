@@ -28,7 +28,7 @@ class App extends Component {
           <Route path="/accommodation">
             <Accommodation />
           </Route>
-          <Route path="/basiclayout">
+          <Route path="/basiclayout/:id">
             <BasicLayout />
           </Route>
           <Route path="/form">

@@ -1,19 +1,25 @@
 import React from "react";
 import "./Home.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { get } from "lodash";
+import { get, forEach, functions } from "lodash";
+import _ from "lodash";
+import { StarFill } from "react-bootstrap-icons";
 import button from "@material-ui/core/Button";
+import ShowMoreText from "react-show-more-text";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
 import hotel3 from "./home3.jpg";
 import hotel from "../../asset/hotel.jpg";
 import { withRouter, Link } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import LocationSearchingIcon from "@material-ui/icons/LocationSearching";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import GpsFixedIcon from "@material-ui/icons/GpsFixed";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 import StarIcon from "@material-ui/icons/Star";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import { connect } from "react-redux";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import ErrorIcon from "@material-ui/icons/Error";
 import { date, property, room } from "../../actions/index";
 import { bindActionCreators } from "redux";
@@ -32,9 +38,10 @@ class Home extends React.Component {
       childValue: 0,
       listOfProperties: [],
       dateError: "",
-      roomError: "",
+      cityError: "",
       clicked: false,
-
+      open: false,
+      city:""
     };
   }
   componentDidMount() {
@@ -45,14 +52,14 @@ class Home extends React.Component {
     this.props.property(res);
     console.log(res, "sherin");
   };
-  componentDidUpdate=()=> {
+  componentDidUpdate = () => {
     console.log(this.props, "hello");
     if (!this.state.listOfProperties.length) {
       this.setState({
         listOfProperties: this.props.propertyList,
       });
     }
-  }
+  };
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
@@ -65,7 +72,7 @@ class Home extends React.Component {
       clicked: false,
     });
   };
-  handleValidate=()=>{
+  handleValidate = () => {
     this.setState({
       clicked: true,
     });
@@ -74,21 +81,19 @@ class Home extends React.Component {
         dateError: "Please select the date",
       });
     }
-  }
-  handleCount=()=>{
-    let count=0;
-    if((this.state.childValue+this.state.adultValue)/4){
+  };
+  handleCount = () => {
+    let count = 0;
+    if ((this.state.childValue + this.state.adultValue) / 4) {
       this.setState({
-        roomValue:Math.ceil(this.state.adultValue/2)
-      })
-
-    }
-    else{
+        roomValue: Math.ceil(this.state.adultValue / 2),
+      });
+    } else {
       this.setState({
-        roomValue:Math.ceil(this.state.childValue/2)
-      })
+        roomValue: Math.ceil(this.state.childValue / 2),
+      });
     }
-  }
+  };
 
   handleDec = () => {
     if (this.state.roomValue !== 1) {
@@ -103,7 +108,7 @@ class Home extends React.Component {
         adultValue: this.state.adultValue - 1,
       });
     }
-    this.handleCount()
+    this.handleCount();
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
@@ -111,7 +116,7 @@ class Home extends React.Component {
         childValue: this.state.childValue - 1,
       });
     }
-    this.handleCount()
+    this.handleCount();
   };
   handleInc = () => {
     this.setState({
@@ -122,13 +127,13 @@ class Home extends React.Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    this.handleCount()
+    this.handleCount();
   };
   handleIncChild = () => {
     this.setState({
       childValue: this.state.childValue + 1,
     });
-    this.handleCount()
+    this.handleCount();
   };
   handleClick = (event) => {
     this.setState({
@@ -140,6 +145,34 @@ class Home extends React.Component {
       roomAnchor: null,
     });
   };
+  handleFilter = (e) => {
+    const listCityProp = [...this.state.listOfProperties];
+    if (e == "") {
+      console.log("citytyyyy");
+      this.setState({
+        listOfProperties: listCityProp,
+      });
+      console.log(this.state.listOfProperties, "im here");
+      return;
+    }
+    if(this.state.city !== this.state.listOfProperties.location){
+      console.log("loosu")
+      this.setState({
+        cityError:"Enter valid city"
+      })
+    }
+
+    const cityDrop = listCityProp.filter((city) => city.location.includes(e));
+
+    this.setState({
+      listOfProperties: cityDrop,
+    });
+
+    console.log(this.state.listOfProperties);
+  };
+  executeOnClick(isExpanded) {
+    console.log(isExpanded);
+  }
 
   render() {
     const minValue = new Date(
@@ -152,14 +185,51 @@ class Home extends React.Component {
       <div>
         <div>
           <img className="banner" src={hotel}></img>
-          <div className={`date ${
-                      this.state.dateError !== "" ? "dateError" : ""
-                    }`}>
+          <div
+            className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
+          >
             <div
               className="Home-head d-flex w-98"
               style={{ width: "-webkit-fill-available" }}
             >
+              <div>
+                {/* <TextField
+                  id="input-with-icon-textfield"
+                  placeholder="Enter city"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LocationSearchingIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                >  </TextField> */}
+                 {/* className={`city ${this.state.cityError !== "" ? "cityError" : ""}`}> */}
+                <input
+                  list="browsers"
+                  name="browser"
+                  id="browser"
+                  onChange={(e) => {
+                    this.handleFilter(e.target.value);
+                  }}
+                  placeholder=" Enter City"
+                ></input>
+                  
+                <datalist id="browsers">
+                  <option>Chennai</option>
+                  <option>Bangalore</option>
+                  <option>Kolkata</option>
+                  <option>Delhi</option>
+                  <option>Hyderabad</option>
+                </datalist>
+                
+                {this.state.cityError !== "" && (
+                <ErrorIcon color="secondary" className="ml-2 mt-8" />
+              )}
               
+               
+              </div>
+
               <DateRangePickerComponent
                 placeholder="Check-in/Check-out"
                 startDate={this.state.start}
@@ -173,10 +243,9 @@ class Home extends React.Component {
                 allowEdit={false}
               />
               {this.state.dateError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-4" />
-                      )}
-              
-              
+                <ErrorIcon color="secondary" className="ml-2 mt-4" />
+              )}
+
               <div className="roomDetails">
                 <div className="d-flex">
                   <Button
@@ -273,8 +342,7 @@ class Home extends React.Component {
                 </div>
               </div>
               <div className="checkButton">
-                <Button animated onClick={this.handleValidate} olive
-                >
+                <Button animated onClick={this.handleValidate} olive>
                   <Button.Content visible>
                     <p>Search</p>
                   </Button.Content>
@@ -287,17 +355,46 @@ class Home extends React.Component {
           </div>
         </div>
 
-        {this.state.listOfProperties.map((data,index) => (
+        {this.state.listOfProperties.map((data, index) => (
           <div className="homeContainer">
             <div className="wrapper">
               <div>
-                <img className="ImageTile" key={index} src={get(data,"Image","--")}></img>
+                <img
+                  className="ImageTile"
+                  key={index}
+                  src={get(data, "Image[0]", "--")}
+                  onMouseOver={this.handleImage}
+                ></img>
               </div>
               <div className="nameDes">
-                <h2>{get(data, "name", "--")}</h2>
-                <h6>{get(data, "description", "--")}</h6>
+                <h1 style={{marginTop:"6px"}}>{get(data, "name", "--")}</h1>
+
+                <p className="starFill">
+                  {_.range(0, parseInt(get(data, "ratings").split("/")[0])).map(
+                    (i) => (
+                      <StarFill style={{ color: "#ffdf00" }} />
+                    )
+                  )}
+                </p>
+                <ShowMoreText
+                  /* Default options */
+                  lines={4}
+                  more="Show more"
+                  less="Show less"
+                  className="content-css"
+                  anchorClass="my-anchor-css-class"
+                  onClick={this.executeOnClick}
+                  expanded={false}
+                  width={520}
+                >
+                  <h6>{get(data, "description", "--")}</h6>
+                </ShowMoreText>
                 <div className="childWrapper">
-                  <div>
+                  <div className="iconUI">
+                    <div className="pin">
+                      <GpsFixedIcon></GpsFixedIcon>
+                      <p className="pin-des">{get(data, "Address", "--")}</p>
+                    </div>
                     <div className="pin">
                       <PinDropIcon style={{ color: "#FF5733" }}></PinDropIcon>
                       <p className="pin-des">{get(data, "location", "--")}</p>
@@ -308,24 +405,8 @@ class Home extends React.Component {
                     </div>
                   </div>
                   <div>
-                    {/* <div>
-                      <StarIcon style={{ color: "#EED336" }}></StarIcon>
-                      {get(data, "ratings", "--")}
-                    </div>
-                    <div>
-                      <LocalOfferIcon
-                        style={{ color: "#2ECC71" }}
-                      ></LocalOfferIcon>
-                      5%
-                    </div>
-                    <div>
-                      Pricing :₹<s>2500</s>
-                      <span>
-                        <h2>₹ 2375</h2>
-                      </span>
-                    </div> */}
                     <div className="viewDetails">
-                      <Link to="/basiclayout">
+                      <Link to={`/basiclayout/${data.PropertyId}`}>
                         <button class="ui inverted green button">
                           View Details
                         </button>
