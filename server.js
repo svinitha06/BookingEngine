@@ -21,9 +21,9 @@ app.use((req, res, next) => {
 });
 
 //create a GET route
-//app.get('/', (req, res) => {
- // res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-//});
+app.get('/', (req, res) => {
+ res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+});
 
 app.use('/property', property);
 //app.use('/rate', RoomTypeRoute);
