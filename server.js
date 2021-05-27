@@ -5,7 +5,7 @@ const rate = require('./server/routes/rate');
 const RateMaster = require('./server/Models/RateMaster');
 const app = express();
 const port = process.env.PORT || 5000;
-
+const Booking = require('./server/routes/bookings')
 // const IdentityCounter = require('./server/routes/IdentityCounter')
 app.use(express.json())
 
@@ -27,5 +27,6 @@ app.get('/', (req, res) => {
 app.use('/property', property);
 app.use('/rate', rate);
 app.use('/rooms', RoomTypeRoute);
+app.use('/book',Booking);
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
