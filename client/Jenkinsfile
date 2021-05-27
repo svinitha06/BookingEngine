@@ -1,0 +1,43 @@
+pipeline{
+    agent any
+    environment{
+        scannerHome= tool ("Sonar scanner")
+    }
+    stages {
+        stage('checkout'){
+            steps {
+                git branch: 'main',credentialsId: 'Github',url: 'https://github.com/kishorekumar-220/BookingEngine1.git'
+            }
+        }
+       stage('Sonar Analysis'){
+            steps {
+                 withSonarQubeEnv("Sonar_server") {
+               sh '${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sample -Dsonar.projectName=sample_Demo -Dsonar.sources=/var/lib/jenkins/workspace/Sample2/client/'
+                }
+            }
+        }
+       stage('docker'){
+            steps {
+                  //sh 'cd /var/lib/jenkins/workspace/Sample2/client/'
+                  sh 'docker build -t booking-fe:1.0 -f client/Dockerfile client/'
+                  }
+                   }
+      stage('Nexus'){
+            steps {
+                sh 'docker tag booking-fe:1.0 localhost:12012/booking-fe:1.0'
+                sh 'docker login -u admin -p admin@123 localhost:12012'
+                sh 'docker push localhost:12012/booking-fe:1.0'
+                   }
+                    }
+        stage('Pulling the Nexus'){
+            steps{
+                sh 'docker pull localhost:12012/booking-fe:1.0'}
+        }
+        stage('Running the container'){
+            steps{
+                sh 'docker stop Bookingengine-fe'
+                sh 'docker rm Bookingengine-fe'
+                sh 'docker run --name Bookingengine-fe -p 3000:3000 localhost:12012/booking-fe:1.0'}
+            }
+    }
+}
