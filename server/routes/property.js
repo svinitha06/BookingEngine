@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 const propertyMaster = require("../Models/propertyMaster");
 const counters = require("../Models/counters");
 
