@@ -26,14 +26,15 @@ export class Header extends Component {
           <Menu secondary className="my-menu">
             <div className="logo">
               <MenuItem as={NavLink} to="/">
-                <h1>Booking Engine</h1>
+                <h1 className="headline">Booking Engine</h1>
               </MenuItem>
             </div>
             {/* <Menu.Item position="right" as={NavLink} to="/" exact>
               Home
             </Menu.Item> */}
             <Menu.Item position="right" as={NavLink} to="/aboutUs">
-              About Us
+              
+              <p className="About">About Us</p>
             </Menu.Item>
             {/* <Menu.Item position="right" as={NavLink} to="/accommodation">
               Accomodation

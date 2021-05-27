@@ -28,6 +28,16 @@ Menu.Item {
 a.right.item.active {
   color: aliceblue;
 }
+.ui.secondary.menu .active.item{
+  background: white !important;
+}
+.About{
+  font-size: 17px;
+  font-weight: 600;
+}
+.headline{
+  font-family: ui-rounded !important;
+}
 
 @media (max-width: 990px) {
 }

@@ -155,6 +155,9 @@ class Home extends React.Component {
   executeOnClick(isExpanded) {
     console.log(isExpanded);
   }
+  // handleGo=(data)=>{
+  //   <Link to={`/basiclayout/${data}`}></Link>
+  // }
   handleRoomType = async (data) => {
     // let res = await db.getpropertyRoom(data);
     // this.props.propRoomType(res);
@@ -179,6 +182,7 @@ class Home extends React.Component {
       <div className="fullContainer">
         <div>
           <img className="banner" src={hotel}></img>
+          {/* <h2>Enjoy your stay</h2> */}
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
           >
@@ -331,7 +335,7 @@ class Home extends React.Component {
 
         {this.props.propertyList.length ?
           this.props.propertyList.map((data, index) => (
-            <div className="homeContainer" key={index}>
+            <div className="homeContainer" key={index} >
               <div className="wrapper">
                 <div>
                   <img

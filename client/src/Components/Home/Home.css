@@ -10,7 +10,13 @@
     margin-bottom: 6em;
     background-color:white;
     box-shadow: 10px 10px 5px #aaaaaa;
+    transition: transform 0.2s
 }
+.homeContainer:hover {
+    -ms-transform: scale(0.01); /* IE 9 */
+    -webkit-transform: scale(0.01); /* Safari 3-8 */
+    transform: scale(1.01);
+    }
 .Home-head{
     display: flex;
     margin: 0px;
