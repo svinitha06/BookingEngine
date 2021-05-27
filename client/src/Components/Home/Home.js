@@ -41,7 +41,7 @@ class Home extends React.Component {
       cityError: "",
       clicked: false,
       open: false,
-      city:""
+      city: "",
     };
   }
   componentDidMount() {
@@ -155,11 +155,11 @@ class Home extends React.Component {
       console.log(this.state.listOfProperties, "im here");
       return;
     }
-    if(this.state.city !== this.state.listOfProperties.location){
-      console.log("loosu")
+    if (this.state.city !== this.state.listOfProperties.location) {
+      console.log("loosu");
       this.setState({
-        cityError:"Enter valid city"
-      })
+        cityError: "Enter valid city",
+      });
     }
 
     const cityDrop = listCityProp.filter((city) => city.location.includes(e));
@@ -204,7 +204,7 @@ class Home extends React.Component {
                     ),
                   }}
                 >  </TextField> */}
-                 {/* className={`city ${this.state.cityError !== "" ? "cityError" : ""}`}> */}
+                {/* className={`city ${this.state.cityError !== "" ? "cityError" : ""}`}> */}
                 <input
                   list="browsers"
                   name="browser"
@@ -214,7 +214,7 @@ class Home extends React.Component {
                   }}
                   placeholder=" Enter City"
                 ></input>
-                  
+
                 <datalist id="browsers">
                   <option>Chennai</option>
                   <option>Bangalore</option>
@@ -222,12 +222,10 @@ class Home extends React.Component {
                   <option>Delhi</option>
                   <option>Hyderabad</option>
                 </datalist>
-                
+
                 {this.state.cityError !== "" && (
-                <ErrorIcon color="secondary" className="ml-2 mt-8" />
-              )}
-              
-               
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                )}
               </div>
 
               <DateRangePickerComponent
@@ -367,7 +365,7 @@ class Home extends React.Component {
                 ></img>
               </div>
               <div className="nameDes">
-                <h1 style={{marginTop:"6px"}}>{get(data, "name", "--")}</h1>
+                <h1 style={{ marginTop: "6px" }}>{get(data, "name", "--")}</h1>
 
                 <p className="starFill">
                   {_.range(0, parseInt(get(data, "ratings").split("/")[0])).map(

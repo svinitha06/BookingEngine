@@ -1,27 +1,16 @@
 import React, { Component } from "react";
 import "./BasicLayout.css";
 import { connect } from "react-redux";
-import ImageOne from "../BookNow/Cover.jpeg";
+import ImageOne from "../BookNow/Cover3.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { get } from "lodash";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import RoomNum from "./RoomNum";
-import ReactDOM from "react-dom";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 
-import DisplayTile from "../DisplayTile/DisplayTile";
-import ModalCompo2 from "../Modal/ModalCompo2";
-import { Room } from "@material-ui/icons";
-import Details from "../DisplayTile/roomTypeDetail.json";
-// import PseudoDisplay from "../DisplayTile/DisplayTileTwo";
-import DisplayTileTwo from "../DisplayTile/DisplayTileTwo";
-import { NavLink } from "react-router-dom";
-import { Redirect } from "react-router-dom";
-import { Button } from "semantic-ui-react";
-import DisplayAgain from "../DisplayTile/DisplayAgain";
 import DisplayRedux from "../DisplayTile/DisplayRedux";
-import axios from "axios";
+import { Button } from "semantic-ui-react";
+import Menu from "@material-ui/core/Menu";
 
 export class BasicLayout extends Component {
   constructor(props) {
@@ -30,23 +19,24 @@ export class BasicLayout extends Component {
     this.state = {
       listBasic: [],
       idObj: [],
+      start: null,
+      end: null,
+      roomAnchor: null,
+      roomValue: 1,
+      adultValue: 1,
+      childValue: 0,
+      listOfProperties: [],
+      dateError: "",
+      cityError: "",
+      clicked: false,
+      open: false,
+      city: "",
     };
   }
-  getRoomNum = (numOfRooms) => {
-    console.log("checking it", numOfRooms);
-  };
+  // getRoomNum = (numOfRooms) => {
+  //   console.log("checking it", numOfRooms);
+  // };
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/rooms/getRoomType")
-      .then((responseBasic) => {
-        this.setState({
-          listBasic: responseBasic.data,
-        });
-        console.log("listBasic = ", this.state.listBasic._id);
-      })
-      .catch((error) => {
-        console.log(" BasicLayout Error gtting data", error);
-      });
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
@@ -58,6 +48,119 @@ export class BasicLayout extends Component {
       document.getElementById("all-rooms")
     );
   };
+  handleDate = (e) => {
+    this.props.date({
+      start: e.value[0],
+      end: e.value[1],
+    });
+    this.setState({
+      start: e.value[0],
+      end: e.value[1],
+      dateError: "",
+      clicked: false,
+    });
+  };
+  handleValidate = () => {
+    this.setState({
+      clicked: true,
+    });
+    if (this.state.start == null) {
+      this.setState({
+        dateError: "Please select the date",
+      });
+    }
+  };
+  handleCount = () => {
+    let count = 0;
+    if ((this.state.childValue + this.state.adultValue) / 4) {
+      this.setState({
+        roomValue: Math.ceil(this.state.adultValue / 2),
+      });
+    } else {
+      this.setState({
+        roomValue: Math.ceil(this.state.childValue / 2),
+      });
+    }
+  };
+
+  handleDec = () => {
+    if (this.state.roomValue !== 1) {
+      this.setState({
+        roomValue: this.state.roomValue - 1,
+      });
+    }
+  };
+  handleDecAdult = () => {
+    if (this.state.adultValue !== 1) {
+      this.setState({
+        adultValue: this.state.adultValue - 1,
+      });
+    }
+    this.handleCount();
+  };
+  handleDecChild = () => {
+    if (this.state.childValue !== 0) {
+      this.setState({
+        childValue: this.state.childValue - 1,
+      });
+    }
+    this.handleCount();
+  };
+  handleInc = () => {
+    this.setState({
+      roomValue: this.state.roomValue + 1,
+    });
+  };
+  handleIncAdult = () => {
+    this.setState({
+      adultValue: this.state.adultValue + 1,
+    });
+    this.handleCount();
+  };
+  handleIncChild = () => {
+    this.setState({
+      childValue: this.state.childValue + 1,
+    });
+    this.handleCount();
+  };
+  handleClick = (event) => {
+    this.setState({
+      roomAnchor: event.currentTarget,
+    });
+  };
+  handleClose = () => {
+    this.setState({
+      roomAnchor: null,
+    });
+  };
+  handleFilter = (e) => {
+    const listCityProp = [...this.state.listOfProperties];
+    if (e == "") {
+      console.log("citytyyyy");
+      this.setState({
+        listOfProperties: listCityProp,
+      });
+      console.log(this.state.listOfProperties, "im here");
+      return;
+    }
+    if (this.state.city !== this.state.listOfProperties.location) {
+      console.log("loosu");
+      this.setState({
+        cityError: "Enter valid city",
+      });
+    }
+
+    const cityDrop = listCityProp.filter((city) => city.location.includes(e));
+
+    this.setState({
+      listOfProperties: cityDrop,
+    });
+
+    console.log(this.state.listOfProperties);
+  };
+  executeOnClick(isExpanded) {
+    console.log(isExpanded);
+  }
 
   render() {
     const minValue = new Date(
@@ -73,45 +176,116 @@ export class BasicLayout extends Component {
         </div>
         {/* DatePicker */}
         <div className="containerBasic">
-          <DateRangePickerComponent
-            placeholder="Check-in/Check-out"
-            startDate={this.state.start}
-            endDate={this.state.end}
-            min={minValue}
-            format={"dd-MMM-yy"}
-            color={"black"}
-            className="datepickerBasic"
-          ></DateRangePickerComponent>
-          <select
-            name="Rooms"
-            placeholder="Select Value"
-            onChange={this.setRooms}
-            value={this.props.roomRange.rooms}
-          >
-            <option value="0">No.of Room(s)</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <div id="all-rooms"></div>
+          <div className="dateContainerTwo">
+            <DateRangePickerComponent
+              placeholder="Check-in/Check-out"
+              startDate={this.state.start}
+              endDate={this.state.end}
+              min={minValue}
+              format={"dd-MMM-yy"}
+              color={"black"}
+              className="datepickerBasic"
+            ></DateRangePickerComponent>
+          </div>
+
+          <div className="roomDetailsTwo">
+            <div className="d-flex">
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={this.handleClick}
+                className="roomRange"
+              >
+                <p className="roomText">
+                  <i class="users icon ">
+                    <p className="value">{`${this.state.roomValue}`}</p>
+                  </i>
+                </p>
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={this.state.roomAnchor}
+                className="w-100"
+                open={Boolean(this.state.roomAnchor)}
+                onClose={this.handleClose}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                elevation={0}
+                getContentAnchorEl={null}
+              >
+                <div className="d-flex">
+                  {/* <button onClick={this.handleDec}>-</button> */}
+                  <p className="menu-drop">Rooms</p>
+                  <div className="decre">
+                    <button
+                      class="circular ui icon button"
+                      onClick={this.handleDec}
+                    >
+                      <i class="minus circle icon"></i>
+                    </button>
+                  </div>
+                  <p>{this.state.roomValue}</p>
+                  <div className="incre">
+                    <button
+                      class="circular ui icon button"
+                      onClick={this.handleInc}
+                    >
+                      <i class="plus circle icon"></i>
+                    </button>
+                  </div>
+                </div>
+                <div className="d-flex">
+                  <p className="menu-drop">Adults</p>
+                  <div className="a-decre">
+                    <button
+                      class="circular ui icon button"
+                      onClick={this.handleDecAdult}
+                    >
+                      <i class="minus circle icon"></i>
+                    </button>
+                  </div>
+                  <p>{this.state.adultValue}</p>
+                  <div className="a-incre">
+                    <button
+                      class="circular ui icon button"
+                      onClick={this.handleIncAdult}
+                    >
+                      <i class="plus circle icon"></i>
+                    </button>
+                  </div>
+                </div>
+                <div className="d-flex">
+                  <p className="menu-drop">Children</p>
+                  <div className="c-decre">
+                    <button
+                      class="circular ui icon button"
+                      onClick={this.handleDecChild}
+                    >
+                      <i class="minus circle icon"></i>
+                    </button>
+                  </div>
+                  <p>{this.state.childValue}</p>
+                  <div className="c-incre">
+                    <button
+                      class="circular ui icon button"
+                      onClick={this.handleIncChild}
+                    >
+                      <i class="plus circle icon"></i>
+                    </button>
+                  </div>
+                </div>
+              </Menu>
+            </div>
+          </div>
         </div>
-        {/* <DisplayTile /> */}
-        {/* <DisplayTileTwo /> */}
-        {/* <DisplayTileTwo /> */}
+
         <DisplayRedux />
-        {/* <DisplayAgain /> */}
-        <div className="total-price">
-          <h3>
-            <span>Total Price: 0</span>
-          </h3>
-        </div>
-        <div className="btn-placement">
-          <Button className="reserve" as={NavLink} to="/form">
-            Reserve
-          </Button>
-        </div>
       </div>
     );
   }
