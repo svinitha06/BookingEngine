@@ -1,10 +1,4 @@
-* {
-  /* font-family: "Montserrat", sans-serif; */
-}
-p {
-  color: antiquewhite;
-  background-color: aqua;
-}
+
 Segment {
   display: flex;
 }
@@ -20,9 +14,6 @@ Menu.Item {
   width: 100%;
   align-items: center;
   justify-content: space-around;
-}
-.ui.segment:last-child {
-  /* background-color: rgb(56, 195, 250); */
 }
 
 a.right.item.active {

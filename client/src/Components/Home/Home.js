@@ -266,7 +266,7 @@ class Home extends React.Component {
                           <RemoveIcon />
                         </button>
                       </div>
-                      <p>{this.state.roomValue}</p>
+                      <p className="now">{this.state.roomValue}</p>
                       <div className="incre">
                         <button
                           class="circular ui icon button"
@@ -286,7 +286,7 @@ class Home extends React.Component {
                           <RemoveIcon />
                         </button>
                       </div>
-                      <p>{this.state.adultValue}</p>
+                      <p className="now">{this.state.adultValue}</p>
                       <div className="a-incre">
                         <button
                           class="circular ui icon button"
@@ -306,7 +306,7 @@ class Home extends React.Component {
                           <RemoveIcon />
                         </button>
                       </div>
-                      <p>{this.state.childValue}</p>
+                      <p className="now">{this.state.childValue}</p>
                       <div className="c-incre">
                         <button
                           class="circular ui icon button"

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import logoHotel from "../../asset/logoHotel.jpg"
 import { Button, Menu, MenuItem, Segment } from "semantic-ui-react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
@@ -26,8 +27,11 @@ export class Header extends Component {
           <Menu secondary className="my-menu">
             <div className="logo">
               <MenuItem as={NavLink} to="/">
+                
                 <h1 className="headline">Booking Engine</h1>
+                
               </MenuItem>
+              
             </div>
             {/* <Menu.Item position="right" as={NavLink} to="/" exact>
               Home

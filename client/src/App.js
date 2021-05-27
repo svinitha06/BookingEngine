@@ -6,7 +6,6 @@ import Home from "./Components/Home/Home";
 import BookNow from "./Components/BookNow/BookNow";
 import Header from "./Components/Header/Header";
 import AboutUs from "./Components/About/AboutUs";
-import Accommodation from "./Components/Accommodation/Accommodation";
 import Footer from "./Components/Footer/Footer"
 
 import BasicLayout from "./Components/BookNow/BasicLayout";
@@ -27,9 +26,7 @@ class App extends Component {
           <Route path="/aboutUs">
             <AboutUs />
           </Route>
-          <Route path="/accommodation">
-            <Accommodation />
-          </Route>
+          
           <Route path="/basiclayout/:id">
             <BasicLayout />
           </Route>
