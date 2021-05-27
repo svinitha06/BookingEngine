@@ -2,5 +2,16 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: ui-rounded !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+*{
+  font-family: ui-rounded !important;
+
+}
+.content-wrap{
+  flex: 1;
 }

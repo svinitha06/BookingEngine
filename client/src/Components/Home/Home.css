@@ -1,34 +1,38 @@
-
+.fullContainer{
+    background: #F8F8FF;
+}
 .homeContainer {
     width: 85%;
     margin-top: 1em;
     margin-left: 7em;
     border-radius: 1em;
     height: 24em !important;
-    margin-bottom: 4em;
-    background-color: #F8F8FF;
+    margin-bottom: 6em;
+    background-color:white;
     box-shadow: 10px 10px 5px #aaaaaa;
 }
 .Home-head{
-    display: -ms-flexbox;
     display: flex;
-    margin: 12px;
-    -ms-flex-pack: center;
+    margin: 0px;
     justify-content: center;
     position: absolute;
-    top: 60%;
+    top: 73.5%;
     /* border: 2px solid green; */
-    background: rgba(180, 243, 250, 0.2) !important;
+    /* background: rgba(180, 243, 250, 0.2) !important; */
     padding-top: 12px;
-    border-radius: 22px;
-   
+    /* border-radius: 22px; */
+    background: black;
+}
+.nameDes h1{
+    margin-top: 6px !important;
+    font-family: ui-rounded !important;
 }
 .e-date-range-wrapper{
     margin-bottom: 1% !important;
     border: 1px solid black !important;
     padding: 10px !important;
     /* background-color: rgba(162, 255, 250, 0.4) !important; */
-    background-color: #e0dddd !important;
+    background-color: beige !important;
     border-radius: 22px !important;
     
 }
@@ -54,6 +58,7 @@
     /* background-color: rgba(162, 255, 250, 0.4) !important; */
     margin-bottom: 10px !important;
     border: 1px solid black !important;
+    background-color: beige !important;
 }
 .pin{
     display: flex;
@@ -117,7 +122,6 @@
 }
 .ImageTile{
     width: 100% !important;
-    max-height: 106%;
     height: 244px !important;
     margin-left: -175px;
     margin-top: 39px;
@@ -155,7 +159,7 @@
 } */
 #browser{
     /* opacity: 0.6; */
-    background-color: #e0dddd !important;
+    background-color:beige !important;
     font-size: 15px;
     width: 88%;
     height: 87%;
@@ -176,6 +180,32 @@
 #input-with-icon-textfield{
     margin-left: 24px !important;
     margin-top: 7px !important;
+}
+p{
+    font-family: ui-rounded !important;
+
+}
+h1{
+    font-family: ui-rounded !important;
+
+}
+h6{
+    font-family: ui-rounded !important;
+
+}
+.content-css{
+    font-family: ui-rounded !important;
+
+}
+.noProp{
+    color: red;
+    padding-left: 16em;
+    padding-bottom: 1em;
+    border: 1px solid black;
+    margin-bottom: 1em !important;
+    margin-right: 2em;
+    padding-top: 1em;
+    font-family: ui-rounded !important;
 }
 
 @media only screen and (max-width:768px){

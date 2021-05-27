@@ -7,6 +7,7 @@ import BookNow from "./Components/BookNow/BookNow";
 import Header from "./Components/Header/Header";
 import AboutUs from "./Components/About/AboutUs";
 import Accommodation from "./Components/Accommodation/Accommodation";
+import Footer from "./Components/Footer/Footer"
 
 import BasicLayout from "./Components/BookNow/BasicLayout";
 import Form from "./Components/Form/Form";
@@ -15,6 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <div className="content-wrap">
         <Switch>
           <Route exact path="/">
             <Home />
@@ -35,6 +37,8 @@ class App extends Component {
             <Form />
           </Route>
         </Switch>
+        </div>
+        <Footer/>
       </div>
     );
   }

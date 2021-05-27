@@ -30,6 +30,11 @@ export default (state = initialState, action) => {
         ...state,
         roomDetailsList: action.data,
       };
+    case "GET_PROPROOM_TYPE":
+      return {
+        ...state,
+        roomTypes: action.data,
+      };
     default:
       return state;
   }
