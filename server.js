@@ -1,6 +1,6 @@
 const express = require('express');
 const property = require('./server/routes/property')
-const RoomTypeRoute = require('./server/Routes/AddingRooms');
+const RoomTypeRoute = require('./server/routes/AddingRooms');
 const rate = require('./server/routes/rate');
 const RateMaster = require('./server/Models/RateMaster');
 const app = express();
