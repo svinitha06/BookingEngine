@@ -1,9 +1,8 @@
 const express = require('express');
 const property = require('./server/routes/property')
-const RoomTypeRoute = require('./server/routes/AddingRooms');
+const RoomTypeRoute = require('./server/Routes/AddingRooms');
 const rate = require('./server/routes/rate');
 const RateMaster = require('./server/Models/RateMaster');
-const Booking = require('./server/routes/bookings');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -22,14 +21,11 @@ app.use((req, res, next) => {
 
 //create a GET route
 app.get('/', (req, res) => {
- res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
 app.use('/property', property);
-//app.use('/rate', RoomTypeRoute);
-app.use('/rooms', RoomTypeRoute);
 app.use('/rate', rate);
-app.use('/book', Booking);
-
+app.use('/rooms', RoomTypeRoute);
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
