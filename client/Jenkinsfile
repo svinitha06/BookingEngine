@@ -6,7 +6,7 @@ pipeline{
     stages {
         stage('checkout'){
             steps {
-                git branch: 'main',credentialsId: 'Github',url: 'https://github.com/kishorekumar-220/BookingEngine1.git'
+                git branch: 'main',url: 'https://github.com/MS396584/BookingEngine.git'
             }
         }
        stage('Sonar Analysis'){
