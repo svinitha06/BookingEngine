@@ -110,6 +110,19 @@ router.get('/Property/search', async (req, res) => {
 
     }
 });
+
+//Getting property by location
+
+
+router.get('/Property/:location', async (req, res) => {
+    try{
+        const post = await propertyMaster.find({location:(req.params.location)});
+        res.json(post);
+    } catch(err){
+        res.status(400).send(err)
+        
+    }
+});
    
  
 module.exports = router;
