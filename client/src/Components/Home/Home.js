@@ -2,7 +2,7 @@ import React from "react";
 import "./Home.css";
 import { get, functions, bind } from "lodash";
 import _ from "lodash";
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { StarFill } from "react-bootstrap-icons";
 import AddIcon from "@material-ui/icons/Add";
@@ -36,7 +36,7 @@ class Home extends React.Component {
       cityError: "",
       clicked: false,
       open: false,
-      searchValue:""
+      searchValue: "",
     };
   }
   componentDidMount() {
@@ -58,14 +58,20 @@ class Home extends React.Component {
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
+
       end: e.value[1],
     });
+    console.log("e.value 0", e.value[0]);
+    console.log("e.value", e.value);
+
     this.setState({
       start: e.value[0],
       end: e.value[1],
       dateError: "",
       clicked: false,
     });
+
+    console.log("Handle date", this.state.start);
   };
   handleValidate = () => {
     this.setState({
@@ -143,8 +149,8 @@ class Home extends React.Component {
   handleFilter = (e) => {
     console.log(e, "sivangi");
     this.setState({
-      searchValue:e
-    })
+      searchValue: e,
+    });
     this.getLocation(e);
   };
   getLocation = async (data) => {
@@ -170,6 +176,7 @@ class Home extends React.Component {
     //   <Redirect to={`/basiclayout/${data}`} />
     // }
   };
+  // console.log("state inside Home ", this.state);
 
   render() {
     const minValue = new Date(
@@ -205,19 +212,20 @@ class Home extends React.Component {
                   <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
               </div>
-
-              <DateRangePickerComponent
-                placeholder="Check-in/Check-out"
-                startDate={this.state.start}
-                endDate={this.state.end}
-                min={minValue}
-                format={"dd-MMM-yy"}
-                color={"black"}
-                onChange={this.handleDate}
-                className="datePicker w-100"
-                showClearButton={false}
-                allowEdit={false}
-              />
+              <div className="datePickerHome">
+                <DateRangePickerComponent
+                  placeholder="Check-in/Check-out"
+                  startDate={this.state.start}
+                  endDate={this.state.end}
+                  min={minValue}
+                  format={"dd-MMM-yy"}
+                  color={"black"}
+                  onChange={this.handleDate}
+                  className="datePicker w-100"
+                  showClearButton={false}
+                  allowEdit={false}
+                />
+              </div>
               {this.state.dateError !== "" && (
                 <ErrorIcon color="secondary" className="ml-2 mt-4" />
               )}
@@ -231,11 +239,8 @@ class Home extends React.Component {
                     className="roomRange"
                   >
                     <p className="roomText">
-                      <GroupAddIcon>
-                      </GroupAddIcon>
+                      <GroupAddIcon></GroupAddIcon>
                       <p className="value">{`${this.state.roomValue}Rooms`}</p>
-                        
-                      
                     </p>
                   </Button>
                   <Menu
@@ -333,9 +338,9 @@ class Home extends React.Component {
           </div>
         </div>
 
-        {this.props.propertyList.length ?
+        {this.props.propertyList.length ? (
           this.props.propertyList.map((data, index) => (
-            <div className="homeContainer" key={index} >
+            <div className="homeContainer" key={index}>
               <div className="wrapper">
                 <div>
                   <img
@@ -399,11 +404,12 @@ class Home extends React.Component {
                 </div>
               </div>
             </div>
-          )):this.state.searchValue.length ? <div>
-           <h2 className="noProp"> Sorry!! 
-            No properties available.</h2>
-            
-            </div>:null}
+          ))
+        ) : this.state.searchValue.length ? (
+          <div>
+            <h2 className="noProp"> Sorry!! No properties available.</h2>
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -419,6 +425,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     propertyList: get(state, "propertyList", []),
+    dateRange: get(state, "dateRange", []),
   };
 };
 

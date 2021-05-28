@@ -6,11 +6,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { get } from "lodash";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 
 import DisplayRedux from "../DisplayTile/DisplayRedux";
 import { Button } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+// export const pureComponentAvailable = true;
+// import 'react-calendar/dist/Calendar.css';
+import {
+  DatePickerComponent,
+  DateRangePickerComponent,
+} from "@syncfusion/ej2-react-calendars";
+import { withRouter } from "react-router";
+import { bindActionCreators } from "redux";
+import { date, property, room, propRoomType } from "../../actions/index";
+import { DateRangePickerInput } from "react-dates";
+import AddIcon from "@material-ui/icons/Add";
+// import { StarFill } from "react-bootstrap-icons";
 
 export class BasicLayout extends Component {
   constructor(props) {
@@ -41,6 +54,10 @@ export class BasicLayout extends Component {
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
+    console.log("start = ", this.state.start);
+    console.log("This.state = ", this.state);
+
+    console.log("props = ", this.props);
   }
   setRooms = (event) => {
     ReactDOM.render(
@@ -48,18 +65,21 @@ export class BasicLayout extends Component {
       document.getElementById("all-rooms")
     );
   };
-  handleDate = (e) => {
-    this.props.date({
-      start: e.value[0],
-      end: e.value[1],
-    });
-    this.setState({
-      start: e.value[0],
-      end: e.value[1],
-      dateError: "",
-      clicked: false,
-    });
-  };
+
+  // handleDate = () => {
+  //   this.props.date({
+  //     start: e.value[0],
+  //   });
+  //   this.setState({
+  //     start: e.value[0],
+  //     // end: e.value[1],
+  //     dateError: "",
+  //     clicked: false,
+  //   });
+  //   console.log("basiclayout = ", e.value);
+  //   console.log("basiclayout0 = ", e.value[0]);
+  //   console.log("statr = ", start);
+  // };
   handleValidate = () => {
     this.setState({
       clicked: true,
@@ -172,115 +192,145 @@ export class BasicLayout extends Component {
     return (
       <div>
         <div className="adjustHeight">
-          <img src={ImageOne} style={{width:"100%"}}></img>
+          <img src={ImageOne} style={{ width: "100%" }}></img>
         </div>
         {/* DatePicker */}
         <div className="containerBasic">
           <div className="dateContainerTwo">
-            <DateRangePickerComponent
-              placeholder="Check-in/Check-out"
-              startDate={this.state.start}
-              endDate={this.state.end}
-              min={minValue}
-              format={"dd-MMM-yy"}
-              color={"black"}
-              className="datepickerBasic"
-            ></DateRangePickerComponent>
-          </div>
-
-          <div className="roomDetailsTwo">
-            <div className="d-flex">
-              <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={this.handleClick}
-                className="roomRange"
-              >
-                <p className="roomText">
-                  <i class="users icon ">
-                    <p className="value">{`${this.state.roomValue}`}</p>
-                  </i>
-                </p>
-              </Button>
-              <Menu
-                id="simple-menu"
-                anchorEl={this.state.roomAnchor}
-                className="w-100"
-                open={Boolean(this.state.roomAnchor)}
-                onClose={this.handleClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                elevation={0}
-                getContentAnchorEl={null}
-              >
-                <div className="d-flex">
-                  {/* <button onClick={this.handleDec}>-</button> */}
-                  <p className="menu-drop">Rooms</p>
-                  <div className="decre">
-                    <button
-                      class="circular ui icon button"
-                      onClick={this.handleDec}
-                    >
-                      <i class="minus circle icon"></i>
-                    </button>
+            <div className="parentContainerDate">
+              <div className="leftOne">
+                <DatePickerComponent
+                  placeholder="Check-in"
+                  // value={this.state.start}
+                  // startDate={this.state.start}
+                  // endDate={this.state.end}
+                  min={minValue}
+                  format={"dd-MMM-yy"}
+                  color={"black"}
+                  // onChange={() => this.handleDate()}
+                  // onChange={({ startDate, endDate }) =>
+                  //   this.setState({ startDate, endDate })
+                  // }
+                  className="newDatePicker"
+                  showClearButton={false}
+                  allowEdit={false}
+                />
+              </div>
+              <div className="rightOne">
+                <DatePickerComponent
+                  placeholder="Check-out"
+                  // value={this.state.start}
+                  startDate={this.state.start}
+                  // endDate={this.state.end}
+                  min={minValue}
+                  format={"dd-MMM-yy"}
+                  color={"black"}
+                  // onChange={() => this.handleDate()}
+                  // onChange={({ startDate, endDate }) =>
+                  //   this.setState({ startDate, endDate })
+                  // }
+                  className="newDatePicker"
+                  showClearButton={false}
+                  allowEdit={false}
+                />
+              </div>
+            </div>
+            <div className="roomDetailsTwo">
+              <div className="d-flex">
+                <Button
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  onClick={this.handleClick}
+                  className="roomRangeBasic"
+                >
+                  <p className="roomText">
+                    <i class="users icon ">
+                      <p className="value">
+                        {(`${this.state.roomValue}`, "Rooms")}
+                      </p>
+                    </i>
+                  </p>
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={this.state.roomAnchor}
+                  className="w-100"
+                  open={Boolean(this.state.roomAnchor)}
+                  onClose={this.handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  elevation={0}
+                  getContentAnchorEl={null}
+                >
+                  <div className="d-flex">
+                    {/* <button onClick={this.handleDec}>-</button> */}
+                    <p className="menu-drop">Rooms</p>
+                    <div className="decre">
+                      <button
+                        class="circular ui icon button"
+                        onClick={this.handleDec}
+                      >
+                        -<i class="minus circle icon"></i>
+                      </button>
+                    </div>
+                    <p>{this.state.roomValue}</p>
+                    <div className="incre">
+                      <button
+                        class="circular ui icon button"
+                        onClick={this.handleInc}
+                      >
+                        +<i class="plus circle icon"></i>
+                      </button>
+                    </div>
                   </div>
-                  <p>{this.state.roomValue}</p>
-                  <div className="incre">
-                    <button
-                      class="circular ui icon button"
-                      onClick={this.handleInc}
-                    >
-                      <i class="plus circle icon"></i>
-                    </button>
+                  <div className="d-flex">
+                    <p className="menu-drop">Adults</p>
+                    <div className="a-decre">
+                      <button
+                        class="circular ui icon button"
+                        onClick={this.handleDecAdult}
+                      >
+                        -<i class="minus circle icon"></i>
+                      </button>
+                    </div>
+                    <p>{this.state.adultValue}</p>
+                    <div className="a-incre">
+                      <button
+                        class="circular ui icon button"
+                        onClick={this.handleIncAdult}
+                      >
+                        +<i class="plus circle icon"></i>
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="d-flex">
-                  <p className="menu-drop">Adults</p>
-                  <div className="a-decre">
-                    <button
-                      class="circular ui icon button"
-                      onClick={this.handleDecAdult}
-                    >
-                      <i class="minus circle icon"></i>
-                    </button>
+                  <div className="d-flex">
+                    <p className="menu-drop">Children</p>
+                    <div className="c-decre">
+                      <button
+                        class="circular ui icon button"
+                        onClick={this.handleDecChild}
+                      >
+                        -<i class="minus circle icon"></i>
+                      </button>
+                    </div>
+                    <p>{this.state.childValue}</p>
+                    <div className="c-incre">
+                      <button
+                        class="circular ui icon button"
+                        onClick={this.handleIncChild}
+                      >
+                        +<i class="plus circle icon"></i>
+                      </button>
+                    </div>
                   </div>
-                  <p>{this.state.adultValue}</p>
-                  <div className="a-incre">
-                    <button
-                      class="circular ui icon button"
-                      onClick={this.handleIncAdult}
-                    >
-                      <i class="plus circle icon"></i>
-                    </button>
-                  </div>
-                </div>
-                <div className="d-flex">
-                  <p className="menu-drop">Children</p>
-                  <div className="c-decre">
-                    <button
-                      class="circular ui icon button"
-                      onClick={this.handleDecChild}
-                    >
-                      <i class="minus circle icon"></i>
-                    </button>
-                  </div>
-                  <p>{this.state.childValue}</p>
-                  <div className="c-incre">
-                    <button
-                      class="circular ui icon button"
-                      onClick={this.handleIncChild}
-                    >
-                      <i class="plus circle icon"></i>
-                    </button>
-                  </div>
-                </div>
-              </Menu>
+                </Menu>
+              </div>
             </div>
           </div>
         </div>
@@ -294,5 +344,16 @@ const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
   roomRange: get(state, "roomRange", []),
 });
+const mapDispatchToProps = (dispatch) => {
+  return {
+    date: bindActionCreators(date, dispatch),
+    room: bindActionCreators(room, dispatch),
+    // property: bindActionCreators(property, dispatch),
+    // propRoomType: bindActionCreators(propRoomType, dispatch),
+  };
+};
 
-export default connect(mapStateToProps, null)(BasicLayout);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(BasicLayout));

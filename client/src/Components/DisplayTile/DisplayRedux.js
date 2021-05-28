@@ -91,6 +91,7 @@ class DisplayRedux extends Component {
 
     this.setState({ countObj: count });
   };
+
   render() {
     const mystyle = {
       color: "white",
@@ -217,6 +218,17 @@ class DisplayRedux extends Component {
             </h3>
           </div>
           <div className="btn-placement">
+            <div>
+              <Button
+                className="reserve-left"
+                // class="ui inverted green button"
+                as={NavLink}
+                to="/"
+                // onClick={() => this.state.onBack()}
+              >
+                Go Back
+              </Button>
+            </div>
             <Button
               className="reserve"
               // class="ui inverted green button"
