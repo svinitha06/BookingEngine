@@ -30,7 +30,7 @@ class DisplayRedux extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:5000/rooms/getRoomType/${this.props.match.params.id}`
+        `http://localhost:5000/rooms/${this.props.match.params.id}`
       )
       .then((responseOfApi) => {
         console.log("WHOLE RESPONSE", responseOfApi);

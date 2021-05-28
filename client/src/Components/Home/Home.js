@@ -2,14 +2,15 @@ import React from "react";
 import "./Home.css";
 import { get, functions, bind } from "lodash";
 import _ from "lodash";
-import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import Carousel from 'react-elastic-carousel';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import RemoveIcon from "@material-ui/icons/Remove";
 import { StarFill } from "react-bootstrap-icons";
 import AddIcon from "@material-ui/icons/Add";
 import ShowMoreText from "react-show-more-text";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
-import hotel from "../../asset/hotel.jpg";
+import tryL from "../../asset/try.jpg";
 import { withRouter, Link } from "react-router-dom";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import GpsFixedIcon from "@material-ui/icons/GpsFixed";
@@ -45,7 +46,7 @@ class Home extends React.Component {
   getcall = async () => {
     let res = await db.getproperty();
     this.props.property(res);
-    console.log(res, "sherin");
+    // console.log(res, "sherin");
   };
   // componentDidUpdate = () => {
   //   console.log(this.props, "hello");
@@ -73,15 +74,13 @@ class Home extends React.Component {
 
     console.log("Handle date", this.state.start);
   };
-  handleValidate = () => {
-    this.setState({
-      clicked: true,
-    });
-    if (this.state.start == null) {
-      this.setState({
-        dateError: "Please select the date",
-      });
-    }
+  handleValidate =async () => {
+   let res= await db.getFilteredSearch({
+     location: this.state.searchValue,
+     rooms:this.state.roomValue
+    })
+    this.props.property(res);
+     console.log(res,"search")
   };
   handleCount = () => {
     let count = 0;
@@ -147,7 +146,6 @@ class Home extends React.Component {
     });
   };
   handleFilter = (e) => {
-    console.log(e, "sivangi");
     this.setState({
       searchValue: e,
     });
@@ -156,7 +154,7 @@ class Home extends React.Component {
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
     this.props.property(res);
-    console.log(res, "sherin");
+    // console.log(res, "sherin");
   };
   executeOnClick(isExpanded) {
     console.log(isExpanded);
@@ -187,9 +185,13 @@ class Home extends React.Component {
 
     return (
       <div className="fullContainer">
-        <div>
-          <img className="banner" src={hotel}></img>
-          {/* <h2>Enjoy your stay</h2> */}
+        <div >
+          <div className="banner">
+          <img  src={tryL} width="100%" style={{height:"76vh"}}></img>
+          <div className="banner-content">
+           <h2>Enjoy your stay</h2> <p>StayCation</p>
+          </div>
+          </div>
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
           >
@@ -324,16 +326,16 @@ class Home extends React.Component {
                   </Menu>
                 </div>
               </div>
-              {/* <div className="checkButton">
+              <div className="checkButton">
                 <Button animated onClick={this.handleValidate} olive>
                   <Button.Content visible>
-                    <p>Search</p>
+                    <p className="searchButton">Search</p>
                   </Button.Content>
                   <Button.Content hidden>
                     <Icon name="arrow right" />
                   </Button.Content>
                 </Button>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
@@ -342,13 +344,46 @@ class Home extends React.Component {
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
-                <div>
+              <Carousel
+              
+              showArrows={false}
+              // focusOnSelect={true}
+              // enableMouseSwipe={true}
+            >
+              <div >
+                  
                   <img
                     className="ImageTile"
                     key={index}
                     src={get(data, "Image[0]")}
                   ></img>
                 </div>
+                <div>
+                  
+                  <img
+                    className="ImageTile"
+                    key={index}
+                    src={get(data, "Image[1]")}
+                  ></img>
+                </div>
+                <div>
+                  
+                  <img
+                    className="ImageTile"
+                    key={index}
+                    src={get(data, "Image[2]")}
+                  ></img>
+                </div>
+                <div>
+                  
+                  <img
+                    className="ImageTile"
+                    key={index}
+                    src={get(data, "Image[3]")}
+                  ></img>
+                </div>
+                    </Carousel>
+                
                 <div className="nameDes">
                   <h1>{get(data, "name", "--")}</h1>
 
@@ -371,6 +406,7 @@ class Home extends React.Component {
                     expanded={false}
                     width={520}
                   >
+                    
                     <h6>{get(data, "description", "--")}</h6>
                   </ShowMoreText>
                   <div className="childWrapper">
@@ -389,12 +425,19 @@ class Home extends React.Component {
                       </div>
                     </div>
                     <div>
+                      {/* <div className="btn center">
+                        <p> View Details</p>
+                        <div className="d1"></div>
+                        <div className="d1"></div>
+                        <div className="d1"></div>
+
+                      </div> */}
                       <div
                         className="viewDetails"
-                        onClick={this.handleRoomType(data.PropertyId)}
+                        // onClick={this.handleRoomType(data.PropertyId)}
                       >
                         <Link to={`/basiclayout/${data.PropertyId}`}>
-                          <button class="ui inverted green button">
+                          <button >
                             View Details
                           </button>
                         </Link>

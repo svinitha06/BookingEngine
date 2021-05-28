@@ -45,9 +45,9 @@ import "./Footer.css"
                
 
             </div>
-            <hr style={{backgroundColor:"white"}}/>
+            <hr style={{backgroundColor:"black"}}/>
                 <div className="row">
-                    <p className="col-sm" style={{color:"white",paddingLeft:"24em"}}>
+                    <p className="col-sm" style={{color:"black",paddingLeft:"24em"}}>
                         &copy;{new Date().getFullYear()} Booling Engine | All rights reserved | Terms of Service | Privacy
                     </p>
                 </div>
