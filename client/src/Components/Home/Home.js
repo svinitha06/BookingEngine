@@ -17,11 +17,17 @@ import GpsFixedIcon from "@material-ui/icons/GpsFixed";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 import { connect } from "react-redux";
 import ErrorIcon from "@material-ui/icons/Error";
-import { date, property, room, propRoomType } from "../../actions/index";
+import {
+  date,
+  property,
+  room,
+  propRoomType,
+  roomDetails,
+} from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import * as db from "../../api/index";
-
+import axios from "axios";
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -43,11 +49,19 @@ class Home extends React.Component {
   }
   componentDidMount() {
     this.getcall();
+    // this.getRoomRates();
   }
   getcall = async () => {
     let res = await db.getproperty();
     this.props.property(res);
-    // console.log(res, "sherin");
+  };
+
+  getSomething = async (id) => {
+    let res = await db.getRoomRates({
+      propertyId: id,
+      checkInDate: this.props.dateRange.start,
+    });
+    this.props.roomDetails(res.data);
   };
   // componentDidUpdate = () => {
   //   console.log(this.props, "hello");
@@ -57,6 +71,7 @@ class Home extends React.Component {
   //     });
   //   }
   // };
+
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
@@ -185,7 +200,8 @@ class Home extends React.Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-
+    // console.log(this.props.propertyList[0].PropertyId, "sherin");
+    // log()
     return (
       <div className="fullContainer">
         <div>
@@ -385,14 +401,14 @@ class Home extends React.Component {
                 <div className="nameDes">
                   <h1>{get(data, "name", "--")}</h1>
 
-                  <p className="starFill">
+                  {/* <p className="starFill">
                     {_.range(
                       0,
                       parseInt(get(data, "ratings").split("/")[0])
                     ).map((i) => (
                       <StarFill style={{ color: "#ffdf00" }} />
                     ))}
-                  </p>
+                  </p> */}
                   <ShowMoreText
                     /* Default options */
                     lines={4}
@@ -439,7 +455,9 @@ class Home extends React.Component {
                             props: { hotelName: get(data, "name", "--") },
                           }}
                         >
-                          <button>View Details</button>
+                          <button onClick={this.getSomething(data.PropertyId)}>
+                            View Details
+                          </button>
                         </Link>
                       </div>
                     </div>
@@ -463,6 +481,7 @@ const mapDispatchToProps = (dispatch) => {
     room: bindActionCreators(room, dispatch),
     property: bindActionCreators(property, dispatch),
     propRoomType: bindActionCreators(propRoomType, dispatch),
+    roomDetails: bindActionCreators(roomDetails, dispatch),
   };
 };
 const mapStateToProps = (state) => {
@@ -470,6 +489,7 @@ const mapStateToProps = (state) => {
     propertyList: get(state, "propertyList", []),
     dateRange: get(state, "dateRange", []),
     roomRange: get(state, "roomRange", []),
+    roomDetailsList: get(state, "roomDetailsList", []),
   };
 };
 

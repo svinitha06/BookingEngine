@@ -18,11 +18,11 @@ export const getFilteredSearch = async (data) => {
     headers: {
       "Content-Type": "application/json",
       "x-access-token": sessionStorage.getItem("token"),
-      'location': data.location,
-      'roomsrequired': data.roomsrequired,
+      location: data.location,
+      roomsrequired: data.roomsrequired,
     },
-  })
-    
+  });
+
   return res;
 };
 export const getpropertyRoom = async (data) => {
@@ -31,7 +31,18 @@ export const getpropertyRoom = async (data) => {
   );
   return res.data;
 };
-
+export const getRoomRates = async (data) => {
+  await axios({
+    method: "GET",
+    url: `http://localhost:3000/rate/getplan`,
+    headers: {
+      "Content-Type": "application/json",
+      // 'x-access-token': sessionStorage.getItem('token')
+      propertyId: data.propertyId,
+      checkInDate: data.checkInDate,
+    },
+  });
+};
 // const getRooomTypes = async () => {
 //   const resp = await axios.get("http://localhost:5000/rooms/getRoomTypes");
 //   return resp.data;
