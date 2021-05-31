@@ -30,10 +30,6 @@ export class BasicLayout extends Component {
     super(props);
 
     this.state = {
-      listBasic: [],
-      idObj: [],
-      start: null,
-      end: null,
       roomAnchor: null,
       roomValue: 1,
       adultValue: 1,
@@ -54,7 +50,7 @@ export class BasicLayout extends Component {
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
-    console.log("start = ", this.state.start);
+    console.log("start = ", this.props.dateRange.start);
     console.log("This.state = ", this.state);
 
     console.log("props = ", this.props);
@@ -80,16 +76,16 @@ export class BasicLayout extends Component {
   //   console.log("basiclayout0 = ", e.value[0]);
   //   console.log("statr = ", start);
   // };
-  handleValidate = () => {
-    this.setState({
-      clicked: true,
-    });
-    if (this.state.start == null) {
-      this.setState({
-        dateError: "Please select the date",
-      });
-    }
-  };
+  // handleValidate = () => {
+  //   this.setState({
+  //     clicked: true,
+  //   });
+  //   if (this.state.start == null) {
+  //     this.setState({
+  //       dateError: "Please select the date",
+  //     });
+  //   }
+  // };
   handleCount = () => {
     let count = 0;
     if ((this.state.childValue + this.state.adultValue) / 4) {
@@ -153,34 +149,34 @@ export class BasicLayout extends Component {
       roomAnchor: null,
     });
   };
-  handleFilter = (e) => {
-    const listCityProp = [...this.state.listOfProperties];
-    if (e == "") {
-      console.log("citytyyyy");
-      this.setState({
-        listOfProperties: listCityProp,
-      });
-      console.log(this.state.listOfProperties, "im here");
-      return;
-    }
-    if (this.state.city !== this.state.listOfProperties.location) {
-      console.log("loosu");
-      this.setState({
-        cityError: "Enter valid city",
-      });
-    }
+  // handleFilter = (e) => {
+  //   const listCityProp = [...this.state.listOfProperties];
+  //   if (e == "") {
+  //     console.log("citytyyyy");
+  //     this.setState({
+  //       listOfProperties: listCityProp,
+  //     });
+  //     console.log(this.state.listOfProperties, "im here");
+  //     return;
+  //   }
+  //   if (this.state.city !== this.state.listOfProperties.location) {
+  //     console.log("loosu");
+  //     this.setState({
+  //       cityError: "Enter valid city",
+  //     });
+  //   }
 
-    const cityDrop = listCityProp.filter((city) => city.location.includes(e));
+  //   const cityDrop = listCityProp.filter((city) => city.location.includes(e));
 
-    this.setState({
-      listOfProperties: cityDrop,
-    });
+  //   this.setState({
+  //     listOfProperties: cityDrop,
+  //   });
 
-    console.log(this.state.listOfProperties);
-  };
-  executeOnClick(isExpanded) {
-    console.log(isExpanded);
-  }
+  //   console.log(this.state.listOfProperties);
+  // };
+  // executeOnClick(isExpanded) {
+  //   console.log(isExpanded);
+  // }
 
   render() {
     const minValue = new Date(
@@ -188,9 +184,11 @@ export class BasicLayout extends Component {
       new Date().getMonth(),
       new Date().getDate()
     );
+    console.log("this.state.dateRange", this.state.dateRange);
+    console.log("his.state.roomRange", this.state.roomRange);
 
     return (
-      <div>
+      <div className="basiclayoutClass">
         <div className="adjustHeight">
           <img src={ImageOne} style={{ width: "100%" }}></img>
         </div>
@@ -199,7 +197,16 @@ export class BasicLayout extends Component {
           <div className="dateContainerTwo">
             <div className="parentContainerDate">
               <div className="leftOne">
-                <DatePickerComponent
+                <DateRangePickerComponent
+                  placeholder="Check-in/Check-out"
+                  startDate={this.state.start}
+                  endDate={this.state.end}
+                  min={minValue}
+                  format={"dd-MMM-yy"}
+                  color={"black"}
+                  className="datepicker"
+                ></DateRangePickerComponent>
+                {/* <DatePickerComponent
                   placeholder="Check-in"
                   // value={this.state.start}
                   // startDate={this.state.start}
@@ -214,10 +221,10 @@ export class BasicLayout extends Component {
                   className="newDatePicker"
                   showClearButton={false}
                   allowEdit={false}
-                />
+                /> */}
               </div>
               <div className="rightOne">
-                <DatePickerComponent
+                {/* <DatePickerComponent
                   placeholder="Check-out"
                   // value={this.state.start}
                   startDate={this.state.start}
@@ -232,7 +239,7 @@ export class BasicLayout extends Component {
                   className="newDatePicker"
                   showClearButton={false}
                   allowEdit={false}
-                />
+                /> */}
               </div>
             </div>
             <div className="roomDetailsTwo">
@@ -244,7 +251,7 @@ export class BasicLayout extends Component {
                   className="roomRangeBasic"
                 >
                   <p className="roomText">
-                    <i class="users icon ">
+                    <i className="users icon ">
                       <p className="value">
                         {(`${this.state.roomValue}`, "Rooms")}
                       </p>
@@ -343,6 +350,7 @@ export class BasicLayout extends Component {
 const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
   roomRange: get(state, "roomRange", []),
+  propertyList: get(state, "propertyList", []),
 });
 const mapDispatchToProps = (dispatch) => {
   return {

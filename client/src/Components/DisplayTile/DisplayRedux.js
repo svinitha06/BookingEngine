@@ -15,6 +15,16 @@ import { roomDetails } from "../../actions";
 import { Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { AlignBottom } from "react-bootstrap-icons";
+import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import {
+  date,
+  property,
+  room,
+  propRoomType,
+  roomTypesRate,
+} from "../../actions/index";
 
 class DisplayRedux extends Component {
   constructor(props) {
@@ -24,6 +34,7 @@ class DisplayRedux extends Component {
       list: [],
       countObj: [],
       error: false,
+      rates: [],
     };
   }
 
@@ -33,35 +44,72 @@ class DisplayRedux extends Component {
         `http://localhost:5000/rooms/getRoomType/${this.props.match.params.id}`
       )
       .then((responseOfApi) => {
-        console.log("WHOLE RESPONSE", responseOfApi);
-        console.log("RESPONSE.DATA", responseOfApi.data);
-        console.log(
-          "RESPONSE.DATA.rooomTypeID",
-          responseOfApi.data[1].roomType
-        );
-
+        // sudoProp = this.props.match.params.id;
         this.props.roomDetails(responseOfApi.data);
         this.setState({
           list: responseOfApi.data,
           list: this.props.roomDetailsList,
         });
-        console.log("this.props.state", this.props);
+        // console.log("this.props.state", this.props);
         var countObj = this.state.list.map((data) => {
           return {
             id: data._id,
             count: 0,
             isChecked: false,
-            // p: 0,
           };
         });
         this.setState({ countObj: countObj });
       })
       .catch((error) => {
-        console.log("Error gtting data", error);
+        // console.log("Error gtting data", error);
         <h1>Error fetching data</h1>;
         this.setState({ error: !this.state.error });
       });
+    this.getRoomRates();
+    // axios({
+    //   method: "GET",
+    //   url: `http://localhost:3000/rate/getplan`,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     // 'x-access-token': sessionStorage.getItem('token')
+    //     propertyId: this.props.propertyList,
+    //     checkIndate: this.props.dateRange,
+    //   },
+    // }).then((result) => {
+    //   this.props.roomTypeRate(result);
+    //   console.log("getRoomrates = ", result);
+    //   this.setState({
+    //     rates: result,
+    //     rates2: this.props.roomTypeRatesData,
+    //   });
+
+    //   console.log("room rate from displayRedus", rates);
+    // });
   }
+  getRoomRates = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:3000/rate/getplan`,
+      headers: {
+        "Content-Type": "application/json",
+        // 'x-access-token': sessionStorage.getItem('token')
+        propertyId: this.props.propertyList,
+        checkIndate: this.props.dateRange,
+      },
+    }).then((result) => {
+      this.props.roomTypeRate(result);
+      console.log("getRoomrates = ", result);
+      this.setState({
+        rates: result,
+        rates2: this.props.roomTypeRatesData,
+      });
+
+      console.log("room rate from displayRedus", rates);
+    });
+    // .catch((error) => {
+    //   console.log("errpr fething data");
+    // });
+  };
 
   handleMinus = (id) => {
     var count = this.state.countObj;
@@ -81,7 +129,7 @@ class DisplayRedux extends Component {
   };
   handleChange = (id) => {
     var count = this.state.countObj;
-    console.log("inside handleCahneg count = ", count);
+    // console.log("inside handleCahneg count = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.isChecked = !data.isChecked;
@@ -100,18 +148,20 @@ class DisplayRedux extends Component {
       fontFamily: "ui-rounded",
       textAlign: "center",
     };
-    console.log("THE PROP VALUE + ", this.props);
+    console.log("this.props.dateRange", this.props.dateRange);
+
+    // console.log("THE PROP VALUE + ", this.props);
     if (this.state.error) return <h1 style={mystyle}>Error Fetching data</h1>;
     return (
       <div className="displayOne">
-        <div>
+        <div className="displayContentTwo">
           {this.state.list.map((post, index) => {
             let room = 0;
             let total = 0;
             let isCheck = false;
             let p = 0;
             var count = this.state.countObj;
-            console.log("var count inside of map", count);
+            // console.log("var count inside of map", count);
 
             count.forEach((data) => {
               if (data.id === post._id) room = data.count;
@@ -135,7 +185,9 @@ class DisplayRedux extends Component {
                   <div className="textInside">
                     <div>
                       <h2 style={{ marginTop: "6px" }}>{post.roomType}</h2>
-                      <p className="roomDesc">{post.description}</p>
+                      <p className="roomDesc">
+                        {post.description} <i className="fas fa-plus"></i>
+                      </p>
                     </div>
                     <div className="displayDivide">
                       <div>
@@ -173,19 +225,24 @@ class DisplayRedux extends Component {
                       </div>
                       <div>
                         <div className="button-price">
-                          <button
-                            className="thebutton"
-                            onClick={() => this.handleMinus(post._id)}
-                          >
-                            -
-                          </button>
-                          <button className="thebutton">{room}</button>
-                          <button
-                            className="thebutton"
-                            onClick={() => this.handlePlus(post._id)}
-                          >
-                            +
-                          </button>
+                          <div className="inside-button-price">
+                            <button
+                              className="thebutton"
+                              onClick={() => this.handleMinus(post._id)}
+                            >
+                              <RemoveIcon />
+                            </button>
+
+                            <h3 className="buttonPrice">{room}</h3>
+
+                            <button
+                              className="thebutton"
+                              onClick={() => this.handlePlus(post._id)}
+                            >
+                              <AddIcon />
+                            </button>
+                          </div>
+
                           <div className="include-food">
                             <label>
                               Include Food :
@@ -246,11 +303,19 @@ class DisplayRedux extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     roomDetails: bindActionCreators(roomDetails, dispatch),
+    roomTypesRate: bindActionCreators(roomTypesRate, dispatch),
+
+    date: bindActionCreators(date, dispatch),
+    room: bindActionCreators(room, dispatch),
+    property: bindActionCreators(property, dispatch),
   };
 };
 const mapStateToProps = (state) => {
   return {
     roomDetailsList: get(state, "roomDetailsList", []),
+    roomTypeRatesData: get(state, "roomTypeRatesData", []),
+    propertyList: get(state, "propertyList", []),
+    dateRange: get(state, "dateRange", []),
   };
 };
 

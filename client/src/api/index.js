@@ -6,11 +6,15 @@ export const getproperty = async () => {
   return res.data;
 };
 export const getpropertyLocation = async (data) => {
-  const res = await axios.get(`http://localhost:5000/property/Property/${data}`);
+  const res = await axios.get(
+    `http://localhost:5000/property/Property/${data}`
+  );
   return res.data;
 };
 export const getpropertyRoom = async (data) => {
-  const res = await axios.get(`http://localhost:5000/rooms/getRoomType/${data}`);
+  const res = await axios.get(
+    `http://localhost:5000/rooms/getRoomType/${data}`
+  );
   return res.data;
 };
 

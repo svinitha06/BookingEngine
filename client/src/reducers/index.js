@@ -2,6 +2,7 @@ import * as actionTypes from "../constants/index";
 
 const initialState = {
   cart: [],
+  dateRange: [],
 };
 
 export default (state = initialState, action) => {
@@ -25,7 +26,6 @@ export default (state = initialState, action) => {
         propertyList: action.data,
       };
     case "GET_ROOM_DETAILS":
-      console.log("REDUCER ROOM DETAILS");
       return {
         ...state,
         roomDetailsList: action.data,
@@ -34,6 +34,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         roomTypes: action.data,
+      };
+    case "GET_ROOM_TYPES_RATE":
+      return {
+        ...state,
+        roomTypeRatesData: action.data,
       };
     default:
       return state;

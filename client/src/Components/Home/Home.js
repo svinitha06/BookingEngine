@@ -37,6 +37,7 @@ class Home extends React.Component {
       clicked: false,
       open: false,
       searchValue: "",
+      dateObj: [],
     };
   }
   componentDidMount() {
@@ -58,7 +59,6 @@ class Home extends React.Component {
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
-
       end: e.value[1],
     });
     console.log("e.value 0", e.value[0]);
@@ -67,11 +67,13 @@ class Home extends React.Component {
     this.setState({
       start: e.value[0],
       end: e.value[1],
+      dateObj: this.props.dateRange,
       dateError: "",
       clicked: false,
     });
 
     console.log("Handle date", this.state.start);
+    console.log("dateObj", this.state.dateObj);
   };
   handleValidate = () => {
     this.setState({
@@ -156,6 +158,7 @@ class Home extends React.Component {
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
     this.props.property(res);
+
     console.log(res, "sherin");
   };
   executeOnClick(isExpanded) {
@@ -426,6 +429,7 @@ const mapStateToProps = (state) => {
   return {
     propertyList: get(state, "propertyList", []),
     dateRange: get(state, "dateRange", []),
+    roomRange: get(state, "roomRange", []),
   };
 };
 
