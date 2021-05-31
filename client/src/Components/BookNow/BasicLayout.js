@@ -23,6 +23,9 @@ import { bindActionCreators } from "redux";
 import { date, property, room, propRoomType } from "../../actions/index";
 import { DateRangePickerInput } from "react-dates";
 import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+
 // import { StarFill } from "react-bootstrap-icons";
 
 export class BasicLayout extends Component {
@@ -251,11 +254,10 @@ export class BasicLayout extends Component {
                   className="roomRangeBasic"
                 >
                   <p className="roomText">
-                    <i className="users icon ">
-                      <p className="value">
-                        {(`${this.state.roomValue}`, "Rooms")}
-                      </p>
-                    </i>
+                    <GroupAddIcon />
+                    <p className="value">
+                      {(`${this.state.roomValue}`, "Rooms")}
+                    </p>
                   </p>
                 </Button>
                 <Menu
@@ -283,7 +285,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleDec}
                       >
-                        -<i class="minus circle icon"></i>
+                        <RemoveIcon />
                       </button>
                     </div>
                     <p>{this.state.roomValue}</p>
@@ -292,7 +294,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleInc}
                       >
-                        +<i class="plus circle icon"></i>
+                        <AddIcon />
                       </button>
                     </div>
                   </div>
@@ -303,7 +305,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleDecAdult}
                       >
-                        -<i class="minus circle icon"></i>
+                        <RemoveIcon />
                       </button>
                     </div>
                     <p>{this.state.adultValue}</p>
@@ -312,7 +314,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleIncAdult}
                       >
-                        +<i class="plus circle icon"></i>
+                        <AddIcon />
                       </button>
                     </div>
                   </div>
@@ -323,7 +325,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleDecChild}
                       >
-                        -<i class="minus circle icon"></i>
+                        <RemoveIcon />
                       </button>
                     </div>
                     <p>{this.state.childValue}</p>
@@ -332,7 +334,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleIncChild}
                       >
-                        +<i class="plus circle icon"></i>
+                        <AddIcon />
                       </button>
                     </div>
                   </div>

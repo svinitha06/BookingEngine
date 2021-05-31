@@ -40,9 +40,7 @@ class DisplayRedux extends Component {
 
   componentDidMount() {
     axios
-      .get(
-        `http://localhost:5000/rooms/getRoomType/${this.props.match.params.id}`
-      )
+      .get(`http://localhost:5000/rooms/${this.props.match.params.id}`)
       .then((responseOfApi) => {
         // sudoProp = this.props.match.params.id;
         this.props.roomDetails(responseOfApi.data);
@@ -65,7 +63,9 @@ class DisplayRedux extends Component {
         <h1>Error fetching data</h1>;
         this.setState({ error: !this.state.error });
       });
+    console.log("this.props inside didMount", this.props);
     this.getRoomRates();
+    // const {Hname} = this.props
     // axios({
     //   method: "GET",
     //   url: `http://localhost:3000/rate/getplan`,
@@ -96,19 +96,20 @@ class DisplayRedux extends Component {
         propertyId: this.props.propertyList,
         checkIndate: this.props.dateRange,
       },
-    }).then((result) => {
-      this.props.roomTypeRate(result);
-      console.log("getRoomrates = ", result);
-      this.setState({
-        rates: result,
-        rates2: this.props.roomTypeRatesData,
-      });
+    })
+      .then((result) => {
+        this.props.roomTypeRate(result);
+        console.log("getRoomrates = ", result);
+        this.setState({
+          rates: result,
+          rates2: this.props.roomTypeRatesData,
+        });
 
-      console.log("room rate from displayRedus", rates);
-    });
-    // .catch((error) => {
-    //   console.log("errpr fething data");
-    // });
+        console.log("room rate from displayRedus", rates);
+      })
+      .catch((error) => {
+        console.log("errpr fething data");
+      });
   };
 
   handleMinus = (id) => {
@@ -152,111 +153,154 @@ class DisplayRedux extends Component {
 
     // console.log("THE PROP VALUE + ", this.props);
     if (this.state.error) return <h1 style={mystyle}>Error Fetching data</h1>;
+    // let propertyName = "";
     return (
       <div className="displayOne">
-        <div className="displayContentTwo">
-          {this.state.list.map((post, index) => {
-            let room = 0;
-            let total = 0;
-            let isCheck = false;
-            let p = 0;
-            var count = this.state.countObj;
-            // console.log("var count inside of map", count);
+        <div>
+          {/* <h1>{propertyName}</h1> */}
 
-            count.forEach((data) => {
-              if (data.id === post._id) room = data.count;
-            });
-            p = 2000 * room;
-            count.forEach((data) => {
-              total += data.count;
-            });
-            count.forEach((data) => {
-              if (data.id === post._id) isCheck = data.isChecked;
-            });
-            // count.forEach((data) => {
-            //   if (data.p === true) calculated = data.p;
-            // });
-            return (
-              <div key={index} className="homeContainerOne">
-                <div className="wrapperOne">
-                  <div>
-                    <img className="ImageTileOne" src={post.roomImage}></img>
-                  </div>
-                  <div className="textInside">
+          <div className="displayContentTwo">
+            {this.state.list.map((post, index) => {
+              let room = 0;
+              let total = 0;
+              let i = 0;
+              let isCheck = false;
+              let p = 0;
+              // var propertyName = "";
+              this.props.propertyList.forEach((data) => {
+                // console.log("data.id", data.id);
+                // console.log("data.PropertyId", data.PropertyId);
+                // console.log("data.name", data.name);
+                // console.log(
+                //   "this.props.match.params.id",
+                //   this.props.match.params.id
+                // );
+                console.log("data.PropertyId", data.PropertyId);
+                console.log(
+                  "this.props.match.params.id",
+                  this.props.match.params.id
+                );
+                console.log(typeof data.PropertyId);
+                console.log(typeof this.props.match.params.id);
+                if (data.PropertyId === this.props.match.params.id) {
+                  propertyName = data.name;
+                  console.log("inside of if loop");
+                  console.log("data.name inside if", data.name);
+                }
+                console.log("data.name outside if", data.name);
+
+                i++;
+                // console.log("propertyName =", propertyName);
+              });
+              // console.log("propertyName =", propertyName);
+
+              // console.log("this.props.propertyList", this.props.propertyList);
+              // console.log(
+              //   "this.props.propertyList[0]",
+              //   this.props.propertyList[0]
+              // );
+
+              // console.log("propertyName = ", propertyName);
+              var count = this.state.countObj;
+              // console.log("var count inside of map", count);
+
+              count.forEach((data) => {
+                if (data.id === post._id) room = data.count;
+              });
+              p = 2000 * room;
+              count.forEach((data) => {
+                total += data.count;
+              });
+              count.forEach((data) => {
+                if (data.id === post._id) isCheck = data.isChecked;
+              });
+              // count.forEach((data) => {
+              //   if (data.p === true) calculated = data.p;
+              // });
+              return (
+                <div key={index} className="homeContainerOne">
+                  {/* <h1>{this.state.}</h1> */}
+
+                  <div className="wrapperOne">
                     <div>
-                      <h2 style={{ marginTop: "6px" }}>{post.roomType}</h2>
-                      <p className="roomDesc">
-                        {post.description} <i className="fas fa-plus"></i>
-                      </p>
+                      <img className="ImageTileOne" src={post.roomImage}></img>
                     </div>
-                    <div className="displayDivide">
+                    <div className="textInside">
                       <div>
-                        <div className="facilities">
-                          <div>
-                            <span>
-                              <WifiRoundedIcon
-                                className="icon"
-                                style={{ color: "#6D6B68" }}
-                              ></WifiRoundedIcon>
-                            </span>
-                            <span>
-                              <p className="icon-p">Free-Wifi</p>
-                            </span>
-                          </div>
+                        <h2 style={{ marginTop: "6px" }}>{post.roomType}</h2>
+                        <p className="roomDesc">
+                          {post.description} <i className="fas fa-plus"></i>
+                        </p>
+                      </div>
+                      <div className="displayDivide">
+                        <div>
+                          <div className="facilities">
+                            <div>
+                              <span>
+                                <WifiRoundedIcon
+                                  className="icon"
+                                  style={{ color: "#6D6B68" }}
+                                ></WifiRoundedIcon>
+                              </span>
+                              <span>
+                                <p className="icon-p">Free-Wifi</p>
+                              </span>
+                            </div>
 
-                          <div>
-                            <CheckCircleSharpIcon
-                              className="icon"
-                              style={{ color: "#0E8C11" }}
-                            ></CheckCircleSharpIcon>
-                            <p className="icon-p">Sanitized</p>
-                          </div>
-                          <div>
-                            <FreeBreakfastRoundedIcon
-                              className="icon"
-                              style={{ color: "#DE7A34" }}
-                            ></FreeBreakfastRoundedIcon>{" "}
-                            <p className="icon-p">Free Breakfast</p>
-                          </div>
-                          <div className="price-margin">
-                            <h3>Price : {p}</h3>
+                            <div>
+                              <CheckCircleSharpIcon
+                                className="icon"
+                                style={{ color: "#0E8C11" }}
+                              ></CheckCircleSharpIcon>
+                              <p className="icon-p">Sanitized</p>
+                            </div>
+                            <div>
+                              <FreeBreakfastRoundedIcon
+                                className="icon"
+                                style={{ color: "#DE7A34" }}
+                              ></FreeBreakfastRoundedIcon>{" "}
+                              <p className="icon-p">Free Breakfast</p>
+                            </div>
+                            <div className="price-margin">
+                              <h3>Price : {p}</h3>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div>
-                        <div className="button-price">
-                          <div className="inside-button-price">
-                            <button
-                              className="thebutton"
-                              onClick={() => this.handleMinus(post._id)}
-                            >
-                              <RemoveIcon />
-                            </button>
+                        <div>
+                          <div className="button-price">
+                            <div className="inside-button-price">
+                              <button
+                                className="thebutton"
+                                onClick={() => this.handleMinus(post._id)}
+                              >
+                                <RemoveIcon />
+                              </button>
 
-                            <h3 className="buttonPrice">{room}</h3>
+                              <h3 className="buttonPrice">{room}</h3>
 
-                            <button
-                              className="thebutton"
-                              onClick={() => this.handlePlus(post._id)}
-                            >
-                              <AddIcon />
-                            </button>
-                          </div>
+                              <button
+                                className="thebutton"
+                                onClick={() => this.handlePlus(post._id)}
+                              >
+                                <AddIcon />
+                              </button>
+                            </div>
 
-                          <div className="include-food">
-                            <label>
-                              Include Food :
-                              <input
-                                type="checkbox"
-                                id="isChceck"
-                                onChange={() => this.handleChange(post._id)}
-                                checked={isCheck}
-                              ></input>
-                            </label>
-                          </div>
-                          <div>
-                            <div className="roomdiv">
-                              <h3>Rooms : {room}</h3>
+                            <div className="include-food">
+                              <label>
+                                Include Food :
+                                <input
+                                  type="checkbox"
+                                  id="isChceck"
+                                  onChange={() => this.handleChange(post._id)}
+                                  checked={isCheck}
+                                ></input>
+                              </label>
+                            </div>
+                            <div>
+                              <div className="roomdiv">
+                                <h3>Rooms : {room}</h3>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -264,36 +308,36 @@ class DisplayRedux extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="lastDiv">
-          <div className="total-price">
-            <h3>
-              <span>Total Price: 0</span>
-            </h3>
+              );
+            })}
           </div>
-          <div className="btn-placement">
-            <div>
+          <div className="lastDiv">
+            <div className="total-price">
+              <h3>
+                <span>Total Price: 0</span>
+              </h3>
+            </div>
+            <div className="btn-placement">
+              <div>
+                <Button
+                  className="reserve-left"
+                  // class="ui inverted green button"
+                  as={NavLink}
+                  to="/"
+                  // onClick={() => this.state.onBack()}
+                >
+                  Go Back
+                </Button>
+              </div>
               <Button
-                className="reserve-left"
+                className="reserve"
                 // class="ui inverted green button"
                 as={NavLink}
-                to="/"
-                // onClick={() => this.state.onBack()}
+                to="/form"
               >
-                Go Back
+                Reserve
               </Button>
             </div>
-            <Button
-              className="reserve"
-              // class="ui inverted green button"
-              as={NavLink}
-              to="/form"
-            >
-              Reserve
-            </Button>
           </div>
         </div>
       </div>
