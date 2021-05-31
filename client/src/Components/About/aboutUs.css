@@ -1,0 +1,91 @@
+.video-content{
+    width: 40%;
+    margin-left: 6em;
+    margin-top: 6em;
+}
+.about-content{
+        /* border: 1px solid black; */
+    /* margin: 6em; */
+    width: 40%;
+    margin-top: 7em;
+    margin-left: 6em;
+    padding: 17px;
+    font-family: ui-rounded;
+    height: 20%;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    
+    /* margin-bottom: 0em !important; */
+}
+.about-container{
+    width: 90%;
+    margin:0 auto;
+    max-width: 1440px;
+}
+.services h1{
+    text-align: center;
+    color: #565656;
+    padding-bottom: 15px;
+    padding-top: 30px;
+    position: relative;
+}
+.services h1::before{
+    content:"";
+    position: absolute;
+    width: 20%;
+    height: 2px;
+    background-color: #565656;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.services h1::after{
+    content:"";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #565656;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,50%) rotate(45deg);
+}
+.service-cards-wrapIt{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+.service-content{
+    flex: 1 1 250px;
+    max-width: 250px;
+    margin: 30px 15px;
+    text-align: center;
+    background-color: #fff;
+    color: #565656;
+    padding: 50px 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    position: relative;
+}
+.service-content .icon-container i{transform: rotate(-45deg);}
+.service-content h2{ font-size: 20px;}
+.service-content p{
+font-size: 12px;
+margin: 15px 0 25px;
+line-height: 1.6;
+}
+.service-content button{
+    padding: 10px 30px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: rgba(0,0,0,0.8);
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.service-content button:hover{
+    color: #565656;
+    background-color: transparent;
+    border: 1px solid #565656;
+}

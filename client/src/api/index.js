@@ -13,13 +13,12 @@ export const getpropertyLocation = async (data) => {
 };
 export const getFilteredSearch = async (data) => {
   let res = await axios({
-    method: "GET",
+    method: "get",
     url: `http://localhost:5000/property/Property/search`,
     headers: {
       "Content-Type": "application/json",
-      "x-access-token": sessionStorage.getItem("token"),
       'location': data.location,
-      'roomsrequired': data.roomsrequired,
+      'roomsrequired': data.roomsrequired
     },
   })
     
