@@ -390,7 +390,7 @@ class Home extends React.Component {
                   <p className="starFill">
                     {_.range(
                       0,
-                      parseInt(get(data, "ratings").split("/")[0])
+                      parseInt(get(data, "ratings",'').split("/")[0])
                     ).map((i) => (
                       <StarFill style={{ color: "#ffdf00" }} />
                     ))}
