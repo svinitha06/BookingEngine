@@ -19,7 +19,13 @@ import GpsFixedIcon from "@material-ui/icons/GpsFixed";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 import { connect } from "react-redux";
 import ErrorIcon from "@material-ui/icons/Error";
-import { date, property, room, propRoomType } from "../../actions/index";
+import {
+  date,
+  property,
+  room,
+  propRoomType,
+  roomDetails,
+} from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import * as db from "../../api/index";
@@ -48,6 +54,8 @@ class Home extends React.Component {
   }
   componentDidMount() {
     this.getcall();
+    // this.getLocation()
+    // this.getRoomRates();
   }
   getcall = async () => {
     let res = await db.getproperty();
@@ -57,6 +65,7 @@ class Home extends React.Component {
     });
     // console.log(res, "sherin");
   };
+
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
@@ -203,7 +212,8 @@ class Home extends React.Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-
+    // console.log(this.props.propertyList[0].PropertyId, "sherin");
+    // log()
     return (
       <div className="fullContainer">
         <div>
@@ -357,7 +367,6 @@ class Home extends React.Component {
                   </Button.Content>
                   <Button.Content hidden>
                     <SearchIcon/>
-                    {/* <Icon name="search" />  */}
                   </Button.Content>
                 </Button>
               </div>
@@ -457,7 +466,7 @@ class Home extends React.Component {
               </div>
             </div>
           ))
-        ) : this.state.searchValue.length && !this.state.loader ? (
+        ) : this.state.searchValue.length  && !this.state.loader   ?(
           <div>
             <h2 className="noProp"> Sorry!! No properties available.</h2>
           </div>

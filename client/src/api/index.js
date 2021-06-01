@@ -17,11 +17,11 @@ export const getFilteredSearch = async (data) => {
     url: `http://localhost:5000/property/Property/search`,
     headers: {
       "Content-Type": "application/json",
-      'location': data.location,
-      'roomsrequired': data.roomsrequired
+      location: data.location,
+      roomsrequired: data.roomsrequired,
     },
-  })
-    
+  });
+
   return res;
 };
 export const getpropertyRoom = async (data) => {
@@ -30,7 +30,6 @@ export const getpropertyRoom = async (data) => {
   );
   return res.data;
 };
-
 // const getRooomTypes = async () => {
 //   const resp = await axios.get("http://localhost:5000/rooms/getRoomTypes");
 //   return resp.data;
