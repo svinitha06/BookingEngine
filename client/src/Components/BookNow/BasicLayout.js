@@ -23,6 +23,9 @@ import { bindActionCreators } from "redux";
 import { date, property, room, propRoomType } from "../../actions/index";
 import { DateRangePickerInput } from "react-dates";
 import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
+
 // import { StarFill } from "react-bootstrap-icons";
 
 export class BasicLayout extends Component {
@@ -30,10 +33,6 @@ export class BasicLayout extends Component {
     super(props);
 
     this.state = {
-      listBasic: [],
-      idObj: [],
-      start: null,
-      end: null,
       roomAnchor: null,
       roomValue: 1,
       adultValue: 1,
@@ -54,7 +53,7 @@ export class BasicLayout extends Component {
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
-    console.log("start = ", this.state.start);
+    console.log("start = ", this.props.dateRange.start);
     console.log("This.state = ", this.state);
 
     console.log("props = ", this.props);
@@ -80,16 +79,16 @@ export class BasicLayout extends Component {
   //   console.log("basiclayout0 = ", e.value[0]);
   //   console.log("statr = ", start);
   // };
-  handleValidate = () => {
-    this.setState({
-      clicked: true,
-    });
-    if (this.state.start == null) {
-      this.setState({
-        dateError: "Please select the date",
-      });
-    }
-  };
+  // handleValidate = () => {
+  //   this.setState({
+  //     clicked: true,
+  //   });
+  //   if (this.state.start == null) {
+  //     this.setState({
+  //       dateError: "Please select the date",
+  //     });
+  //   }
+  // };
   handleCount = () => {
     let count = 0;
     if ((this.state.childValue + this.state.adultValue) / 4) {
@@ -153,34 +152,34 @@ export class BasicLayout extends Component {
       roomAnchor: null,
     });
   };
-  handleFilter = (e) => {
-    const listCityProp = [...this.state.listOfProperties];
-    if (e == "") {
-      console.log("citytyyyy");
-      this.setState({
-        listOfProperties: listCityProp,
-      });
-      console.log(this.state.listOfProperties, "im here");
-      return;
-    }
-    if (this.state.city !== this.state.listOfProperties.location) {
-      console.log("loosu");
-      this.setState({
-        cityError: "Enter valid city",
-      });
-    }
+  // handleFilter = (e) => {
+  //   const listCityProp = [...this.state.listOfProperties];
+  //   if (e == "") {
+  //     console.log("citytyyyy");
+  //     this.setState({
+  //       listOfProperties: listCityProp,
+  //     });
+  //     console.log(this.state.listOfProperties, "im here");
+  //     return;
+  //   }
+  //   if (this.state.city !== this.state.listOfProperties.location) {
+  //     console.log("loosu");
+  //     this.setState({
+  //       cityError: "Enter valid city",
+  //     });
+  //   }
 
-    const cityDrop = listCityProp.filter((city) => city.location.includes(e));
+  //   const cityDrop = listCityProp.filter((city) => city.location.includes(e));
 
-    this.setState({
-      listOfProperties: cityDrop,
-    });
+  //   this.setState({
+  //     listOfProperties: cityDrop,
+  //   });
 
-    console.log(this.state.listOfProperties);
-  };
-  executeOnClick(isExpanded) {
-    console.log(isExpanded);
-  }
+  //   console.log(this.state.listOfProperties);
+  // };
+  // executeOnClick(isExpanded) {
+  //   console.log(isExpanded);
+  // }
 
   render() {
     const minValue = new Date(
@@ -188,9 +187,11 @@ export class BasicLayout extends Component {
       new Date().getMonth(),
       new Date().getDate()
     );
+    console.log("this.state.dateRange", this.state.dateRange);
+    console.log("his.state.roomRange", this.state.roomRange);
 
     return (
-      <div>
+      <div className="basiclayoutClass">
         <div className="adjustHeight">
           <img src={ImageOne} style={{ width: "100%" }}></img>
         </div>
@@ -199,40 +200,15 @@ export class BasicLayout extends Component {
           <div className="dateContainerTwo">
             <div className="parentContainerDate">
               <div className="leftOne">
-                <DatePickerComponent
-                  placeholder="Check-in"
-                  // value={this.state.start}
-                  // startDate={this.state.start}
-                  // endDate={this.state.end}
+                <DateRangePickerComponent
+                  placeholder="Check-in/Check-out"
+                  startDate={this.props.dateRange.start}
+                  endDate={this.props.dateRange.end}
                   min={minValue}
                   format={"dd-MMM-yy"}
                   color={"black"}
-                  // onChange={() => this.handleDate()}
-                  // onChange={({ startDate, endDate }) =>
-                  //   this.setState({ startDate, endDate })
-                  // }
-                  className="newDatePicker"
-                  showClearButton={false}
-                  allowEdit={false}
-                />
-              </div>
-              <div className="rightOne">
-                <DatePickerComponent
-                  placeholder="Check-out"
-                  // value={this.state.start}
-                  startDate={this.state.start}
-                  // endDate={this.state.end}
-                  min={minValue}
-                  format={"dd-MMM-yy"}
-                  color={"black"}
-                  // onChange={() => this.handleDate()}
-                  // onChange={({ startDate, endDate }) =>
-                  //   this.setState({ startDate, endDate })
-                  // }
-                  className="newDatePicker"
-                  showClearButton={false}
-                  allowEdit={false}
-                />
+                  className="datepicker"
+                ></DateRangePickerComponent>
               </div>
             </div>
             <div className="roomDetailsTwo">
@@ -244,11 +220,10 @@ export class BasicLayout extends Component {
                   className="roomRangeBasic"
                 >
                   <p className="roomText">
-                    <i class="users icon ">
-                      <p className="value">
-                        {(`${this.state.roomValue}`, "Rooms")}
-                      </p>
-                    </i>
+                    <GroupAddIcon />
+                    <p className="value">
+                      {(`${this.state.roomValue}`, "Rooms")}
+                    </p>
                   </p>
                 </Button>
                 <Menu
@@ -276,7 +251,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleDec}
                       >
-                        -<i class="minus circle icon"></i>
+                        <RemoveIcon />
                       </button>
                     </div>
                     <p>{this.state.roomValue}</p>
@@ -285,7 +260,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleInc}
                       >
-                        +<i class="plus circle icon"></i>
+                        <AddIcon />
                       </button>
                     </div>
                   </div>
@@ -296,7 +271,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleDecAdult}
                       >
-                        -<i class="minus circle icon"></i>
+                        <RemoveIcon />
                       </button>
                     </div>
                     <p>{this.state.adultValue}</p>
@@ -305,7 +280,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleIncAdult}
                       >
-                        +<i class="plus circle icon"></i>
+                        <AddIcon />
                       </button>
                     </div>
                   </div>
@@ -316,7 +291,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleDecChild}
                       >
-                        -<i class="minus circle icon"></i>
+                        <RemoveIcon />
                       </button>
                     </div>
                     <p>{this.state.childValue}</p>
@@ -325,7 +300,7 @@ export class BasicLayout extends Component {
                         class="circular ui icon button"
                         onClick={this.handleIncChild}
                       >
-                        +<i class="plus circle icon"></i>
+                        <AddIcon />
                       </button>
                     </div>
                   </div>
@@ -343,6 +318,7 @@ export class BasicLayout extends Component {
 const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
   roomRange: get(state, "roomRange", []),
+  propertyList: get(state, "propertyList", []),
 });
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -86,12 +86,12 @@ router.get('/Property/search', async (req, res) => {
         let props = await propertyMaster.find({ location: (req.headers.location) });
         let newProps = []
         await props.forEach(async (prop) => {
-            console.log("3")
+
             let totalAvailability = 0;
 
             post = await RoomTypeMaster.find({ PropertyId: (prop.PropertyId) })
             post.forEach(room => {
-                console.log("4")
+
                 totalAvailability += (room.availability)
 
             })
@@ -100,10 +100,10 @@ router.get('/Property/search', async (req, res) => {
                 newProps.push(prop)
         })
         mycallback = () => {
-            console.log("2", newProps)
+            // console.log("2", newProps)
             res.send(newProps)
         }
-        setTimeout(mycallback, 4000)
+        setTimeout(mycallback, 300)
 
     } catch (err) {
         res.status(400).send(err)
@@ -111,20 +111,26 @@ router.get('/Property/search', async (req, res) => {
     }
 });
 
+
+
 //Getting property by location
 
-
 router.get('/Property/:location', async (req, res) => {
-    try{
-        const post = await propertyMaster.find({location:(req.params.location)});
-        res.json(post);
-    } catch(err){
+    try {
+        const post = await propertyMaster.find({ location: (req.params.location) });
+        if (post.length === 0) {
+            res.status(404).send("Hotels for location " + req.params.location + " not found")
+        }
+        else
+            res.json(post);
+    } catch (err) {
         res.status(400).send(err)
-        
     }
 });
-   
- 
+
+
+
+
 module.exports = router;
 
 

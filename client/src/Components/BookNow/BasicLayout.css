@@ -2,7 +2,9 @@
   width: 30% !important;
 } */
 @import url("https://cdn.synfusion.com/ej2/material.css");
-
+.basicLayoutClass {
+  background: #f8f8ff !important;
+}
 .containerBasic {
   /* margin: 2px;
   padding: 2px; */
@@ -16,7 +18,6 @@
   margin-bottom: 1% !important;
   border: 1px solid black !important;
   padding: 10px !important;
-
   /* border-radius: 22px !important; */
   width: 40% !important;
 }
@@ -24,10 +25,13 @@
   width: 100% !important;
 } */
 .leftOne .e-input-group.e-control-wrapper {
-  width: 60% !important;
+  width: 100% !important;
 }
 .rightOne .e-input-group.e-control-wrapper {
   width: 60% !important;
+}
+.leftOne span input {
+  color: rgb(3, 3, 3) !important;
 }
 .dateContainerTwo {
   display: flex;
@@ -44,19 +48,7 @@
 .parentContainerDate {
   display: flex !important;
 }
-/* .rooomDetailsTwo .ui button .roomrangeBasic {
-  width: 15% !important;
-} */
-/* .rooomDetailsTwo button {
-  background-color: aquamarine !important;
-  border: 2px solid black !important;
-  border-radius: 22px !important;
-}
-button.ui.button.roomrangeBasic {
-  background-color: aquamarine !important;
-  border: 2px solid black !important;
-  border-radius: 22px !important;
-} */
+
 .roomDetailsTwo {
   width: 15% !important;
 }
@@ -64,8 +56,10 @@ button.ui.button.roomrangeBasic {
   border: 1px solid rgb(3, 3, 3) !important;
   width: 60% !important;
   /* border-radius: 24px !important; */
-  padding: 8%;
-  background-color: transparent;
+  padding: 9.4%;
+  border-radius: 0px !important;
+  /* background-color: transparent; */
+  background-color: whitesmoke !important  ;
 }
 /* .roomDetailsTwo .d-flex button:hover {
   
@@ -76,5 +70,4 @@ button.ui.button.roomrangeBasic {
 }
 .containerBasic {
   background: rgba(117, 162, 179, 0.8);
-   
 }

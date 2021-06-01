@@ -1,23 +1,15 @@
 .displayOne {
-  /* background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(97, 97, 227, 1) 1%,
-    rgba(0, 212, 255, 1) 100%
-  ) !important ; */
   background: #f8f8ff !important;
 }
 .homeContainerOne {
-  width: 85%;
+  width: 80%;
   margin-top: 1em;
   margin-left: 7em;
   border-radius: 1em;
   height: 20em !important;
   margin-bottom: 3em;
   background-color: white !important ;
-
-  /* background-color: #f8f8ff; */
-  /* box-shadow: 10px 10px 5px #aaaaaa; */
+  box-shadow: 10px 10px 5px #aaaaaa;
   font-family: ui-rounded !important;
   font-size: 16px;
   transition: transform 0.2s;
@@ -32,7 +24,7 @@
   display: grid;
   -ms-grid-columns: 40% 60%;
   grid-template-columns: 45% 55% !important;
-  grid-gap: 1em;
+  grid-gap: 0em;
   /* grid-auto-rows: minmax(100px, auto); */
   margin-left: 210px;
   margin-right: 5%;
@@ -50,18 +42,14 @@
   margin-left: -175px;
   margin-top: 39px;
   /* border-radius: 0.9em; */
-  transition: transform 0.2s;
+  /* transition: transform 0.2s; */
   /* box-shadow: 10px 10px 5px #aaaaaa; */
 }
-.ImageTileOne:hover {
-  -ms-transform: scale(0.1); /* IE 9 */
-  -webkit-transform: scale(0.1); /* Safari 3-8 */
-  transform: scale(1.1);
-}
+
 .displayDivide {
   display: grid;
   grid-template-columns: 40% 60%;
-  margin-top: 8%;
+  margin-top: 4% !important;
 }
 .facilities {
   display: flex;
@@ -84,31 +72,35 @@
 .thebutton {
   display: inline-block;
   padding: 0.4em 0.8em;
-  margin: 0 0.1em 0.1em 0;
-  border-radius: 0.7em;
+  margin: 0 0.2em 0.2em 0;
+  /* border-radius: 0.7em; */
   box-sizing: border-box;
   text-decoration: none;
   font-family: ui-rounded;
   font-weight: 700;
   /* color: rgb(12, 11, 11);
   background: #c4cec6ad; */
-  color: rgb(253 252 252);
+  color: white;
   /* background: #3191c7; */
-  background: rgba(64, 190, 190, 0.8);
-  box-shadow: 4px 4px 12px #1b1c1d;
+  /* background: rgba(64, 190, 190, 0.8); */
+  /* box-shadow: 4px 4px 12px #1b1c1d; */
   text-align: center;
   position: relative;
   border: none;
+  height: 20% !important;
+
+  background-color: rgba(117, 162, 179, 0.8) !important;
+
   /* box-shadow: 4px 4px 12px #eee; */
 }
-.thebutton:active {
+/* .thebutton:active {
   box-shadow: inset 0 0.6em 2em -0.3em rgba(0, 0, 0, 0.15),
     inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
-}
+} */
 label {
   display: flex;
   margin-bottom: 0.5rem;
-  margin-top: 0.9rem;
+  /* margin-top: 0.9rem; */
   align-items: center;
   justify-content: flex-start;
 }
@@ -123,7 +115,7 @@ label input {
   text-align: justify;
 }
 .button-price {
-  margin-left: 50%;
+  margin-left: 61% !important;
 }
 .icon-p {
   margin-left: 10.8px;
@@ -147,6 +139,7 @@ h6 {
   align-content: space-around;
   justify-content: space-around;
   align-items: center;
+  margin-top: 1.5%;
   /* margin-right: 7.5%; */
 }
 .lastDiv {
@@ -160,59 +153,142 @@ h6 {
 .include-food label {
   margin-bottom: 6px;
 }
-.reserve {
-  display: inline-block !important;
-  padding: 0.7em 1.5em !important;
-  margin: 0 0.1em 0.1em 0 !important;
-  border-radius: 0.7em !important;
+.btn-placement .ui.button.reserve {
+  /* display: inline-block !important; */
+  padding: 0.9em 1.5em !important;
+  /* margin: 0 0.1em 0.1em 0 !important; */
+  /* border-radius: 0.7em !important; */
   box-sizing: border-box !important;
   text-decoration: none !important;
   font-family: ui-rounded !important;
   font-weight: 500 !important;
-  /* color: rgb(12, 11, 11);
-  background: #c4cec6ad; */
-  color: rgb(253 252 252) !important;
-  /* background: #3191c7 !important; */
-  background: rgba(64, 190, 190, 0.8) !important;
-  box-shadow: 4px 4px 12px #1b1c1d !important;
+  border-radius: 0px !important;
+  color: white !important;
+  background: #90b4c2 !important;
   text-align: center !important;
   position: relative !important;
   border: none !important;
-  font-size: 1.2rem !important;
-  margin-right: -13% !important;
-  margin-top: 1% !important ;
+  font-weight: 500 !important;
+  font-size: 17px !important;
+  margin-right: -6% !important;
+  /* margin-top: 1% !important ; */
 }
-.reserve:active {
+.btn-placement .ui.button.reserve:hover {
+  color: black !important;
+  background-color: transparent !important;
+  opacity: 0.7;
+  border: 1px solid #565656 !important;
+}
+/* .reserve:active {
   box-shadow: inset 0 0.6em 2em -0.3em rgba(0, 0, 0, 0.15),
     inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12) !important;
-}
+} */
 .total-price h3 span {
-  margin-left: 76% !important;
+  margin-left: 62.5% !important;
 }
 .total-price h3 {
-  margin-left: 20%;
+  margin-left: 34%;
   margin-bottom: 1%;
   font-size: 19px;
 }
-.reserve-left {
+a.ui.button.reserve-left {
+  border-radius: 0px !important;
+}
+.btn-placement div .ui.button {
   display: inline-block !important;
-  padding: 0.7em 1.5em !important;
-  margin: 0 0.1em 0.1em 0 !important;
-  border-radius: 0.7em !important;
+  padding: 0.9em 1.5em !important;
+  /* margin: 0 0.1em 0.1em 0 !important; */
+  /* border-radius: 0.7em !important; */
   box-sizing: border-box !important;
   text-decoration: none !important;
   font-family: ui-rounded !important;
   font-weight: 500 !important;
   /* color: rgb(12, 11, 11);
   background: #c4cec6ad; */
-  color: rgb(253 252 252) !important;
+  color: white !important;
+  /* background-color: rgba(117, 162, 179, 0.8) !important; */
+  background: #365663 !important;
+  border: none !important;
+
   /* background: #3191c7 !important; */
-  background: rgba(64, 190, 190, 0.8) !important;
-  box-shadow: 4px 4px 12px #1b1c1d !important;
+  /* background: rgba(64, 190, 190, 0.8) !important; */
+  /* box-shadow: 4px 4px 12px #1b1c1d !important; */
   text-align: center !important;
   position: relative !important;
-  border: none !important;
-  font-size: 1.2rem !important;
-  margin-left: -30% !important;
+  /* border: none !important; */
+  font-weight: 500 !important;
+  font-size: 17px !important;
+  margin-left: -100% !important;
   /* padding: 20% !important; */
+}
+.btn-placement div .ui.button:hover {
+  color: black !important;
+  background-color: transparent !important;
+  opacity: 0.7;
+  border: 1px solid #565656 !important;
+}
+.containerBasic {
+  background-color: rgba(117, 162, 179, 0.8);
+  opacity: 0.7;
+}
+/* .reserve :hover,.reserve-left :hover{
+
+} */
+.displayContentTwo {
+  margin-top: 0% !important;
+}
+.thebuttonRoom {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  margin: 0 0.2em 0.2em 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: ui-rounded;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  position: relative;
+  border: none;
+  background-color: rgba(117, 162, 179, 0.8) !important;
+}
+.inside-button-price {
+  display: flex;
+}
+
+.inside-button-price h3 {
+  margin-top: 5px !important;
+  margin-left: 2px !important;
+  margin-right: 4px !important;
+}
+.property-center {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+}
+.property-center h3 {
+  margin-top: 1px;
+}
+.property-center h1 {
+  font-size: 3rem;
+}
+.rate-container h5 {
+  margin-left: 3px;
+  margin-top: 11px;
+  color: grey;
+  font-size: 0.8rem;
+}
+.rate-container h2 {
+  margin-bottom: 0px !important;
+  color: #2f708a !important;
+}
+.rate-container {
+  display: flex;
+}
+.rate-name {
+  display: flex;
+  justify-content: space-between;
+}
+.roomDescOne {
+  margin-top: 6% !important;
 }
