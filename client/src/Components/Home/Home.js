@@ -6,8 +6,10 @@ import Carousel from "react-elastic-carousel";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { StarFill } from "react-bootstrap-icons";
+import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from "@material-ui/icons/Add";
 import ShowMoreText from "react-show-more-text";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
 import tryL from "../../asset/try.jpg";
@@ -22,6 +24,7 @@ import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import * as db from "../../api/index";
 
+let searchValidator = null;
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -39,6 +42,8 @@ class Home extends React.Component {
       open: false,
       searchValue: "",
       dateObj: [],
+      loader: true,
+      viewDetailsError:""
     };
   }
   componentDidMount() {
@@ -47,13 +52,16 @@ class Home extends React.Component {
   getcall = async () => {
     let res = await db.getproperty();
     this.props.property(res);
+    this.setState({
+      loader: false,
+    });
     // console.log(res, "sherin");
   };
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
       end: e.value[1],
-      dateError:""
+      dateError: "",
     });
     console.log("e.value 0", e.value[0]);
     console.log("e.value", e.value);
@@ -75,17 +83,22 @@ class Home extends React.Component {
         cityError: "Enter city",
       });
     } 
-    if (this.state.start == null) {
+     if (this.state.start == null) {
       this.setState({
         dateError: "Please select the date",
       });
-    } 
-    else {
+    } else {
+      this.setState({
+        loader: true,
+      });
       let res = await db.getFilteredSearch({
         location: this.state.searchValue,
         roomsrequired: this.state.roomValue,
       });
       this.props.property(res.data);
+      this.setState({
+        loader: false,
+      });
       console.log(res, "search");
     }
   };
@@ -93,7 +106,7 @@ class Home extends React.Component {
     let count = 0;
     if ((this.state.childValue + this.state.adultValue) / 4) {
       this.setState({
-        roomValue: Math.ceil(this.state.adultValue / 2),
+        roomValue: (Math.floor(this.state.adultValue / 2))+ 1,
       });
     } else {
       this.setState({
@@ -155,16 +168,28 @@ class Home extends React.Component {
   handleFilter = (e) => {
     this.setState({
       searchValue: e,
-      cityError: ""
+      cityError: "",
+      loader: true,
     });
-    this.getLocation(e);
+    if (!searchValidator) {
+      searchValidator = setTimeout(() => {
+        this.getLocation(e);
+      }, 1000);
+    } else {
+      clearTimeout(searchValidator);
+    }
   };
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
     this.props.property(res);
+    this.setState({
+      loader: false,
+    });
 
     console.log(res, "sherin");
   };
+   
+ 
   executeOnClick(isExpanded) {
     console.log(isExpanded);
   }
@@ -185,7 +210,8 @@ class Home extends React.Component {
           <div className="banner">
             <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
             <div className="banner-content">
-              <h2>Enjoy your stay</h2> <p>StayCation</p>
+              {/* <h2>Enjoy your stay</h2> */}
+               <p>StayCation</p>
             </div>
           </div>
           <div
@@ -203,7 +229,9 @@ class Home extends React.Component {
                   onChange={(e) => {
                     this.handleFilter(e.target.value);
                   }}
-                  className={`${this.state.cityError !== "" ? "cityError" : ""}`}
+                  className={`${
+                    this.state.cityError !== "" ? "cityError" : ""
+                  }`}
                   placeholder=" Enter City"
                 ></input>
 
@@ -263,7 +291,7 @@ class Home extends React.Component {
                       <p className="menu-drop">Rooms</p>
                       <div className="decre">
                         <button
-                          class="circular ui icon button"
+                          className="circular ui icon button"
                           onClick={this.handleDec}
                         >
                           <RemoveIcon />
@@ -272,7 +300,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.roomValue}</p>
                       <div className="incre">
                         <button
-                          class="circular ui icon button"
+                          className="circular ui icon button"
                           onClick={this.handleInc}
                         >
                           <AddIcon />
@@ -283,7 +311,7 @@ class Home extends React.Component {
                       <p className="menu-drop">Adults</p>
                       <div className="a-decre">
                         <button
-                          class="circular ui icon button"
+                          className="circular ui icon button"
                           onClick={this.handleDecAdult}
                         >
                           <RemoveIcon />
@@ -292,7 +320,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.adultValue}</p>
                       <div className="a-incre">
                         <button
-                          class="circular ui icon button"
+                          className="circular ui icon button"
                           onClick={this.handleIncAdult}
                         >
                           <AddIcon />
@@ -303,7 +331,7 @@ class Home extends React.Component {
                       <p className="menu-drop">Children</p>
                       <div className="c-decre">
                         <button
-                          class="circular ui icon button"
+                          className="circular ui icon button"
                           onClick={this.handleDecChild}
                         >
                           <RemoveIcon />
@@ -312,7 +340,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.childValue}</p>
                       <div className="c-incre">
                         <button
-                          class="circular ui icon button"
+                          className="circular ui icon button"
                           onClick={this.handleIncChild}
                         >
                           <AddIcon />
@@ -323,25 +351,26 @@ class Home extends React.Component {
                 </div>
               </div>
               <div className="checkButton">
-                <Button animated onClick={this.handleValidate} olive>
+                <Button animated onClick={this.handleValidate}>
                   <Button.Content visible>
                     <p className="searchButton">Search</p>
                   </Button.Content>
                   <Button.Content hidden>
-                    <Icon name="arrow right" />
+                    <SearchIcon/>
+                    {/* <Icon name="search" />  */}
                   </Button.Content>
                 </Button>
               </div>
             </div>
           </div>
         </div>
-
-        {this.props.propertyList.length ? (
+        {this.state.loader && <CircularProgress className="loadingSym" />}
+        {this.props.propertyList.length && !this.state.loader ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
                 <Carousel showArrows={false}>
-                  <div>
+                  <div style={{marginLeft:"12em"}}>
                     <img
                       className="ImageTile"
                       key={index}
@@ -377,7 +406,7 @@ class Home extends React.Component {
                   <p className="starFill">
                     {_.range(
                       0,
-                      parseInt(get(data, "ratings","").split("/")[0])
+                      parseInt(get(data, "ratings", "").split("/")[0])
                     ).map((i) => (
                       <StarFill style={{ color: "#ffdf00" }} />
                     ))}
@@ -410,7 +439,7 @@ class Home extends React.Component {
                         <p className="pin-des">{get(data, "contact", "--")}</p>
                       </div>
                     </div>
-                    <div >
+                    <div>
                       <div className="viewDetails">
                         <Link
                           to={{
@@ -419,6 +448,7 @@ class Home extends React.Component {
                           }}
                         >
                           <button>View Details</button>
+                         
                         </Link>
                       </div>
                     </div>
@@ -427,7 +457,7 @@ class Home extends React.Component {
               </div>
             </div>
           ))
-        ) : this.state.searchValue.length ? (
+        ) : this.state.searchValue.length && !this.state.loader ? (
           <div>
             <h2 className="noProp"> Sorry!! No properties available.</h2>
           </div>
