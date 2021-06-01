@@ -207,7 +207,7 @@ a.ui.button.reserve-left {
   background: #c4cec6ad; */
   color: white !important;
   /* background-color: rgba(117, 162, 179, 0.8) !important; */
-  background: #90b4c2 !important;
+  background: #365663 !important;
   border: none !important;
 
   /* background: #3191c7 !important; */
@@ -280,6 +280,7 @@ a.ui.button.reserve-left {
 }
 .rate-container h2 {
   margin-bottom: 0px !important;
+  color: #2f708a !important;
 }
 .rate-container {
   display: flex;

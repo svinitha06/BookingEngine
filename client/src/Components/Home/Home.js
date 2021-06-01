@@ -54,6 +54,17 @@ class Home extends React.Component {
     };
   }
   componentDidMount() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    this.props.date({ start: new Date(), end: tomorrow });
+    this.setState({
+      start: today,
+      end: tomorrow,
+      dateObj: this.props.dateRange,
+      dateError: "",
+      clicked: false,
+    });
     this.getcall();
     // this.getLocation()
     // this.getRoomRates();
