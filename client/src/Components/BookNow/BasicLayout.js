@@ -202,47 +202,13 @@ export class BasicLayout extends Component {
               <div className="leftOne">
                 <DateRangePickerComponent
                   placeholder="Check-in/Check-out"
-                  startDate={this.state.start}
-                  endDate={this.state.end}
+                  startDate={this.props.dateRange.start}
+                  endDate={this.props.dateRange.end}
                   min={minValue}
                   format={"dd-MMM-yy"}
                   color={"black"}
                   className="datepicker"
                 ></DateRangePickerComponent>
-                {/* <DatePickerComponent
-                  placeholder="Check-in"
-                  // value={this.state.start}
-                  // startDate={this.state.start}
-                  // endDate={this.state.end}
-                  min={minValue}
-                  format={"dd-MMM-yy"}
-                  color={"black"}
-                  // onChange={() => this.handleDate()}
-                  // onChange={({ startDate, endDate }) =>
-                  //   this.setState({ startDate, endDate })
-                  // }
-                  className="newDatePicker"
-                  showClearButton={false}
-                  allowEdit={false}
-                /> */}
-              </div>
-              <div className="rightOne">
-                {/* <DatePickerComponent
-                  placeholder="Check-out"
-                  // value={this.state.start}
-                  startDate={this.state.start}
-                  // endDate={this.state.end}
-                  min={minValue}
-                  format={"dd-MMM-yy"}
-                  color={"black"}
-                  // onChange={() => this.handleDate()}
-                  // onChange={({ startDate, endDate }) =>
-                  //   this.setState({ startDate, endDate })
-                  // }
-                  className="newDatePicker"
-                  showClearButton={false}
-                  allowEdit={false}
-                /> */}
               </div>
             </div>
             <div className="roomDetailsTwo">

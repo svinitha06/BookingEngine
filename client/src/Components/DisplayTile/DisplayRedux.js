@@ -69,7 +69,6 @@ class DisplayRedux extends Component {
         <h1>Error fetching data</h1>;
         this.setState({ error: !this.state.error });
       });
-    this.getSomething(this.props.match.params.id);
   }
   getSomething = async (id) => {
     let res = await axios({
@@ -84,42 +83,14 @@ class DisplayRedux extends Component {
     })
       .then((result) => {
         this.props.roomTypesRate(result.data);
-        // console.log("getSomething response = ", result.data);
-        // console.log("this.props.dateRange", this.props.dateRange);
-        // console.log("roomTypesRate = ");
         this.setState({
           listOfAP: result.data,
         });
-        // var rateObj = this.state.listOfAP.map((data) => {
-        //   return {
-        //     id: data.roomTypeId,
-        //     ep: data.plan.EP,
-        //     ap: data.plan.AP,
-        //   };
-        // });
-        // console.log("rateObj = ", this.state.rateObj);
-        // console.log("listOFAP", this.state.listOfAP);
-        // console.log("list obj = ", this.state.list);
-        // console.log("this.state.list._id", this.state.list[1]._id);
-        // console.log(
-        //   "this.state.listOfAP.roomTypeId",
-        //   this.state.listOfAP[1].roomTypeId
-        // );
-        // console.log(
-        //   "this.state.listOfAP[1].roomTypeId",
-        //   this.state.listOfAP[1].roomTypeId
-        // );
-        // console.log("this.state.list[1]._id = ", this.state.list[1]._id);
-        // console.log("length of list", this.state.list.length);
-        // console.log("length of listOfAP", this.state.listOfAP.length);
-        // console.log("ap", this.state.listOfAP[1].plan.AP);
-        // console.log("ep", this.state.listOfAP[1].plan.EP);
       })
-
       .catch((e) => {
         console.log("error logging data", e);
       });
-    return res;
+    // return res;
   };
   // getSomething = async (id) => {
   //   let res = await db.getRoomRates({
@@ -150,6 +121,7 @@ class DisplayRedux extends Component {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
     let t = this.state.totalPrice;
+
     count.forEach((data) => {
       if (data.id === id) {
         data.count += 1;
@@ -218,181 +190,184 @@ class DisplayRedux extends Component {
         }
         <div>
           <div className="for-effect">
-            {/* <Slide left cascade> */}
-            <div className="property-center">
-              <h1>{propertyName}</h1>
-              {/* <Slide bottom cascade> */}
-              <div>
-                <h3>Welcomes you</h3>
+            <Slide left cascade>
+              <div className="property-center">
+                <h1>{propertyName}</h1>
+                <Slide bottom cascade>
+                  <div>
+                    <h3>Welcomes you</h3>
+                  </div>
+                </Slide>
               </div>
-              {/* </Slide> */}
-            </div>
 
-            <div className="displayContentTwo">
-              {this.state.list.map((post, index) => {
-                let room = 0;
-                let total = 0;
-                let i = 0;
-                let isCheck = false;
-                let p = 0;
-                var rate = 0;
-                // var k = 0;
+              <div className="displayContentTwo">
+                {this.state.list.map((post, index) => {
+                  let room = 0;
+                  let total = 0;
+                  let i = 0;
+                  let isCheck = false;
+                  let p = 0;
+                  var rate = 0;
+                  // var k = 0;
 
-                var count = this.state.countObj;
-                // var rateData = this.state.rateObj;
-                // var len1 = this.state.list.length;
-                var len2 = this.state.listOfAP.length;
+                  var count = this.state.countObj;
+                  // var rateData = this.state.rateObj;
+                  // var len1 = this.state.list.length;
+                  var len2 = this.state.listOfAP.length;
 
-                // let k = 0,
-                let j = 0;
-                // var id1 = post._id;
-                for (j = 0; j < len2; j++) {
-                  console.log(
-                    "this.state.listOfAP[j].roomTypeId",
-                    this.state.listOfAP[j].roomTypeId
-                  );
-                  var id2 = this.state.listOfAP[j].roomTypeId;
-                  if (post._id === id2) {
-                    ap = this.state.listOfAP[j].plan.AP;
-                    ep = this.state.listOfAP[j].plan.EP;
-                    break;
-                  }
-                  console.log("ap = ", ap);
-                  console.log("ep = ", ep);
-                }
-                // console.log("ap = ", ap);
-                // console.log("ep = ", ep);
-
-                // console.log("the rate data = ", rateData);
-                // console.log("var count inside of map", count);
-
-                count.forEach((data) => {
-                  if (data.id === post._id) room = data.count;
-                });
-
-                count.forEach((data) => {
-                  total += data.count;
-                });
-                count.forEach((data) => {
-                  if (data.id === post._id) {
-                    isCheck = data.isChecked;
-                    if (isCheck == true) {
-                      rate = ap;
-                    } else {
-                      rate = ep;
+                  // let k = 0,
+                  let j = 0;
+                  // var id1 = post._id;
+                  for (j = 0; j < len2; j++) {
+                    console.log(
+                      "this.state.listOfAP[j].roomTypeId",
+                      this.state.listOfAP[j].roomTypeId
+                    );
+                    var id2 = this.state.listOfAP[j].roomTypeId;
+                    if (post._id === id2) {
+                      ap = this.state.listOfAP[j].plan.AP;
+                      ep = this.state.listOfAP[j].plan.EP;
+                      break;
                     }
+                    console.log("ap = ", ap);
+                    console.log("ep = ", ep);
                   }
-                });
+                  // console.log("ap = ", ap);
+                  // console.log("ep = ", ep);
 
-                p = rate * room;
+                  // console.log("the rate data = ", rateData);
+                  // console.log("var count inside of map", count);
 
-                // this.setState({
-                //   totalPrice: this.state.totalPrice + p,
-                // });
+                  count.forEach((data) => {
+                    if (data.id === post._id) room = data.count;
+                  });
 
-                console.log("this.state.totalPrice", this.state.totalPrice);
-                // k++;
-                // count.forEach((data) => {
-                //   if (data.p === true) calculated = data.p;
-                // });
-                return (
-                  <div key={index} className="homeContainerOne">
-                    {/* <h1>{this.state.}</h1> */}
+                  // count.forEach((data) => {
+                  //   total += data.count;
+                  // });
+                  count.forEach((data) => {
+                    if (data.id === post._id) {
+                      isCheck = data.isChecked;
+                      if (isCheck == true) {
+                        rate = ap;
+                      } else {
+                        rate = ep;
+                      }
+                    }
+                  });
 
-                    <div className="wrapperOne">
-                      <div>
-                        <img
-                          className="ImageTileOne"
-                          src={post.roomImage}
-                        ></img>
-                      </div>
-                      <div className="textInside">
+                  p = rate * room;
+
+                  // this.setState({
+                  //   totalPrice: this.state.totalPrice + p,
+                  // });
+
+                  console.log("this.state.totalPrice", this.state.totalPrice);
+                  // k++;
+                  // count.forEach((data) => {
+                  //   if (data.p === true) calculated = data.p;
+                  // });
+                  return (
+                    <div key={index} className="homeContainerOne">
+                      {/* <h1>{this.state.}</h1> */}
+
+                      <div className="wrapperOne">
                         <div>
-                          <div className="rate-name">
-                            <div>
-                              <h2 style={{ marginTop: "6px" }}>
-                                {post.roomType}
-                              </h2>
-                            </div>
-                            <div className="rate-container">
-                              <span>
-                                <h2>₹ {rate}</h2>
-                              </span>
-                              <h5>per Day/Night</h5>
-                            </div>
-                          </div>
-                          <p className="roomDescOne">
-                            {post.description} <i className="fas fa-plus"></i>
-                          </p>
+                          <img
+                            className="ImageTileOne"
+                            src={post.roomImage}
+                          ></img>
                         </div>
-                        <div className="displayDivide">
+                        <div className="textInside">
                           <div>
-                            <div className="facilities">
+                            <div className="rate-name">
                               <div>
+                                <h2 style={{ marginTop: "6px" }}>
+                                  {post.roomType}
+                                </h2>
+                              </div>
+                              <div className="rate-container">
                                 <span>
-                                  <WifiRoundedIcon
-                                    className="icon"
-                                    style={{ color: "#6D6B68" }}
-                                  ></WifiRoundedIcon>
+                                  <h2>₹ {rate}</h2>
                                 </span>
-                                <span>
-                                  <p className="icon-p">Free-Wifi</p>
-                                </span>
-                              </div>
-
-                              <div>
-                                <CheckCircleSharpIcon
-                                  className="icon"
-                                  style={{ color: "#0E8C11" }}
-                                ></CheckCircleSharpIcon>
-                                <p className="icon-p">Sanitized</p>
-                              </div>
-                              <div>
-                                <FreeBreakfastRoundedIcon
-                                  className="icon"
-                                  style={{ color: "#DE7A34" }}
-                                ></FreeBreakfastRoundedIcon>{" "}
-                                <p className="icon-p">Free Breakfast</p>
-                              </div>
-                              <div className="price-margin">
-                                <h3>Price : {p}</h3>
+                                <h5>per Day/Night</h5>
                               </div>
                             </div>
+                            <p className="roomDescOne">
+                              {post.description} <i className="fas fa-plus"></i>
+                            </p>
                           </div>
-                          <div>
-                            <div className="button-price">
-                              <div className="inside-button-price">
-                                <button
-                                  className="thebutton"
-                                  onClick={() => this.handleMinus(post._id)}
-                                >
-                                  <RemoveIcon />
-                                </button>
+                          <div className="displayDivide">
+                            <div>
+                              <div className="facilities">
+                                <div>
+                                  <span>
+                                    <WifiRoundedIcon
+                                      className="icon"
+                                      style={{ color: "#6D6B68" }}
+                                    ></WifiRoundedIcon>
+                                  </span>
+                                  <span>
+                                    <p className="icon-p">Free-Wifi</p>
+                                  </span>
+                                </div>
 
-                                <h3 className="buttonPrice">{room}</h3>
-
-                                <button
-                                  className="thebutton"
-                                  onClick={() => this.handlePlus(post._id)}
-                                >
-                                  <AddIcon />
-                                </button>
+                                <div>
+                                  <CheckCircleSharpIcon
+                                    className="icon"
+                                    style={{ color: "#0E8C11" }}
+                                  ></CheckCircleSharpIcon>
+                                  <p className="icon-p">Sanitized</p>
+                                </div>
+                                <div>
+                                  <FreeBreakfastRoundedIcon
+                                    className="icon"
+                                    style={{ color: "#DE7A34" }}
+                                  ></FreeBreakfastRoundedIcon>{" "}
+                                  <p className="icon-p">Free Breakfast</p>
+                                </div>
+                                <div className="price-margin">
+                                  <h3>Price : {p}</h3>
+                                </div>
                               </div>
+                            </div>
+                            <div>
+                              <div className="button-price">
+                                <div className="inside-button-price">
+                                  <button
+                                    className="thebutton"
+                                    onClick={() => this.handleMinus(post._id)}
+                                  >
+                                    <RemoveIcon />
+                                  </button>
 
-                              <div className="include-food">
-                                <label>
-                                  Include Food :
-                                  <input
-                                    type="checkbox"
-                                    id="isCheck"
-                                    onChange={() => this.handleChange(post._id)}
-                                    checked={isCheck}
-                                  ></input>
-                                </label>
-                              </div>
-                              <div>
-                                <div className="roomdiv">
-                                  <h3>Rooms : {room}</h3>
+                                  <h3 className="buttonPrice">{room}</h3>
+
+                                  <button
+                                    className="thebutton"
+                                    onClick={() => this.handlePlus(post._id)}
+                                  >
+                                    <AddIcon />
+                                  </button>
+                                </div>
+
+                                <div className="include-food">
+                                  <label>
+                                    Include Food :
+                                    <input
+                                      type="checkbox"
+                                      id="isCheck"
+                                      onChange={() =>
+                                        this.handleChange(post._id)
+                                      }
+                                      checked={isCheck}
+                                    ></input>
+                                  </label>
+                                </div>
+                                <div>
+                                  <div className="roomdiv">
+                                    <h3>Rooms : {room}</h3>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -400,39 +375,38 @@ class DisplayRedux extends Component {
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="lastDiv">
-              <div className="total-price">
-                <h3>
-                  <span>Total Price: {this.state.totalPrice}</span>
-                </h3>
+                  );
+                })}
               </div>
-              <div className="btn-placement">
-                <div>
+              <div className="lastDiv">
+                <div className="total-price">
+                  <h3>
+                    <span>Total Price: {this.state.totalPrice}</span>
+                  </h3>
+                </div>
+                <div className="btn-placement">
+                  <div>
+                    <Button
+                      className="reserve-left"
+                      // class="ui inverted green button"
+                      as={NavLink}
+                      to="/"
+                      // onClick={() => this.state.onBack()}
+                    >
+                      Go Back
+                    </Button>
+                  </div>
                   <Button
-                    className="reserve-left"
+                    className="reserve"
                     // class="ui inverted green button"
                     as={NavLink}
-                    to="/"
-                    // onClick={() => this.state.onBack()}
+                    to="/form"
                   >
-                    Go Back
+                    Reserve
                   </Button>
                 </div>
-                <Button
-                  className="reserve"
-                  // class="ui inverted green button"
-                  as={NavLink}
-                  to="/form"
-                >
-                  Reserve
-                </Button>
               </div>
-            </div>
-            {/* </Slide> */}
+            </Slide>
           </div>
         </div>
       </div>
