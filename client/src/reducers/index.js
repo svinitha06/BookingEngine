@@ -14,10 +14,20 @@ export default (state = initialState, action) => {
         ...state,
         dateRange: action.data,
       };
-    case "ROOM_PICKER":
+    case "ROOM_VALUE":
       return {
         ...state,
-        roomRange: action.data,
+        roomVal: action.data,
+      };
+      case "ADULT_VALUE":
+      return {
+        ...state,
+        adultVal: action.data,
+      };
+      case "CHILD_VALUE":
+      return {
+        ...state,
+        childVal: action.data,
       };
     case "GET_LIST_PROPERTY":
       console.log(action, "hey");

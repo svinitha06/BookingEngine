@@ -24,7 +24,8 @@ import {
   property,
   room,
   propRoomType,
-  roomDetails,
+  adult,
+  child
 } from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
@@ -125,7 +126,11 @@ class Home extends React.Component {
   };
 
   handleDec = () => {
+
     if (this.state.roomValue !== 1) {
+      this.props.room({
+        roomValue: this.state.roomValue - 1
+      })
       this.setState({
         roomValue: this.state.roomValue - 1,
       });
@@ -133,6 +138,9 @@ class Home extends React.Component {
   };
   handleDecAdult = () => {
     if (this.state.adultValue !== 1) {
+      this.props.room({
+        adultValue: this.state.adultValue - 1
+      })
       this.setState({
         adultValue: this.state.adultValue - 1,
       });
@@ -141,6 +149,9 @@ class Home extends React.Component {
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
+      this.props.room({
+        childValue: this.state.childValue - 1
+      })
       this.setState({
         childValue: this.state.childValue - 1,
       });
@@ -148,18 +159,28 @@ class Home extends React.Component {
     this.handleCount();
   };
   handleInc = () => {
+    this.props.room({
+      roomValue: this.state.roomValue + 1
+    })
     this.setState({
       roomValue: this.state.roomValue + 1,
     });
   };
   handleIncAdult = () => {
+    this.props.room({
+      adultValue: this.state.adultValue + 1
+    })
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
     this.handleCount();
   };
   handleIncChild = () => {
+    this.props.room({
+      childValue: this.state.childValue + 1
+    })
     this.setState({
+      
       childValue: this.state.childValue + 1,
     });
     this.handleCount();
@@ -180,13 +201,15 @@ class Home extends React.Component {
       cityError: "",
       loader: true,
     });
-    if (!searchValidator) {
-      searchValidator = setTimeout(() => {
+    // if (!searchValidator) {
+    //   searchValidator = setTimeout(() => {
+    //     this.getLocation(e);
+    //   }, 1000);
+    // } else {
+    //   clearTimeout(searchValidator);
+    // }
         this.getLocation(e);
-      }, 1000);
-    } else {
-      clearTimeout(searchValidator);
-    }
+
   };
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
@@ -479,6 +502,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     date: bindActionCreators(date, dispatch),
     room: bindActionCreators(room, dispatch),
+    adult: bindActionCreators(adult, dispatch),
+    child: bindActionCreators(child, dispatch),
     property: bindActionCreators(property, dispatch),
     propRoomType: bindActionCreators(propRoomType, dispatch),
   };
@@ -487,7 +512,10 @@ const mapStateToProps = (state) => {
   return {
     propertyList: get(state, "propertyList", []),
     dateRange: get(state, "dateRange", []),
-    roomRange: get(state, "roomRange", []),
+    roomVal: get(state, "roomVal", []),
+    adultVal:get(state,"adultVal",[]),
+    childVal:get(state,"childVal",[])
+
   };
 };
 
