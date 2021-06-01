@@ -39,6 +39,9 @@ a.right.item.active {
 .headline {
   font-family: ui-rounded !important;
 }
+.my-div{
+  width: 102%;
+}
 
 @media (max-width: 990px) {
 }

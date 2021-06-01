@@ -56,26 +56,11 @@ class Home extends React.Component {
     this.props.property(res);
   };
 
-  getSomething = async (id) => {
-    let res = await db.getRoomRates({
-      propertyId: id,
-      checkInDate: this.props.dateRange.start,
-    });
-    this.props.roomDetails(res.data);
-  };
-  // componentDidUpdate = () => {
-  //   console.log(this.props, "hello");
-  //   if (!this.state.listOfProperties.length) {
-  //     this.setState({
-  //       listOfProperties: this.props.propertyList,
-  //     });
-  //   }
-  // };
-
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
       end: e.value[1],
+      dateError: "",
     });
     console.log("e.value 0", e.value[0]);
     console.log("e.value", e.value);
@@ -92,12 +77,23 @@ class Home extends React.Component {
     console.log("dateObj", this.state.dateObj);
   };
   handleValidate = async () => {
-    let res = await db.getFilteredSearch({
-      location: this.state.searchValue,
-      rooms: this.state.roomValue,
-    });
-    this.props.property(res);
-    console.log(res, "search");
+    if (this.state.searchValue === "") {
+      this.setState({
+        cityError: "Enter city",
+      });
+    }
+    if (this.state.start == null) {
+      this.setState({
+        dateError: "Please select the date",
+      });
+    } else {
+      let res = await db.getFilteredSearch({
+        location: this.state.searchValue,
+        roomsrequired: this.state.roomValue,
+      });
+      this.props.property(res.data);
+      console.log(res, "search");
+    }
   };
   handleCount = () => {
     let count = 0;
@@ -165,6 +161,7 @@ class Home extends React.Component {
   handleFilter = (e) => {
     this.setState({
       searchValue: e,
+      cityError: "",
     });
     this.getLocation(e);
   };
@@ -180,19 +177,6 @@ class Home extends React.Component {
   // handleGo=(data)=>{
   //   <Link to={`/basiclayout/${data}`}></Link>
   // }
-  handleRoomType = async (data) => {
-    // let res = await db.getpropertyRoom(data);
-    // this.props.propRoomType(res);
-    // if(this.state.start === null || this.state.end ===null){
-    //   this.setState({
-    //     dateError:"Select Date"
-    //   })
-    // }
-    // else {
-    //   <Redirect to={`/basiclayout/${data}`} />
-    // }
-  };
-  // console.log("state inside Home ", this.state);
 
   render() {
     const minValue = new Date(
@@ -206,7 +190,7 @@ class Home extends React.Component {
       <div className="fullContainer">
         <div>
           <div className="banner">
-            <img src={tryL} width="100%" style={{ height: "76vh" }}></img>
+            <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
             <div className="banner-content">
               <h2>Enjoy your stay</h2> <p>StayCation</p>
             </div>
@@ -218,7 +202,7 @@ class Home extends React.Component {
               className="Home-head d-flex w-98"
               style={{ width: "-webkit-fill-available" }}
             >
-              <div>
+              <div className="d-flex">
                 <input
                   list="browsers"
                   name="browser"
@@ -226,14 +210,17 @@ class Home extends React.Component {
                   onChange={(e) => {
                     this.handleFilter(e.target.value);
                   }}
+                  className={`${
+                    this.state.cityError !== "" ? "cityError" : ""
+                  }`}
                   placeholder=" Enter City"
                 ></input>
 
                 {this.state.cityError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
                 )}
               </div>
-              <div className="datePickerHome">
+              <div className="d-flex datePickerHome">
                 <DateRangePickerComponent
                   placeholder="Check-in/Check-out"
                   startDate={this.state.start}
@@ -282,7 +269,6 @@ class Home extends React.Component {
                     getContentAnchorEl={null}
                   >
                     <div className="d-flex">
-                      {/* <button onClick={this.handleDec}>-</button> */}
                       <p className="menu-drop">Rooms</p>
                       <div className="decre">
                         <button
@@ -363,11 +349,7 @@ class Home extends React.Component {
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
-                <Carousel
-                  showArrows={false}
-                  // focusOnSelect={true}
-                  // enableMouseSwipe={true}
-                >
+                <Carousel showArrows={false}>
                   <div>
                     <img
                       className="ImageTile"
@@ -404,7 +386,7 @@ class Home extends React.Component {
                   {/* <p className="starFill">
                     {_.range(
                       0,
-                      parseInt(get(data, "ratings").split("/")[0])
+                      parseInt(get(data, "ratings","").split("/")[0])
                     ).map((i) => (
                       <StarFill style={{ color: "#ffdf00" }} />
                     ))}
@@ -438,26 +420,14 @@ class Home extends React.Component {
                       </div>
                     </div>
                     <div>
-                      {/* <div className="btn center">
-                        <p> View Details</p>
-                        <div className="d1"></div>
-                        <div className="d1"></div>
-                        <div className="d1"></div>
-
-                      </div> */}
-                      <div
-                        className="viewDetails"
-                        // onClick={this.handleRoomType(data.PropertyId)}
-                      >
+                      <div className="viewDetails">
                         <Link
                           to={{
                             pathname: `/basiclayout/${data.PropertyId}`,
                             props: { hotelName: get(data, "name", "--") },
                           }}
                         >
-                          <button onClick={this.getSomething(data.PropertyId)}>
-                            View Details
-                          </button>
+                          <button>View Details</button>
                         </Link>
                       </div>
                     </div>
@@ -481,7 +451,6 @@ const mapDispatchToProps = (dispatch) => {
     room: bindActionCreators(room, dispatch),
     property: bindActionCreators(property, dispatch),
     propRoomType: bindActionCreators(propRoomType, dispatch),
-    roomDetails: bindActionCreators(roomDetails, dispatch),
   };
 };
 const mapStateToProps = (state) => {
@@ -489,7 +458,6 @@ const mapStateToProps = (state) => {
     propertyList: get(state, "propertyList", []),
     dateRange: get(state, "dateRange", []),
     roomRange: get(state, "roomRange", []),
-    roomDetailsList: get(state, "roomDetailsList", []),
   };
 };
 

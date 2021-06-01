@@ -35,7 +35,9 @@ class DisplayRedux extends Component {
       list: [],
       countObj: [],
       error: false,
-      rates: [],
+      listOfAP: [],
+      // rateObj: []
+      totalPrice: 0,
     };
   }
 
@@ -57,6 +59,7 @@ class DisplayRedux extends Component {
             id: data._id,
             count: 0,
             isChecked: false,
+            // rate: 0,
           };
         });
         this.setState({ countObj: countObj });
@@ -66,44 +69,101 @@ class DisplayRedux extends Component {
         <h1>Error fetching data</h1>;
         this.setState({ error: !this.state.error });
       });
-    console.log("this.props inside didMount", this.props);
-    // const {Hname} = this.props
-    // axios({
-    //   method: "GET",
-    //   url: `http://localhost:3000/rate/getplan`,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     // 'x-access-token': sessionStorage.getItem('token')
-    //     propertyId: this.props.propertyList,
-    //     checkIndate: this.props.dateRange,
-    //   },
-    // }).then((result) => {
-    //   this.props.roomTypeRate(result);
-    //   console.log("getRoomrates = ", result);
-    //   this.setState({
-    //     rates: result,
-    //     rates2: this.props.roomTypeRatesData,
-    //   });
-
-    //   console.log("room rate from displayRedus", rates);
-    // });
+    this.getSomething(this.props.match.params.id);
   }
+  getSomething = async (id) => {
+    let res = await axios({
+      method: "get",
+      url: `http://localhost:5000/rate/getplan`,
+      headers: {
+        "Content-Type": "application/json",
+        // "x-access-token": sessionStorage.getItem("token"),
+        propertyId: this.props.match.params.id,
+        checkInDate: this.props.dateRange.start,
+      },
+    })
+      .then((result) => {
+        this.props.roomTypesRate(result.data);
+        // console.log("getSomething response = ", result.data);
+        // console.log("this.props.dateRange", this.props.dateRange);
+        // console.log("roomTypesRate = ");
+        this.setState({
+          listOfAP: result.data,
+        });
+        // var rateObj = this.state.listOfAP.map((data) => {
+        //   return {
+        //     id: data.roomTypeId,
+        //     ep: data.plan.EP,
+        //     ap: data.plan.AP,
+        //   };
+        // });
+        // console.log("rateObj = ", this.state.rateObj);
+        // console.log("listOFAP", this.state.listOfAP);
+        // console.log("list obj = ", this.state.list);
+        // console.log("this.state.list._id", this.state.list[1]._id);
+        // console.log(
+        //   "this.state.listOfAP.roomTypeId",
+        //   this.state.listOfAP[1].roomTypeId
+        // );
+        // console.log(
+        //   "this.state.listOfAP[1].roomTypeId",
+        //   this.state.listOfAP[1].roomTypeId
+        // );
+        // console.log("this.state.list[1]._id = ", this.state.list[1]._id);
+        // console.log("length of list", this.state.list.length);
+        // console.log("length of listOfAP", this.state.listOfAP.length);
+        // console.log("ap", this.state.listOfAP[1].plan.AP);
+        // console.log("ep", this.state.listOfAP[1].plan.EP);
+      })
 
+      .catch((e) => {
+        console.log("error logging data", e);
+      });
+    return res;
+  };
+  // getSomething = async (id) => {
+  //   let res = await db.getRoomRates({
+  //     propertyId: id,
+  //     checkInDate: this.props.dateRange.start,
+  //   });
+  //   this.props.roomDetails(res.data);
+  // };
   handleMinus = (id) => {
     var count = this.state.countObj;
+    let rateObj = this.state.listOfAP;
+    let t = this.state.totalPrice;
 
     count.forEach((data) => {
-      if (data.id === id && data.count > 0) data.count -= 1;
+      if (data.id === id && data.count > 0) {
+        data.count -= 1;
+        rateObj.forEach((rate) => {
+          if (rate.roomTypeId === id) {
+            if (data.isChecked) t -= rate.plan.EP * data.count;
+            else t -= rate.plan.AP * data.count;
+          }
+        });
+      }
     });
-    this.setState({ countObj: count });
+    this.setState({ countObj: count, totalPrice: t });
   };
   handlePlus = (id) => {
     var count = this.state.countObj;
-
+    let rateObj = this.state.listOfAP;
+    let t = this.state.totalPrice;
     count.forEach((data) => {
-      if (data.id === id) data.count += 1;
+      if (data.id === id) {
+        data.count += 1;
+
+        rateObj.forEach((rate) => {
+          if (rate.roomTypeId === id) {
+            if (data.isChecked) t += rate.plan.EP * data.count;
+            else t += rate.plan.AP * data.count;
+          }
+        });
+      }
     });
-    this.setState({ countObj: count });
+
+    this.setState({ countObj: count, totalPrice: t });
   };
   handleChange = (id) => {
     var count = this.state.countObj;
@@ -112,6 +172,11 @@ class DisplayRedux extends Component {
       if (data.id === id) {
         data.isChecked = !data.isChecked;
       }
+      // if(data.isChecked == true){
+      //   this.setState({
+      //     realRate:rate,
+      //   })
+      // }
       // if (data.id === id && data.isChecked) data.p += 600;
     });
 
@@ -127,20 +192,28 @@ class DisplayRedux extends Component {
       textAlign: "center",
     };
     var propertyName = "";
-    console.log("this.props.dateRange", this.props.dateRange);
-
+    var ap = 0,
+      ep = 0;
     // console.log("THE PROP VALUE + ", this.props);
     if (this.state.error) return <h1 style={mystyle}>Error Fetching data</h1>;
     // let propertyName = "";
     return (
       <div className="displayOne">
         {
-          // let propertyName = "";
+          // let propertyName = "";\
+
+          // this.state.list.forEach((data)=>{
+          //   this.state.listOfAP.forEach((data2)=>{
+          //     if(data2.roomTypeId === data._id)
+          //       ap = data2.plan.AP;
+          //       ep = data2.plan.EP;
+          //   })
+          // })
+
           this.props.propertyList.forEach((data) => {
             if (data.PropertyId == this.props.match.params.id) {
               propertyName = data.name;
             }
-            console.log("propertyName = ", propertyName);
           })
         }
         <div>
@@ -162,20 +235,63 @@ class DisplayRedux extends Component {
                 let i = 0;
                 let isCheck = false;
                 let p = 0;
+                var rate = 0;
+                // var k = 0;
 
                 var count = this.state.countObj;
+                // var rateData = this.state.rateObj;
+                // var len1 = this.state.list.length;
+                var len2 = this.state.listOfAP.length;
+
+                // let k = 0,
+                let j = 0;
+                // var id1 = post._id;
+                for (j = 0; j < len2; j++) {
+                  console.log(
+                    "this.state.listOfAP[j].roomTypeId",
+                    this.state.listOfAP[j].roomTypeId
+                  );
+                  var id2 = this.state.listOfAP[j].roomTypeId;
+                  if (post._id === id2) {
+                    ap = this.state.listOfAP[j].plan.AP;
+                    ep = this.state.listOfAP[j].plan.EP;
+                    break;
+                  }
+                  console.log("ap = ", ap);
+                  console.log("ep = ", ep);
+                }
+                // console.log("ap = ", ap);
+                // console.log("ep = ", ep);
+
+                // console.log("the rate data = ", rateData);
                 // console.log("var count inside of map", count);
 
                 count.forEach((data) => {
                   if (data.id === post._id) room = data.count;
                 });
-                p = 2000 * room;
+
                 count.forEach((data) => {
                   total += data.count;
                 });
                 count.forEach((data) => {
-                  if (data.id === post._id) isCheck = data.isChecked;
+                  if (data.id === post._id) {
+                    isCheck = data.isChecked;
+                    if (isCheck == true) {
+                      rate = ap;
+                    } else {
+                      rate = ep;
+                    }
+                  }
                 });
+
+                p = rate * room;
+
+                // this.setState({
+                //   totalPrice: this.state.totalPrice + p,
+                // });
+
+                console.log("this.state.totalPrice", this.state.totalPrice);
+                // k++;
                 // count.forEach((data) => {
                 //   if (data.p === true) calculated = data.p;
                 // });
@@ -200,7 +316,7 @@ class DisplayRedux extends Component {
                             </div>
                             <div className="rate-container">
                               <span>
-                                <h2>₹ 0</h2>
+                                <h2>₹ {rate}</h2>
                               </span>
                               <h5>per Day/Night</h5>
                             </div>
@@ -268,7 +384,7 @@ class DisplayRedux extends Component {
                                   Include Food :
                                   <input
                                     type="checkbox"
-                                    id="isChceck"
+                                    id="isCheck"
                                     onChange={() => this.handleChange(post._id)}
                                     checked={isCheck}
                                   ></input>
@@ -291,7 +407,7 @@ class DisplayRedux extends Component {
             <div className="lastDiv">
               <div className="total-price">
                 <h3>
-                  <span>Total Price: 0</span>
+                  <span>Total Price: {this.state.totalPrice}</span>
                 </h3>
               </div>
               <div className="btn-placement">
