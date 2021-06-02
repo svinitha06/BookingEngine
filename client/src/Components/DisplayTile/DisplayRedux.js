@@ -38,6 +38,10 @@ class DisplayRedux extends Component {
       listOfAP: [],
       // rateObj: []
       totalPrice: 0,
+      totalPriceTwo: 0,
+      priceFinal: 0,
+      priceArray: [],
+      finalTotalPrice: 0,
     };
   }
 
@@ -59,6 +63,7 @@ class DisplayRedux extends Component {
             id: data._id,
             count: 0,
             isChecked: false,
+            priceO: 0,
             // rate: 0,
           };
         });
@@ -92,7 +97,7 @@ class DisplayRedux extends Component {
       .catch((e) => {
         console.log("error logging data", e);
       });
-    return res;
+    // return res;
   };
   // getSomething = async (id) => {
   //   let res = await db.getRoomRates({
@@ -109,12 +114,12 @@ class DisplayRedux extends Component {
     count.forEach((data) => {
       if (data.id === id && data.count > 0) {
         data.count -= 1;
-        rateObj.forEach((rate) => {
-          if (rate.roomTypeId === id) {
-            if (data.isChecked) t -= rate.plan.EP * data.count;
-            else t -= rate.plan.AP * data.count;
-          }
-        });
+        // rateObj.forEach((rate) => {
+        //   if (rate.roomTypeId === id) {
+        //     if (data.isChecked) t -= rate.plan.EP * data.count;
+        //     else t -= rate.plan.AP * data.count;
+        //   }
+        // });
       }
     });
     this.setState({ countObj: count, totalPrice: t });
@@ -123,12 +128,15 @@ class DisplayRedux extends Component {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
     let t = this.state.totalPrice;
-    console.log("value of BEFORE t inside handlePlus", t);
+    // console.log("value of BEFORE t inside handlePlus", t);
+    console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.count += 1;
-
-        console.log("count inside handlePlus = ", data.count);
+        // this.setState({
+        //   finalTotalPrice: data.priceO
+        // })
+        // console.log("count inside handlePlus = ", data.count);
         // rateObj.forEach((rate) => {
         //   if (rate.roomTypeId === id) {
         //     if (!data.isChecked) t += rate.plan.EP * data.count;
@@ -141,21 +149,37 @@ class DisplayRedux extends Component {
 
     this.setState({
       countObj: count,
-      // totalPrice: t
+      totalPrice: t,
     });
   };
+
   handleChange = (id) => {
+    // var finalPrice = 0;
+    // var finalEP = 0;
+    // var finalAP = 0;
     var count = this.state.countObj;
+    // let rateObj = this.state.listOfAP;
+    // var rateObj2 = this.state.listOfAP;
+    // rateObj.forEach((i) => {
+    //   if (i.roomTypeId === post._id) {
+    //     finalAP = i.plan.AP;
+
+    //     finalEP = i.plan.EP;
+    //   }
+    // });
     // console.log("inside handleCahneg count = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.isChecked = !data.isChecked;
       }
-      // if(data.isChecked == true){
-      //   this.setState({
-      //     realRate:rate,
-      //   })
-      // }
+      // rateObj.forEach((rateData) => {
+      //   if (data.isChecked == true) {
+      //     finalPrice = finalAP;
+      //   } else {
+      //     finalPrice = finalEP;
+      //   }
+      // });
+
       // if (data.id === id && data.isChecked) data.p += 600;
     });
 
@@ -206,7 +230,8 @@ class DisplayRedux extends Component {
                   let p = 0;
                   var rate1 = 0;
                   var k = 0;
-                  var finalPrice;
+                  var price = 0;
+                  var finalPrice = 0;
                   var finalEP = 0;
                   var finalAP = 0;
                   var count = this.state.countObj;
@@ -235,16 +260,7 @@ class DisplayRedux extends Component {
                   //   console.log("ap = ", ap);
                   //   console.log("ep = ", ep);
                   // }
-                  // count.forEach((data) => {
-                  //   if (data.id === post._id) {
-                  //     isCheck = data.isChecked;
-                  //     if (isCheck == true) {
-                  //       rate1 = ap;
-                  //     } else {
-                  //       rate1 = ep;
-                  //     }
-                  //   }
-                  // });
+
                   // console.log("rate1=", rate1);
                   // p = rate1 * room;
                   // console.log("p = ", p);
@@ -252,34 +268,50 @@ class DisplayRedux extends Component {
                   rateObj2.forEach((i) => {
                     if (i.roomTypeId === post._id) {
                       finalAP = i.plan.AP;
-                      console.log("i.plan.AP", i.plan.AP);
-                      console.log("i.plan.EP", i.plan.EP);
-                      console.log("finalAP", finalAP);
-
                       finalEP = i.plan.EP;
-                      console.log("finalEP", finalEP);
                     }
                   });
-                  count.forEach((data) => {
-                    rateObj2.forEach((theRate) => {
-                      if (post._id === theRate.roomTypeId) {
-                        isCheck = data.isChecked;
-                        if (isCheck) finalPrice = finalAP;
-                        else finalPrice = finalEP;
-                      }
-                    });
-                  });
+                  // count.forEach((data) => {
+                  //   rateObj2.forEach((theRate) => {
+                  //     if (post._id === theRate.roomTypeId) {
+                  //       isCheck = data.isChecked;
+                  //       if (isCheck) finalPrice = finalAP;
+                  //       else finalPrice = finalEP;
+                  //     }
+                  //   });
+                  // });
 
-                  console.log("finalPrice = ", finalPrice);
-                  console.log("isCheck = ", isCheck);
+                  // console.log("finalPrice = ", finalPrice);
+                  // console.log("isCheck = ", isCheck);
                   count.forEach((data) => {
                     if (data.id === post._id) room = data.count;
+                  });
+                  count.forEach((data) => {
+                    if (data.id === post._id) {
+                      isCheck = data.isChecked;
+                      if (isCheck == true) {
+                        finalPrice = finalAP;
+                      } else {
+                        finalPrice = finalEP;
+                      }
+                    }
                   });
 
                   // count.forEach((data) => {
                   //   total += data.count;
                   // });
-
+                  // console.log("finalPrice = ", finalPrice);
+                  // console.log("rooms = ", room);
+                  if (room > 0) price = finalPrice * room;
+                  console.log("price = ", price);
+                  // console.log(
+                  //   "this.state.totalpriceTow = ",
+                  //   this.state.totalpriceTwo
+                  // );
+                  count.forEach((data) => {
+                    if (data.id === post._id) data.priceO = price;
+                  });
+                  console.log("count Obj agter priceO = ", count);
                   return (
                     <div key={index} className="homeContainerOne">
                       {/* <h1>{this.state.}</h1> */}
@@ -340,7 +372,7 @@ class DisplayRedux extends Component {
                                   <p className="icon-p">Free Breakfast</p>
                                 </div>
                                 <div className="price-margin">
-                                  <h3>Price : {this.state.totalPrice}</h3>
+                                  <h3>Price : {price}</h3>
                                 </div>
                               </div>
                             </div>
@@ -394,7 +426,10 @@ class DisplayRedux extends Component {
               <div className="lastDiv">
                 <div className="total-price">
                   <h3>
-                    <span>Total Price: {this.state.totalPrice}</span>
+                    <span>
+                      Total Price:
+                      {/* {this.state.totalPrice} */}
+                    </span>
                   </h3>
                 </div>
                 <div className="btn-placement">
