@@ -235,9 +235,7 @@ export class BasicLayout extends Component {
                 >
                   <p className="roomText">
                     <GroupAddIcon />
-                    <p className="value">
-                      {`${this.props.roomVal}Rooms`}
-                    </p>
+                    <p className="value">{`${this.props.roomVal}Rooms`}</p>
                   </p>
                 </Button>
                 <Menu
@@ -268,7 +266,7 @@ export class BasicLayout extends Component {
                         <RemoveIcon />
                       </button>
                     </div>
-                    <p>{this.props.roomVal.roomValue}</p>
+                    <p>{this.props.roomVal}</p>
                     <div className="incre">
                       <button
                         class="circular ui icon button"
@@ -333,7 +331,7 @@ const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
   // roomRange: get(state, "roomRange", []),
   propertyList: get(state, "propertyList", []),
-  roomVal:state.roomVal,
+  roomVal: state.roomVal,
   adultVal: state.adultVal,
   childVal: state.childVal,
 });
