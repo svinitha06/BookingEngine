@@ -1,11 +1,11 @@
- /* .form {
+/* .form {
   background-color: linear-gradient(
     to right,
     #f5bf75 0%,
     #e7d08c 51%,
     #e9dcca 100% 
   ); */
-  .form h2 {
+.form h2 {
   background-color: rgb(185, 180, 173);
   display: flex;
   justify-content: center;
@@ -17,13 +17,13 @@
   background-color: rgb(240, 237, 232);
   margin-top: 5%;
   margin-left: 28%; */
-.form-contents1{
-    width: 200%;
+.form-contents1 {
+  width: 200%;
   margin-top: 50px;
   margin-left: 30px;
   padding-right: 31px;
   margin-right: 40px !important;
-  
+
   /* margin-bottom: 1em; */
 }
 /* .ui.button, .ui.buttons .button, .ui.buttons .or {
@@ -32,26 +32,25 @@
   margin-left: -1px;
 } */
 
-
-.ui button ui{ 
+.ui button ui {
   margin-top: 38px;
   margin-left: 37px;
   margin-bottom: -2%;
-    /* margin-left: 1%; */
+  /* margin-left: 1%; */
   border: 2.5px solid rgb(25 23 23);
-    border-radius: 10%;
-    margin-bottom: -3%;
+  border-radius: 10%;
+  margin-bottom: -3%;
 }
 
-.form-contents2{
+.form-contents2 {
   margin-top: 50px;
-    margin-right: -13%;
-    margin-left: 13%;
-    width: 176%;
-    scroll-padding-bottom: 10%;
-    margin-bottom: 11px;
+  margin-right: -13%;
+  margin-left: 13%;
+  width: 176%;
+  scroll-padding-bottom: 10%;
+  margin-bottom: 11px;
 }
-.form-contents3{
+.form-contents3 {
   width: 200%;
   margin-top: 50px;
   margin-left: 49px;
@@ -60,9 +59,9 @@
   margin-bottom: 2em;
   margin-bottom: 11%;
   width: 58%;
-  padding: 19%
+  padding: 19%;
 }
-#address-det{
+#address-det {
   margin-bottom: 6% !important;
   height: 56vh !important;
   width: 364%;
@@ -74,29 +73,29 @@
   padding: 49px;
 }
 
-.form-contents5{
+.form-contents5 {
   padding: 62px !important;
 }
 .form-contents {
   font-size: large;
   padding-top: 5px !important;
-       /* min-height: 100%; */
-       padding-right: 30%;
-       /* margin-right: 32%; */
-       margin-left: 24%;
-       /* border: 1px solid; */
-       width: 58%;
-       /* display: grid; */
-       /* margin-top: -74%; */
-       font-style: italic;
-       font-size: large;
-       font-weight: bolder;
-       border-radius: 22px;
-       box-shadow: 10px 10px 5px #aaaaaa;
-       background-color: rgb(215, 240, 241);
-} 
+  /* min-height: 100%; */
+  padding-right: 30%;
+  /* margin-right: 32%; */
+  margin-left: 24%;
+  /* border: 1px solid; */
+  width: 58%;
+  /* display: grid; */
+  /* margin-top: -74%; */
+  font-style: italic;
+  font-size: large;
+  font-weight: bolder;
+  border-radius: 22px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+  background-color: rgb(215, 240, 241);
+}
 
- .form {
+.form {
   /* border: 10px solid rgb(27, 27, 27);
   border-radius: 10%;
   z-index: -1; */
@@ -107,14 +106,14 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   min-height: 100%; */
-}  
-  .form-contents input {
+}
+.form-contents input {
   padding: 2%;
   border-radius: 3%;
   width: 63%;
-} 
- .form-date {  
-   display: flex;
+}
+.form-date {
+  display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: center;
@@ -122,7 +121,7 @@
 
   margin-right: 26px;
   margin-left: 34px;
-  border: 3px solid rgb(27, 27, 27) 
+  border: 3px solid rgb(27, 27, 27);
   /* display: grid; */
   /* grid-template-columns: 30% 70%; */
 }
@@ -138,15 +137,15 @@
   margin-top: 2%;
   align-items: right;
   margin-left: 873px;
-    margin-right: 60px;
-    margin-bottom: 21px
- } 
- 
- .push{
-  margin-left: 71px;
- }
+  margin-right: 60px;
+  margin-bottom: 21px;
+}
 
- /* .form {
+.push {
+  margin-left: 71px;
+}
+
+/* .form {
    margin: 1%;
    
  } */
@@ -160,28 +159,27 @@
 /* .final-date .form-datepicker {
   width: 60% !important;
 } */
-#gender-select{
+#gender-select {
   width: 40% !important;
   /* padding-left: 20px !i; */
 }
-.form-contents1 input{
+.form-contents1 input {
   margin-left: 1em;
 }
-select{
+select {
   margin-left: 1em !important;
   opacity: 2.6 !important;
   font-weight: 600 !important;
   padding: 4px !important;
 }
- .form-btn {
+.form-btn {
   padding: 2% !important;
 }
 /* #datepickeridform {
   width: 60% !important;
-} */   
+} */
 
-
-.submit-form{
+.submit-form {
   /* margin-left: -495px; */
   margin-bottom: 27px;
   margin-right: -511px !important;
@@ -191,24 +189,45 @@ select{
   margin-bottom: 22px !important; */
   /* margin-bottom: 2em !important; */
 }
-.submit-form button{
-     margin-right: -47px; 
-     margin-top: -25px;
-    padding: 16px 30px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-    background-color: rgba(57, 61, 63, 0.8);
-    border: 1px solid transparent;
-    transition: all 0.3s;
-    font-size: 18px;
-    margin-bottom: 18px;
-    /* cursor: pointer; */
+.submit-form button {
+  margin-right: -47px;
+  margin-top: -25px;
+  padding: 16px 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: rgba(57, 61, 63, 0.8);
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  font-size: 18px;
+  margin-bottom: 18px;
+  /* cursor: pointer; */
 }
-.submit-form button:hover{
+.submit-form button:hover {
   color: black !important;
-    background-color: transparent;
-    opacity: 0.7;
-    border: 1px solid #565656;
+  background-color: transparent;
+  opacity: 0.7;
+  border: 1px solid #565656;
+}
+.hotelHeading {
+  display: flex;
+  flex-direction: row;
+  margin-left: 4%;
+  padding-top: 2%;
+  padding-bottom: 1.5%;
+  justify-content: flex-start;
+}
+.hotel-Details {
+  width: 50% !important;
+  /* display: grid !important; */
+  margin-left: 25%;
+  border-radius: 22px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+  padding: 2%;
+  margin-bottom: 2%;
+  background: white !important;
+}
+.hotelHeading div {
+  margin-left: 65%;
 }
