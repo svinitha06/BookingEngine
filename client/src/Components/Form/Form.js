@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Form.css";
 import { get } from "lodash";
 import { connect } from "react-redux";
+
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
@@ -15,7 +16,7 @@ export class Form extends Component {
       email: "",
       contact: "",
       gender: "",
-      address: "",
+      address: ""
     };
   }
   componentDidMount() {
@@ -45,6 +46,7 @@ export class Form extends Component {
     this.setState({
       contact: event.target.value,
     });
+    console.log(event.target.value)
   };
   handleGender = (event) => {
     this.setState({
@@ -67,12 +69,13 @@ export class Form extends Component {
       <div className="container-form">
         <div className="form">
           <div className="form-date">
-            <Button className="form-btn" as={NavLink} to="/basiclayout">
+          
+            <Button className="ui button" as={NavLink} to="/basiclayout">
               Back
             </Button>
             <div className="final-date">
-              <span>
-                <h6>Check-in / Check-out</h6>
+              <span className="push">
+                <h6> Check-in / Check-out</h6>
               </span>
               <DateRangePickerComponent
                 placeholder="Check-in/Check-out"
@@ -86,21 +89,26 @@ export class Form extends Component {
               ></DateRangePickerComponent>
             </div>
           </div>
-
-          <form>
+          <div>
+            <div>
+            {/* <img src = {ImageOne} style={{ width: "100%" }}></img> */}
+            </div>
+           <div className="form-design">
+           <form >
             <h2>Book your Room</h2>
+           
             <div className="form-contents">
-              <label>First Name</label>
+              <div className="d-flex form-contents1">
+              {/* <label>First Name</label> */}
               <input
                 type="text"
                 placeholder="First Name"
                 value={this.state.firstName}
                 onChange={this.handleFirstName}
               ></input>
-              <br />
-              <label type="text" placeholder="Last Name">
+              {/* <label type="text"  placeholder="Last Name">
                 Last Name
-              </label>
+              </label> */}
               <input
                 type="text"
                 placeholder="Last Name"
@@ -108,15 +116,18 @@ export class Form extends Component {
                 onChange={this.handleLastName}
               ></input>
               <br />
-              <label>Email Address</label>
+              {/* <label>Email Address</label> */}
               <input
                 type="email"
                 placeholder="E-mail"
                 value={this.state.email}
                 onChange={this.handleEmail}
               ></input>
+              </div>
               <br />
-              <label>Mobile No.</label>
+
+              <div className="d-flex form-contents1" >
+              {/* <label>Mobile No.</label> */}
               <input
                 type="number"
                 placeholder="Mobile"
@@ -124,11 +135,16 @@ export class Form extends Component {
                 onChange={this.handleContact}
               ></input>
               <br />
-              <label>Gender</label>
-              <label>
+              <div className="GENDER"></div>
+              <select name="Gender" id="gender-select">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              </select>
+              {/* <label>Gender</label>
+              <label className="d-flex">
                 Male
                 <input
-                  type="radio"
+                  type="select"
                   value="Male"
                   checked={this.state.gender === "Male"}
                   onChange={this.handleGender}
@@ -137,22 +153,39 @@ export class Form extends Component {
               <label>
                 Female
                 <input
-                  type="radio"
+                  type="select"
                   value="Female"
                   checked={this.state.gender === "Female"}
                   onChange={this.handleGender}
                 ></input>
-              </label>
-              <br></br>
-              <h4>Billing address</h4>
-              <label>Address</label>
+              </label> */}
+              </div>
+      
+              
+              {/* <br></br> */}
+              {/* <div className="form-contents1"> */}
+              {/* <h4>Billing address</h4> */}
+              {/* <label>Address</label> */}
+              <div className="d-flex form-contents2">
               <input
+              className="form-contents5"
                 type="text-area"
+                placeholder="Address"
                 value={this.state.address}
                 onChange={this.handleAddress}
               ></input>
+              </div>
+              <div className="viewDetails">
+                        
+                          <button>Submit</button>
+                       
+                      </div>
             </div>
           </form>
+           </div>
+          </div>
+          
+         
         </div>
       </div>
     );

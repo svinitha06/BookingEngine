@@ -7,10 +7,9 @@ import Carousel from "react-elastic-carousel";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { StarFill } from "react-bootstrap-icons";
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import ShowMoreText from "react-show-more-text";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
 import tryL from "../../asset/try.jpg";
@@ -27,13 +26,15 @@ import {
   propRoomType,
   adult,
   child,
+<<<<<<< HEAD
   emptyProperty
+=======
+>>>>>>> 7767a9b37cdcfad001f72bed5b95310418905773
 } from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import * as db from "../../api/index";
 
-let searchValidator = null;
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -50,12 +51,10 @@ class Home extends React.Component {
       clicked: false,
       open: false,
       searchValue: "",
-      dateObj: [],
-      loader: true,
-      viewDetailsError:""
     };
   }
   componentDidMount() {
+<<<<<<< HEAD
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -69,33 +68,41 @@ class Home extends React.Component {
       // start: this.props.dateRange.start,
       // end: this.props.dateRange.end,
     });
+=======
+>>>>>>> 7767a9b37cdcfad001f72bed5b95310418905773
     this.getcall();
-    // this.getLocation()
-    // this.getRoomRates();
   }
   getcall = async () => {
     let res = await db.getproperty();
     this.props.property(res);
-    this.setState({
-      loader: false,
-    });
     // console.log(res, "sherin");
   };
-
+  // componentDidUpdate = () => {
+  //   console.log(this.props, "hello");
+  //   if (!this.state.listOfProperties.length) {
+  //     this.setState({
+  //       listOfProperties: this.props.propertyList,
+  //     });
+  //   }
+  // };
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
+
       end: e.value[1],
-      dateError: "",
     });
 
     this.setState({
       start: e.value[0],
       end: e.value[1],
-      dateObj: this.props.dateRange,
       dateError: "",
       clicked: false,
     });
+<<<<<<< HEAD
+=======
+
+    console.log("Handle date", this.state.start);
+>>>>>>> 7767a9b37cdcfad001f72bed5b95310418905773
   };
   handleValidate = async () => {
     if (this.state.searchValue === "") {
@@ -103,8 +110,17 @@ class Home extends React.Component {
         cityError: "Enter city",
         loader:false
       });
+<<<<<<< HEAD
     } 
  else {
+=======
+    }
+    if (this.state.start == null) {
+      this.setState({
+        dateError: "Please select the date",
+      });
+    } else {
+>>>>>>> 7767a9b37cdcfad001f72bed5b95310418905773
       this.setState({
         loader: true,
       });
@@ -123,7 +139,7 @@ class Home extends React.Component {
     let count = 0;
     if ((this.state.childValue + this.state.adultValue) / 4) {
       this.setState({
-        roomValue: (Math.floor(this.state.adultValue / 2))+ 1,
+        roomValue: Math.floor(this.state.adultValue / 2) + 1,
       });
     } else {
       this.setState({
@@ -133,11 +149,10 @@ class Home extends React.Component {
   };
 
   handleDec = () => {
-
     if (this.state.roomValue !== 1) {
       this.props.room({
-        roomValue: this.state.roomValue - 1
-      })
+        roomValue: this.state.roomValue - 1,
+      });
       this.setState({
         roomValue: this.state.roomValue - 1,
       });
@@ -146,8 +161,8 @@ class Home extends React.Component {
   handleDecAdult = () => {
     if (this.state.adultValue !== 1) {
       this.props.room({
-        adultValue: this.state.adultValue - 1
-      })
+        adultValue: this.state.adultValue - 1,
+      });
       this.setState({
         adultValue: this.state.adultValue - 1,
       });
@@ -157,8 +172,8 @@ class Home extends React.Component {
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
       this.props.room({
-        childValue: this.state.childValue - 1
-      })
+        childValue: this.state.childValue - 1,
+      });
       this.setState({
         childValue: this.state.childValue - 1,
       });
@@ -167,16 +182,16 @@ class Home extends React.Component {
   };
   handleInc = () => {
     this.props.room({
-      roomValue: this.state.roomValue + 1
-    })
+      roomValue: this.state.roomValue + 1,
+    });
     this.setState({
       roomValue: this.state.roomValue + 1,
     });
   };
   handleIncAdult = () => {
     this.props.room({
-      adultValue: this.state.adultValue + 1
-    })
+      adultValue: this.state.adultValue + 1,
+    });
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
@@ -184,10 +199,9 @@ class Home extends React.Component {
   };
   handleIncChild = () => {
     this.props.room({
-      childValue: this.state.childValue + 1
-    })
+      childValue: this.state.childValue + 1,
+    });
     this.setState({
-      
       childValue: this.state.childValue + 1,
     });
     this.handleCount();
@@ -205,8 +219,6 @@ class Home extends React.Component {
   handleFilter =async (e) => {
     this.setState({
       searchValue: e,
-      cityError: "",
-      loader: true,
     });
     if(!trim(e)){
       let res = await db.getproperty();
@@ -219,12 +231,12 @@ class Home extends React.Component {
     // } else {
     //   clearTimeout(searchValidator);
     // }
-        this.getLocation(e);
-
+    this.getLocation(e);
   };
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
     this.props.property(res);
+<<<<<<< HEAD
     console.log(res,res.length,"come on")
     if(res.length === 0){
       let res = await db.getproperty();
@@ -235,15 +247,29 @@ class Home extends React.Component {
     });
 
     console.log(res, "sherin");
+=======
+    // console.log(res, "sherin");
+>>>>>>> 7767a9b37cdcfad001f72bed5b95310418905773
   };
-   
- 
   executeOnClick(isExpanded) {
     console.log(isExpanded);
   }
   // handleGo=(data)=>{
   //   <Link to={`/basiclayout/${data}`}></Link>
   // }
+  handleRoomType = async (data) => {
+    // let res = await db.getpropertyRoom(data);
+    // this.props.propRoomType(res);
+    // if(this.state.start === null || this.state.end ===null){
+    //   this.setState({
+    //     dateError:"Select Date"
+    //   })
+    // }
+    // else {
+    //   <Redirect to={`/basiclayout/${data}`} />
+    // }
+  };
+  // console.log("state inside Home ", this.state);
 
   render() {
     const minValue = new Date(
@@ -251,8 +277,7 @@ class Home extends React.Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-    // console.log(this.props.propertyList[0].PropertyId, "sherin");
-    // log()
+
     return (
       <div className="fullContainer">
         <div>
@@ -260,7 +285,7 @@ class Home extends React.Component {
             <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
             <div className="banner-content">
               {/* <h2>Enjoy your stay</h2> */}
-               <p>StayCation</p>
+              <p>StayCation</p>
             </div>
           </div>
           <div
@@ -270,7 +295,7 @@ class Home extends React.Component {
               className="Home-head d-flex w-98"
               style={{ width: "-webkit-fill-available" }}
             >
-              <div className="d-flex">
+              <div>
                 <input
                   list="browsers"
                   name="browser"
@@ -278,17 +303,14 @@ class Home extends React.Component {
                   onChange={(e) => {
                     this.handleFilter(e.target.value);
                   }}
-                  className={`${
-                    this.state.cityError !== "" ? "cityError" : ""
-                  }`}
                   placeholder=" Enter City"
                 ></input>
 
                 {this.state.cityError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
               </div>
-              <div className="d-flex datePickerHome">
+              <div className="datePickerHome">
                 <DateRangePickerComponent
                   // placeholder="enter date"
                   startDate={this.state.start}
@@ -337,10 +359,11 @@ class Home extends React.Component {
                     getContentAnchorEl={null}
                   >
                     <div className="d-flex">
+                      {/* <button onClick={this.handleDec}>-</button> */}
                       <p className="menu-drop">Rooms</p>
                       <div className="decre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleDec}
                         >
                           <RemoveIcon />
@@ -349,7 +372,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.roomValue}</p>
                       <div className="incre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleInc}
                         >
                           <AddIcon />
@@ -360,7 +383,7 @@ class Home extends React.Component {
                       <p className="menu-drop">Adults</p>
                       <div className="a-decre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleDecAdult}
                         >
                           <RemoveIcon />
@@ -369,7 +392,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.adultValue}</p>
                       <div className="a-incre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleIncAdult}
                         >
                           <AddIcon />
@@ -380,7 +403,7 @@ class Home extends React.Component {
                       <p className="menu-drop">Children</p>
                       <div className="c-decre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleDecChild}
                         >
                           <RemoveIcon />
@@ -389,7 +412,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.childValue}</p>
                       <div className="c-incre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleIncChild}
                         >
                           <AddIcon />
@@ -400,25 +423,25 @@ class Home extends React.Component {
                 </div>
               </div>
               <div className="checkButton">
-                <Button animated onClick={this.handleValidate}>
+                <Button animated onClick={this.handleValidate} olive>
                   <Button.Content visible>
                     <p className="searchButton">Search</p>
                   </Button.Content>
                   <Button.Content hidden>
-                    <SearchIcon/>
+                    <SearchIcon />
                   </Button.Content>
                 </Button>
               </div>
             </div>
           </div>
         </div>
-        {this.state.loader && <CircularProgress className="loadingSym" />}
-        {this.props.propertyList.length && !this.state.loader ? (
+
+        {this.props.propertyList.length ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
                 <Carousel showArrows={false}>
-                  <div style={{marginLeft:"12em"}}>
+                  <div style={{ marginLeft: "12em" }}>
                     <img
                       className="ImageTile"
                       key={index}
@@ -496,7 +519,6 @@ class Home extends React.Component {
                           }}
                         >
                           <button>View Details</button>
-                         
                         </Link>
                       </div>
                     </div>
@@ -505,10 +527,15 @@ class Home extends React.Component {
               </div>
             </div>
           ))
+<<<<<<< HEAD
         ) : this.state.searchValue.length  && !this.state.loader   ?(
          
           <div className="d-flex">
          
+=======
+        ) : this.state.searchValue.length && !this.state.loader ? (
+          <div>
+>>>>>>> 7767a9b37cdcfad001f72bed5b95310418905773
             <h2 className="noProp"> Sorry!! No properties available.</h2>
             
               
@@ -618,8 +645,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     date: bindActionCreators(date, dispatch),
     room: bindActionCreators(room, dispatch),
-    adult: bindActionCreators(adult, dispatch),
-    child: bindActionCreators(child, dispatch),
     property: bindActionCreators(property, dispatch),
     propRoomType: bindActionCreators(propRoomType, dispatch),
     emptyProperty: bindActionCreators(emptyProperty,dispatch)
@@ -630,10 +655,15 @@ const mapStateToProps = (state) => {
     propertyList: get(state, "propertyList", []),
     dateRange: get(state, "dateRange", []),
     roomVal: get(state, "roomVal", []),
+<<<<<<< HEAD
     adultVal:get(state,"adultVal",[]),
     childVal:get(state,"childVal",[]),
     propertyEmptyList:get(state,"propertyEmptyList",[])
 
+=======
+    adultVal: get(state, "adultVal", []),
+    childVal: get(state, "childVal", []),
+>>>>>>> 7767a9b37cdcfad001f72bed5b95310418905773
   };
 };
 

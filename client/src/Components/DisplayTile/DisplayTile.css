@@ -71,7 +71,7 @@
 
 .thebutton {
   display: inline-block;
-  padding: 0.4em 0.8em;
+  padding: 0.3em 0.6em;
   margin: 0 0.2em 0.2em 0;
   /* border-radius: 0.7em; */
   box-sizing: border-box;
@@ -207,7 +207,7 @@ a.ui.button.reserve-left {
   background: #c4cec6ad; */
   color: white !important;
   /* background-color: rgba(117, 162, 179, 0.8) !important; */
-  background: #365663 !important;
+  background: #90b4c2 !important;
   border: none !important;
 
   /* background: #3191c7 !important; */
@@ -239,7 +239,7 @@ a.ui.button.reserve-left {
 }
 .thebuttonRoom {
   display: inline-block;
-  padding: 0.4em 0.8em;
+  padding: 0.2em 0.8em;
   margin: 0 0.2em 0.2em 0;
   box-sizing: border-box;
   text-decoration: none;
@@ -257,8 +257,8 @@ a.ui.button.reserve-left {
 
 .inside-button-price h3 {
   margin-top: 5px !important;
-  margin-left: 2px !important;
-  margin-right: 4px !important;
+  margin-left: 6% !important;
+  margin-right: 6% !important;
 }
 .property-center {
   display: flex;
