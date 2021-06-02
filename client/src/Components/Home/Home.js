@@ -518,13 +518,17 @@ class Home extends React.Component {
             
               
             <img className="image-error" src={giphy} alt="loading..."></img>
+
+            
           
           </div>
          
           
         ) : null}
-        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null}
-        {console.log(this.props,"now check")}
+        {/* {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null} */}
+        {/* {console.log(this.props,"now check")} */}
+        
+            <p className="customMade2"><i className="customMade">Related Search : </i>Check out the properties available </p>
         {!this.props.propertyList.length?this.props.propertyEmptyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
