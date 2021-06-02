@@ -210,12 +210,12 @@ export class Form extends Component {
                       }`}
                     ></input>
                      {this.state.firstError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
                    
                
                     </div>
-                    <p className="ad-first">{this.state.firstError}</p>
+                    {/* <p className="ad-first">{this.state.firstError}</p> */}
                    
                     <div className="d-flex w-100">
                     <input
@@ -228,11 +228,11 @@ export class Form extends Component {
                       }`}
                     ></input>
                     {this.state.lastError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
                     </div>
                     
-                    {this.state.lastError}
+                    {/* {this.state.lastError} */}
                     <br />
                    <div className="d-flex w-100">
                    <input
@@ -245,11 +245,11 @@ export class Form extends Component {
                       }`}
                     ></input>
                     {this.state.emailError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
                    </div>
                     
-                    {this.state.emailError}
+                    {/* {this.state.emailError} */}
                   </div>
                   <br />
 
@@ -264,11 +264,11 @@ export class Form extends Component {
                       }`}
                     ></input>
                     {this.state.contactError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
                    </div>
                    
-                    {this.state.contactError}
+                    {/* {this.state.contactError} */}
                     <br />
                     <div className="GENDER"></div>
                     <select name="Gender" id="gender-select">
@@ -291,10 +291,10 @@ export class Form extends Component {
                       }`}
                     ></input>
                      {this.state.addressError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
                         </div>
-                    {this.state.addressError}
+                    {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">
                     <button onClick={this.handleSubmit}>Submit</button>
