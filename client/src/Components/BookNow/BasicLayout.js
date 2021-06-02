@@ -236,7 +236,7 @@ export class BasicLayout extends Component {
                   <p className="roomText">
                     <GroupAddIcon />
                     <p className="value">
-                      {`${this.props.roomVal.roomValue}Rooms`}
+                      {`${this.props.roomVal}Rooms`}
                     </p>
                   </p>
                 </Button>
@@ -333,9 +333,9 @@ const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
   // roomRange: get(state, "roomRange", []),
   propertyList: get(state, "propertyList", []),
-  roomVal: get(state, "roomVal", []),
-  adultVal: get(state, "adultVal", []),
-  childVal: get(state, "childVal", []),
+  roomVal:state.roomVal,
+  adultVal: state.adultVal,
+  childVal: state.childVal,
 });
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -70,7 +70,7 @@ export class Form extends Component {
         <div className="form">
           <div className="form-date">
           
-            <Button className="ui button" as={NavLink} to="/basiclayout">
+            <Button className="ui button">
               Back
             </Button>
             <div className="final-date">
@@ -175,7 +175,7 @@ export class Form extends Component {
                 onChange={this.handleAddress}
               ></input>
               </div>
-              <div className="viewDetails">
+              <div className="submit-form">
                         
                           <button>Submit</button>
                        

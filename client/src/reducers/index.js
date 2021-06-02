@@ -3,6 +3,9 @@ import * as actionTypes from "../constants/index";
 const initialState = {
   cart: [],
   dateRange: [],
+  roomVal:1,
+  adultVal:1,
+  childVal:0
 };
 
 export default (state = initialState, action) => {
@@ -17,23 +20,29 @@ export default (state = initialState, action) => {
     case "ROOM_VALUE":
       return {
         ...state,
-        roomVal: action.data,
+        roomVal: action.data.roomValue,
       };
       case "ADULT_VALUE":
       return {
         ...state,
-        adultVal: action.data,
+        adultVal: action.data.adultValue,
       };
       case "CHILD_VALUE":
       return {
         ...state,
-        childVal: action.data,
+        childVal: action.data.childValue,
       };
     case "GET_LIST_PROPERTY":
       console.log(action, "hey");
       return {
         ...state,
         propertyList: action.data,
+      };
+      case "EMPTY_LIST_PROPERTY":
+      console.log(action, "hey");
+      return {
+        ...state,
+        propertyEmptyList: action.data,
       };
     case "GET_ROOM_DETAILS":
       return {
