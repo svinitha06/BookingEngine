@@ -9,6 +9,7 @@ import validator from "validator";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
 import ErrorIcon from "@material-ui/icons/Error";
+import Image from "../Form/Image.jpeg";
 
 export class Form extends Component {
   constructor(props) {
@@ -168,7 +169,9 @@ export class Form extends Component {
                   {/* {this.state.hotelFlag && <HotelDetail />} */}
                   <div className="hotelDetailContainer">
                     <div className="firstContainer">
-                      <div className="hotelImage">hotelImage</div>
+                      <div className="hotelImage">
+                        <img src={Image}></img>
+                      </div>
                       <div>
                         <div>
                           <h4>Crown </h4>

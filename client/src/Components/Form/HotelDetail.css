@@ -9,4 +9,8 @@
 .secondContainer {
   display: grid;
   grid-template-columns: 30% 30% 40%;
+  margin-top: 1%;
+  padding: 3%;
+  background: #e6e2e2;
+  border-radius: 22px;
 }
