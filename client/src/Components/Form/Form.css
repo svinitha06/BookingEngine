@@ -6,11 +6,11 @@
     #e9dcca 100% 
   ); */
 .form h2 {
-  background-color: rgb(185, 180, 173);
+  /* background-color: rgb(185, 180, 173); */
   display: flex;
   justify-content: center;
   align-items: center;
-  font-style: oblique;
+  /* font-style: oblique; */
 }
 
 .email {
@@ -233,23 +233,94 @@ select {
   justify-content: flex-start;
 }
 .hotel-Details {
-  width: 50% !important;
+  width: 78% !important;
   /* display: grid !important; */
-  margin-left: 25%;
+  margin-left: 21%;
   border-radius: 22px;
   box-shadow: 10px 10px 5px #aaaaaa;
-  padding: 2%;
+  padding: 1%;
   margin-bottom: 2%;
   background: white !important;
 }
 .hotelHeading div {
   margin-left: 65%;
 }
-.img {
-  border-style: none;
-  width: 100%;
-  margin: 5%;
-}
+
 .hotelImage {
-  width: 100%;
+  width: 100% !important;
+  margin-bottom: 5%;
+}
+.hotelImage img {
+  width: 100% !important;
+  border-radius: 22px;
+}
+.hotelNameContainer {
+  margin-left: 5%;
+}
+.hotelName h2 {
+  background-color: none !important;
+  margin-bottom: 2%;
+  justify-content: left !important;
+}
+.hotelDetailContainer {
+  padding: 3%;
+  border-radius: 22px;
+  padding-top: 0% !important;
+}
+.firstContainer {
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+.secondContainer {
+  display: grid;
+  grid-template-columns: 30% 30% 40%;
+  margin-top: 1%;
+  padding: 3%;
+  background: #e6e2e2;
+  border-radius: 22px;
+}
+.parentOfHotels {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.priceSummary {
+  width: 78% !important;
+  /* display: grid !important; */
+  margin-left: 2%;
+  border-radius: 22px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+  padding: 1%;
+  margin-bottom: 3%;
+  background: white !important;
+}
+.priceHeading {
+  display: flex;
+  flex-direction: row;
+  margin-left: 4%;
+  padding-top: 2%;
+  padding-bottom: 1.5%;
+  justify-content: flex-start;
+}
+.detailsOfPrice {
+  padding: 3%;
+  border-radius: 22px;
+  padding-top: 0% !important;
+  margin-left: 3%;
+  display: grid;
+  grid-template-rows: 80% 20%;
+}
+.priceContainerTwo h2 {
+  background-color: none !important;
+  margin-bottom: 2%;
+  justify-content: left !important;
+}
+.priceContainerOne {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  margin-top: 3%;
+}
+.priceContainerTwo {
+  background: #e5e2e2;
+  border-radius: 22px;
+  padding: 3%;
 }

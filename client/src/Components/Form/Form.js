@@ -105,45 +105,69 @@ export class Form extends Component {
             <div className="form-design">
               <form>
                 <h2>Book your Room</h2>
-                <div className="hotel-Details">
-                  <div className="hotelHeading">
-                    <h1>Hotel Details</h1>
-                    <div>
-                      <button onClick={this.handleHotel}>
-                        <KeyboardArrowDownIcon />
-                      </button>
+                <div className="parentOfHotels">
+                  <div className="childContainer">
+                    <div className="hotel-Details">
+                      <div className="hotelHeading">
+                        <h1>Hotel Details</h1>
+                        <div>
+                          <button onClick={this.handleHotel}>
+                            <KeyboardArrowDownIcon />
+                          </button>
+                        </div>
+                      </div>
+                      {/* {this.state.hotelFlag && <HotelDetail />} */}
+                      <div className="hotelDetailContainer">
+                        <div className="firstContainer">
+                          <div className="hotelImage">
+                            <img src={Image}></img>
+                          </div>
+                          <div className="hotelNameContainer">
+                            <div className="hotelName">
+                              <h2>Crown </h2>
+                            </div>
+                            <div className="hotelRating">3/5</div>
+                            <div className="hotelLocation">
+                              <h5>Chennai ,India</h5>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="secondContainer">
+                          <div>
+                            <h3>Check-in Date</h3>
+                          </div>
+                          <div>
+                            <h3>Check-ot Date</h3> 2 june 20221
+                          </div>
+                          <div>
+                            <h3>Rooms</h3> 1
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  {/* {this.state.hotelFlag && <HotelDetail />} */}
-                  <div className="hotelDetailContainer">
-                    <div className="firstContainer">
-                      <div className="hotelImage">
-                        <img src={Image}></img>
-                      </div>
-                      <div>
-                        <div>
-                          <h4>Crown </h4>
-                        </div>
-                        <div>3/5</div>
-                        <div>
-                          <h5>Chennai ,India</h5>
-                        </div>
-                      </div>
+                  <div className="priceSummary">
+                    <div className="priceHeading">
+                      <h1>Price Summary</h1>
                     </div>
-                    <div className="secondContainer">
-                      <div>
-                        <h3>Check-in Date</h3>
+                    <div className="detailsOfPrice">
+                      <div className="priceContainerOne">
+                        <div>num of rroms</div>
+                        <div>price</div>
+                        <div>num of rroms</div>
+                        <div>price</div>
+                        <div>num of rroms</div>
+                        <div>price</div>
                       </div>
                       <div>
-                        <h3>Check-ot Date</h3> 2 june 20221
-                      </div>
-
-                      <div>
-                        <h3>Rooms</h3> 1
+                        <div className="priceContainerTwo">
+                          <h2>Total : 2000</h2>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div className="form-contents">
                   <div className="d-flex form-contents1">
                     {/* <label>First Name</label> */}
