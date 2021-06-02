@@ -9,7 +9,6 @@ import { StarFill } from "react-bootstrap-icons";
 import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import ShowMoreText from "react-show-more-text";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
 import tryL from "../../asset/try.jpg";
@@ -31,7 +30,6 @@ import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import * as db from "../../api/index";
 
-let searchValidator = null;
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -48,41 +46,29 @@ class Home extends React.Component {
       clicked: false,
       open: false,
       searchValue: "",
-      dateObj: [],
-      loader: true,
-      viewDetailsError: "",
     };
   }
   componentDidMount() {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    this.props.date({ start: new Date(), end: tomorrow });
-    this.setState({
-      start: today,
-      end: tomorrow,
-      dateObj: this.props.dateRange,
-      dateError: "",
-      clicked: false,
-    });
     this.getcall();
-    // this.getLocation()4
-    // this.getRoomRates();
   }
   getcall = async () => {
     let res = await db.getproperty();
     this.props.property(res);
-    this.setState({
-      loader: false,
-    });
     // console.log(res, "sherin");
   };
-
+  // componentDidUpdate = () => {
+  //   console.log(this.props, "hello");
+  //   if (!this.state.listOfProperties.length) {
+  //     this.setState({
+  //       listOfProperties: this.props.propertyList,
+  //     });
+  //   }
+  // };
   handleDate = (e) => {
     this.props.date({
       start: e.value[0],
+
       end: e.value[1],
-      dateError: "",
     });
     console.log("e.value 0", e.value[0]);
     console.log("e.value", e.value);
@@ -90,13 +76,11 @@ class Home extends React.Component {
     this.setState({
       start: e.value[0],
       end: e.value[1],
-      dateObj: this.props.dateRange,
       dateError: "",
       clicked: false,
     });
 
     console.log("Handle date", this.state.start);
-    console.log("dateObj", this.state.dateObj);
   };
   handleValidate = async () => {
     if (this.state.searchValue === "") {
@@ -207,8 +191,6 @@ class Home extends React.Component {
   handleFilter = (e) => {
     this.setState({
       searchValue: e,
-      cityError: "",
-      loader: true,
     });
     // if (!searchValidator) {
     //   searchValidator = setTimeout(() => {
@@ -222,19 +204,27 @@ class Home extends React.Component {
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
     this.props.property(res);
-    this.setState({
-      loader: false,
-    });
-
-    console.log(res, "sherin");
+    // console.log(res, "sherin");
   };
-
   executeOnClick(isExpanded) {
     console.log(isExpanded);
   }
   // handleGo=(data)=>{
   //   <Link to={`/basiclayout/${data}`}></Link>
   // }
+  handleRoomType = async (data) => {
+    // let res = await db.getpropertyRoom(data);
+    // this.props.propRoomType(res);
+    // if(this.state.start === null || this.state.end ===null){
+    //   this.setState({
+    //     dateError:"Select Date"
+    //   })
+    // }
+    // else {
+    //   <Redirect to={`/basiclayout/${data}`} />
+    // }
+  };
+  // console.log("state inside Home ", this.state);
 
   render() {
     const minValue = new Date(
@@ -242,8 +232,7 @@ class Home extends React.Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-    // console.log(this.props.propertyList[0].PropertyId, "sherin");
-    // log()
+
     return (
       <div className="fullContainer">
         <div>
@@ -261,7 +250,7 @@ class Home extends React.Component {
               className="Home-head d-flex w-98"
               style={{ width: "-webkit-fill-available" }}
             >
-              <div className="d-flex">
+              <div>
                 <input
                   list="browsers"
                   name="browser"
@@ -269,17 +258,14 @@ class Home extends React.Component {
                   onChange={(e) => {
                     this.handleFilter(e.target.value);
                   }}
-                  className={`${
-                    this.state.cityError !== "" ? "cityError" : ""
-                  }`}
                   placeholder=" Enter City"
                 ></input>
 
                 {this.state.cityError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-4" />
+                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
               </div>
-              <div className="d-flex datePickerHome">
+              <div className="datePickerHome">
                 <DateRangePickerComponent
                   placeholder="Check-in/Check-out"
                   startDate={this.state.start}
@@ -328,10 +314,11 @@ class Home extends React.Component {
                     getContentAnchorEl={null}
                   >
                     <div className="d-flex">
+                      {/* <button onClick={this.handleDec}>-</button> */}
                       <p className="menu-drop">Rooms</p>
                       <div className="decre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleDec}
                         >
                           <RemoveIcon />
@@ -340,7 +327,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.roomValue}</p>
                       <div className="incre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleInc}
                         >
                           <AddIcon />
@@ -351,7 +338,7 @@ class Home extends React.Component {
                       <p className="menu-drop">Adults</p>
                       <div className="a-decre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleDecAdult}
                         >
                           <RemoveIcon />
@@ -360,7 +347,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.adultValue}</p>
                       <div className="a-incre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleIncAdult}
                         >
                           <AddIcon />
@@ -371,7 +358,7 @@ class Home extends React.Component {
                       <p className="menu-drop">Children</p>
                       <div className="c-decre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleDecChild}
                         >
                           <RemoveIcon />
@@ -380,7 +367,7 @@ class Home extends React.Component {
                       <p className="now">{this.state.childValue}</p>
                       <div className="c-incre">
                         <button
-                          className="circular ui icon button"
+                          class="circular ui icon button"
                           onClick={this.handleIncChild}
                         >
                           <AddIcon />
@@ -391,7 +378,7 @@ class Home extends React.Component {
                 </div>
               </div>
               <div className="checkButton">
-                <Button animated onClick={this.handleValidate}>
+                <Button animated onClick={this.handleValidate} olive>
                   <Button.Content visible>
                     <p className="searchButton">Search</p>
                   </Button.Content>
@@ -403,8 +390,8 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        {this.state.loader && <CircularProgress className="loadingSym" />}
-        {this.props.propertyList.length && !this.state.loader ? (
+
+        {this.props.propertyList.length ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
@@ -508,8 +495,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     date: bindActionCreators(date, dispatch),
     room: bindActionCreators(room, dispatch),
-    adult: bindActionCreators(adult, dispatch),
-    child: bindActionCreators(child, dispatch),
     property: bindActionCreators(property, dispatch),
     propRoomType: bindActionCreators(propRoomType, dispatch),
   };
