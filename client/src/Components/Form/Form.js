@@ -70,7 +70,7 @@ export class Form extends Component {
         <div className="form">
           <div className="form-date">
           
-            <Button className="ui button" as={NavLink} to="/basiclayout">
+            <Button className="ui.button" as={NavLink} to="/basiclayout">
               Back
             </Button>
             <div className="final-date">
@@ -99,16 +99,16 @@ export class Form extends Component {
            
             <div className="form-contents">
               <div className="d-flex form-contents1">
-              {/* <label>First Name</label> */}
+              <label>First Name</label>
               <input
                 type="text"
                 placeholder="First Name"
                 value={this.state.firstName}
                 onChange={this.handleFirstName}
               ></input>
-              {/* <label type="text"  placeholder="Last Name">
+              <label className="lastName">
                 Last Name
-              </label> */}
+              </label>
               <input
                 type="text"
                 placeholder="Last Name"
@@ -116,7 +116,9 @@ export class Form extends Component {
                 onChange={this.handleLastName}
               ></input>
               <br />
-              {/* <label>Email Address</label> */}
+              <label classname="email">
+                Email Address
+              </label>
               <input
                 type="email"
                 placeholder="E-mail"
@@ -127,7 +129,7 @@ export class Form extends Component {
               <br />
 
               <div className="d-flex form-contents1" >
-              {/* <label>Mobile No.</label> */}
+              <label>Mobile No.</label>
               <input
                 type="number"
                 placeholder="Mobile"
@@ -136,6 +138,7 @@ export class Form extends Component {
               ></input>
               <br />
               <div className="GENDER"></div>
+              <label classname="gender">Gender</label>
               <select name="Gender" id="gender-select">
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -167,6 +170,7 @@ export class Form extends Component {
               {/* <h4>Billing address</h4> */}
               {/* <label>Address</label> */}
               <div className="d-flex form-contents2">
+                <label>Address</label>
               <input
               className="form-contents5"
                 type="text-area"

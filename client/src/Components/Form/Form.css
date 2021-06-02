@@ -6,10 +6,23 @@
     #e9dcca 100% 
   ); */
   .form h2 {
-  background-color: rgb(185, 180, 173);
+  background-color: rgb(219, 210, 197);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-style: oblique;
+}
+
+.email{
+  margin-left: 28px;
+}
+
+.lastName{
+  margin-left: 31px;
+}
+
+.gender{
+  margin-left: 37px;
 }
 /* .container-form {
   width: 40%;
@@ -33,7 +46,7 @@
 } */
 
 
-.ui button ui{ 
+.ui.button { 
   margin-top: 38px;
   margin-left: 37px;
   margin-bottom: -2%;
@@ -41,6 +54,7 @@
   border: 2.5px solid rgb(25 23 23);
     border-radius: 10%;
     margin-bottom: -3%;
+    background-color: #a8b2d8 ;
 }
 
 .form-contents2{
@@ -91,9 +105,9 @@
        font-style: italic;
        font-size: large;
        font-weight: bolder;
-       border-radius: 22px;
-       box-shadow: 10px 10px 5px #aaaaaa;
-       background-color: rgb(215, 240, 241);
+       border-radius: 27px;
+       box-shadow: 10px 10px 5px #948f8f;
+       background-color: rgb(255, 255, 255);
 } 
 
  .form {
@@ -119,6 +133,7 @@
   justify-content: flex-end;
   align-items: center;
   margin: 1%;
+  background-color: lavender;
 
   margin-right: 26px;
   margin-left: 34px;
