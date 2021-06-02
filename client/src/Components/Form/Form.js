@@ -198,8 +198,9 @@ export class Form extends Component {
                 </div>
                 <div className="form-contents">
                   <div className="d-flex form-contents1">
-                    {/* <label>First Name</label> */}
+                    <label>First Name</label>
                     <div className="d-flex w-100">
+                    {/* <div className="ui input"></div> */}
                     <input
                       type="text"
                       placeholder="First Name"
@@ -216,8 +217,9 @@ export class Form extends Component {
                
                     </div>
                     {/* <p className="ad-first">{this.state.firstError}</p> */}
-                   
+                    <label>Last Name</label>
                     <div className="d-flex w-100">
+                    {/* <div className="ui input"></div> */}
                     <input
                       type="text"
                       placeholder="Last Name"
@@ -233,8 +235,14 @@ export class Form extends Component {
                     </div>
                     
                     {/* {this.state.lastError} */}
+                    
+                   </div>
+                    <div>
                     <br />
+                    <div className="d-flex form-contents6"></div>
                    <div className="d-flex w-100">
+                   <label>Email Address</label>
+                     {/* <div className="ui input"></div> */}
                    <input
                       type="email"
                       placeholder="E-mail"
@@ -246,15 +254,15 @@ export class Form extends Component {
                     ></input>
                     {this.state.emailError !== "" && (
                   <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                   </div>
-                    
+                )}</div>
                     {/* {this.state.emailError} */}
                   </div>
                   <br />
 
-                  <div className="d-flex form-contents1">
+                  <div className="d-flex form-contents7">
+                  <label>Contact</label>
                    <div className="d-flex"> 
+                   {/* <div className="ui input"></div> */}
                    <input
                       placeholder="Mobile"
                       value={this.state.contact}
@@ -270,7 +278,9 @@ export class Form extends Component {
                    
                     {/* {this.state.contactError} */}
                     <br />
+                    <label>Gender</label>
                     <div className="GENDER"></div>
+                    {/* <div className="ui input"></div> */}
                     <select name="Gender" id="gender-select">
                       <option value="male">Male</option>
                       <option value="female">Female</option>
@@ -278,7 +288,9 @@ export class Form extends Component {
                   </div>
 
                   <div className="d-flex form-contents2">
+                  <label>Address</label>
                         <div className="d-flex">
+                        {/* <div className="ui input"></div> */}
 
                     <input
                       className="form-contents5"
