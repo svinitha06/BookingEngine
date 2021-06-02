@@ -153,7 +153,7 @@ class Home extends React.Component {
         adultValue: this.state.adultValue - 1,
       });
     }
-    this.handleCount();
+    // this.handleCount();
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
@@ -164,7 +164,7 @@ class Home extends React.Component {
         childValue: this.state.childValue - 1,
       });
     }
-    this.handleCount();
+    // this.handleCount();
   };
   handleInc = () => {
     this.props.room({
@@ -181,7 +181,7 @@ class Home extends React.Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    this.handleCount();
+    // this.handleCount();
   };
   handleIncChild = () => {
     this.props.child({
@@ -190,7 +190,7 @@ class Home extends React.Component {
     this.setState({
       childValue: this.state.childValue + 1,
     });
-    this.handleCount();
+    // this.handleCount();
   };
   handleClick = (event) => {
     this.setState({
@@ -513,7 +513,7 @@ class Home extends React.Component {
           
           </div>
         ) : null}
-        {/* {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null} */}
+        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null}
         {/* {console.log(this.props,"now check")} */}
         
             <p className="customMade2"><i className="customMade">Related Search : </i>Check out the properties available </p>

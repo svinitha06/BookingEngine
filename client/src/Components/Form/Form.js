@@ -6,17 +6,24 @@ import { connect } from "react-redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import validator from "validator";
 export class Form extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: "",
-      lastName: "",
+      firstName: null,
+      lastName: null,
       email: "",
       contact: "",
       gender: "",
-      address: ""
+      address: "",
+      firstError: "",
+      lastError: "",
+      emailError: "",
+      contactError: "",
+      addressError: "",
+      numberError: "",
     };
   }
   componentDidMount() {
@@ -28,25 +35,31 @@ export class Form extends Component {
   handleFirstName = (event) => {
     this.setState({
       firstName: event.target.value,
+      firstError: "",
     });
+    console.log(event.target.value);
   };
 
   handleLastName = (event) => {
     this.setState({
       lastName: event.target.value,
+      lastError: "",
     });
   };
 
   handleEmail = (event) => {
     this.setState({
       email: event.target.value,
+      emailError: "",
     });
   };
   handleContact = (event) => {
     this.setState({
       contact: event.target.value,
-    });
-    console.log(event.target.value)
+      contactError: "",
+    })
+    
+    
   };
   handleGender = (event) => {
     this.setState({
@@ -56,7 +69,53 @@ export class Form extends Component {
   handleAddress = (event) => {
     this.setState({
       address: event.target.value,
+      addressError: "",
     });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.firstName === null) {
+      this.setState({
+        firstError: "enter firstName",
+      });
+    }
+    if (this.state.lastName === null) {
+      this.setState({
+        lastError: "enter lastname",
+      });
+    }
+    if (validator.isEmail(this.state.email)) {
+      this.setState({
+        emailError: "",
+      });
+    } else {
+      this.setState({
+        emailError: "enter valid email",
+      });
+    }
+    if (this.state.contact === "") {
+      this.setState({
+        numberError: "Enter number",
+      });
+    }
+    if (this.state.address === "") {
+      this.setState({
+        addressError: "Enter address",
+      });
+    }
+    if (validator.isMobilePhone(this.state.contact)) {
+      
+      this.setState({
+        contactError: "",
+        
+      });
+    } else {
+      this.setState({
+        contactError: "Enter Valid Number",
+        numberError:""
+      });
+    }
+
   };
 
   render() {
@@ -69,7 +128,6 @@ export class Form extends Component {
       <div className="container-form">
         <div className="form">
           <div className="form-date">
-          
             <Button className="ui.button" as={NavLink} to="/basiclayout">
               Back
             </Button>
@@ -91,105 +149,79 @@ export class Form extends Component {
           </div>
           <div>
             <div>
-            {/* <img src = {ImageOne} style={{ width: "100%" }}></img> */}
             </div>
-           <div className="form-design">
-           <form >
-            <h2>Book your Room</h2>
-           
-            <div className="form-contents">
-              <div className="d-flex form-contents1">
-              <label>First Name</label>
-              <input
-                type="text"
-                placeholder="First Name"
-                value={this.state.firstName}
-                onChange={this.handleFirstName}
-              ></input>
-              <label className="lastName">
-                Last Name
-              </label>
-              <input
-                type="text"
-                placeholder="Last Name"
-                value={this.state.lastName}
-                onChange={this.handleLastName}
-              ></input>
-              <br />
-              <label classname="email">
-                Email Address
-              </label>
-              <input
-                type="email"
-                placeholder="E-mail"
-                value={this.state.email}
-                onChange={this.handleEmail}
-              ></input>
-              </div>
-              <br />
+            <div className="form-design">
+              <form>
+                <h2>Book your Room</h2>
 
-              <div className="d-flex form-contents1" >
-              <label>Mobile No.</label>
-              <input
-                type="number"
-                placeholder="Mobile"
-                value={this.state.contact}
-                onChange={this.handleContact}
-              ></input>
-              <br />
-              <div className="GENDER"></div>
-              <label classname="gender">Gender</label>
-              <select name="Gender" id="gender-select">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              </select>
-              {/* <label>Gender</label>
-              <label className="d-flex">
-                Male
-                <input
-                  type="select"
-                  value="Male"
-                  checked={this.state.gender === "Male"}
-                  onChange={this.handleGender}
-                ></input>
-              </label>
-              <label>
-                Female
-                <input
-                  type="select"
-                  value="Female"
-                  checked={this.state.gender === "Female"}
-                  onChange={this.handleGender}
-                ></input>
-              </label> */}
-              </div>
-      
-              
-              {/* <br></br> */}
-              {/* <div className="form-contents1"> */}
-              {/* <h4>Billing address</h4> */}
-              {/* <label>Address</label> */}
-              <div className="d-flex form-contents2">
-                <label>Address</label>
-              <input
-              className="form-contents5"
-                type="text-area"
-                placeholder="Address"
-                value={this.state.address}
-                onChange={this.handleAddress}
-              ></input>
-              </div>
-              <div className="viewDetails">
-                        
-                          <button>Submit</button>
-                       
-                      </div>
+                <div className="form-contents">
+                  <div className="d-flex form-contents1">
+                    <label>First Name</label>
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      value={this.state.firstName}
+                      onChange={this.handleFirstName}
+                    ></input>
+                    {this.state.firstError}
+                    <label className="lastName">Last Name</label>
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      value={this.state.lastName}
+                      onChange={this.handleLastName}
+                    ></input>
+                    {this.state.lastError}
+                    <br />
+
+                    <label classname="email">Email Address</label>
+                    <input
+                      type="email"
+                      placeholder="E-mail"
+                      value={this.state.email}
+                      onChange={this.handleEmail}
+                    ></input>
+                    {this.state.emailError}
+                  </div>
+                  <br />
+
+                  <div className="d-flex form-contents1">
+                    <label>Mobile No.</label>
+                    <input
+                      
+                      placeholder="Mobile"
+                      value={this.state.contact}
+                      onChange={this.handleContact}
+                    ></input>
+                    {this.state.contactError}
+                    {this.state.numberError}
+                    <br />
+                    <div className="GENDER"></div>
+                    <label classname="gender">Gender</label>
+                    <select name="Gender" id="gender-select">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+
+                  <div className="d-flex form-contents2">
+                    <label>Address</label>
+                    <input
+                      className="form-contents5"
+                      type="text-area"
+                      placeholder="Address"
+                      value={this.state.address}
+                      onChange={this.handleAddress}
+                    ></input>
+                    {this.state.addressError}
+                  </div>
+                  <div className="submit-form">
+                    <button onClick={this.handleSubmit}>Submit</button>
+                  </div>
+                </div>
+              </form>
             </div>
-          </form>
-           </div>
           </div>
-          
-         
         </div>
       </div>
     );
