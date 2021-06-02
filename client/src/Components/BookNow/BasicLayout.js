@@ -20,7 +20,14 @@ import {
 } from "@syncfusion/ej2-react-calendars";
 import { withRouter } from "react-router";
 import { bindActionCreators } from "redux";
-import { date, property, room, propRoomType } from "../../actions/index";
+import {
+  date,
+  property,
+  room,
+  adult,
+  child,
+  propRoomType,
+} from "../../actions/index";
 import { DateRangePickerInput } from "react-dates";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -63,6 +70,9 @@ export class BasicLayout extends Component {
       <ModalCompo2 total={event.target.value} open={true} />,
       document.getElementById("all-rooms")
     );
+    window.onbeforeunload = function () {
+      return false;
+    };
   };
 
   // handleDate = () => {
@@ -93,7 +103,7 @@ export class BasicLayout extends Component {
     let count = 0;
     if ((this.state.childValue + this.state.adultValue) / 4) {
       this.setState({
-        roomValue: Math.ceil(this.state.adultValue / 2),
+        roomValue: Math.floor(this.state.adultValue / 2) + 1,
       });
     } else {
       this.setState({
@@ -188,7 +198,11 @@ export class BasicLayout extends Component {
       new Date().getDate()
     );
     console.log("this.state.dateRange", this.state.dateRange);
-    console.log("his.state.roomRange", this.state.roomRange);
+    console.log("his.props.roomVal", this.props.roomVal);
+    console.log("his.props.adultVal", this.props.adultVal);
+
+    console.log("his.props.roomVal.adultValue", this.props.roomVal.adultValue);
+    console.log("his.props.childVal", this.props.childVal);
 
     return (
       <div className="basiclayoutClass">
@@ -221,9 +235,7 @@ export class BasicLayout extends Component {
                 >
                   <p className="roomText">
                     <GroupAddIcon />
-                    <p className="value">
-                      {(`${this.state.roomValue}`, "Rooms")}
-                    </p>
+                    <p className="value">{`${this.props.roomVal}Rooms`}</p>
                   </p>
                 </Button>
                 <Menu
@@ -254,7 +266,7 @@ export class BasicLayout extends Component {
                         <RemoveIcon />
                       </button>
                     </div>
-                    <p>{this.state.roomValue}</p>
+                    <p>{this.props.roomVal}</p>
                     <div className="incre">
                       <button
                         class="circular ui icon button"
@@ -274,7 +286,7 @@ export class BasicLayout extends Component {
                         <RemoveIcon />
                       </button>
                     </div>
-                    <p>{this.state.adultValue}</p>
+                    <p>{this.props.adultVal}</p>
                     <div className="a-incre">
                       <button
                         class="circular ui icon button"
@@ -294,7 +306,7 @@ export class BasicLayout extends Component {
                         <RemoveIcon />
                       </button>
                     </div>
-                    <p>{this.state.childValue}</p>
+                    <p>{this.props.childVal}</p>
                     <div className="c-incre">
                       <button
                         class="circular ui icon button"
@@ -317,13 +329,18 @@ export class BasicLayout extends Component {
 }
 const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
-  roomRange: get(state, "roomRange", []),
+  // roomRange: get(state, "roomRange", []),
   propertyList: get(state, "propertyList", []),
+  roomVal: state.roomVal,
+  adultVal: state.adultVal,
+  childVal: state.childVal,
 });
 const mapDispatchToProps = (dispatch) => {
   return {
     date: bindActionCreators(date, dispatch),
     room: bindActionCreators(room, dispatch),
+    adult: bindActionCreators(adult, dispatch),
+    child: bindActionCreators(child, dispatch),
     // property: bindActionCreators(property, dispatch),
     // propRoomType: bindActionCreators(propRoomType, dispatch),
   };

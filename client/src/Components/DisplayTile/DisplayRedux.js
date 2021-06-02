@@ -38,6 +38,10 @@ class DisplayRedux extends Component {
       listOfAP: [],
       // rateObj: []
       totalPrice: 0,
+      totalPriceTwo: 0,
+      priceFinal: 0,
+      priceArray: [],
+      finalTotalPrice: 0,
     };
   }
 
@@ -59,6 +63,7 @@ class DisplayRedux extends Component {
             id: data._id,
             count: 0,
             isChecked: false,
+            priceO: 0,
             // rate: 0,
           };
         });
@@ -69,6 +74,7 @@ class DisplayRedux extends Component {
         <h1>Error fetching data</h1>;
         this.setState({ error: !this.state.error });
       });
+    this.getSomething(this.props.match.params.id);
   }
   getSomething = async (id) => {
     let res = await axios({
@@ -86,6 +92,7 @@ class DisplayRedux extends Component {
         this.setState({
           listOfAP: result.data,
         });
+        console.log("list", this.state.list);
       })
       .catch((e) => {
         console.log("error logging data", e);
@@ -102,53 +109,102 @@ class DisplayRedux extends Component {
   handleMinus = (id) => {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
-    let t = this.state.totalPrice;
+    // let t = this.state.totalPrice;
 
     count.forEach((data) => {
       if (data.id === id && data.count > 0) {
         data.count -= 1;
-        rateObj.forEach((rate) => {
-          if (rate.roomTypeId === id) {
-            if (data.isChecked) t -= rate.plan.EP * data.count;
-            else t -= rate.plan.AP * data.count;
-          }
-        });
+        // rateObj.forEach((rate) => {
+        //   if (rate.roomTypeId === id) {
+        //     if (data.isChecked) t -= rate.plan.EP * data.count;
+        //     else t -= rate.plan.AP * data.count;
+        //   }
+        // });
       }
     });
-    this.setState({ countObj: count, totalPrice: t });
+    this.setState({ countObj: count });
   };
   handlePlus = (id) => {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
-    let t = this.state.totalPrice;
-
+    // let t = 0;
+    // var p = 0;
+    // console.log("value of BEFORE t inside handlePlus", t);
+    console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.count += 1;
-
-        rateObj.forEach((rate) => {
-          if (rate.roomTypeId === id) {
-            if (data.isChecked) t += rate.plan.EP * data.count;
-            else t += rate.plan.AP * data.count;
-          }
-        });
+        // p = p + data.priceO;
+        // this.setState({
+        //   finalTotalPrice: data.priceO
+        // })
+        // console.log("count inside handlePlus = ", data.count);
+        // rateObj.forEach((rate) => {
+        //   if (rate.roomTypeId === id) {
+        //     if (!data.isChecked) t += rate.plan.EP * data.count;
+        //     else t += rate.plan.AP * data.count;
+        //   }
+        // });
+        // console.log("value of After t inside handlePlus", t);
       }
     });
-
-    this.setState({ countObj: count, totalPrice: t });
+    // console.log("p = ", p);
+    console.log("countObj price  = ", this.state.countObj);
+    this.setState({
+      countObj: count,
+      // totalPrice: t,
+      // finalTotalPrice:
+    });
+  };
+  calculateTotal = () => {
+    var count = this.state.countObj;
+    let rateObj = this.state.listOfAP;
+    let t = 0;
+    var p = 0;
+    // console.log("value of BEFORE t inside handlePlus", t);
+    console.log("count obj inside of handle plus = ", count);
+    count.forEach((data) => {
+      // console.log("count inside handlePlus = ", data.count);
+      rateObj.forEach((rate) => {
+        if (rate.roomTypeId === data.id) {
+          if (!data.isChecked) t += rate.plan.EP * data.count;
+          else t += rate.plan.AP * data.count;
+        }
+      });
+      // console.log("value of After t inside handlePlus", t);
+      // }
+    });
+    console.log("p = ", p);
+    console.log("countObj price  = ", this.state.countObj);
+    return t;
   };
   handleChange = (id) => {
+    // var finalPrice = 0;
+    // var finalEP = 0;
+    // var finalAP = 0;
     var count = this.state.countObj;
+    // let rateObj = this.state.listOfAP;
+    // var rateObj2 = this.state.listOfAP;
+    // rateObj.forEach((i) => {
+    //   if (i.roomTypeId === post._id) {
+    //     finalAP = i.plan.AP;
+
+    //     finalEP = i.plan.EP;
+    //   }
+    // });
     // console.log("inside handleCahneg count = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.isChecked = !data.isChecked;
       }
-      // if(data.isChecked == true){
-      //   this.setState({
-      //     realRate:rate,
-      //   })
-      // }
+      // rateObj.forEach((rateData) => {
+      //   if (data.isChecked == true) {
+      //     finalPrice = finalAP;
+      //   } else {
+      //     finalPrice = finalEP;
+      //   }
+      // });
+
       // if (data.id === id && data.isChecked) data.p += 600;
     });
 
@@ -163,6 +219,9 @@ class DisplayRedux extends Component {
       fontFamily: "ui-rounded",
       textAlign: "center",
     };
+    let total = this.calculateTotal();
+    // console.log("this.state.totalPrice", this.state.totalPrice);
+
     var propertyName = "";
     var ap = 0,
       ep = 0;
@@ -171,23 +230,11 @@ class DisplayRedux extends Component {
     // let propertyName = "";
     return (
       <div className="displayOne">
-        {
-          // let propertyName = "";\
-
-          // this.state.list.forEach((data)=>{
-          //   this.state.listOfAP.forEach((data2)=>{
-          //     if(data2.roomTypeId === data._id)
-          //       ap = data2.plan.AP;
-          //       ep = data2.plan.EP;
-          //   })
-          // })
-
-          this.props.propertyList.forEach((data) => {
-            if (data.PropertyId == this.props.match.params.id) {
-              propertyName = data.name;
-            }
-          })
-        }
+        {this.props.propertyList.forEach((data) => {
+          if (data.PropertyId == this.props.match.params.id) {
+            propertyName = data.name;
+          }
+        })}
         <div>
           <div className="for-effect">
             <Slide left cascade>
@@ -207,66 +254,90 @@ class DisplayRedux extends Component {
                   let i = 0;
                   let isCheck = false;
                   let p = 0;
-                  var rate = 0;
-                  // var k = 0;
-
+                  var rate1 = 0;
+                  var k = 0;
+                  var price = 0;
+                  var finalPrice = 0;
+                  var finalEP = 0;
+                  var finalAP = 0;
                   var count = this.state.countObj;
                   // var rateData = this.state.rateObj;
                   // var len1 = this.state.list.length;
-                  var len2 = this.state.listOfAP.length;
+                  // var len2 = this.state.listOfAP.length;
+                  // console.log("this.state.list", this.state.list);
+                  // console.log("this.state.list.length", this.state.list.length);
+                  // console.log("this.state.listOfAP", this.state.listOfAP);
+                  // console.log(
+                  //   "this.state.listOfAP.length",
+                  //   this.state.listOfAP.length
+                  // );
 
                   // let k = 0,
-                  let j = 0;
+                  // let j = 0;
                   // var id1 = post._id;
-                  for (j = 0; j < len2; j++) {
-                    console.log(
-                      "this.state.listOfAP[j].roomTypeId",
-                      this.state.listOfAP[j].roomTypeId
-                    );
-                    var id2 = this.state.listOfAP[j].roomTypeId;
-                    if (post._id === id2) {
-                      ap = this.state.listOfAP[j].plan.AP;
-                      ep = this.state.listOfAP[j].plan.EP;
-                      break;
+                  // for (var j = 0; j < len2; j++) {
+                  //   var id2 = this.state.listOfAP[j].roomTypeId;
+                  //   if (post._id === id2) {
+                  //     ap = this.state.listOfAP[j].plan.AP;
+                  //     ep = this.state.listOfAP[j].plan.EP;
+                  //     break;
+                  //   }
+                  //   console.log("for j = ", j);
+                  //   console.log("ap = ", ap);
+                  //   console.log("ep = ", ep);
+                  // }
+
+                  // console.log("rate1=", rate1);
+                  // p = rate1 * room;
+                  // console.log("p = ", p);
+                  var rateObj2 = this.state.listOfAP;
+                  rateObj2.forEach((i) => {
+                    if (i.roomTypeId === post._id) {
+                      finalAP = i.plan.AP;
+                      finalEP = i.plan.EP;
                     }
-                    console.log("ap = ", ap);
-                    console.log("ep = ", ep);
-                  }
-                  // console.log("ap = ", ap);
-                  // console.log("ep = ", ep);
+                  });
+                  // count.forEach((data) => {
+                  //   rateObj2.forEach((theRate) => {
+                  //     if (post._id === theRate.roomTypeId) {
+                  //       isCheck = data.isChecked;
+                  //       if (isCheck) finalPrice = finalAP;
+                  //       else finalPrice = finalEP;
+                  //     }
+                  //   });
+                  // });
 
-                  // console.log("the rate data = ", rateData);
-                  // console.log("var count inside of map", count);
-
+                  // console.log("finalPrice = ", finalPrice);
+                  // console.log("isCheck = ", isCheck);
                   count.forEach((data) => {
                     if (data.id === post._id) room = data.count;
+                  });
+                  count.forEach((data) => {
+                    if (data.id === post._id) {
+                      isCheck = data.isChecked;
+                      if (isCheck == true) {
+                        finalPrice = finalAP;
+                      } else {
+                        finalPrice = finalEP;
+                      }
+                    }
                   });
 
                   // count.forEach((data) => {
                   //   total += data.count;
                   // });
+                  // console.log("finalPrice = ", finalPrice);
+                  // console.log("rooms = ", room);
+                  if (room > 0) price = finalPrice * room;
+                  console.log("price = ", price);
+                  // console.log(
+                  //   "this.state.totalpriceTow = ",
+                  //   this.state.totalpriceTwo
+                  // );
                   count.forEach((data) => {
-                    if (data.id === post._id) {
-                      isCheck = data.isChecked;
-                      if (isCheck == true) {
-                        rate = ap;
-                      } else {
-                        rate = ep;
-                      }
-                    }
+                    if (data.id === post._id) data.priceO = price;
                   });
-
-                  p = rate * room;
-
-                  // this.setState({
-                  //   totalPrice: this.state.totalPrice + p,
-                  // });
-
-                  console.log("this.state.totalPrice", this.state.totalPrice);
-                  // k++;
-                  // count.forEach((data) => {
-                  //   if (data.p === true) calculated = data.p;
-                  // });
+                  console.log("count Obj agter priceO = ", count);
                   return (
                     <div key={index} className="homeContainerOne">
                       {/* <h1>{this.state.}</h1> */}
@@ -288,7 +359,7 @@ class DisplayRedux extends Component {
                               </div>
                               <div className="rate-container">
                                 <span>
-                                  <h2>₹ {rate}</h2>
+                                  <h2>₹ {finalPrice}</h2>
                                 </span>
                                 <h5>per Day/Night</h5>
                               </div>
@@ -327,7 +398,7 @@ class DisplayRedux extends Component {
                                   <p className="icon-p">Free Breakfast</p>
                                 </div>
                                 <div className="price-margin">
-                                  <h3>Price : {p}</h3>
+                                  <h3>Price : {price}</h3>
                                 </div>
                               </div>
                             </div>
@@ -381,7 +452,10 @@ class DisplayRedux extends Component {
               <div className="lastDiv">
                 <div className="total-price">
                   <h3>
-                    <span>Total Price: {this.state.totalPrice}</span>
+                    <span>
+                      Total Price:
+                      {total}
+                    </span>
                   </h3>
                 </div>
                 <div className="btn-placement">
