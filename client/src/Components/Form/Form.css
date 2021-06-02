@@ -245,3 +245,11 @@ select {
 .hotelHeading div {
   margin-left: 65%;
 }
+.img {
+  border-style: none;
+  width: 100%;
+  margin: 5%;
+}
+.hotelImage {
+  width: 100%;
+}

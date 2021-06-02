@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
+import Image from "../Form/Image.jpeg";
+
 export class Form extends Component {
   constructor(props) {
     super(props);
@@ -115,7 +117,9 @@ export class Form extends Component {
                   {/* {this.state.hotelFlag && <HotelDetail />} */}
                   <div className="hotelDetailContainer">
                     <div className="firstContainer">
-                      <div className="hotelImage">hotelImage</div>
+                      <div className="hotelImage">
+                        <img src={Image}></img>
+                      </div>
                       <div>
                         <div>
                           <h4>Crown </h4>

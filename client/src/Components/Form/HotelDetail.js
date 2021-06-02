@@ -10,7 +10,7 @@ import {
   roomTypesRate,
 } from "../../actions/index";
 import { bindActionCreators } from "redux";
-import { image } from "../Form";
+import Image from "../Form/Image.jpeg";
 
 class HotelDetail extends Component {
   constructor(props) {
@@ -35,7 +35,9 @@ class HotelDetail extends Component {
         <div>
           <div className="hotelDetailContainer">
             <div className="firstContainer">
-              <div className="hotelImage">hotelImage</div>
+              <div className="hotelImage">
+                <img src={Image}></img>
+              </div>
               <div>
                 <div>
                   <h4>Crown </h4>
