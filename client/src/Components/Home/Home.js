@@ -153,7 +153,7 @@ class Home extends React.Component {
         adultValue: this.state.adultValue - 1,
       });
     }
-    this.handleCount();
+    // this.handleCount();
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
@@ -164,7 +164,7 @@ class Home extends React.Component {
         childValue: this.state.childValue - 1,
       });
     }
-    this.handleCount();
+    // this.handleCount();
   };
   handleInc = () => {
     this.props.room({
@@ -181,7 +181,7 @@ class Home extends React.Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    this.handleCount();
+    // this.handleCount();
   };
   handleIncChild = () => {
     this.props.child({
@@ -190,7 +190,7 @@ class Home extends React.Component {
     this.setState({
       childValue: this.state.childValue + 1,
     });
-    this.handleCount();
+    // this.handleCount();
   };
   handleClick = (event) => {
     this.setState({
@@ -508,46 +508,48 @@ class Home extends React.Component {
             <h2 className="noProp"> Sorry!! No properties available.</h2>
 
             <img className="image-error" src={giphy} alt="loading..."></img>
+
+            
+          
           </div>
         ) : null}
-        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
-          ? ""
-          : null}
-        {console.log(this.props, "now check")}
-        {!this.props.propertyList.length
-          ? this.props.propertyEmptyList.map((data, index) => (
-              <div className="homeContainer" key={index}>
-                <div className="wrapper">
-                  <Carousel showArrows={false}>
-                    <div style={{ marginLeft: "12em" }}>
-                      <img
-                        className="ImageTile"
-                        key={index}
-                        src={get(data, "Image[0]")}
-                      ></img>
-                    </div>
-                    <div>
-                      <img
-                        className="ImageTile"
-                        key={index}
-                        src={get(data, "Image[1]")}
-                      ></img>
-                    </div>
-                    <div>
-                      <img
-                        className="ImageTile"
-                        key={index}
-                        src={get(data, "Image[2]")}
-                      ></img>
-                    </div>
-                    <div>
-                      <img
-                        className="ImageTile"
-                        key={index}
-                        src={get(data, "Image[3]")}
-                      ></img>
-                    </div>
-                  </Carousel>
+        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null}
+        {/* {console.log(this.props,"now check")} */}
+        
+            <p className="customMade2"><i className="customMade">Related Search : </i>Check out the properties available </p>
+        {!this.props.propertyList.length?this.props.propertyEmptyList.map((data, index) => (
+            <div className="homeContainer" key={index}>
+              <div className="wrapper">
+                <Carousel showArrows={false}>
+                  <div style={{marginLeft:"12em"}}>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[0]")}
+                    ></img>
+                  </div>
+                  <div>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[1]")}
+                    ></img>
+                  </div>
+                  <div>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[2]")}
+                    ></img>
+                  </div>
+                  <div>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[3]")}
+                    ></img>
+                  </div>
+                </Carousel>
 
                   <div className="nameDes">
                     <h1>{get(data, "name", "--")}</h1>

@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import "./Form.css";
 import { get } from "lodash";
 import { connect } from "react-redux";
-
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import validator from "validator";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
+import ErrorIcon from "@material-ui/icons/Error";
 import Image from "../Form/Image.jpeg";
 
 export class Form extends Component {
@@ -15,12 +16,18 @@ export class Form extends Component {
     super(props);
 
     this.state = {
-      firstName: "",
-      lastName: "",
+      firstName: null,
+      lastName: null,
       email: "",
       contact: "",
       gender: "",
       address: "",
+      firstError: "",
+      lastError: "",
+      emailError: "",
+      contactError: "",
+      addressError: "",
+      numberError: "",
       hotelFlag: true,
     };
   }
@@ -40,25 +47,29 @@ export class Form extends Component {
   handleFirstName = (event) => {
     this.setState({
       firstName: event.target.value,
+      firstError: "",
     });
+    console.log(event.target.value);
   };
 
   handleLastName = (event) => {
     this.setState({
       lastName: event.target.value,
+      lastError: "",
     });
   };
 
   handleEmail = (event) => {
     this.setState({
       email: event.target.value,
+      emailError: "",
     });
   };
   handleContact = (event) => {
     this.setState({
       contact: event.target.value,
+      contactError: "",
     });
-    console.log(event.target.value);
   };
   handleGender = (event) => {
     this.setState({
@@ -68,7 +79,50 @@ export class Form extends Component {
   handleAddress = (event) => {
     this.setState({
       address: event.target.value,
+      addressError: "",
     });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.firstName === null) {
+      this.setState({
+        firstError: "enter firstName",
+      });
+    }
+    if (this.state.lastName === null) {
+      this.setState({
+        lastError: "enter lastname",
+      });
+    }
+    if (validator.isEmail(this.state.email)) {
+      this.setState({
+        emailError: "",
+      });
+    } else {
+      this.setState({
+        emailError: "enter valid email",
+      });
+    }
+    if (this.state.contact === "") {
+      this.setState({
+        numberError: "Enter number",
+      });
+    }
+    if (this.state.address === "") {
+      this.setState({
+        addressError: "Enter address",
+      });
+    }
+    if (validator.isMobilePhone(this.state.contact)) {
+      this.setState({
+        contactError: "",
+      });
+    } else {
+      this.setState({
+        contactError: "Enter Valid Number",
+        numberError: "",
+      });
+    }
   };
 
   render() {
@@ -99,9 +153,7 @@ export class Form extends Component {
             </div>
           </div> */}
           <div>
-            <div>
-              {/* <img src = {ImageOne} style={{ width: "100%" }}></img> */}
-            </div>
+            <div></div>
             <div className="form-design">
               <form>
                 <h2>Book your Room</h2>
@@ -171,82 +223,102 @@ export class Form extends Component {
                 <div className="form-contents">
                   <div className="d-flex form-contents1">
                     {/* <label>First Name</label> */}
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      value={this.state.firstName}
-                      onChange={this.handleFirstName}
-                    ></input>
-                    {/* <label type="text"  placeholder="Last Name">
-                Last Name
-              </label> */}
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      value={this.state.lastName}
-                      onChange={this.handleLastName}
-                    ></input>
+                    <div className="d-flex w-100">
+                      <input
+                        type="text"
+                        placeholder="First Name"
+                        value={this.state.firstName}
+                        onChange={this.handleFirstName}
+                        className={`${
+                          this.state.firstError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.firstError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
+                    {/* <p className="ad-first">{this.state.firstError}</p> */}
+
+                    <div className="d-flex w-100">
+                      <input
+                        type="text"
+                        placeholder="Last Name"
+                        value={this.state.lastName}
+                        onChange={this.handleLastName}
+                        className={`${
+                          this.state.lastError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.lastError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
+
+                    {/* {this.state.lastError} */}
                     <br />
-                    {/* <label>Email Address</label> */}
-                    <input
-                      type="email"
-                      placeholder="E-mail"
-                      value={this.state.email}
-                      onChange={this.handleEmail}
-                    ></input>
+                    <div className="d-flex w-100">
+                      <input
+                        type="email"
+                        placeholder="E-mail"
+                        value={this.state.email}
+                        onChange={this.handleEmail}
+                        className={`${
+                          this.state.emailError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.emailError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
+
+                    {/* {this.state.emailError} */}
                   </div>
                   <br />
 
                   <div className="d-flex form-contents1">
-                    {/* <label>Mobile No.</label> */}
-                    <input
-                      type="number"
-                      placeholder="Mobile"
-                      value={this.state.contact}
-                      onChange={this.handleContact}
-                    ></input>
+                    <div className="d-flex">
+                      <input
+                        placeholder="Mobile"
+                        value={this.state.contact}
+                        onChange={this.handleContact}
+                        className={`${
+                          this.state.contactError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.contactError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
+
+                    {/* {this.state.contactError} */}
                     <br />
                     <div className="GENDER"></div>
                     <select name="Gender" id="gender-select">
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
-                    {/* <label>Gender</label>
-              <label className="d-flex">
-                Male
-                <input
-                  type="select"
-                  value="Male"
-                  checked={this.state.gender === "Male"}
-                  onChange={this.handleGender}
-                ></input>
-              </label>
-              <label>
-                Female
-                <input
-                  type="select"
-                  value="Female"
-                  checked={this.state.gender === "Female"}
-                  onChange={this.handleGender}
-                ></input>
-              </label> */}
                   </div>
 
-                  {/* <br></br> */}
-                  {/* <div className="form-contents1"> */}
-                  {/* <h4>Billing address</h4> */}
-                  {/* <label>Address</label> */}
                   <div className="d-flex form-contents2">
-                    <input
-                      className="form-contents5"
-                      type="text-area"
-                      placeholder="Address"
-                      value={this.state.address}
-                      onChange={this.handleAddress}
-                    ></input>
+                    <div className="d-flex">
+                      <input
+                        className="form-contents5"
+                        type="text-area"
+                        placeholder="Address"
+                        value={this.state.address}
+                        onChange={this.handleAddress}
+                        className={`${
+                          this.state.addressError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.addressError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
+                    {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">
-                    <button>Submit</button>
+                    <button onClick={this.handleSubmit}>Submit</button>
                   </div>
                 </div>
               </form>

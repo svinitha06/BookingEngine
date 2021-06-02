@@ -266,7 +266,7 @@
 .image-error{
   margin-top: 22px;
   margin-bottom: 2em;
-  margin-left: -5em;
+  margin-left: -3em !important;
   width: 25%;
 }
 .ImageTile {
@@ -360,7 +360,7 @@ p h1 h6 {
   font-size: 14px;
 }
 .noProp {
-     margin-left: 13em;
+     margin-left: 14em;
     margin-top: 5em !important;
     color: red;
     font-family: ui-rounded !important;
@@ -374,6 +374,23 @@ p h1 h6 {
   margin-left: 40em;
   margin-top: 3em;
   margin-bottom: 3em;
+}
+.customMade{
+  
+  font-size: 15px;
+  font-weight: 900 !important;
+  opacity: 0.8;
+}
+.customMade2{
+     /* margin-right: 3em !important; */
+     margin-left: 6em !important;
+     margin-top: -1em;
+     height: 0vh;
+     padding-bottom: 0 !important;
+     margin-left: 16em;
+     font-family: ui-rounded !important;
+     font-weight: 900;
+     font-size: 20px;
 }
   
 
