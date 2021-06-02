@@ -7,7 +7,7 @@ import Carousel from "react-elastic-carousel";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { StarFill } from "react-bootstrap-icons";
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import ShowMoreText from "react-show-more-text";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -27,7 +27,7 @@ import {
   propRoomType,
   adult,
   child,
-  emptyProperty
+  emptyProperty,
 } from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
@@ -52,7 +52,7 @@ class Home extends React.Component {
       searchValue: "",
       dateObj: [],
       loader: true,
-      viewDetailsError:""
+      viewDetailsError: "",
     };
   }
   componentDidMount() {
@@ -66,7 +66,6 @@ class Home extends React.Component {
       dateObj: this.props.dateRange,
       dateError: "",
       clicked: false,
-     
     });
     this.getcall();
     // this.getLocation()
@@ -105,10 +104,9 @@ class Home extends React.Component {
     if (this.state.searchValue === "") {
       this.setState({
         cityError: "Enter city",
-        loader:false
+        loader: false,
       });
-    } 
- else {
+    } else {
       this.setState({
         loader: true,
       });
@@ -127,7 +125,7 @@ class Home extends React.Component {
     let count = 0;
     if ((this.state.childValue + this.state.adultValue) / 4) {
       this.setState({
-        roomValue: (Math.floor(this.state.adultValue / 2))+ 1,
+        roomValue: Math.floor(this.state.adultValue / 2) + 1,
       });
     } else {
       this.setState({
@@ -137,11 +135,10 @@ class Home extends React.Component {
   };
 
   handleDec = () => {
-
     if (this.state.roomValue !== 1) {
       this.props.room({
-        roomValue: this.state.roomValue - 1
-      })
+        roomValue: this.state.roomValue - 1,
+      });
       this.setState({
         roomValue: this.state.roomValue - 1,
       });
@@ -150,8 +147,8 @@ class Home extends React.Component {
   handleDecAdult = () => {
     if (this.state.adultValue !== 1) {
       this.props.adult({
-        adultValue: this.state.adultValue - 1
-      })
+        adultValue: this.state.adultValue - 1,
+      });
       this.setState({
         adultValue: this.state.adultValue - 1,
       });
@@ -161,8 +158,8 @@ class Home extends React.Component {
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
       this.props.child({
-        childValue: this.state.childValue - 1
-      })
+        childValue: this.state.childValue - 1,
+      });
       this.setState({
         childValue: this.state.childValue - 1,
       });
@@ -171,16 +168,16 @@ class Home extends React.Component {
   };
   handleInc = () => {
     this.props.room({
-      roomValue: this.state.roomValue + 1
-    })
+      roomValue: this.state.roomValue + 1,
+    });
     this.setState({
       roomValue: this.state.roomValue + 1,
     });
   };
   handleIncAdult = () => {
     this.props.adult({
-      adultValue: this.state.adultValue + 1
-    })
+      adultValue: this.state.adultValue + 1,
+    });
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
@@ -188,10 +185,9 @@ class Home extends React.Component {
   };
   handleIncChild = () => {
     this.props.child({
-      childValue: this.state.childValue + 1
-    })
+      childValue: this.state.childValue + 1,
+    });
     this.setState({
-      
       childValue: this.state.childValue + 1,
     });
     this.handleCount();
@@ -206,13 +202,13 @@ class Home extends React.Component {
       roomAnchor: null,
     });
   };
-  handleFilter =async (e) => {
+  handleFilter = async (e) => {
     this.setState({
       searchValue: e,
       cityError: "",
       loader: true,
     });
-    if(!trim(e)){
+    if (!trim(e)) {
       let res = await db.getproperty();
       this.props.property(res);
     }
@@ -223,17 +219,16 @@ class Home extends React.Component {
     // } else {
     //   clearTimeout(searchValidator);
     // }
-        this.getLocation(e);
-
+    this.getLocation(e);
   };
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
     this.props.property(res);
-    console.log(res,res.length,"come on")
-    if(res.length === 0){
+    console.log(res, res.length, "come on");
+    if (res.length === 0) {
       let response = await db.getproperty();
-      console.log(response,"response")
-    this.props.emptyProperty(response);
+      console.log(response, "response");
+      this.props.emptyProperty(response);
     }
     this.setState({
       loader: false,
@@ -241,8 +236,7 @@ class Home extends React.Component {
 
     console.log(res, "sherin");
   };
-   
- 
+
   executeOnClick(isExpanded) {
     console.log(isExpanded);
   }
@@ -265,7 +259,7 @@ class Home extends React.Component {
             <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
             <div className="banner-content">
               {/* <h2>Enjoy your stay</h2> */}
-               <p>StayCation</p>
+              <p>StayCation</p>
             </div>
           </div>
           <div
@@ -410,7 +404,7 @@ class Home extends React.Component {
                     <p className="searchButton">Search</p>
                   </Button.Content>
                   <Button.Content hidden>
-                    <SearchIcon/>
+                    <SearchIcon />
                   </Button.Content>
                 </Button>
               </div>
@@ -423,7 +417,7 @@ class Home extends React.Component {
             <div className="homeContainer" key={index}>
               <div className="wrapper">
                 <Carousel showArrows={false}>
-                  <div style={{marginLeft:"12em"}}>
+                  <div style={{ marginLeft: "12em" }}>
                     <img
                       className="ImageTile"
                       key={index}
@@ -501,7 +495,6 @@ class Home extends React.Component {
                           }}
                         >
                           <button>View Details</button>
-                         
                         </Link>
                       </div>
                     </div>
@@ -510,20 +503,15 @@ class Home extends React.Component {
               </div>
             </div>
           ))
-        ) : this.state.searchValue.length  && !this.state.loader   ?(
-         
+        ) : this.state.searchValue.length && !this.state.loader ? (
           <div className="d-flex">
-         
             <h2 className="noProp"> Sorry!! No properties available.</h2>
-            
-              
+
             <img className="image-error" src={giphy} alt="loading..."></img>
 
             
           
           </div>
-         
-          
         ) : null}
         {/* {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null} */}
         {/* {console.log(this.props,"now check")} */}
@@ -563,63 +551,71 @@ class Home extends React.Component {
                   </div>
                 </Carousel>
 
-                <div className="nameDes">
-                  <h1>{get(data, "name", "--")}</h1>
+                  <div className="nameDes">
+                    <h1>{get(data, "name", "--")}</h1>
 
-                  <p className="starFill">
-                    {_.range(
-                      0,
-                      parseInt(get(data, "ratings", "").split("/")[0])
-                    ).map((i) => (
-                      <StarFill style={{ color: "#ffdf00" }} />
-                    ))}
-                  </p>
-                  <ShowMoreText
-                    /* Default options */
-                    lines={4}
-                    more="Show more"
-                    less="Show less"
-                    className="content-css"
-                    anchorClass="my-anchor-css-class"
-                    onClick={this.executeOnClick}
-                    expanded={false}
-                    width={520}
-                  >
-                    <h6>{get(data, "description", "--")}</h6>
-                  </ShowMoreText>
-                  <div className="childWrapper">
-                    <div className="iconUI">
-                      <div className="pin">
-                        <GpsFixedIcon></GpsFixedIcon>
-                        <p className="pin-des">{get(data, "Address", "--")}</p>
+                    <p className="starFill">
+                      {_.range(
+                        0,
+                        parseInt(get(data, "ratings", "").split("/")[0])
+                      ).map((i) => (
+                        <StarFill style={{ color: "#ffdf00" }} />
+                      ))}
+                    </p>
+                    <ShowMoreText
+                      /* Default options */
+                      lines={4}
+                      more="Show more"
+                      less="Show less"
+                      className="content-css"
+                      anchorClass="my-anchor-css-class"
+                      onClick={this.executeOnClick}
+                      expanded={false}
+                      width={520}
+                    >
+                      <h6>{get(data, "description", "--")}</h6>
+                    </ShowMoreText>
+                    <div className="childWrapper">
+                      <div className="iconUI">
+                        <div className="pin">
+                          <GpsFixedIcon></GpsFixedIcon>
+                          <p className="pin-des">
+                            {get(data, "Address", "--")}
+                          </p>
+                        </div>
+                        <div className="pin">
+                          <PinDropIcon
+                            style={{ color: "#FF5733" }}
+                          ></PinDropIcon>
+                          <p className="pin-des">
+                            {get(data, "location", "--")}
+                          </p>
+                        </div>
+                        <div className="pin">
+                          <PhoneInTalkIcon></PhoneInTalkIcon>
+                          <p className="pin-des">
+                            {get(data, "contact", "--")}
+                          </p>
+                        </div>
                       </div>
-                      <div className="pin">
-                        <PinDropIcon style={{ color: "#FF5733" }}></PinDropIcon>
-                        <p className="pin-des">{get(data, "location", "--")}</p>
-                      </div>
-                      <div className="pin">
-                        <PhoneInTalkIcon></PhoneInTalkIcon>
-                        <p className="pin-des">{get(data, "contact", "--")}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="viewDetails">
-                        <Link
-                          to={{
-                            pathname: `/basiclayout/${data.PropertyId}`,
-                            props: { hotelName: get(data, "name", "--") },
-                          }}
-                        >
-                          <button>View Details</button>
-                         
-                        </Link>
+                      <div>
+                        <div className="viewDetails">
+                          <Link
+                            to={{
+                              pathname: `/basiclayout/${data.PropertyId}`,
+                              props: { hotelName: get(data, "name", "--") },
+                            }}
+                          >
+                            <button>View Details</button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )):null}
+            ))
+          : null}
       </div>
     );
   }
@@ -632,7 +628,7 @@ const mapDispatchToProps = (dispatch) => {
     child: bindActionCreators(child, dispatch),
     property: bindActionCreators(property, dispatch),
     propRoomType: bindActionCreators(propRoomType, dispatch),
-    emptyProperty: bindActionCreators(emptyProperty,dispatch)
+    emptyProperty: bindActionCreators(emptyProperty, dispatch),
   };
 };
 const mapStateToProps = (state) => {
@@ -640,10 +636,9 @@ const mapStateToProps = (state) => {
     propertyList: get(state, "propertyList", []),
     dateRange: get(state, "dateRange", []),
     roomVal: state.roomVal,
-    adultVal:state.adultVal,
-    childVal:state.childVal,
-    propertyEmptyList:get(state,"propertyEmptyList",[])
-
+    adultVal: state.adultVal,
+    childVal: state.childVal,
+    propertyEmptyList: get(state, "propertyEmptyList", []),
   };
 };
 

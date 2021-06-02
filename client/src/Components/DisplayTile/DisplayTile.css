@@ -169,7 +169,7 @@ h6 {
   position: relative !important;
   border: none !important;
   font-weight: 500 !important;
-  font-size: 17px !important;
+  font-size: 22px !important;
   margin-right: -6% !important;
   /* margin-top: 1% !important ; */
 }
@@ -189,7 +189,7 @@ h6 {
 .total-price h3 {
   margin-left: 34%;
   margin-bottom: 1%;
-  font-size: 19px;
+  font-size: 22px;
 }
 a.ui.button.reserve-left {
   border-radius: 0px !important;
@@ -217,7 +217,7 @@ a.ui.button.reserve-left {
   position: relative !important;
   /* border: none !important; */
   font-weight: 500 !important;
-  font-size: 17px !important;
+  font-size: 22px !important;
   margin-left: -100% !important;
   /* padding: 20% !important; */
 }

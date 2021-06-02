@@ -70,6 +70,9 @@ export class BasicLayout extends Component {
       <ModalCompo2 total={event.target.value} open={true} />,
       document.getElementById("all-rooms")
     );
+    window.onbeforeunload = function () {
+      return false;
+    };
   };
 
   // handleDate = () => {

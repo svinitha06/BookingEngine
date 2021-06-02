@@ -92,7 +92,7 @@ class DisplayRedux extends Component {
         this.setState({
           listOfAP: result.data,
         });
-        console.log("listOfAP", this.state.listOfAP);
+        console.log("list", this.state.list);
       })
       .catch((e) => {
         console.log("error logging data", e);
@@ -109,7 +109,7 @@ class DisplayRedux extends Component {
   handleMinus = (id) => {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
-    let t = this.state.totalPrice;
+    // let t = this.state.totalPrice;
 
     count.forEach((data) => {
       if (data.id === id && data.count > 0) {
@@ -122,17 +122,19 @@ class DisplayRedux extends Component {
         // });
       }
     });
-    this.setState({ countObj: count, totalPrice: t });
+    this.setState({ countObj: count });
   };
   handlePlus = (id) => {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
-    let t = this.state.totalPrice;
+    // let t = 0;
+    // var p = 0;
     // console.log("value of BEFORE t inside handlePlus", t);
     console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.count += 1;
+        // p = p + data.priceO;
         // this.setState({
         //   finalTotalPrice: data.priceO
         // })
@@ -146,13 +148,36 @@ class DisplayRedux extends Component {
         // console.log("value of After t inside handlePlus", t);
       }
     });
-
+    // console.log("p = ", p);
+    console.log("countObj price  = ", this.state.countObj);
     this.setState({
       countObj: count,
-      totalPrice: t,
+      // totalPrice: t,
+      // finalTotalPrice:
     });
   };
-
+  calculateTotal = () => {
+    var count = this.state.countObj;
+    let rateObj = this.state.listOfAP;
+    let t = 0;
+    var p = 0;
+    // console.log("value of BEFORE t inside handlePlus", t);
+    console.log("count obj inside of handle plus = ", count);
+    count.forEach((data) => {
+      // console.log("count inside handlePlus = ", data.count);
+      rateObj.forEach((rate) => {
+        if (rate.roomTypeId === data.id) {
+          if (!data.isChecked) t += rate.plan.EP * data.count;
+          else t += rate.plan.AP * data.count;
+        }
+      });
+      // console.log("value of After t inside handlePlus", t);
+      // }
+    });
+    console.log("p = ", p);
+    console.log("countObj price  = ", this.state.countObj);
+    return t;
+  };
   handleChange = (id) => {
     // var finalPrice = 0;
     // var finalEP = 0;
@@ -194,6 +219,7 @@ class DisplayRedux extends Component {
       fontFamily: "ui-rounded",
       textAlign: "center",
     };
+    let total = this.calculateTotal();
     // console.log("this.state.totalPrice", this.state.totalPrice);
 
     var propertyName = "";
@@ -428,7 +454,7 @@ class DisplayRedux extends Component {
                   <h3>
                     <span>
                       Total Price:
-                      {/* {this.state.totalPrice} */}
+                      {total}
                     </span>
                   </h3>
                 </div>
