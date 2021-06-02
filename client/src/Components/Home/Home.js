@@ -1,7 +1,8 @@
 import React from "react";
 import "./Home.css";
-import { get, functions, bind } from "lodash";
+import { get, functions, bind, isEmpty, trim } from "lodash";
 import _ from "lodash";
+import giphy from "../../asset/giphy.gif";
 import Carousel from "react-elastic-carousel";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -25,7 +26,8 @@ import {
   room,
   propRoomType,
   adult,
-  child
+  child,
+  emptyProperty
 } from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
@@ -64,6 +66,8 @@ class Home extends React.Component {
       dateObj: this.props.dateRange,
       dateError: "",
       clicked: false,
+      // start: this.props.dateRange.start,
+      // end: this.props.dateRange.end,
     });
     this.getcall();
     // this.getLocation()
@@ -84,8 +88,6 @@ class Home extends React.Component {
       end: e.value[1],
       dateError: "",
     });
-    console.log("e.value 0", e.value[0]);
-    console.log("e.value", e.value);
 
     this.setState({
       start: e.value[0],
@@ -94,21 +96,15 @@ class Home extends React.Component {
       dateError: "",
       clicked: false,
     });
-
-    console.log("Handle date", this.state.start);
-    console.log("dateObj", this.state.dateObj);
   };
   handleValidate = async () => {
     if (this.state.searchValue === "") {
       this.setState({
         cityError: "Enter city",
+        loader:false
       });
     } 
-     if (this.state.start == null) {
-      this.setState({
-        dateError: "Please select the date",
-      });
-    } else {
+ else {
       this.setState({
         loader: true,
       });
@@ -206,12 +202,16 @@ class Home extends React.Component {
       roomAnchor: null,
     });
   };
-  handleFilter = (e) => {
+  handleFilter =async (e) => {
     this.setState({
       searchValue: e,
       cityError: "",
       loader: true,
     });
+    if(!trim(e)){
+      let res = await db.getproperty();
+      this.props.property(res);
+    }
     // if (!searchValidator) {
     //   searchValidator = setTimeout(() => {
     //     this.getLocation(e);
@@ -225,6 +225,11 @@ class Home extends React.Component {
   getLocation = async (data) => {
     let res = await db.getpropertyLocation(data);
     this.props.property(res);
+    console.log(res,res.length,"come on")
+    if(res.length === 0){
+      let res = await db.getproperty();
+    this.props.emptyProperty(res);
+    }
     this.setState({
       loader: false,
     });
@@ -285,7 +290,7 @@ class Home extends React.Component {
               </div>
               <div className="d-flex datePickerHome">
                 <DateRangePickerComponent
-                  placeholder="Check-in/Check-out"
+                  // placeholder="enter date"
                   startDate={this.state.start}
                   endDate={this.state.end}
                   min={minValue}
@@ -501,10 +506,110 @@ class Home extends React.Component {
             </div>
           ))
         ) : this.state.searchValue.length  && !this.state.loader   ?(
-          <div>
+         
+          <div className="d-flex">
+         
             <h2 className="noProp"> Sorry!! No properties available.</h2>
+            
+              
+            <img className="image-error" src={giphy} alt="loading..."></img>
+          
           </div>
+         
+          
         ) : null}
+        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null}
+        {!this.props.propertyList.length?this.props.propertyEmptyList.map((data, index) => (
+            <div className="homeContainer" key={index}>
+              <div className="wrapper">
+                <Carousel showArrows={false}>
+                  <div style={{marginLeft:"12em"}}>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[0]")}
+                    ></img>
+                  </div>
+                  <div>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[1]")}
+                    ></img>
+                  </div>
+                  <div>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[2]")}
+                    ></img>
+                  </div>
+                  <div>
+                    <img
+                      className="ImageTile"
+                      key={index}
+                      src={get(data, "Image[3]")}
+                    ></img>
+                  </div>
+                </Carousel>
+
+                <div className="nameDes">
+                  <h1>{get(data, "name", "--")}</h1>
+
+                  <p className="starFill">
+                    {_.range(
+                      0,
+                      parseInt(get(data, "ratings", "").split("/")[0])
+                    ).map((i) => (
+                      <StarFill style={{ color: "#ffdf00" }} />
+                    ))}
+                  </p>
+                  <ShowMoreText
+                    /* Default options */
+                    lines={4}
+                    more="Show more"
+                    less="Show less"
+                    className="content-css"
+                    anchorClass="my-anchor-css-class"
+                    onClick={this.executeOnClick}
+                    expanded={false}
+                    width={520}
+                  >
+                    <h6>{get(data, "description", "--")}</h6>
+                  </ShowMoreText>
+                  <div className="childWrapper">
+                    <div className="iconUI">
+                      <div className="pin">
+                        <GpsFixedIcon></GpsFixedIcon>
+                        <p className="pin-des">{get(data, "Address", "--")}</p>
+                      </div>
+                      <div className="pin">
+                        <PinDropIcon style={{ color: "#FF5733" }}></PinDropIcon>
+                        <p className="pin-des">{get(data, "location", "--")}</p>
+                      </div>
+                      <div className="pin">
+                        <PhoneInTalkIcon></PhoneInTalkIcon>
+                        <p className="pin-des">{get(data, "contact", "--")}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="viewDetails">
+                        <Link
+                          to={{
+                            pathname: `/basiclayout/${data.PropertyId}`,
+                            props: { hotelName: get(data, "name", "--") },
+                          }}
+                        >
+                          <button>View Details dss</button>
+                         
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )):null}
       </div>
     );
   }
@@ -517,6 +622,7 @@ const mapDispatchToProps = (dispatch) => {
     child: bindActionCreators(child, dispatch),
     property: bindActionCreators(property, dispatch),
     propRoomType: bindActionCreators(propRoomType, dispatch),
+    emptyProperty: bindActionCreators(emptyProperty,dispatch)
   };
 };
 const mapStateToProps = (state) => {
@@ -525,7 +631,8 @@ const mapStateToProps = (state) => {
     dateRange: get(state, "dateRange", []),
     roomVal: get(state, "roomVal", []),
     adultVal:get(state,"adultVal",[]),
-    childVal:get(state,"childVal",[])
+    childVal:get(state,"childVal",[]),
+    propertyEmptyList:get(state,"propertyEmptyList",[])
 
   };
 };
