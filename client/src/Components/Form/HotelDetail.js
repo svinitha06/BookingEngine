@@ -10,6 +10,7 @@ import {
   roomTypesRate,
 } from "../../actions/index";
 import { bindActionCreators } from "redux";
+import { image } from "../Form";
 
 class HotelDetail extends Component {
   constructor(props) {
