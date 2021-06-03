@@ -157,6 +157,7 @@ border-radius: 22px;
   background-color: rgb(255, 255, 255);
   border:2.5px solid rgb(31 29 29);
   margin-bottom: 15px;
+  font-style: normal;
 }
 
 .form {
@@ -214,9 +215,6 @@ border-radius: 22px;
 .form-contents .form-contents2 .d-flex{
   width: 52%;
 }
- .form-contents .form-contents6  .d-flex input{
-  
-} 
 
 /* .form-contents .form-contents6 .d-flex{
   width: 187% !important;
@@ -263,6 +261,7 @@ border-radius: 22px;
   width: 21% !important;
   /* padding-left: 20px !i; */
 }
+.w-100 
 .form-contents1 input {
   margin-left: 1em;
   background-color: lightgray;
@@ -435,4 +434,8 @@ select {
   background: #e5e2e2;
   border-radius: 22px;
   padding: 3%;
+}
+
+.label{
+  font-style: normal;
 }
