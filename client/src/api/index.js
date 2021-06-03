@@ -30,6 +30,14 @@ export const getpropertyRoom = async (data) => {
   );
   return res.data;
 };
+export const getPostHotelDetails = async (data) => {
+  console.log(data,"hotel")
+  const res = await axios.post(
+    `http://localhost:5000/book/Book`,data
+  
+  );
+  return res;
+};
 // const getRooomTypes = async () => {
 //   const resp = await axios.get("http://localhost:5000/rooms/getRoomTypes");
 //   return resp.data;

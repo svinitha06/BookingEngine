@@ -6,7 +6,8 @@ import Home from "./Components/Home/Home";
 import BookNow from "./Components/BookNow/BookNow";
 import Header from "./Components/Header/Header";
 import AboutUs from "./Components/About/AboutUs";
-import Footer from "./Components/Footer/Footer"
+import Footer from "./Components/Footer/Footer";
+import Details from "./Components/Details/Details"
 
 import BasicLayout from "./Components/BookNow/BasicLayout";
 import Form from "./Components/Form/Form";
@@ -32,6 +33,9 @@ class App extends Component {
           </Route>
           <Route path="/form">
             <Form />
+          </Route>
+          <Route path="/details">
+            <Details />
           </Route>
         </Switch>
         </div>

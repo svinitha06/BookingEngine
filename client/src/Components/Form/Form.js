@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Form.css";
 import { get } from "lodash";
 import { connect } from "react-redux";
+import { withRouter, Link } from "react-router-dom";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
@@ -10,6 +11,11 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
 import ErrorIcon from "@material-ui/icons/Error";
 import Image from "../Form/Image.jpeg";
+import {
+  hotelDetails
+} from "../../actions/index";
+import * as db from "../../api/index";
+import { bindActionCreators } from "redux";
 
 export class Form extends Component {
   constructor(props) {
@@ -20,7 +26,7 @@ export class Form extends Component {
       lastName: null,
       email: "",
       contact: "",
-      gender: "",
+      gender: "male",
       address: "",
       firstError: "",
       lastError: "",
@@ -123,8 +129,23 @@ export class Form extends Component {
         numberError: "",
       });
     }
+    this.getHoteldetails()
+    // <Redirect to="/payment" />
   };
 
+  getHoteldetails=async()=>{
+    const data={
+      firstName: this.state.firstName,
+      lastName:this.state.lastName,
+      email:this.state.email,
+      contact:this.state.contact,
+      gender:this.state.gender,
+      address:this.state.address
+    }
+    this.props.hotelDetails(data)
+    console.log(data,"hotelNow")
+   await db.getPostHotelDetails(data);
+  }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -200,104 +221,108 @@ export class Form extends Component {
                   <div className="d-flex form-contents1">
                     {/* <label>First Name</label> */}
                     <div className="d-flex w-100">
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      value={this.state.firstName}
-                      onChange={this.handleFirstName}
-                      className={`${
-                        this.state.firstError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                     {this.state.firstError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                   
-               
+                      <input
+                        type="text"
+                        placeholder="First Name"
+                        value={this.state.firstName}
+                        onChange={this.handleFirstName}
+                        className={`${
+                          this.state.firstError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.firstError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
                     </div>
                     {/* <p className="ad-first">{this.state.firstError}</p> */}
-                   
+
                     <div className="d-flex w-100">
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      value={this.state.lastName}
-                      onChange={this.handleLastName}
-                      className={`${
-                        this.state.lastError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                    {this.state.lastError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
+                      <input
+                        type="text"
+                        placeholder="Last Name"
+                        value={this.state.lastName}
+                        onChange={this.handleLastName}
+                        className={`${
+                          this.state.lastError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.lastError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
                     </div>
-                    
+
                     {/* {this.state.lastError} */}
                     <br />
-                   <div className="d-flex w-100">
-                   <input
-                      type="email"
-                      placeholder="E-mail"
-                      value={this.state.email}
-                      onChange={this.handleEmail}
-                      className={`${
-                        this.state.emailError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                    {this.state.emailError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                   </div>
-                    
+                    <div className="d-flex w-100">
+                      <input
+                        type="email"
+                        placeholder="E-mail"
+                        value={this.state.email}
+                        onChange={this.handleEmail}
+                        className={`${
+                          this.state.emailError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.emailError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
+
                     {/* {this.state.emailError} */}
                   </div>
                   <br />
 
                   <div className="d-flex form-contents1">
-                   <div className="d-flex"> 
-                   <input
-                      placeholder="Mobile"
-                      value={this.state.contact}
-                      onChange={this.handleContact}
-                      className={`${
-                        this.state.contactError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                    {this.state.contactError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                   </div>
-                   
+                    <div className="d-flex">
+                      <input
+                        placeholder="Mobile"
+                        value={this.state.contact}
+                        onChange={this.handleContact}
+                        className={`${
+                          this.state.contactError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.contactError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
+
                     {/* {this.state.contactError} */}
                     <br />
                     <div className="GENDER"></div>
-                    <select name="Gender" id="gender-select">
+                    <select name="Gender" id="gender-select" onChange={this.handleGender}>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
                   </div>
 
                   <div className="d-flex form-contents2">
-                        <div className="d-flex">
-
-                    <input
-                      className="form-contents5"
-                      type="text-area"
-                      placeholder="Address"
-                      value={this.state.address}
-                      onChange={this.handleAddress}
-                      className={`${
-                        this.state.addressError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                     {this.state.addressError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                        </div>
+                    <div className="d-flex">
+                      <input
+                        className="form-contents5"
+                        type="text-area"
+                        placeholder="Address"
+                        value={this.state.address}
+                        onChange={this.handleAddress}
+                        className={`${
+                          this.state.addressError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.addressError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                    </div>
                     {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">
+                  <Link
+                          to={{
+                            pathname: `/details`,
+                            // props: { hotelName: get(data, "name", "--") },
+                          }}
+                        >
                     <button onClick={this.handleSubmit}>Submit</button>
+                        </Link>
                   </div>
                 </div>
               </form>
@@ -308,12 +333,20 @@ export class Form extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    hotelDetails: bindActionCreators(hotelDetails, dispatch),
+    
+    
+  };
+};
 const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
   roomRange: get(state, "roomRange", []),
   roomDetailsList: get(state, "roomDetailsList", []),
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
   propertyList: get(state, "propertyList", []),
+  customerDetails:get(state,"customerDetails",[])
 });
 
-export default connect(mapStateToProps, null)(Form);
+export default connect(mapStateToProps,mapDispatchToProps )(Form);
