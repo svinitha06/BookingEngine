@@ -10,7 +10,8 @@
   margin-bottom: 3em;
   background-color: white !important ;
   box-shadow: 10px 10px 5px #aaaaaa;
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-size: 16px;
   transition: transform 0.2s;
 }
@@ -76,7 +77,8 @@
   /* border-radius: 0.7em; */
   box-sizing: border-box;
   text-decoration: none;
-  font-family: ui-rounded;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-weight: 700;
   /* color: rgb(12, 11, 11);
   background: #c4cec6ad; */
@@ -122,14 +124,16 @@ label input {
 }
 h2 {
   font-weight: 700;
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
 }
 h4,
 h3,
 h5,
 h6 {
   font-weight: 100 !important;
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
 }
 
 .btn-placement {
@@ -148,7 +152,8 @@ h6 {
 .ui.inverted.green.button {
   font-weight: 700;
   font-size: 17px;
-  font-family: ui-rounded;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
 }
 .include-food label {
   margin-bottom: 6px;
@@ -160,7 +165,8 @@ h6 {
   /* border-radius: 0.7em !important; */
   box-sizing: border-box !important;
   text-decoration: none !important;
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-weight: 500 !important;
   border-radius: 0px !important;
   color: white !important;
@@ -201,7 +207,8 @@ a.ui.button.reserve-left {
   /* border-radius: 0.7em !important; */
   box-sizing: border-box !important;
   text-decoration: none !important;
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-weight: 500 !important;
   /* color: rgb(12, 11, 11);
   background: #c4cec6ad; */
@@ -243,7 +250,8 @@ a.ui.button.reserve-left {
   margin: 0 0.2em 0.2em 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: ui-rounded;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-weight: 700;
   color: black;
   text-align: center;

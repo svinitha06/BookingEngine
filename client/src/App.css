@@ -2,14 +2,14 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Times, serif ,Helvetica, ui-rounded,Arial, sans-serif !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 
 }
 *{
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
 
 }
 .content-wrap{

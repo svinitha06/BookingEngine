@@ -180,9 +180,9 @@ export class Form extends Component {
                       <div className="hotelHeading">
                         <h1>Hotel Details</h1>
                         <div>
-                          {/* <button onClick={this.handleHotel}>
+                          <button onClick={this.handleHotel}>
                             <KeyboardArrowDownIcon />
-                          </button> */}
+                          </button>
                         </div>
                       </div>
                       {/* {this.state.hotelFlag && <HotelDetail />} */}
@@ -403,11 +403,11 @@ export class Form extends Component {
                         </div>
                       </div>
                     </div>
-                    <div className="submit-form">
-                      <Link as={NavLink} to="/details">
-                        <button onClick={this.handleSubmit}>Submit</button>
-                      </Link>
-                    </div>
+                  </div>
+                  <div className="submit-form">
+                    <Link as={NavLink} to="/details">
+                      <button onClick={this.handleSubmit}>Submit</button>
+                    </Link>
                   </div>
                 </div>
               </form>

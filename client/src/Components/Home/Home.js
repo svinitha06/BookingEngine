@@ -128,9 +128,9 @@ class Home extends React.Component {
   };
   handleCount = () => {
     let count = 0;
-    if ((this.state.childValue + this.state.adultValue) / 4) {
+    if (this.state.adultValue/4) {
       this.setState({
-        roomValue: Math.floor(this.state.adultValue / 2) + 1,
+        roomValue: Math.ceil(this.state.adultValue / 2)
       });
     } else {
       this.setState({
@@ -186,7 +186,7 @@ class Home extends React.Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    // this.handleCount();
+    this.handleCount();
   };
   handleIncChild = () => {
     this.props.child({
@@ -217,13 +217,13 @@ class Home extends React.Component {
       let res = await db.getproperty();
       this.props.property(res);
     }
-    // if (!searchValidator) {
-    //   searchValidator = setTimeout(() => {
-    //     this.getLocation(e);
-    //   }, 1000);
-    // } else {
-    //   clearTimeout(searchValidator);
-    // }
+    if (!searchValidator) {
+      searchValidator = setTimeout(() => {
+        this.getLocation(e);
+      }, 1000);
+    } else {
+      clearTimeout(searchValidator);
+    }
     this.getLocation(e);
   };
   getLocation = async (data) => {
@@ -484,7 +484,7 @@ class Home extends React.Component {
                       </div>
                       <div className="pin">
                         <PinDropIcon style={{ color: "#FF5733" }}></PinDropIcon>
-                        <p className="pin-des">{get(data, "location", "--")}</p>
+                        <p className="pin-des">{get(data,"location", "--")}</p>
                       </div>
                       <div className="pin">
                         <PhoneInTalkIcon></PhoneInTalkIcon>
@@ -515,9 +515,7 @@ class Home extends React.Component {
             <img className="image-error" src={giphy} alt="loading..."></img>
           </div>
         ) : null}
-        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
-          ? ""
-          : null}
+        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null}
         {/* {console.log(this.props,"now check")} */}
 
         <p className="customMade2">
@@ -596,7 +594,7 @@ class Home extends React.Component {
                             style={{ color: "#FF5733" }}
                           ></PinDropIcon>
                           <p className="pin-des">
-                            {get(data, "location", "--")}
+                            {get(data,"location", "--")}
                           </p>
                         </div>
                         <div className="pin">

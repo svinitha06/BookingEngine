@@ -55,7 +55,7 @@ class DisplayRedux extends Component {
         // sudoProp = this.props.match.params.id;
         this.props.roomDetails(responseOfApi.data);
         this.setState({
-          list: responseOfApi.data,
+          // list: responseOfApi.data,
           list: this.props.roomDetailsList,
         });
         // console.log("this.props.state", this.props);
@@ -201,7 +201,7 @@ class DisplayRedux extends Component {
       color: "white",
       backgroundColor: "DodgerBlue",
       padding: "10px",
-      fontFamily: "ui-rounded",
+      fontFamily:  "Arial, Helvetica, sans-serif",
       textAlign: "center",
     };
     let total = this.calculateTotal();

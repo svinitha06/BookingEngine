@@ -19,7 +19,8 @@ const propertyMasterSchema = new mongoose.Schema({
 
     location: {
         type: String,
-        required: false
+        required: false,
+        uniqueCaseInsensitive: true
     },
 
     description: {
