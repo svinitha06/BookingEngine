@@ -114,6 +114,9 @@ export class BasicLayout extends Component {
 
   handleDec = () => {
     if (this.state.roomValue !== 1) {
+      this.props.room({
+        roomValue: this.state.roomValue - 1,
+      });
       this.setState({
         roomValue: this.state.roomValue - 1,
       });
@@ -121,36 +124,47 @@ export class BasicLayout extends Component {
   };
   handleDecAdult = () => {
     if (this.state.adultValue !== 1) {
+      this.props.adult({
+        adultValue: this.state.adultValue - 1,
+      });
       this.setState({
         adultValue: this.state.adultValue - 1,
       });
     }
-    this.handleCount();
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
+      this.props.child({
+        childValue: this.state.childValue - 1,
+      });
       this.setState({
         childValue: this.state.childValue - 1,
       });
     }
-    this.handleCount();
   };
   handleInc = () => {
+    this.props.room({
+      roomValue: this.state.roomValue + 1,
+    });
     this.setState({
       roomValue: this.state.roomValue + 1,
     });
   };
   handleIncAdult = () => {
+    this.props.adult({
+      adultValue: this.state.adultValue + 1,
+    });
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    this.handleCount();
   };
   handleIncChild = () => {
+    this.props.child({
+      childValue: this.state.childValue + 1,
+    });
     this.setState({
       childValue: this.state.childValue + 1,
     });
-    this.handleCount();
   };
   handleClick = (event) => {
     this.setState({

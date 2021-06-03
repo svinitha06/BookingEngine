@@ -210,6 +210,10 @@ class DisplayRedux extends Component {
 
     this.setState({ countObj: count });
   };
+  handleReserve = () => {
+    let theTotal = this.calculateTotal();
+    if (theTotal <= 0) alert("Please select a Room!");
+  };
 
   render() {
     const mystyle = {
@@ -473,8 +477,10 @@ class DisplayRedux extends Component {
                   <Button
                     className="reserve"
                     // class="ui inverted green button"
-                    as={NavLink}
+
+                    onClick={this.handleReserve}
                     to="/form"
+                    as={NavLink}
                   >
                     Reserve
                   </Button>
