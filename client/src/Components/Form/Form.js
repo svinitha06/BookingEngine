@@ -7,6 +7,7 @@ import { withRouter, Link } from "react-router-dom";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import Modal from '@material-ui/core/Modal';
 import validator from "validator";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
@@ -34,12 +35,16 @@ export class Form extends Component {
       addressError: "",
       alphaError: "",
       hotelFlag: true,
+      open:false,
+      bookNowMsg:"",
+      bookOpen:false
     };
   }
   componentDidMount() {
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
+
     });
     console.log("this.props from form", this.props);
   }
@@ -75,10 +80,10 @@ export class Form extends Component {
       contact: event.target.value,
       contactError: "",
     });
-    if(this.state.contact===""){
+    if (this.state.contact === "") {
       this.setState({
-        alphaError:""
-      })
+        alphaError: "",
+      });
     }
   };
   handleGender = (event) => {
@@ -94,7 +99,7 @@ export class Form extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    const ascii = this.state.contact.charCodeAt(0)
+    const ascii = this.state.contact.charCodeAt(0);
     if (this.state.firstName === null) {
       this.setState({
         firstError: "Enter Firstname",
@@ -114,38 +119,40 @@ export class Form extends Component {
         emailError: "Enter Valid Email-ID",
       });
     }
-  
+
     if (this.state.address === "") {
       this.setState({
         addressError: "Enter address",
       });
     }
-    if (this.state.contact.length == 10 ) {
+    if (this.state.contact.length == 10) {
       this.setState({
         contactError: "",
       });
-    } else if((ascii < '47' || ascii > '57')){
+    } else if (ascii < "47" || ascii > "57") {
       this.setState({
         contactError: "",
-        alphaError:"No special characters"
+        alphaError: "No special characters",
       });
-    }
-    else {
+    } else {
       this.setState({
         contactError: "Enter 10 digits",
-        alphaError:""
+        alphaError: "",
       });
     }
+    if(this.state.firstName !== null && this.state.lastName !== null && validator.isEmail(this.state.email) && this.state.address !== "" && this.state.contact.length == 10){
+    this.setState({
+      open:true
+    })
     this.getHoteldetails();
+  }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
-  //  <Redirect to="/display"/>
-   
   };
 
   getHoteldetails = async () => {
     const data = {
-      guestName: this.state.firstName+this.state.lastName,
+      guestName: this.state.firstName + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
       // gender: this.state.gender,
@@ -155,6 +162,21 @@ export class Form extends Component {
     console.log(data, "hotelNow");
     await db.getPostHotelDetails(data);
   };
+  
+  handleClose=()=>{
+    // this.setState({
+    //   open:false
+    // })
+    <Redirect to="/"/>
+  }
+  handleBook=()=>{
+   
+
+ this.setState({
+      open:false,
+     bookNowMsg:"Booking has been made"
+})
+  }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -272,9 +294,9 @@ export class Form extends Component {
                       )}
                     </div>
                     <div>
-                    <p className="ad-first">{this.state.firstError}</p>
+                      <p className="ad-first">{this.state.firstError}</p>
                     </div>
-                   
+
                     <label>Last Name</label>
                     <div className="d-flex w-100">
                       {/* <div className="ui input"></div> */}
@@ -290,18 +312,17 @@ export class Form extends Component {
                       {this.state.lastError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                        <div  >
-                    <p className="ad-second">{this.state.lastError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-second">{this.state.lastError}</p>
+                      </div>
                     </div>
 
                     {/* {this.state.lastError} */}
                   </div>
-                  
+
                   <br />
 
-                 
-                  <div style={{marginLeft:"2.5em"}}>
+                  <div style={{ marginLeft: "2.5em" }}>
                     <br />
                     <div className="d-flex form-contents6"></div>
                     <div className="d-flex w-100">
@@ -319,13 +340,13 @@ export class Form extends Component {
                       {this.state.emailError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                      <div  >
-                    <p className="ad-third">{this.state.emailError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-third">{this.state.emailError}</p>
+                      </div>
                     </div>
                     {/* {this.state.emailError} */}
                   </div>
-                 
+
                   <div className="d-flex form-contents7">
                     <label>Contact</label>
                     <div className="d-flex">
@@ -344,10 +365,10 @@ export class Form extends Component {
                       {this.state.alphaError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                       <div  >
-                    <p className="ad-4">{this.state.contactError}</p>
-                    <p className="ad-al">{this.state.alphaError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-4">{this.state.contactError}</p>
+                        <p className="ad-al">{this.state.alphaError}</p>
+                      </div>
                     </div>
 
                     {/* {this.state.contactError} */}
@@ -366,15 +387,11 @@ export class Form extends Component {
 
                   <div className="d-flex form-contents2 Address">
                     <label>Address</label>
-                    
                   </div>
 
                   <div className="d-flex form-contents2 Address">
-                    <div>
-                     
-                    </div>
+                    <div></div>
                     <div className="d-flex">
-                      {/* <div className="ui input"></div> */}
 
                       <input
                         className="form-contents5"
@@ -389,21 +406,44 @@ export class Form extends Component {
                       {this.state.addressError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                      <div  >
-                    <p className="ad-5">{this.state.addressError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-5">{this.state.addressError}</p>
+                      </div>
                     </div>
                     {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">
-                 <Link as={NavLink} to="/details">
-                 <button onClick={this.handleSubmit}>Submit</button>
-                 </Link>
+                    {/* <Link as={NavLink} to="/details"> */}
+                    <button onClick={this.handleSubmit}>Submit</button>
+                    {/* </Link> */}
+                    {this.state.open && 
+                    <Modal
+                      open={this.state.open}
+                      onClose={()=>this.setState({open:false})}
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                    >
+                   <div className="modal-open">
+                     {console.log(this.props)}
+                     <div className="contents-modal">
+                     <h1>
+                       Hello   {this.state.firstName}</h1>
+                     <h4 className="head-confirm">Booking Confirmed !!</h4>
+                     
+                  
+                     </div>
+                     
+                  <div className="bookNow">
+                    <Link as={NavLink} to="/">
+                    <button  >Back to Home</button>
 
-   
-                   
+                    </Link>
+                    </div>
+                  {/* onClick={this.handleClose */}
+                   </div>
+                    </Modal>}
+                    {this.state.bookNowMsg}
                   </div>
-                
                 </div>
               </form>
             </div>

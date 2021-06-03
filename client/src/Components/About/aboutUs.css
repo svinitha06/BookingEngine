@@ -10,7 +10,8 @@
     margin-top: 7em;
     margin-left: 6em;
     padding: 17px;
-    font-family: ui-rounded;
+    font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
     height: 20%;
     box-shadow: 10px 10px 5px #aaaaaa;
     
@@ -79,8 +80,8 @@ line-height: 1.6;
     border: none;
     outline: none;
     color: #fff;
-    background-color: rgba(0,0,0,0.8);
-    border: 1px solid transparent;
+    background: rgba(0,0,0,0.8);
+    /* border: 1px solid transparent; */
     transition: all 0.3s;
     cursor: pointer;
 }

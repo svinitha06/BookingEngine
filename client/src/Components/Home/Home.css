@@ -67,7 +67,8 @@
 }
 .nameDes h1 {
   margin-top: 6px !important;
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
 }
 .e-date-range-wrapper {
       /* margin-bottom: 1% !important; */
@@ -84,7 +85,8 @@
 ::-webkit-input-placeholder {
   color: black !important;
   font-weight: 700 !important;
-  font-family: ui-rounded;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-size: 15px;
 }
 .dateError .e-date-range-wrapper {
@@ -177,7 +179,8 @@
   margin-left: 25px;
   margin-top: -23px !important;
   font-weight: 800 !important;
-  font-family: ui-rounded;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-size: 15px;
 }
 .Booknow-button {
@@ -268,7 +271,8 @@
   border: 1px solid black;
   color: black !important;
   font-weight: 700 !important;
-  font-family: ui-rounded;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
 
   /* margin-right: 1em; */
   /* padding-right: 1em; */
@@ -281,18 +285,21 @@
   margin-top: 7px !important;
 }
 p h1 h6 {
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
 }
 
 .content-css {
-  font-family: ui-rounded !important;
+  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
   font-size: 14px;
 }
 .noProp {
      margin-left: 14em;
     margin-top: 5em !important;
     color: red;
-    font-family: ui-rounded !important;
+    font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
     border: 1px solid black;
     height: 50px;
     padding: 9px;
@@ -317,7 +324,8 @@ p h1 h6 {
      height: 0vh;
      padding-bottom: 0 !important;
      margin-left: 16em;
-     font-family: ui-rounded !important;
+     font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+
      font-weight: 900;
      font-size: 20px;
 }

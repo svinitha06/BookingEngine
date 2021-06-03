@@ -54,7 +54,7 @@ class DisplayRedux extends Component {
         // sudoProp = this.props.match.params.id;
         this.props.roomDetails(responseOfApi.data);
         this.setState({
-          list: responseOfApi.data,
+          // list: responseOfApi.data,
           list: this.props.roomDetailsList,
         });
         // console.log("this.props.state", this.props);
@@ -71,7 +71,7 @@ class DisplayRedux extends Component {
       })
       .catch((error) => {
         // console.log("Error gtting data", error);
-        <h1>Error fetching data</h1>;
+        <h1>Error fetching data</h1>
         this.setState({ error: !this.state.error });
       });
     this.getSomething(this.props.match.params.id);
@@ -220,7 +220,7 @@ class DisplayRedux extends Component {
       color: "white",
       backgroundColor: "DodgerBlue",
       padding: "10px",
-      fontFamily: "ui-rounded",
+      fontFamily:  "Arial, Helvetica, sans-serif",
       textAlign: "center",
     };
     let total = this.calculateTotal();

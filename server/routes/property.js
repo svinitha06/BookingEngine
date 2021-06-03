@@ -118,10 +118,10 @@ router.get('/Property/search', async (req, res) => {
 router.get('/Property/:location', async (req, res) => {
     try {
         const post = await propertyMaster.find({ location: (req.params.location) });
-        if (post.length === 0) {
-            res.status(404).send("Hotels for location " + req.params.location + " not found")
-        }
-        else
+        // if (post.length === 0) {
+        //     res.status(404).send("Hotels for location " + req.params.location + " not found")
+        // }
+        // else
             res.json(post);
     } catch (err) {
         res.status(400).send(err)
