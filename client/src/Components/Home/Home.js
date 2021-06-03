@@ -38,8 +38,8 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      start: null,
-      end: null,
+      start: this.props.dateRange.start,
+      end: this.props.dateRange.start,
       roomAnchor: null,
       roomValue: this.props.roomVal,
       adultValue: this.props.adultVal,
@@ -53,20 +53,25 @@ class Home extends React.Component {
       dateObj: [],
       loader: true,
       viewDetailsError: "",
+      flag: true,
     };
   }
   componentDidMount() {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    this.props.date({ start: new Date(), end: tomorrow });
-    this.setState({
-      start: today,
-      end: tomorrow,
-      dateObj: this.props.dateRange,
-      dateError: "",
-      clicked: false,
-    });
+    if (this.state.flag) {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      this.props.date({ start: new Date(), end: tomorrow });
+      this.setState({
+        start: today,
+        end: tomorrow,
+        dateObj: this.props.dateRange,
+        dateError: "",
+        clicked: false,
+      });
+    }
+    this.setState({ flag: !this.state.flag });
+
     this.getcall();
     // this.getLocation()
     // this.getRoomRates();
@@ -226,9 +231,9 @@ class Home extends React.Component {
     this.props.property(res);
     console.log(res, res.length, "come on");
     if (res.length === 0) {
-      let res = await db.getproperty();
-      console.log(res, "response");
-      this.props.emptyProperty(res);
+      let response = await db.getproperty();
+      console.log(response, "response");
+      this.props.emptyProperty(response);
     }
     this.setState({
       loader: false,
@@ -257,10 +262,10 @@ class Home extends React.Component {
         <div>
           <div className="banner">
             <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
-            {/* <div className="banner-content">
+            <div className="banner-content">
               {/* <h2>Enjoy your stay</h2> */}
-              {/* <p>StayCation</p>
-            </div> */} 
+              <p>StayCation</p>
+            </div>
           </div>
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
@@ -417,7 +422,7 @@ class Home extends React.Component {
             <div className="homeContainer" key={index}>
               <div className="wrapper">
                 <Carousel showArrows={false}>
-                  <div style={{ marginLeft: "12em" }}>
+                  <div style={{ marginLeft: "7em" }}>
                     <img
                       className="ImageTile"
                       key={index}
@@ -508,48 +513,51 @@ class Home extends React.Component {
             <h2 className="noProp"> Sorry!! No properties available.</h2>
 
             <img className="image-error" src={giphy} alt="loading..."></img>
-
-            
-          
           </div>
         ) : null}
-        {/* {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null} */}
+        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
+          ? ""
+          : null}
         {/* {console.log(this.props,"now check")} */}
-        
-            <p className="customMade2"><i className="customMade">Related Search : </i>Check out the properties available </p>
-        {!this.props.propertyList.length?this.props.propertyEmptyList.map((data, index) => (
-            <div className="homeContainer" key={index}>
-              <div className="wrapper">
-                <Carousel showArrows={false}>
-                  <div style={{marginLeft:"12em"}}>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[0]")}
-                    ></img>
-                  </div>
-                  <div>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[1]")}
-                    ></img>
-                  </div>
-                  <div>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[2]")}
-                    ></img>
-                  </div>
-                  <div>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[3]")}
-                    ></img>
-                  </div>
-                </Carousel>
+
+        <p className="customMade2">
+          <i className="customMade">Related Search : </i>Check out the
+          properties available{" "}
+        </p>
+        {!this.props.propertyList.length
+          ? this.props.propertyEmptyList.map((data, index) => (
+              <div className="homeContainer" key={index}>
+                <div className="wrapper">
+                  <Carousel showArrows={false}>
+                    <div style={{ marginLeft: "12em" }}>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[0]")}
+                      ></img>
+                    </div>
+                    <div>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[1]")}
+                      ></img>
+                    </div>
+                    <div>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[2]")}
+                      ></img>
+                    </div>
+                    <div>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[3]")}
+                      ></img>
+                    </div>
+                  </Carousel>
 
                   <div className="nameDes">
                     <h1>{get(data, "name", "--")}</h1>

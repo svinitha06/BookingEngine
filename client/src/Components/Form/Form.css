@@ -32,21 +32,12 @@
   margin-left: 28%; */
 .form-contents1 {
   width: 200%;
-  margin-top: 25px;
-  /* margin-left: 110px; */
-  margin-left: 50px;
-  padding-right: 31px;
-  margin-right: 40px !important;
-  margin-bottom: 6px
-
-  /* margin-bottom: 1em; */
+  margin-top: 5%;
+  margin-left: 11%;
+  /* padding-right: 31px; */
+  /* margin-right: 40px !important; */
+  margin-bottom: 6px;
 }
-/* .ui.button, .ui.buttons .button, .ui.buttons .or {
-  font-size: 1rem;
-  border: 2.5px solid rgb(0, 0, 0,1.6);
-  margin-left: -1px;
-} */
-
 .ui button ui {
   margin-top: 38px;
   margin-left: 37px;
@@ -102,37 +93,31 @@
 
 .form-contents .form-contents1 input,
 .form-contents .form-contents1 select {
-border-radius: 22px;
+  border-radius: 22px;
 }
 .form-contents .form-contents7 input,
 .form-contents .form-contents7 select {
-border-radius: 22px;
+  border-radius: 22px;
 }
 
-.form-contents .form-contents6 input{
+.form-contents .form-contents6 input {
   border-radius: 22px;
 }
 
 .form-contents6 {
   margin-left: 11px;
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
-.form-contents .form-contents2 input{
-border-radius: 22px;
+.form-contents .form-contents2 input {
+  border-radius: 22px;
 }
-.form-contents .form-contents7 select{
+.form-contents .form-contents7 select {
   width: 21% !important;
 }
 
-
-.form-contents7{
-  width: 200%;
-  margin-top: 35px;
-  margin-left: 48px;
-  padding-right: 31px;
-  margin-right: 40px !important;
-  margin-bottom: 6px
+.form-contents7 {
+  margin-left: 11% !important ;
 }
 
 /* .gender-select {
@@ -141,23 +126,24 @@ border-radius: 22px;
 
 .form-contents {
   font-size: large;
-  padding-top: 5px !important;
+  /* padding-top: 5px !important; */
   /* min-height: 100%; */
-  padding-right: 30%;
+  /* padding-right: 24%; */
   /* margin-right: 32%; */
   margin-left: 24%;
   /* border: 1px solid; */
   width: 58%;
   /* display: grid; */
   /* margin-top: -74%; */
-  font-style: italic;
+  /* font-style: italic; */
   font-size: large;
-  font-weight: bolder;
+  /* font-weight: bolder; */
   border-radius: 22px;
   box-shadow: 10px 10px 5px #aaaaaa;
   background-color: rgb(255, 255, 255);
-  border:2.5px solid rgb(31 29 29);
-  margin-bottom: 15px;
+  border: 2.5px solid rgb(31 29 29);
+  /* margin-bottom: 15px; */
+  border: none;
 }
 
 .form {
@@ -207,39 +193,35 @@ border-radius: 22px;
   margin-bottom: 21px;
 }
 
-
-.form-contents .form-contents2 input{
+.form-contents .form-contents2 input {
   padding: 12%;
-    width: 122%
+  width: 122%;
 }
-.form-contents .form-contents2 .d-flex{
+.form-contents .form-contents2 .d-flex {
   width: 52%;
 }
- .form-contents .form-contents6  .d-flex input{
-  
-} 
 
 /* .form-contents .form-contents6 .d-flex{
   width: 187% !important;
   background-color: rgb(213, 234, 247);
 } */
-.form-contents .form-contents7 .d-flex{
+.form-contents .form-contents7 .d-flex {
   margin-right: 38px;
   margin-left: 17px;
 }
-.form-contents .form-contents1 .d-flex{
-  margin-left: 14px
+.form-contents .form-contents1 .d-flex {
+  margin-left: 14px;
 }
 
-.form-contents .form-contents7  select{
+.form-contents .form-contents7 select {
   width: 21%;
 }
 
-.form-contents .form-contents2  .d-flex{
+.form-contents .form-contents2 .d-flex {
   margin-left: 13px;
 }
-.form-contents .form-contents2  .d-flex{
-  width: 66%
+.form-contents .form-contents2 .d-flex {
+  width: 66%;
 }
 
 .push {
@@ -272,7 +254,8 @@ border-radius: 22px;
   margin-left: 1em;
   background-color: lightgray;
 }
-.form-contents7 input,select {
+.form-contents7 input,
+select {
   background-color: lightgray;
 }
 .form-contents7 select {
@@ -281,13 +264,13 @@ border-radius: 22px;
 .form-contents2 input {
   background-color: lightgray;
 }
-.form-contents input{
+.form-contents input {
   border-radius: 22px;
 }
-.form-contents .form-contents7 input{
+.form-contents .form-contents7 input {
   width: 232px;
 }
-.form-contents  input{
+.form-contents input {
   margin-left: 3% !important;
   width: 68% !important;
   background-color: lightgray !important;
@@ -297,7 +280,7 @@ border-radius: 22px;
     background-color: lightskyblue;
     margin-left: 13px;
     width: 67%;
-} */ 
+} */
 select {
   margin-left: 1em !important;
   opacity: 2.6 !important;
@@ -443,7 +426,7 @@ select {
   border-radius: 22px;
   padding: 3%;
 }
-.ad-first{
+.ad-first {
   margin-top: -19px !important;
   margin-left: -166px;
   font-size: 14px;
@@ -452,7 +435,7 @@ select {
   color: red;
   opacity: 0.7;
 }
-.ad-second{
+.ad-second {
   margin-top: -2.5em !important;
   /* margin-bottom: 1em !important; */
   margin-left: -11em;
@@ -463,37 +446,37 @@ select {
   opacity: 0.7;
   padding-top: 1em;
 }
-.ad-third{
+.ad-third {
   margin-top: -2.5em !important;
-    margin-left: -12em;
-    padding: 1em;
+  margin-left: -12em;
+  padding: 1em;
   font-size: 14px;
   font-family: ui-rounded !important;
   font-style: normal;
   color: red;
   opacity: 0.7;
 }
-.ad-4{
+.ad-4 {
   margin-top: -2.5em !important;
   margin-left: -15em;
   padding: 1em;
-font-size: 14px;
-font-family: ui-rounded !important;
-font-style: normal;
-color: red;
-opacity: 0.7;
+  font-size: 14px;
+  font-family: ui-rounded !important;
+  font-style: normal;
+  color: red;
+  opacity: 0.7;
 }
-.ad-5{
+.ad-5 {
   margin-top: -2.5em !important;
   margin-left: -20em;
   padding: 1em;
-font-size: 14px;
-font-family: ui-rounded !important;
-font-style: normal;
-color: red;
-opacity: 0.7;
+  font-size: 14px;
+  font-family: ui-rounded !important;
+  font-style: normal;
+  color: red;
+  opacity: 0.7;
 }
-.ad-al{
+.ad-al {
   margin-top: -2.75em !important;
   margin-left: -12.5em;
   padding: 1em;
@@ -523,7 +506,7 @@ label {
   margin-left: 1% !important;
 } */
 .email {
-  margin-left: 98px !important;
+  margin-left: 9% !important;
 }
 .guestHeading h1 {
   padding: 2%;

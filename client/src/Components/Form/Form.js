@@ -75,10 +75,10 @@ export class Form extends Component {
       contact: event.target.value,
       contactError: "",
     });
-    if(this.state.contact===""){
+    if (this.state.contact === "") {
       this.setState({
-        alphaError:""
-      })
+        alphaError: "",
+      });
     }
   };
   handleGender = (event) => {
@@ -94,7 +94,7 @@ export class Form extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    const ascii = this.state.contact.charCodeAt(0)
+    const ascii = this.state.contact.charCodeAt(0);
     if (this.state.firstName === null) {
       this.setState({
         firstError: "Enter Firstname",
@@ -114,38 +114,36 @@ export class Form extends Component {
         emailError: "Enter Valid Email-ID",
       });
     }
-  
+
     if (this.state.address === "") {
       this.setState({
         addressError: "Enter address",
       });
     }
-    if (this.state.contact.length == 10 ) {
+    if (this.state.contact.length == 10) {
       this.setState({
         contactError: "",
       });
-    } else if((ascii < '47' || ascii > '57')){
+    } else if (ascii < "47" || ascii > "57") {
       this.setState({
         contactError: "",
-        alphaError:"No special characters"
+        alphaError: "No special characters",
       });
-    }
-    else {
+    } else {
       this.setState({
         contactError: "Enter 10 digits",
-        alphaError:""
+        alphaError: "",
       });
     }
     this.getHoteldetails();
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
-  //  <Redirect to="/display"/>
-   
+    //  <Redirect to="/display"/>
   };
 
   getHoteldetails = async () => {
     const data = {
-      guestName: this.state.firstName+this.state.lastName,
+      guestName: this.state.firstName + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
       // gender: this.state.gender,
@@ -272,9 +270,9 @@ export class Form extends Component {
                       )}
                     </div>
                     <div>
-                    <p className="ad-first">{this.state.firstError}</p>
+                      <p className="ad-first">{this.state.firstError}</p>
                     </div>
-                   
+
                     <label>Last Name</label>
                     <div className="d-flex w-100">
                       {/* <div className="ui input"></div> */}
@@ -290,22 +288,21 @@ export class Form extends Component {
                       {this.state.lastError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                        <div  >
-                    <p className="ad-second">{this.state.lastError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-second">{this.state.lastError}</p>
+                      </div>
                     </div>
 
                     {/* {this.state.lastError} */}
                   </div>
-                  
-                  <br />
-
-                 
-                  <div style={{marginLeft:"2.5em"}}>
-                    <br />
-                    <div className="d-flex form-contents6"></div>
-                    <div className="d-flex w-100">
-                      <label>Email Address</label>
+                  <div>
+                    <div
+                      className="d-flex w-100"
+                      className="d-flex form-contents6"
+                    >
+                      <div className="email">
+                        <label>Email Address</label>
+                      </div>
                       {/* <div className="ui input"></div> */}
                       <input
                         type="email"
@@ -319,13 +316,12 @@ export class Form extends Component {
                       {this.state.emailError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                      <div  >
-                    <p className="ad-third">{this.state.emailError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-third">{this.state.emailError}</p>
+                      </div>
                     </div>
                     {/* {this.state.emailError} */}
                   </div>
-                 
                   <div className="d-flex form-contents7">
                     <label>Contact</label>
                     <div className="d-flex">
@@ -344,35 +340,17 @@ export class Form extends Component {
                       {this.state.alphaError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                       <div  >
-                    <p className="ad-4">{this.state.contactError}</p>
-                    <p className="ad-al">{this.state.alphaError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-4">{this.state.contactError}</p>
+                        <p className="ad-al">{this.state.alphaError}</p>
+                      </div>
                     </div>
 
                     {/* {this.state.contactError} */}
-                    <br />
-                    <label>Gender</label>
-                    <div className="GENDER"></div>
-                    <select
-                      name="Gender"
-                      id="gender-select"
-                      onChange={this.handleGender}
-                    >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
                   </div>
 
                   <div className="d-flex form-contents2 Address">
-                    <label>Address</label>
-                    
-                  </div>
-
-                  <div className="d-flex form-contents2 Address">
-                    <div>
-                     
-                    </div>
+                    <div></div>
                     <div className="d-flex">
                       {/* <div className="ui input"></div> */}
 
@@ -389,21 +367,17 @@ export class Form extends Component {
                       {this.state.addressError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                      <div  >
-                    <p className="ad-5">{this.state.addressError}</p>
-                    </div>
+                      <div>
+                        <p className="ad-5">{this.state.addressError}</p>
+                      </div>
                     </div>
                     {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">
-                 <Link as={NavLink} to="/details">
-                 <button onClick={this.handleSubmit}>Submit</button>
-                 </Link>
-
-   
-                   
+                    <Link as={NavLink} to="/details">
+                      <button onClick={this.handleSubmit}>Submit</button>
+                    </Link>
                   </div>
-                
                 </div>
               </form>
             </div>
