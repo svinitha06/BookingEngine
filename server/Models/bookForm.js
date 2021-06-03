@@ -1,67 +1,62 @@
 const mongoose=require ("mongoose");
-const validator=require("validator");
 
-const bookingSchema= new mongoose.Schema({
+const bookFormSchema= new mongoose.Schema({
 
     propertyId:{
          type: Number,
-        required:true
+        required:false
 
     },
 
     roomType:{
          type: String,
-        required:true
+        required:false
 
     },
 
     guestName:{
          type: String,
-        required:true
+        required:false
 
     },
     mobile:{ 
         type: Number,
-        required:true,
+        required:false,
         unique:true,
         min: 10
     },
     email:{
         type: String,
-        required:true,
+        required:false,
         unique:true,
-        validate(value){
-            if(!validator.isEmail(value)){
-                throw new Error("Invalid Email")
-            }
-        }
+
     },
     Adults:{
          type: Number,
-        required:true
+        required:false
 
     },
     Children:{
          type: Number,
-        required:true
+        required:false
 
     },
     planType:{
         type: String,
-        required:true
+        required:false
     },
     
     stayingDays:{
         type: Number,
-        required:true
+        required:false
     },
    
     totalRate:{
         type: Number,
-        required:true
+        required:false
 
     }
 
 })
 
-module.exports=Booking=mongoose.model('Booking',bookingSchema);
+module.exports=bookForm=mongoose.model('bookForm',bookFormSchema);
