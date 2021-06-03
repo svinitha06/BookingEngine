@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Form.css";
+import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
@@ -11,9 +12,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
 import ErrorIcon from "@material-ui/icons/Error";
 import Image from "../Form/Image.jpeg";
-import {
-  hotelDetails
-} from "../../actions/index";
+import { hotelDetails } from "../../actions/index";
 import * as db from "../../api/index";
 import { bindActionCreators } from "redux";
 
@@ -33,7 +32,7 @@ export class Form extends Component {
       emailError: "",
       contactError: "",
       addressError: "",
-      numberError: "",
+      alphaError: "",
       hotelFlag: true,
     };
   }
@@ -76,6 +75,11 @@ export class Form extends Component {
       contact: event.target.value,
       contactError: "",
     });
+    if(this.state.contact===""){
+      this.setState({
+        alphaError:""
+      })
+    }
   };
   handleGender = (event) => {
     this.setState({
@@ -90,14 +94,15 @@ export class Form extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
+    const ascii = this.state.contact.charCodeAt(0)
     if (this.state.firstName === null) {
       this.setState({
-        firstError: "enter firstName",
+        firstError: "Enter Firstname",
       });
     }
     if (this.state.lastName === null) {
       this.setState({
-        lastError: "enter lastname",
+        lastError: "Enter Lastname",
       });
     }
     if (validator.isEmail(this.state.email)) {
@@ -106,56 +111,48 @@ export class Form extends Component {
       });
     } else {
       this.setState({
-        emailError: "enter valid email",
+        emailError: "Enter Valid Email-ID",
       });
     }
-    if (this.state.contact === "") {
-      this.setState({
-        numberError: "Enter number",
-      });
-    }
+  
     if (this.state.address === "") {
       this.setState({
         addressError: "Enter address",
       });
     }
-    // if (validator.isMobilePhone(this.state.contact)) {
-    //   this.setState({
-    //     contactError: "",
-    //   });
-    // } else {
-    //   this.setState({
-    //     contactError: "Enter Valid Number",
-    //     numberError: "",
-    //   });
-    // }
-    if(this.state.contact.length==10){
+    if (this.state.contact.length == 10 ) {
       this.setState({
-        contactError:""
-      })
-    }
-    else{
+        contactError: "",
+      });
+    } else if((ascii < '47' || ascii > '57')){
       this.setState({
-        contactError: "Enter 10 digits"
-      })
+        contactError: "",
+        alphaError:"No special characters"
+      });
     }
-    this.getHoteldetails()
-    // <Redirect to="/payment" />
+    else {
+      this.setState({
+        contactError: "Enter 10 digits",
+        alphaError:""
+      });
+    }
+    this.getHoteldetails();
+   
+   
   };
 
-  getHoteldetails=async()=>{
-    const data={
-      firstName: this.state.firstName,
-      lastName:this.state.lastName,
-      email:this.state.email,
-      contact:this.state.contact,
-      gender:this.state.gender,
-      address:this.state.address
-    }
-    this.props.hotelDetails(data)
-    console.log(data,"hotelNow")
-   await db.getPostHotelDetails(data);
-  }
+  getHoteldetails = async () => {
+    const data = {
+      guestName: this.state.firstName+this.state.lastName,
+      email: this.state.email,
+      mobile: this.state.contact,
+      // gender: this.state.gender,
+      // address: this.state.address,
+    };
+    this.props.hotelDetails(data);
+    console.log(data, "hotelNow");
+    await db.getPostHotelDetails(data);
+  };
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -231,123 +228,143 @@ export class Form extends Component {
                   <div className="d-flex form-contents1">
                     <label>First Name</label>
                     <div className="d-flex w-100">
-                    {/* <div className="ui input"></div> */}
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      value={this.state.firstName}
-                      onChange={this.handleFirstName}
-                      className={`${
-                        this.state.firstError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                     {this.state.firstError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                   
-               
+                      {/* <div className="ui input"></div> */}
+                      <input
+                        type="text"
+                        placeholder="First Name"
+                        value={this.state.firstName}
+                        onChange={this.handleFirstName}
+                        className={`${
+                          this.state.firstError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.firstError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
                     </div>
-                    {/* <p className="ad-first">{this.state.firstError}</p> */}
+                    <div>
+                    <p className="ad-first">{this.state.firstError}</p>
+                    </div>
+                   
                     <label>Last Name</label>
                     <div className="d-flex w-100">
-                    {/* <div className="ui input"></div> */}
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      value={this.state.lastName}
-                      onChange={this.handleLastName}
-                      className={`${
-                        this.state.lastError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                    {this.state.lastError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
+                      {/* <div className="ui input"></div> */}
+                      <input
+                        type="text"
+                        placeholder="Last Name"
+                        value={this.state.lastName}
+                        onChange={this.handleLastName}
+                        className={`${
+                          this.state.lastError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.lastError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                        <div  >
+                    <p className="ad-second">{this.state.lastError}</p>
+                    </div>
                     </div>
 
                     {/* {this.state.lastError} */}
-                    
-                   </div>
-                    <div>
-                    <br />
-                    <div className="d-flex form-contents6"></div>
-                   <div className="d-flex w-100">
-                   <label>Email Address</label>
-                     {/* <div className="ui input"></div> */}
-                   <input
-                      type="email"
-                      placeholder="E-mail"
-                      value={this.state.email}
-                      onChange={this.handleEmail}
-                      className={`${
-                        this.state.emailError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                    {this.state.emailError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}</div>
-                    {/* {this.state.emailError} */}
                   </div>
+                  
                   <br />
 
+                 
+                  <div>
+                    <br />
+                    <div className="d-flex form-contents6"></div>
+                    <div className="d-flex w-100">
+                      <label>Email Address</label>
+                      {/* <div className="ui input"></div> */}
+                      <input
+                        type="email"
+                        placeholder="E-mail"
+                        value={this.state.email}
+                        onChange={this.handleEmail}
+                        className={`${
+                          this.state.emailError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.emailError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                      <div  >
+                    <p className="ad-third">{this.state.emailError}</p>
+                    </div>
+                    </div>
+                    {/* {this.state.emailError} */}
+                  </div>
+                 
                   <div className="d-flex form-contents7">
-                  <label>Contact</label>
-                   <div className="d-flex"> 
-                   {/* <div className="ui input"></div> */}
-                   <input
-                      placeholder="Mobile"
-                      value={this.state.contact}
-                      onChange={this.handleContact}
-                      className={`${
-                        this.state.contactError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                    {this.state.contactError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                   </div>
-                   
+                    <label>Contact</label>
+                    <div className="d-flex">
+                      {/* <div className="ui input"></div> */}
+                      <input
+                        placeholder="Mobile"
+                        value={this.state.contact}
+                        onChange={this.handleContact}
+                        className={`${
+                          this.state.contactError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.contactError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                      {this.state.alphaError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                       <div  >
+                    <p className="ad-4">{this.state.contactError}</p>
+                    <p className="ad-al">{this.state.alphaError}</p>
+                    </div>
+                    </div>
+
                     {/* {this.state.contactError} */}
                     <br />
                     <label>Gender</label>
                     <div className="GENDER"></div>
-                    <select name="Gender" id="gender-select" onChange={this.handleGender}>
+                    <select
+                      name="Gender"
+                      id="gender-select"
+                      onChange={this.handleGender}
+                    >
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
                   </div>
 
                   <div className="d-flex form-contents2">
-                  <label>Address</label>
-                        <div className="d-flex">
-                        {/* <div className="ui input"></div> */}
+                    <label>Address</label>
+                    <div className="d-flex">
+                      {/* <div className="ui input"></div> */}
 
-                    <input
-                      className="form-contents5"
-                      type="text-area"
-                      placeholder="Address"
-                      value={this.state.address}
-                      onChange={this.handleAddress}
-                      className={`${
-                        this.state.addressError !== "" ? "firstError" : ""
-                      }`}
-                    ></input>
-                     {this.state.addressError !== "" && (
-                  <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                )}
-                        </div>
+                      <input
+                        className="form-contents5"
+                        type="text-area"
+                        placeholder="Address"
+                        value={this.state.address}
+                        onChange={this.handleAddress}
+                        className={`${
+                          this.state.addressError !== "" ? "firstError" : ""
+                        }`}
+                      ></input>
+                      {this.state.addressError !== "" && (
+                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                      )}
+                      <div  >
+                    <p className="ad-5">{this.state.addressError}</p>
+                    </div>
+                    </div>
                     {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">
-                  <Link
-                          to={{
-                            pathname: `/details`,
-                            // props: { hotelName: get(data, "name", "--") },
-                          }}
-                        >
-                    <button onClick={this.handleSubmit}>Submit</button>
-                        </Link>
+                   
+                      <button onClick={this.handleSubmit}>Submit</button>
+                   
                   </div>
+                
                 </div>
               </form>
             </div>
@@ -360,8 +377,6 @@ export class Form extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     hotelDetails: bindActionCreators(hotelDetails, dispatch),
-    
-    
   };
 };
 const mapStateToProps = (state) => ({
@@ -370,7 +385,7 @@ const mapStateToProps = (state) => ({
   roomDetailsList: get(state, "roomDetailsList", []),
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
   propertyList: get(state, "propertyList", []),
-  customerDetails:get(state,"customerDetails",[])
+  customerDetails: get(state, "customerDetails", []),
 });
 
-export default connect(mapStateToProps,mapDispatchToProps )(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
