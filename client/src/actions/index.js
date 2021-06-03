@@ -10,3 +10,4 @@ export const emptyProperty = (data) => ({ type: "EMPTY_LIST_PROPERTY", data });
 export const roomDetails = (data) => ({ type: "GET_ROOM_DETAILS", data });
 export const roomTypesRate = (data) => ({ type: "GET_ROOM_TYPES_RATE", data });
 export const propRoomType = (data) => ({ type: "GET_PROPROOM_TYPE", data });
+export const hotelDetails=(data)=>({type:"HOTEL_CUSTOMER_DETAILS",data})

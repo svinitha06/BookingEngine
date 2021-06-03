@@ -3,9 +3,9 @@ import * as actionTypes from "../constants/index";
 const initialState = {
   cart: [],
   dateRange: [],
-  roomVal:1,
-  adultVal:1,
-  childVal:0
+  roomVal: 1,
+  adultVal: 1,
+  childVal: 0,
 };
 
 export default (state = initialState, action) => {
@@ -22,12 +22,12 @@ export default (state = initialState, action) => {
         ...state,
         roomVal: action.data.roomValue,
       };
-      case "ADULT_VALUE":
+    case "ADULT_VALUE":
       return {
         ...state,
         adultVal: action.data.adultValue,
       };
-      case "CHILD_VALUE":
+    case "CHILD_VALUE":
       return {
         ...state,
         childVal: action.data.childValue,
@@ -38,7 +38,7 @@ export default (state = initialState, action) => {
         ...state,
         propertyList: action.data,
       };
-      case "EMPTY_LIST_PROPERTY":
+    case "EMPTY_LIST_PROPERTY":
       console.log(action, "hey");
       return {
         ...state,
@@ -58,6 +58,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         roomTypeRatesData: action.data,
+      };
+    case "HOTEL_CUSTOMER_DETAILS":
+      return {
+        ...state,
+        customerDetails: action.data,
       };
     default:
       return state;
