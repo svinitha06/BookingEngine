@@ -1,6 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bookForm = require('../Models/bookForm');
+<<<<<<< HEAD
+=======
+//const Booking = require('../Models/Booking');
+>>>>>>> 7ab9d54a2810433c192d983a6c8389fd65963c97
 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
