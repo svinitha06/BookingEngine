@@ -187,47 +187,75 @@ export class Form extends Component {
             <div className="form-design">
               <form>
                 <h2>Book your Room</h2>
-                <div className="hotel-Details">
-                  <div className="hotelHeading">
-                    <h1>Hotel Details</h1>
-                    <div>
-                      <button onClick={this.handleHotel}>
-                        <KeyboardArrowDownIcon />
-                      </button>
+                <div className="parentOfHotels">
+                  <div className="childContainer">
+                    <div className="hotel-Details">
+                      <div className="hotelHeading">
+                        <h1>Hotel Details</h1>
+                        <div>
+                          <button onClick={this.handleHotel}>
+                            <KeyboardArrowDownIcon />
+                          </button>
+                        </div>
+                      </div>
+                      {/* {this.state.hotelFlag && <HotelDetail />} */}
+                      <div className="hotelDetailContainer">
+                        <div className="firstContainer">
+                          <div className="hotelImage">
+                            <img src={Image}></img>
+                          </div>
+                          <div className="hotelNameContainer">
+                            <div className="hotelName">
+                              <h2>Crown </h2>
+                            </div>
+                            <div className="hotelRating">3/5</div>
+                            <div className="hotelLocation">
+                              <h5>Chennai ,India</h5>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="secondContainer">
+                          <div>
+                            <h3>Check-in Date</h3>
+                          </div>
+                          <div>
+                            <h3>Check-ot Date</h3> 2 june 20221
+                          </div>
+                          <div>
+                            <h3>Rooms</h3> 1
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  {/* {this.state.hotelFlag && <HotelDetail />} */}
-                  <div className="hotelDetailContainer">
-                    <div className="firstContainer">
-                      <div className="hotelImage">
-                        <img src={Image}></img>
-                      </div>
-                      <div>
-                        <div>
-                          <h4>Crown </h4>
-                        </div>
-                        <div>3/5</div>
-                        <div>
-                          <h5>Chennai ,India</h5>
-                        </div>
-                      </div>
+                  <div className="priceSummary">
+                    <div className="priceHeading">
+                      <h1>Price Summary</h1>
                     </div>
-                    <div className="secondContainer">
-                      <div>
-                        <h3>Check-in Date</h3>
+                    <div className="detailsOfPrice">
+                      <div className="priceContainerOne">
+                        <div>num of rroms</div>
+                        <div>price</div>
+                        <div>num of rroms</div>
+                        <div>price</div>
+                        <div>num of rroms</div>
+                        <div>price</div>
                       </div>
                       <div>
-                        <h3>Check-ot Date</h3> 2 june 20221
-                      </div>
-
-                      <div>
-                        <h3>Rooms</h3> 1
+                        <div className="priceContainerTwo">
+                          <h2>Total : 2000</h2>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div className="form-contents">
+                  <div className="guestHeading">
+                    <h1>Guest Details</h1>
+                  </div>
                   <div className="d-flex form-contents1">
+<<<<<<< HEAD
                     <label>First Name</label>
                     <div className="d-flex w-100">
                       {/* <div className="ui input"></div> */}
@@ -295,11 +323,79 @@ export class Form extends Component {
                       <div  >
                     <p className="ad-third">{this.state.emailError}</p>
                     </div>
+=======
+                    <div className="firstName">
+                      <label>First Name</label>
+                      <div className="d-flex w-100">
+                        {/* <div className="ui input"></div> */}
+                        <input
+                          type="text"
+                          placeholder="First Name"
+                          value={this.state.firstName}
+                          onChange={this.handleFirstName}
+                          className={`${
+                            this.state.firstError !== "" ? "firstError" : ""
+                          }`}
+                        ></input>
+                        {this.state.firstError !== "" && (
+                          <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                        )}
+                      </div>
+                    </div>
+                    <div className="lastName">
+                      <label>Last Name</label>
+                      <div className="d-flex w-100">
+                        {/* <div className="ui input"></div> */}
+                        <input
+                          type="text"
+                          placeholder="Last Name"
+                          value={this.state.lastName}
+                          onChange={this.handleLastName}
+                          className={`${
+                            this.state.lastError !== "" ? "firstError" : ""
+                          }`}
+                        ></input>
+                        {this.state.lastError !== "" && (
+                          <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                        )}
+                      </div>
+                    </div>
+                    {/* <p className="ad-first">{this.state.firstError}</p> */}
+
+                    {/* {this.state.lastError} */}
+                  </div>
+                  <div>
+                    <br />
+
+                    <div
+                      className="d-flex w-100"
+                      className="d-flex form-contents6"
+                    >
+                      <div className="email">
+                        <label>Email Address</label>
+                      </div>
+                      {/* <div className="ui input"></div> */}
+                      <div>
+                        <input
+                          type="email"
+                          placeholder="E-mail"
+                          value={this.state.email}
+                          onChange={this.handleEmail}
+                          className={`${
+                            this.state.emailError !== "" ? "firstError" : ""
+                          }`}
+                        ></input>
+                        {this.state.emailError !== "" && (
+                          <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                        )}
+                      </div>
+>>>>>>> 09eeded8cbedd6f4c3eedb12a741a29e6c818a37
                     </div>
                     {/* {this.state.emailError} */}
                   </div>
                  
                   <div className="d-flex form-contents7">
+<<<<<<< HEAD
                     <label>Contact</label>
                     <div className="d-flex">
                       {/* <div className="ui input"></div> */}
@@ -321,10 +417,29 @@ export class Form extends Component {
                     <p className="ad-4">{this.state.contactError}</p>
                     <p className="ad-al">{this.state.alphaError}</p>
                     </div>
+=======
+                    <div className="contact">
+                      <label>Contact</label>
+                      <div className="d-flex">
+                        {/* <div className="ui input"></div> */}
+                        <input
+                          placeholder="Mobile"
+                          value={this.state.contact}
+                          onChange={this.handleContact}
+                          className={`${
+                            this.state.contactError !== "" ? "firstError" : ""
+                          }`}
+                        ></input>
+                        {this.state.contactError !== "" && (
+                          <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                        )}
+                      </div>
+>>>>>>> 09eeded8cbedd6f4c3eedb12a741a29e6c818a37
                     </div>
 
                     {/* {this.state.contactError} */}
                     <br />
+<<<<<<< HEAD
                     <label>Gender</label>
                     <div className="GENDER"></div>
                     <select
@@ -339,6 +454,23 @@ export class Form extends Component {
 
                   <div className="d-flex form-contents2">
                     <label>Address</label>
+=======
+                    <div className="gender">
+                      <label>Gender</label>
+                      <div className="GENDER"></div>
+                      {/* <div className="ui input"></div> */}
+                      <select name="Gender" id="gender-select">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="d-flex form-contents2 Address">
+                    <div>
+                      <label>Address</label>
+                    </div>
+>>>>>>> 09eeded8cbedd6f4c3eedb12a741a29e6c818a37
                     <div className="d-flex">
                       {/* <div className="ui input"></div> */}
 
@@ -355,9 +487,12 @@ export class Form extends Component {
                       {this.state.addressError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
+<<<<<<< HEAD
                       <div  >
                     <p className="ad-5">{this.state.addressError}</p>
                     </div>
+=======
+>>>>>>> 09eeded8cbedd6f4c3eedb12a741a29e6c818a37
                     </div>
                     {/* {this.state.addressError} */}
                   </div>
