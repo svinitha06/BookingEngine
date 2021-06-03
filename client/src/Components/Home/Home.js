@@ -226,9 +226,9 @@ class Home extends React.Component {
     this.props.property(res);
     console.log(res, res.length, "come on");
     if (res.length === 0) {
-      let response = await db.getproperty();
-      console.log(response, "response");
-      this.props.emptyProperty(response);
+      let res = await db.getproperty();
+      console.log(res, "response");
+      this.props.emptyProperty(res);
     }
     this.setState({
       loader: false,

@@ -1,10 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-const bookForm = require('../Models/bookForm');
-=======
 const booking = require('../Models/booking');
->>>>>>> 59bf19fe9334ec8fb595f2e472d390fa193dd4cb
 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -54,12 +50,7 @@ router.post("/Book", async (req, res) => {
       res.status(400).send({ message: err });
     }
   });
-  try {
-    const savedPost = await post.save();
-    res.json(savedPost);
-  } catch (err) {
-    res.status(400).send({ message: err });
-  }
-});
+  
+
 
 module.exports = router;

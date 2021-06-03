@@ -149,7 +149,7 @@ export class Form extends Component {
       email: this.state.email,
       mobile: this.state.contact,
       // gender: this.state.gender,
-      // address: this.state.address,
+      address: this.state.address,
     };
     this.props.hotelDetails(data);
     console.log(data, "hotelNow");
