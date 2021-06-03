@@ -41,9 +41,9 @@ class Home extends React.Component {
       start: null,
       end: null,
       roomAnchor: null,
-      roomValue: 1,
-      adultValue: 1,
-      childValue: 0,
+      roomValue: this.props.roomVal,
+      adultValue: this.props.adultVal,
+      childValue: this.props.childVal,
       listOfProperties: [],
       dateError: "",
       cityError: "",
@@ -257,10 +257,10 @@ class Home extends React.Component {
         <div>
           <div className="banner">
             <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
-            <div className="banner-content">
+            {/* <div className="banner-content">
               {/* <h2>Enjoy your stay</h2> */}
-              <p>StayCation</p>
-            </div>
+              {/* <p>StayCation</p>
+            </div> */} 
           </div>
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
@@ -513,7 +513,7 @@ class Home extends React.Component {
           
           </div>
         ) : null}
-        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null}
+        {/* {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null} */}
         {/* {console.log(this.props,"now check")} */}
         
             <p className="customMade2"><i className="customMade">Related Search : </i>Check out the properties available </p>

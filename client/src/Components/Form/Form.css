@@ -289,7 +289,8 @@ select {
 .form-contents1 {
   width: 200%;
   margin-top: 25px;
-  margin-left: 110px;
+  /* margin-left: 110px; */
+  margin-left: 50px;
   padding-right: 31px;
   /* margin-right: 40px !important; */
   margin-bottom: 6px;
@@ -313,9 +314,9 @@ select {
 }
 
 .form-contents2 {
-  margin-top: 57px;
+  margin-top: 25px;
   margin-right: -13%;
-  margin-left: 28%;
+  margin-left: 17%;
   width: 176%;
   scroll-padding-bottom: 10%;
   margin-bottom: 11px;
@@ -389,7 +390,7 @@ select {
 .form-contents7 {
   width: 200%;
   margin-top: 35px;
-  margin-left: 106px;
+  margin-left: 48px;
   padding-right: 31px;
   margin-right: 40px !important;
   margin-bottom: 6px;
@@ -524,7 +525,7 @@ select {
     width: 60% !important;
   } */
 #gender-select {
-  padding: 6% !important;
+  padding: 1% !important;
   border: 1px solid grey;
   width: 108% !important;
 }
@@ -573,6 +574,7 @@ select {
   margin-right: -511px !important;
   margin-top: 5 px;
   margin-left: 7%;
+  width: 228%;
   /* margin-left: 581px; */
   /* margin-top: -46px;
     margin-bottom: 22px !important; */
@@ -699,10 +701,9 @@ select {
   border-radius: 22px;
   padding: 3%;
 }
-<<<<<<< HEAD
 .ad-first{
   margin-top: -19px !important;
-  margin-left: -220px;
+  margin-left: -166px;
   font-size: 14px;
   font-family: ui-rounded !important;
   font-style: normal;
@@ -722,7 +723,7 @@ select {
 }
 .ad-third{
   margin-top: -2.5em !important;
-    margin-left: -15em;
+    margin-left: -12em;
     padding: 1em;
   font-size: 14px;
   font-family: ui-rounded !important;
@@ -732,7 +733,7 @@ select {
 }
 .ad-4{
   margin-top: -2.5em !important;
-  margin-left: -12em;
+  margin-left: -15em;
   padding: 1em;
 font-size: 14px;
 font-family: ui-rounded !important;
@@ -759,7 +760,7 @@ opacity: 0.7;
   font-style: normal;
   color: red;
   opacity: 0.7;
-=======
+}
 .form-contents .form-contents2 input {
   padding: 6% !important;
   border: 1px solid grey;
@@ -786,5 +787,4 @@ label {
   padding: 2%;
   margin-left: 8%;
   font-style: normal;
->>>>>>> 09eeded8cbedd6f4c3eedb12a741a29e6c818a37
 }
