@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Form.css";
+import "./Form2.css";
 import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
@@ -34,6 +34,7 @@ export class Form extends Component {
       addressError: "",
       alphaError: "",
       hotelFlag: true,
+      goBackTo: this.props.navigation,
     };
   }
   componentDidMount() {
@@ -42,6 +43,7 @@ export class Form extends Component {
       end: this.props.dateRange.end,
     });
     console.log("this.props from form", this.props);
+    console.log("goback", this.state.go);
   }
   handleHotel = () => {
     // const { hotelFlag } = this.state;
@@ -161,25 +163,12 @@ export class Form extends Component {
     );
     return (
       <div className="container-form">
+        <div className="backButton">
+          <Button as={NavLink} to={"/basiclayout/1"}>
+            Back
+          </Button>
+        </div>
         <div className="form">
-          {/* <div className="form-date">
-            <Button className="ui button">Back</Button>
-            <div className="final-date">
-              <span className="push">
-                <h6> Check-in / Check-out</h6>
-              </span>
-              <DateRangePickerComponent
-                placeholder="Check-in/Check-out"
-                startDate={this.state.start}
-                endDate={this.state.end}
-                min={minValue}
-                format={"dd-MMM-yy"}
-                color={"black"}
-                className="form-datepicker"
-                id="datepickeridform"
-              ></DateRangePickerComponent>
-            </div>
-          </div> */}
           <div>
             <div></div>
             <div className="form-design">
@@ -254,7 +243,7 @@ export class Form extends Component {
                   </div>
                   <div className="d-flex form-contents1">
                     <label>First Name</label>
-                    <div className="d-flex w-100">
+                    <div className="d-flex firstName">
                       {/* <div className="ui input"></div> */}
                       <input
                         type="text"
@@ -272,28 +261,31 @@ export class Form extends Component {
                     <div>
                       <p className="ad-first">{this.state.firstError}</p>
                     </div>
+                    {/* {this.state.lastError} */}
+                  </div>
+                  <div className="secondDiv">
+                    <div className="lastName">
+                      <div className="d-flex w-100">
+                        {/* <div className="ui input"></div> */}
+                        <label>Last Name</label>
 
-                    <label>Last Name</label>
-                    <div className="d-flex w-100">
-                      {/* <div className="ui input"></div> */}
-                      <input
-                        type="text"
-                        placeholder="Last Name"
-                        value={this.state.lastName}
-                        onChange={this.handleLastName}
-                        className={`${
-                          this.state.lastError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.lastError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                      <div>
-                        <p className="ad-second">{this.state.lastError}</p>
+                        <input
+                          type="text"
+                          placeholder="Last Name"
+                          value={this.state.lastName}
+                          onChange={this.handleLastName}
+                          className={`${
+                            this.state.lastError !== "" ? "firstError" : ""
+                          }`}
+                        ></input>
+                        {this.state.lastError !== "" && (
+                          <ErrorIcon color="secondary" className="ml-2 mt-8" />
+                        )}
+                        <div>
+                          <p className="ad-second">{this.state.lastError}</p>
+                        </div>
                       </div>
                     </div>
-
-                    {/* {this.state.lastError} */}
                   </div>
                   <div>
                     <div
@@ -324,7 +316,7 @@ export class Form extends Component {
                   </div>
                   <div className="d-flex form-contents7">
                     <label>Contact</label>
-                    <div className="d-flex">
+                    <div className="d-flex mobileInput">
                       {/* <div className="ui input"></div> */}
                       <input
                         placeholder="Mobile"
@@ -350,10 +342,9 @@ export class Form extends Component {
                   </div>
 
                   <div className="d-flex form-contents2 Address">
-                    <div></div>
                     <div className="d-flex">
                       {/* <div className="ui input"></div> */}
-
+                      <label>Address</label>
                       <input
                         className="form-contents5"
                         type="text-area"
@@ -373,13 +364,14 @@ export class Form extends Component {
                     </div>
                     {/* {this.state.addressError} */}
                   </div>
-                  <div className="submit-form">
-                    <Link as={NavLink} to="/details">
-                      <button onClick={this.handleSubmit}>Submit</button>
-                    </Link>
-                  </div>
                 </div>
               </form>
+            </div>
+
+            <div className="submit-form">
+              <Link as={NavLink} to="/details">
+                <button onClick={this.handleSubmit}>Submit</button>
+              </Link>
             </div>
           </div>
         </div>
