@@ -137,7 +137,9 @@ export class Form extends Component {
       });
     }
     this.getHoteldetails();
-   
+    // <Link to={{pathname:"/display"}}/>
+    // this.history.push("/display");
+  //  <Redirect to="/display"/>
    
   };
 
@@ -360,8 +362,10 @@ export class Form extends Component {
                     {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">
-                   
-                      <button onClick={this.handleSubmit}>Submit</button>
+                 
+                  <button onClick={this.handleSubmit}>Submit</button>
+
+   
                    
                   </div>
                 
