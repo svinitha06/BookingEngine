@@ -1,6 +1,6 @@
 const mongoose=require ("mongoose");
 
-const bookFormSchema= new mongoose.Schema({
+const bookingSchema= new mongoose.Schema({
 
     propertyId:{
          type: Number,
@@ -22,13 +22,13 @@ const bookFormSchema= new mongoose.Schema({
     mobile:{ 
         type: Number,
         required:false,
-        unique:true,
+        unique:false,
         min: 10
     },
     email:{
         type: String,
         required:false,
-        unique:true,
+        unique:false,
 
     },
     Adults:{
@@ -55,16 +55,12 @@ const bookFormSchema= new mongoose.Schema({
         type: Number,
         required:false
 
-    },
-    gender:{
-        type: String,
-        required:false
-    },
+    }, 
     address:{
         type: String,
-        required:false
+        required: false
     }
 
 })
 
-module.exports=bookForm=mongoose.model('bookForm',bookFormSchema);
+module.exports=booking=mongoose.model('booking', bookingSchema);
