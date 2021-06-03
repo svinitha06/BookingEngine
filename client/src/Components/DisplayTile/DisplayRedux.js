@@ -42,6 +42,7 @@ class DisplayRedux extends Component {
       priceFinal: 0,
       priceArray: [],
       finalTotalPrice: 0,
+      isDisable: true,
     };
   }
 
@@ -99,13 +100,6 @@ class DisplayRedux extends Component {
       });
     // return res;
   };
-  // getSomething = async (id) => {
-  //   let res = await db.getRoomRates({
-  //     propertyId: id,
-  //     checkInDate: this.props.dateRange.start,
-  //   });
-  //   this.props.roomDetails(res.data);
-  // };
   handleMinus = (id) => {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
@@ -114,47 +108,35 @@ class DisplayRedux extends Component {
     count.forEach((data) => {
       if (data.id === id && data.count > 0) {
         data.count -= 1;
-        // rateObj.forEach((rate) => {
-        //   if (rate.roomTypeId === id) {
-        //     if (data.isChecked) t -= rate.plan.EP * data.count;
-        //     else t -= rate.plan.AP * data.count;
-        //   }
-        // });
       }
     });
     this.setState({ countObj: count });
+    this.checkEnable();
+    console.log(
+      "value of isDisable from caal in handleminus = ",
+      this.checkEnable()
+    );
   };
   handlePlus = (id) => {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
-    // let t = 0;
-    // var p = 0;
-    // console.log("value of BEFORE t inside handlePlus", t);
     console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.count += 1;
-        // p = p + data.priceO;
-        // this.setState({
-        //   finalTotalPrice: data.priceO
-        // })
-        // console.log("count inside handlePlus = ", data.count);
-        // rateObj.forEach((rate) => {
-        //   if (rate.roomTypeId === id) {
-        //     if (!data.isChecked) t += rate.plan.EP * data.count;
-        //     else t += rate.plan.AP * data.count;
-        //   }
-        // });
-        // console.log("value of After t inside handlePlus", t);
       }
     });
     // console.log("p = ", p);
     console.log("countObj price  = ", this.state.countObj);
     this.setState({
       countObj: count,
-      // totalPrice: t,
       // finalTotalPrice:
     });
+    this.checkEnable();
+    console.log(
+      "value of isDisable from caal in handlePlus = ",
+      this.checkEnable()
+    );
   };
   calculateTotal = () => {
     var count = this.state.countObj;
@@ -179,40 +161,39 @@ class DisplayRedux extends Component {
     return t;
   };
   handleChange = (id) => {
-    // var finalPrice = 0;
-    // var finalEP = 0;
-    // var finalAP = 0;
     var count = this.state.countObj;
-    // let rateObj = this.state.listOfAP;
-    // var rateObj2 = this.state.listOfAP;
-    // rateObj.forEach((i) => {
-    //   if (i.roomTypeId === post._id) {
-    //     finalAP = i.plan.AP;
-
-    //     finalEP = i.plan.EP;
-    //   }
-    // });
-    // console.log("inside handleCahneg count = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.isChecked = !data.isChecked;
       }
-      // rateObj.forEach((rateData) => {
-      //   if (data.isChecked == true) {
-      //     finalPrice = finalAP;
-      //   } else {
-      //     finalPrice = finalEP;
-      //   }
-      // });
-
-      // if (data.id === id && data.isChecked) data.p += 600;
     });
-
     this.setState({ countObj: count });
   };
   handleReserve = () => {
     let theTotal = this.calculateTotal();
-    if (theTotal <= 0) alert("Please select a Room!");
+    if (theTotal <= 0) {
+      alert("Please select a Room!");
+      return true;
+    }
+    return false;
+  };
+  checkEnable = () => {
+    var temp = this.calculateTotal();
+    console.log("inside checkEnable temp = ", temp);
+    console.log("inside checkenable isDisable  = ", this.state.isDisable);
+
+    if (temp > 0 && this.state.isDisable === true) {
+      this.setState({
+        isDisable: !this.state.isDisable,
+      });
+      console.log("inside checkEnable disable  = ", this.state.isDisable);
+    } else if (temp === 0 && this.state.isDisable === false) {
+      this.setState({
+        isDisable: !this.state.isDisable,
+      });
+      console.log("inside checkEnable disable  = ", this.state.isDisable);
+    }
+    return this.state.isDisable;
   };
 
   render() {
@@ -477,7 +458,7 @@ class DisplayRedux extends Component {
                   <Button
                     className="reserve"
                     // class="ui inverted green button"
-
+                    disabled={this.state.isDisable}
                     onClick={this.handleReserve}
                     to="/form"
                     as={NavLink}

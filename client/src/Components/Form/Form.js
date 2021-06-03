@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./Form.css";
-import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
@@ -13,9 +11,6 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
 import ErrorIcon from "@material-ui/icons/Error";
 import Image from "../Form/Image.jpeg";
-import { hotelDetails } from "../../actions/index";
-import * as db from "../../api/index";
-import { bindActionCreators } from "redux";
 
 export class Form extends Component {
   constructor(props) {
@@ -26,14 +21,14 @@ export class Form extends Component {
       lastName: null,
       email: "",
       contact: "",
-      gender: "male",
+      gender: "",
       address: "",
       firstError: "",
       lastError: "",
       emailError: "",
       contactError: "",
       addressError: "",
-      alphaError: "",
+      numberError: "",
       hotelFlag: true,
       open:false,
       bookNowMsg:"",
@@ -102,12 +97,12 @@ export class Form extends Component {
     const ascii = this.state.contact.charCodeAt(0);
     if (this.state.firstName === null) {
       this.setState({
-        firstError: "Enter Firstname",
+        firstError: "enter firstName",
       });
     }
     if (this.state.lastName === null) {
       this.setState({
-        lastError: "Enter Lastname",
+        lastError: "enter lastname",
       });
     }
     if (validator.isEmail(this.state.email)) {
@@ -116,18 +111,17 @@ export class Form extends Component {
       });
     } else {
       this.setState({
-        emailError: "Enter Valid Email-ID",
+        emailError: "enter valid email",
       });
     }
-
-    if (this.state.address === "") {
+    if (this.state.contact === "") {
       this.setState({
-        addressError: "Enter address",
+        numberError: "Enter number",
       });
     }
     if (this.state.contact.length == 10) {
       this.setState({
-        contactError: "",
+        addressError: "Enter address",
       });
     } else if (ascii < "47" || ascii > "57") {
       this.setState({
@@ -209,73 +203,46 @@ export class Form extends Component {
             <div className="form-design">
               <form>
                 <h2>Book your Room</h2>
-                <div className="parentOfHotels">
-                  <div className="childContainer">
-                    <div className="hotel-Details">
-                      <div className="hotelHeading">
-                        <h1>Hotel Details</h1>
-                        <div>
-                          <button onClick={this.handleHotel}>
-                            <KeyboardArrowDownIcon />
-                          </button>
-                        </div>
-                      </div>
-                      {/* {this.state.hotelFlag && <HotelDetail />} */}
-                      <div className="hotelDetailContainer">
-                        <div className="firstContainer">
-                          <div className="hotelImage">
-                            <img src={Image}></img>
-                          </div>
-                          <div className="hotelNameContainer">
-                            <div className="hotelName">
-                              <h2>Crown </h2>
-                            </div>
-                            <div className="hotelRating">3/5</div>
-                            <div className="hotelLocation">
-                              <h5>Chennai ,India</h5>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="secondContainer">
-                          <div>
-                            <h3>Check-in Date</h3>
-                          </div>
-                          <div>
-                            <h3>Check-ot Date</h3> 2 june 20221
-                          </div>
-                          <div>
-                            <h3>Rooms</h3> 1
-                          </div>
-                        </div>
-                      </div>
+                <div className="hotel-Details">
+                  <div className="hotelHeading">
+                    <h1>Hotel Details</h1>
+                    <div>
+                      <button onClick={this.handleHotel}>
+                        <KeyboardArrowDownIcon />
+                      </button>
                     </div>
                   </div>
-                  <div className="priceSummary">
-                    <div className="priceHeading">
-                      <h1>Price Summary</h1>
-                    </div>
-                    <div className="detailsOfPrice">
-                      <div className="priceContainerOne">
-                        <div>num of rroms</div>
-                        <div>price</div>
-                        <div>num of rroms</div>
-                        <div>price</div>
-                        <div>num of rroms</div>
-                        <div>price</div>
+                  {/* {this.state.hotelFlag && <HotelDetail />} */}
+                  <div className="hotelDetailContainer">
+                    <div className="firstContainer">
+                      <div className="hotelImage">
+                        <img src={Image}></img>
                       </div>
                       <div>
-                        <div className="priceContainerTwo">
-                          <h2>Total : 2000</h2>
+                        <div>
+                          <h4>Crown </h4>
                         </div>
+                        <div>3/5</div>
+                        <div>
+                          <h5>Chennai ,India</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="secondContainer">
+                      <div>
+                        <h3>Check-in Date</h3>
+                      </div>
+                      <div>
+                        <h3>Check-ot Date</h3> 2 june 20221
+                      </div>
+
+                      <div>
+                        <h3>Rooms</h3> 1
                       </div>
                     </div>
                   </div>
                 </div>
-
                 <div className="form-contents">
-                  <div className="guestHeading">
-                    <h1>Guest Details</h1>
-                  </div>
                   <div className="d-flex form-contents1">
                     <label>First Name</label>
                     <div className="d-flex w-100">
@@ -285,13 +252,14 @@ export class Form extends Component {
                         placeholder="First Name"
                         value={this.state.firstName}
                         onChange={this.handleFirstName}
-                        className={`${
-                          this.state.firstError !== "" ? "firstError" : ""
-                        }`}
+                        className={`${this.state.firstError !== "" ? "firstError" : ""
+                          }`}
                       ></input>
                       {this.state.firstError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
+
+
                     </div>
                     <div>
                       <p className="ad-first">{this.state.firstError}</p>
@@ -305,9 +273,8 @@ export class Form extends Component {
                         placeholder="Last Name"
                         value={this.state.lastName}
                         onChange={this.handleLastName}
-                        className={`${
-                          this.state.lastError !== "" ? "firstError" : ""
-                        }`}
+                        className={`${this.state.lastError !== "" ? "firstError" : ""
+                          }`}
                       ></input>
                       {this.state.lastError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
@@ -333,9 +300,8 @@ export class Form extends Component {
                         placeholder="E-mail"
                         value={this.state.email}
                         onChange={this.handleEmail}
-                        className={`${
-                          this.state.emailError !== "" ? "firstError" : ""
-                        }`}
+                        className={`${this.state.emailError !== "" ? "firstError" : ""
+                          }`}
                       ></input>
                       {this.state.emailError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
@@ -355,9 +321,8 @@ export class Form extends Component {
                         placeholder="Mobile"
                         value={this.state.contact}
                         onChange={this.handleContact}
-                        className={`${
-                          this.state.contactError !== "" ? "firstError" : ""
-                        }`}
+                        className={`${this.state.contactError !== "" ? "firstError" : ""
+                          }`}
                       ></input>
                       {this.state.contactError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
@@ -375,22 +340,15 @@ export class Form extends Component {
                     <br />
                     <label>Gender</label>
                     <div className="GENDER"></div>
-                    <select
-                      name="Gender"
-                      id="gender-select"
-                      onChange={this.handleGender}
-                    >
+  
+                    <select name="Gender" id="gender-select">
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
-                  </div>
+                     </div>
 
-                  <div className="d-flex form-contents2 Address">
+                  <div className="d-flex form-contents2">
                     <label>Address</label>
-                  </div>
-
-                  <div className="d-flex form-contents2 Address">
-                    <div></div>
                     <div className="d-flex">
 
                       <input
@@ -399,16 +357,12 @@ export class Form extends Component {
                         placeholder="Address"
                         value={this.state.address}
                         onChange={this.handleAddress}
-                        className={`${
-                          this.state.addressError !== "" ? "firstError" : ""
-                        }`}
+                        className={`${this.state.addressError !== "" ? "firstError" : ""
+                          }`}
                       ></input>
                       {this.state.addressError !== "" && (
                         <ErrorIcon color="secondary" className="ml-2 mt-8" />
                       )}
-                      <div>
-                        <p className="ad-5">{this.state.addressError}</p>
-                      </div>
                     </div>
                     {/* {this.state.addressError} */}
                   </div>
@@ -453,18 +407,12 @@ export class Form extends Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    hotelDetails: bindActionCreators(hotelDetails, dispatch),
-  };
-};
 const mapStateToProps = (state) => ({
   dateRange: get(state, "dateRange", []),
   roomRange: get(state, "roomRange", []),
   roomDetailsList: get(state, "roomDetailsList", []),
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
   propertyList: get(state, "propertyList", []),
-  customerDetails: get(state, "customerDetails", []),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, null)(Form);
