@@ -214,10 +214,14 @@ border-radius: 22px;
 .form-contents .form-contents2 .d-flex{
   width: 52%;
 }
-.form-contents .form-contents6 .d-flex{
+ .form-contents .form-contents6  .d-flex input{
+  
+} 
+
+/* .form-contents .form-contents6 .d-flex{
   width: 187% !important;
   background-color: rgb(213, 234, 247);
-}
+} */
 .form-contents .form-contents7 .d-flex{
   margin-right: 38px;
   margin-left: 17px;
@@ -256,28 +260,39 @@ border-radius: 22px;
   width: 60% !important;
 } */
 #gender-select {
-  width: 40% !important;
+  width: 21% !important;
   /* padding-left: 20px !i; */
 }
 .form-contents1 input {
   margin-left: 1em;
-  background-color: lightskyblue;
+  background-color: lightgray;
 }
 .form-contents7 input,select {
-  background-color: lightskyblue;
+  background-color: lightgray;
 }
 .form-contents7 select {
   font-weight: bolder;
 }
 .form-contents2 input {
-  background-color: lightskyblue;
+  background-color: lightgray;
 }
-.form-contents6 input{
+.form-contents input{
+  border-radius: 22px;
+}
+.form-contents .form-contents7 input{
+  width: 232px;
+}
+.form-contents  input{
+  margin-left: 3% !important;
+  width: 68% !important;
+  background-color: lightgray !important;
+}
+/* .form-contents6 input{
   border-radius: 22px;
     background-color: lightskyblue;
     margin-left: 13px;
     width: 67%;
-} */
+} */ 
 select {
   margin-left: 1em !important;
   opacity: 2.6 !important;
