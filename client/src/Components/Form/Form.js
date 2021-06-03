@@ -119,15 +119,25 @@ export class Form extends Component {
         addressError: "Enter address",
       });
     }
-    if (validator.isMobilePhone(this.state.contact)) {
+    // if (validator.isMobilePhone(this.state.contact)) {
+    //   this.setState({
+    //     contactError: "",
+    //   });
+    // } else {
+    //   this.setState({
+    //     contactError: "Enter Valid Number",
+    //     numberError: "",
+    //   });
+    // }
+    if(this.state.contact.length==10){
       this.setState({
-        contactError: "",
-      });
-    } else {
+        contactError:""
+      })
+    }
+    else{
       this.setState({
-        contactError: "Enter Valid Number",
-        numberError: "",
-      });
+        contactError: "Enter 10 digits"
+      })
     }
     this.getHoteldetails()
     // <Redirect to="/payment" />
@@ -221,36 +231,6 @@ export class Form extends Component {
                   <div className="d-flex form-contents1">
                     <label>First Name</label>
                     <div className="d-flex w-100">
-<<<<<<< HEAD
-                      <input
-                        type="text"
-                        placeholder="First Name"
-                        value={this.state.firstName}
-                        onChange={this.handleFirstName}
-                        className={`${
-                          this.state.firstError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.firstError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                    </div>
-                    {/* <p className="ad-first">{this.state.firstError}</p> */}
-
-                    <div className="d-flex w-100">
-                      <input
-                        type="text"
-                        placeholder="Last Name"
-                        value={this.state.lastName}
-                        onChange={this.handleLastName}
-                        className={`${
-                          this.state.lastError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.lastError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-=======
                     {/* <div className="ui input"></div> */}
                     <input
                       type="text"
@@ -283,7 +263,6 @@ export class Form extends Component {
                     {this.state.lastError !== "" && (
                   <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
->>>>>>> fd789835d56738787142e5a1a978cbbb555e7501
                     </div>
 
                     {/* {this.state.lastError} */}
@@ -291,23 +270,6 @@ export class Form extends Component {
                    </div>
                     <div>
                     <br />
-<<<<<<< HEAD
-                    <div className="d-flex w-100">
-                      <input
-                        type="email"
-                        placeholder="E-mail"
-                        value={this.state.email}
-                        onChange={this.handleEmail}
-                        className={`${
-                          this.state.emailError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.emailError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                    </div>
-
-=======
                     <div className="d-flex form-contents6"></div>
                    <div className="d-flex w-100">
                    <label>Email Address</label>
@@ -324,28 +286,10 @@ export class Form extends Component {
                     {this.state.emailError !== "" && (
                   <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}</div>
->>>>>>> fd789835d56738787142e5a1a978cbbb555e7501
                     {/* {this.state.emailError} */}
                   </div>
                   <br />
 
-<<<<<<< HEAD
-                  <div className="d-flex form-contents1">
-                    <div className="d-flex">
-                      <input
-                        placeholder="Mobile"
-                        value={this.state.contact}
-                        onChange={this.handleContact}
-                        className={`${
-                          this.state.contactError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.contactError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                    </div>
-
-=======
                   <div className="d-flex form-contents7">
                   <label>Contact</label>
                    <div className="d-flex"> 
@@ -363,40 +307,17 @@ export class Form extends Component {
                 )}
                    </div>
                    
->>>>>>> fd789835d56738787142e5a1a978cbbb555e7501
                     {/* {this.state.contactError} */}
                     <br />
                     <label>Gender</label>
                     <div className="GENDER"></div>
-<<<<<<< HEAD
                     <select name="Gender" id="gender-select" onChange={this.handleGender}>
-=======
-                    {/* <div className="ui input"></div> */}
-                    <select name="Gender" id="gender-select">
->>>>>>> fd789835d56738787142e5a1a978cbbb555e7501
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
                   </div>
 
                   <div className="d-flex form-contents2">
-<<<<<<< HEAD
-                    <div className="d-flex">
-                      <input
-                        className="form-contents5"
-                        type="text-area"
-                        placeholder="Address"
-                        value={this.state.address}
-                        onChange={this.handleAddress}
-                        className={`${
-                          this.state.addressError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.addressError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                    </div>
-=======
                   <label>Address</label>
                         <div className="d-flex">
                         {/* <div className="ui input"></div> */}
@@ -415,7 +336,6 @@ export class Form extends Component {
                   <ErrorIcon color="secondary" className="ml-2 mt-8" />
                 )}
                         </div>
->>>>>>> fd789835d56738787142e5a1a978cbbb555e7501
                     {/* {this.state.addressError} */}
                   </div>
                   <div className="submit-form">

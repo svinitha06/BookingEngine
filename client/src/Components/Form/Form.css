@@ -259,6 +259,9 @@ border-radius: 22px;
   width: 40% !important;
   /* padding-left: 20px !i; */
 }
+.firstError {
+  border: 1px solid red !important;
+}
 .form-contents1 input {
   margin-left: 1em;
   background-color: lightskyblue;

@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const RateMaster = require('../Models/Booking');
+const bookForm = require('../Models/bookForm');
 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -16,7 +16,7 @@ router.use(express.json());
 router.get('/booking',function(req,res)
 {
     try{
-        Booking.find(function(err,response){
+        bookForm.find(function(err,response){
             if(err)
             res.status(400).send(err)
             else
@@ -29,14 +29,25 @@ router.get('/booking',function(req,res)
 })
 
 //POST API
-router.post("/Book",(req,res) => {
-    console.log(req.body);
-    const rate = new Booking(req.body)
-    rate.save().then(() => {
-        res.status(201).send(rate);
-    }).catch((err) => {
-        res.status(400).send(err);
-    })
-})
+router.post("/Book", async (req, res) => {
+    const post = new bookForm({
+      propertyId: req.body.propertyId,
+      roomType: req.body.roomType,
+      guestName: req.body.guestName,
+      mobile: req.body.mobile,
+      email: req.body.email,
+      Adults: req.body.Adults,
+      Children: req.body.Children,
+      planType: req.body.planType,
+      stayingDays: req.body.stayingDays,
+      totalRate: req.body.totalRate
+    });
+    try {
+      const savedPost = await post.save();
+      res.json(savedPost);
+    } catch (err) {
+      res.status(400).send({ message: err });
+    }
+  });
 
 module.exports = router;
