@@ -1,4 +1,4 @@
-Segment {
+.Segment {
   display: flex;
   background: #5f2c82; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -39,7 +39,7 @@ a.right.item.active {
 .headline {
   font-family: ui-rounded !important;
 }
-.my-div{
+.my-div {
   width: 102%;
 }
 

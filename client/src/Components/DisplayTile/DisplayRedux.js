@@ -72,7 +72,7 @@ class DisplayRedux extends Component {
       })
       .catch((error) => {
         // console.log("Error gtting data", error);
-        <h1>Error fetching data</h1>;
+        <h1>Error fetching data</h1>
         this.setState({ error: !this.state.error });
       });
     this.getSomething(this.props.match.params.id);
