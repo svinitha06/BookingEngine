@@ -189,11 +189,6 @@ export class Form extends Component {
     );
     return (
       <div className="container-form">
-        <div className="backButton">
-          <Button as={NavLink} to={"/basiclayout/1"}>
-            Back
-          </Button>
-        </div>
         <div className="form">
           <div>
             <div></div>
@@ -229,7 +224,10 @@ export class Form extends Component {
                         </div>
                         <div className="secondContainer">
                           <div>
-                            <h3>Check-in Date</h3>
+                            <h3>Check-in Date </h3>
+
+                            {this.props.dateRange &&
+                              this.props.dateRange.start.toString()}
                           </div>
                           <div>
                             <h3>Check-ot Date</h3> 2 june 20221
@@ -431,7 +429,16 @@ export class Form extends Component {
                     </div>
                   </div>
                   <div className="submit-form">
-                    <button onClick={this.handleSubmit}>Submit</button>
+                    {/* <div className="backButton"> */}
+                    <Button
+                      className="submit-form"
+                      as={NavLink}
+                      to={"/basiclayout/1"}
+                    >
+                      Back
+                    </Button>
+                    {/* </div> */}
+                    <button onClick={this.handleSubmit}>Book Now</button>
                     {this.state.open && (
                       <Modal
                         open={this.state.open}
@@ -475,7 +482,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 const mapStateToProps = (state) => ({
-  dateRange: get(state, "dateRange", []),
+  dateRange: state.dateRange,
   roomRange: get(state, "roomRange", []),
   roomDetailsList: get(state, "roomDetailsList", []),
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
