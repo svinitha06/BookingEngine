@@ -151,7 +151,7 @@ class DisplayRedux extends Component {
     console.log("list of rooms  inside Handle PLus= ", this.state.list);
     console.log(
       "this.props.hotelDetails inside HandlePLus = ",
-      this.props.hotelDetails
+      this.props.bookingDetails
     );
   };
   calculateTotal = () => {

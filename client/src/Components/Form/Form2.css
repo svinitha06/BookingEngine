@@ -437,7 +437,7 @@ select {
 }
 .secondContainer {
   display: grid;
-  grid-template-columns: 30% 30% 40%;
+  grid-template-columns: 50% 50%;
   margin-top: 1%;
   padding: 3%;
   background: #e6e2e2;
@@ -451,6 +451,11 @@ select {
 /* PRICE CONTAINER CSS- DO NOT DELETE */
 /* PRICE CONTAINER CSS- DO NOT DELETE */
 /* PRICE CONTAINER CSS- DO NOT DELETE */
+.priceDetailsContainer,
+.priceLabel {
+  display: grid;
+  grid-template-columns: 35% 20% 20% 25%;
+}
 
 .priceSummary {
   width: 64% !important;
@@ -470,12 +475,16 @@ select {
   padding-bottom: 1.5%;
   justify-content: flex-start;
 }
+.priceLabel div {
+  font-weight: 600;
+}
 .detailsOfPrice {
   padding: 3%;
   border-radius: 22px;
   padding-top: 0% !important;
   margin-left: 3%;
   display: grid;
+  margin-top: 7%;
   grid-template-rows: 80% 20%;
 }
 .priceContainerTwo h2 {
@@ -483,11 +492,11 @@ select {
   margin-bottom: 2%;
   justify-content: left !important;
 }
-.priceContainerOne {
+/* .priceContainerOne {
   display: grid;
   grid-template-columns: 70% 30%;
   margin-top: 3%;
-}
+} */
 .priceContainerTwo {
   background: #e5e2e2;
   border-radius: 22px;
