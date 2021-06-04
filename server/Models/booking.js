@@ -59,6 +59,10 @@ const bookingSchema= new mongoose.Schema({
     address:{
         type: String,
         required: false
+    },
+    hotelNow:{
+        type: String,
+        required: false
     }
 
 })

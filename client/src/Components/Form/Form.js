@@ -42,6 +42,7 @@ export class Form extends Component {
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
+     
     });
     console.log("this.props from form", this.props);
     console.log("goback", this.state.go);
@@ -148,15 +149,24 @@ export class Form extends Component {
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
   };
-
   getHoteldetails = async () => {
+    // var hotelName;
+    // this.props.propertyList.map((data)=>{
+    //   // if(data.PropertyId === this.props.booking[0].propertyId){
+    //    hotelName=data.name
+    //   // }
+console.log(this.props.propertyList,"checkHotel")
+// })
+    
     const data = {
       guestName: this.state.firstName + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
-      // gender: this.state.gender,
+    //  hotelNow: hotelName,
       address: this.state.address,
     };
+  
+    
     this.props.hotelDetails(data);
     console.log(data, "hotelNow");
     await db.getPostHotelDetails(data);
@@ -226,8 +236,8 @@ export class Form extends Component {
                           <div>
                             <h3>Check-in Date </h3>
 
-                            {this.props.dateRange &&
-                              this.props.dateRange.start.toString()}
+                            {/* {this.props.dateRange &&
+                              this.props.dateRange.start.toString()} */}
                           </div>
                           <div>
                             <h3>Check-ot Date</h3> 2 june 20221
