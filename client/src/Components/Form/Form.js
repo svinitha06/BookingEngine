@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Form2.css";
+import Modal from "@material-ui/core/Modal";
 import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
@@ -12,7 +13,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
 import ErrorIcon from "@material-ui/icons/Error";
 import Image from "../Form/Image.jpeg";
-import { hotelDetails, bookingDetails } from "../../actions/index";
+import { hotelDetails } from "../../actions/index";
 import * as db from "../../api/index";
 import { bindActionCreators } from "redux";
 
@@ -35,8 +36,6 @@ export class Form extends Component {
       alphaError: "",
       hotelFlag: true,
       goBackTo: this.props.navigation,
-      dateFromDateRange: this.props.dateRange,
-      roomBookedObj: this.props.bookedRoomDetails,
     };
   }
   componentDidMount() {
@@ -46,9 +45,6 @@ export class Form extends Component {
     });
     console.log("this.props from form", this.props);
     console.log("goback", this.state.go);
-    console.log("dateFromDateRange", this.state.dateFromDateRange);
-    console.log("roomBookedObj", this.state.roomBookedObj);
-    console.log("roomBookedObj", this.state.roomBookedObj);
   }
   handleHotel = () => {
     // const { hotelFlag } = this.state;
@@ -142,10 +138,19 @@ export class Form extends Component {
         alphaError: "",
       });
     }
-    this.getHoteldetails();
+    if (
+      this.state.firstName !== null &&
+      this.state.lastName !== null &&
+      validator.isEmail(this.state.email) &&
+      this.state.address !== "" &&
+      this.state.contact.length == 10
+    ) {
+      this.setState({
+        open: true,
+      });
+    }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
-    //  <Redirect to="/display"/>
   };
 
   getHoteldetails = async () => {
@@ -160,6 +165,22 @@ export class Form extends Component {
     console.log(data, "hotelNow");
     await db.getPostHotelDetails(data);
   };
+
+  handleClose = () => {
+    // this.setState({
+    //   open:false
+    // })
+    <Redirect to="/" />;
+  };
+  handleBook = () => {
+    this.setState({
+      open: false,
+      bookNowMsg: "Booking has been made",
+    });
+  };
+  handlePost = () => {
+    this.getHoteldetails();
+  };
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -167,130 +188,121 @@ export class Form extends Component {
       new Date().getDate()
     );
     return (
-      <React.Fragment>
-        <div className="container-form">
-          <div className="backButton">
-            <Button as={NavLink} to={"/basiclayout/1"}>
-              Back
-            </Button>
-          </div>
-          <div className="form">
-            <div>
-              <div></div>
-              <div className="form-design">
-                <form>
-                  <h2>Book your Room</h2>
-                  <div className="parentOfHotels">
-                    <div className="childContainer">
-                      <div className="hotel-Details">
-                        <div className="hotelHeading">
-                          <h1>Hotel Details</h1>
-                          <div>
-                            <button onClick={this.handleHotel}>
-                              <KeyboardArrowDownIcon />
-                            </button>
-                          </div>
-                        </div>
-                        {/* {this.state.hotelFlag && <HotelDetail />} */}
-                        <div className="hotelDetailContainer">
-                          <div className="firstContainer">
-                            <div className="hotelImage">
-                              <img src={Image}></img>
-                            </div>
-                            <div className="hotelNameContainer">
-                              <div className="hotelName">
-                                <h2>Crown </h2>
-                              </div>
-                              <div className="hotelRating">3/5</div>
-                              <div className="hotelLocation">
-                                <h5>Chennai ,India</h5>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="secondContainer">
-                            <div>
-                              <h3>Check-in Date</h3>
-                              {/* {this.state.dateFromDateRange.start} */}
-                            </div>
-                            <div>
-                              <h3>Check-ot Date</h3>
-                              {/* {this.state.dateFromDateRange.end} */}
-                            </div>
-                            <div>
-                              <h3>Rooms</h3> 1
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="priceSummary">
-                      <div className="priceHeading">
-                        <h1>Price Summary</h1>
-                      </div>
-                      <div className="detailsOfPrice">
-                        <div className="priceContainerOne">
-                          <div>num of rroms</div>
-                          <div>price</div>
-                          <div>num of rroms</div>
-                          <div>price</div>
-                          <div>num of rroms</div>
-                          <div>price</div>
-                        </div>
+      <div className="container-form">
+        <div className="backButton">
+          <Button as={NavLink} to={"/basiclayout/1"}>
+            Back
+          </Button>
+        </div>
+        <div className="form">
+          <div>
+            <div></div>
+            <div className="form-design">
+              <form>
+                <h2>Book your Room</h2>
+                <div className="parentOfHotels">
+                  <div className="childContainer">
+                    <div className="hotel-Details">
+                      <div className="hotelHeading">
+                        <h1>Hotel Details</h1>
                         <div>
-                          <div className="priceContainerTwo">
-                            <h2>Total : 2000</h2>
+                          <button onClick={this.handleHotel}>
+                            <KeyboardArrowDownIcon />
+                          </button>
+                        </div>
+                      </div>
+                      {/* {this.state.hotelFlag && <HotelDetail />} */}
+                      <div className="hotelDetailContainer">
+                        <div className="firstContainer">
+                          <div className="hotelImage">
+                            <img src={Image}></img>
+                          </div>
+                          <div className="hotelNameContainer">
+                            <div className="hotelName">
+                              <h2>Crown </h2>
+                            </div>
+                            <div className="hotelRating">3/5</div>
+                            <div className="hotelLocation">
+                              <h5>Chennai ,India</h5>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="secondContainer">
+                          <div>
+                            <h3>Check-in Date</h3>
+                          </div>
+                          <div>
+                            <h3>Check-ot Date</h3> 2 june 20221
+                          </div>
+                          <div>
+                            <h3>Rooms</h3> 1
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/* New Form Here Don't DEL */}
-                  <div className="newGuestDetail">
-                    <div className="guestDetailsHeading">
-                      <h1>Guest Details</h1>
+                  <div className="priceSummary">
+                    <div className="priceHeading">
+                      <h1>Price Summary</h1>
                     </div>
-                    <div className="guestDetailForm">
-                      <div className="detailContainer">
-                        <div className="fieldAndInputFirst">
-                          <div>
-                            <label>First Name</label>
-                          </div>
-                          <div className="firstInput">
-                            {/* <input type="text"></input> */}
-                            <div className="d-flex">
-                              {/* <div className="ui input"></div> */}
-                              <input
-                                type="text"
-                                placeholder="First Name"
-                                value={this.state.firstName}
-                                onChange={this.handleFirstName}
-                                className={`${
-                                  this.state.firstError !== ""
-                                    ? "firstError"
-                                    : ""
-                                }`}
-                              ></input>
-                              {this.state.firstError !== "" && (
-                                <ErrorIcon
-                                  color="secondary"
-                                  className="ml-2 mt-8"
-                                />
-                              )}
-                            </div>
-                            <div>
-                              <p className="ad-first">
-                                {this.state.firstError}
-                              </p>
-                            </div>
-                            {/* {this.state.lastError} */}
-                          </div>
+                    <div className="detailsOfPrice">
+                      <div className="priceContainerOne">
+                        <div>num of rroms</div>
+                        <div>price</div>
+                        <div>num of rroms</div>
+                        <div>price</div>
+                        <div>num of rroms</div>
+                        <div>price</div>
+                      </div>
+                      <div>
+                        <div className="priceContainerTwo">
+                          <h2>Total : 2000</h2>
                         </div>
-                        <div className="fieldAndInput">
-                          <div>
-                            <label>Last Name</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* New Form Here Don't DEL */}
+                <div className="newGuestDetail">
+                  <div className="guestDetailsHeading">
+                    <h1>Guest Details</h1>
+                  </div>
+                  <div className="guestDetailForm">
+                    <div className="detailContainer">
+                      <div className="fieldAndInputFirst">
+                        <div>
+                          <label>First Name</label>
+                        </div>
+                        <div className="firstInput">
+                          <div className="d-flex ">
+                            <input
+                              type="text"
+                              placeholder="First Name"
+                              value={this.state.firstName}
+                              onChange={this.handleFirstName}
+                              className={`${
+                                this.state.firstError !== "" ? "firstError" : ""
+                              }`}
+                            ></input>
+                            {this.state.firstError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
                           </div>
-                          <div className="firstInput">
-                            {/* <input type="text"></input> */}
+                          {/* <div>
+                            <p className="ad-first">{this.state.firstError}</p>
+                          </div> */}
+                        </div>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Last Name</label>
+                        </div>
+                        <div className="firstInput">
+                          {/* <input type="text"></input> */}
+                          <div>
                             <input
                               type="text"
                               placeholder="Last Name"
@@ -308,137 +320,158 @@ export class Form extends Component {
                             )}
                           </div>
                         </div>
-                        <div className="fieldAndInput">
-                          <div>
-                            <label>Contact </label>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Contact </label>
+                        </div>
+                        <div className="firstInput">
+                          {/* <input type="text"></input> */}
+                          <div className="d-flex">
+                            {/* <div className="ui input"></div> */}
+                            <input
+                              placeholder="Mobile"
+                              value={this.state.contact}
+                              onChange={this.handleContact}
+                              className={`${
+                                this.state.contactError ||
+                                this.state.alphaError !== ""
+                                  ? "firstError"
+                                  : ""
+                              }`}
+                            ></input>
+                            {this.state.contactError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
+                            {this.state.alphaError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
+                            {/* <div>
+                              <p className="ad-4">{this.state.contactError}</p>
+                              <p className="ad-al">{this.state.alphaError}</p>
+                            </div> */}
                           </div>
-                          <div className="firstInput">
-                            {/* <input type="text"></input> */}
+                        </div>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Email </label>
+                        </div>
+                        <div className="firstInput">
+                          {/* <input type="text"></input> */}
+                          <div className="d-flex ">
+                            {/* <div className="ui input"></div> */}
+                            <input
+                              type="email"
+                              placeholder="E-mail"
+                              value={this.state.email}
+                              onChange={this.handleEmail}
+                              className={`${
+                                this.state.emailError !== "" ? "firstError" : ""
+                              }`}
+                            ></input>
+                            {this.state.emailError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
+                            {/* <div>
+                              <p className="ad-third">
+                                {this.state.emailError}
+                              </p>
+                            </div> */}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Address</label>
+                        </div>
+                        <div className="firstInput">
+                          <div
+                          // className="d-flex"
+                          >
                             <div className="d-flex">
                               {/* <div className="ui input"></div> */}
                               <input
-                                placeholder="Mobile"
-                                value={this.state.contact}
-                                onChange={this.handleContact}
+                                className="form-contents5"
+                                type="text-area"
+                                placeholder="Address"
+                                value={this.state.address}
+                                onChange={this.handleAddress}
                                 className={`${
-                                  this.state.contactError !== ""
+                                  this.state.addressError !== ""
                                     ? "firstError"
                                     : ""
                                 }`}
                               ></input>
-                              {this.state.contactError !== "" && (
+                              {this.state.addressError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
                                   className="ml-2 mt-8"
                                 />
                               )}
-                              {this.state.alphaError !== "" && (
-                                <ErrorIcon
-                                  color="secondary"
-                                  className="ml-2 mt-8"
-                                />
-                              )}
-                              <div>
-                                <p className="ad-4">
-                                  {this.state.contactError}
+                              {/* <div>
+                                <p className="ad-5">
+                                  {this.state.addressError}
                                 </p>
-                                <p className="ad-al">{this.state.alphaError}</p>
-                              </div>
+                              </div> */}
                             </div>
-                          </div>
-                        </div>
-                        <div className="fieldAndInput">
-                          <div>
-                            <label>Email </label>
-                          </div>
-                          <div className="firstInput">
-                            {/* <input type="text"></input> */}
-                            <div className="d-flex w-100" className="d-flex ">
-                              {/* <div className="ui input"></div> */}
-                              <input
-                                type="email"
-                                placeholder="E-mail"
-                                value={this.state.email}
-                                onChange={this.handleEmail}
-                                className={`${
-                                  this.state.emailError !== ""
-                                    ? "firstError"
-                                    : ""
-                                }`}
-                              ></input>
-                              {this.state.emailError !== "" && (
-                                <ErrorIcon
-                                  color="secondary"
-                                  className="ml-2 mt-8"
-                                />
-                              )}
-                              <div>
-                                <p className="ad-third">
-                                  {this.state.emailError}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="fieldAndInput">
-                          <div>
-                            <label>Address</label>
-                          </div>
-                          <div className="firstInput">
-                            <div
-                            // className="d-flex"
-                            >
-                              <div className="d-flex">
-                                {/* <div className="ui input"></div> */}
-                                <input
-                                  className="form-contents5"
-                                  type="text-area"
-                                  placeholder="Address"
-                                  value={this.state.address}
-                                  onChange={this.handleAddress}
-                                  className={`${
-                                    this.state.addressError !== ""
-                                      ? "firstError"
-                                      : ""
-                                  }`}
-                                ></input>
-                                {this.state.addressError !== "" && (
-                                  <ErrorIcon
-                                    color="secondary"
-                                    className="ml-2 mt-8"
-                                  />
-                                )}
-                                <div>
-                                  <p className="ad-5">
-                                    {this.state.addressError}
-                                  </p>
-                                </div>
-                              </div>
-                              {/* {this.state.addressError} */}
-                            </div>
+                            {/* {this.state.addressError} */}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="submit-form">
-                      <Link as={NavLink} to="/details">
-                        <button onClick={this.handleSubmit}>Submit</button>
-                      </Link>
-                    </div>
                   </div>
-                </form>
-              </div>
+                  <div className="submit-form">
+                    <button onClick={this.handleSubmit}>Submit</button>
+                    {this.state.open && (
+                      <Modal
+                        open={this.state.open}
+                        onClose={() => this.setState({ open: false })}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                      >
+                        <div className="modal-open">
+                          {console.log(this.props)}
+                          <div className="contents-modal">
+                            <h1>Hello {this.state.firstName}</h1>
+                            <h4 className="head-confirm">
+                              Booking Confirmed !!
+                            </h4>
+                          </div>
+
+                          <div className="bookNow">
+                            <Link as={NavLink} to="/">
+                              <button onClick={this.handlePost}>
+                                Back to Home
+                              </button>
+                            </Link>
+                          </div>
+                          {/* onClick={this.handleClose */}
+                        </div>
+                      </Modal>
+                    )}
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     hotelDetails: bindActionCreators(hotelDetails, dispatch),
-    bookingDetails: bindActionCreators(bookingDetails, dispatch),
   };
 };
 const mapStateToProps = (state) => ({
@@ -448,7 +481,6 @@ const mapStateToProps = (state) => ({
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
   propertyList: get(state, "propertyList", []),
   customerDetails: get(state, "customerDetails", []),
-  bookingDetails: get(state, "bookingDetails", []),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

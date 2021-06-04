@@ -10,7 +10,17 @@
 
 
 .homeContainer {
-  width: 85%;
+  width: 88%;
+  margin-top: 6em;
+  margin-left: 6em;
+  border-radius: 1em;
+  height: 24em !important;
+  margin-bottom: 6em;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
+  transition: transform 0.2s;
+
+  /* width: 85%;
   margin-top: 6em;
   margin-left: 7em;
   border-radius: 1em;
@@ -18,7 +28,7 @@
   margin-bottom: 6em;
   background-color: white;
   box-shadow: 10px 10px 5px #aaaaaa;
-  transition: transform 0.2s;
+  transition: transform 0.2s; */
 }
 .homeContainer:hover {
   -ms-transform: scale(0.01); /* IE 9 */
@@ -128,12 +138,20 @@
   margin-left: 210px;
 }
 .nameDes {
-  margin-left: -12em;
+  margin-left: -9em;
   /* padding: 45px; */
   padding-top: 2em;
   padding-left: 1em;
   /* padding-bottom: 2em !important; */
   margin-right: 2em;
+  /* margin-bottom: 10em; */
+
+  /* margin-left: -12em; */
+  /* padding: 45px; */
+  /* padding-top: 2em;
+  padding-left: 1em; */
+  /* padding-bottom: 2em !important; */
+  /* margin-right: 2em; */
   /* margin-bottom: 10em; */
 }
 .childWrapper {
@@ -329,8 +347,43 @@ p h1 h6 {
      font-weight: 900;
      font-size: 20px;
 }
-  
-
+  .carousel.item{/* position: relative; */
+    display: none;
+    float: left;
+    width: 100%;
+    height: 44vh !important;
+    /* margin-left: 3em; */
+    margin-right: -100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform .9s ease-in-out;
+  }
+  .carousel-inner{
+    position: relative;
+    /* width: 100%; */
+    overflow: hidden;
+    margin-left: -11em !important;
+    margin-top: 3em !important;
+  }
+  .carousel-control-next{
+    margin-right: 11em !important;
+  }
+  .carousel-control-prev{
+    margin-left: -11em !important;
+  }
+  .carousel-indicators {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 73% !important;
+    /* margin-left: 15%; */
+    list-style: none;
+}
 @media only screen and (max-width: 768px) {
   .homeDiv {
     padding: 5px 0;
