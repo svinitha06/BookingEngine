@@ -143,6 +143,8 @@ export class Form extends Component {
     this.setState({
       open:true
     })
+    this.getHoteldetails();
+
   }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
@@ -162,10 +164,16 @@ export class Form extends Component {
   };
   
   handleClose=()=>{
+    // if(this.state.open===false){
+      // <Redirect to="/"/>
+    // 
     // this.setState({
-    //   open:false
+    //   open:false,
+     
     // })
-    <Redirect to="/"/>
+    // this.history.push("/")
+    this.props.history.push("/") 
+    
   }
   handleBook=()=>{
    
@@ -175,9 +183,8 @@ export class Form extends Component {
      bookNowMsg:"Booking has been made"
 })
   }
-  handlePost=()=>{
-    this.getHoteldetails();
-  }
+  // handlePost=()=>{
+  // }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -435,7 +442,7 @@ export class Form extends Component {
                       {this.state.open && 
                     <Modal
                       open={this.state.open}
-                      onClose={()=>this.setState({open:false})}
+                      onClose={this.handleClose}
                       aria-labelledby="simple-modal-title"
                       aria-describedby="simple-modal-description"
                     >
@@ -451,7 +458,7 @@ export class Form extends Component {
                      
                   <div className="bookNow">
                     <Link as={NavLink} to="/">
-                    <button  onClick={this.handlePost}>Back to Home</button>
+                    <button  >Back to Home</button>
 
                     </Link>
                     </div>
@@ -482,4 +489,4 @@ const mapStateToProps = (state) => ({
   customerDetails: get(state, "customerDetails", []),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));

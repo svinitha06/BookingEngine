@@ -245,9 +245,16 @@
   margin-left: 7px;
 }
 .now {
-  padding: 8px;
+   /* padding: 8px; */
+   padding-top: 12px;
+   padding-right: 1em;
+   padding-left: 1em;
+   font-weight: 600;
+   font-size: 16px;
+   
+  /* padding: 8px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 16px; */
 }
 .a-incre {
   margin-left: 7px;
