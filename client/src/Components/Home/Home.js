@@ -2,9 +2,9 @@ import React from "react";
 import "./Home.css";
 import { get, functions, bind, isEmpty, trim } from "lodash";
 import _ from "lodash";
-import Dummy from "./Dummy"
+import Carousel from 'react-bootstrap/Carousel'
 import giphy from "../../asset/giphy.gif";
-import Carousel from "react-elastic-carousel";
+// import Carousel from "react-elastic-carousel";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { StarFill } from "react-bootstrap-icons";
@@ -419,7 +419,41 @@ class Home extends React.Component {
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper" >
-                <div data-for="dummy" data-tip="tooltip">
+                <div className="carousel-NOW"  >
+              <Carousel>
+  <Carousel.Item >
+    <img
+      className="d-block w-100"
+      src={get(data, "Image[0]")}
+      alt="First slide"
+      height="250vh"
+    />
+   
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={get(data, "Image[1]")}
+      alt="Second slide"
+      height="250vh"
+
+    />
+   
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={get(data, "Image[2]")}
+      alt="Third slide"
+      height="250vh"
+
+    />
+   
+  </Carousel.Item>
+  
+</Carousel>
+          </div>   
+                {/* <div >
                 <Carousel showArrows={false} >
                   <div style={{ marginLeft: "7em" }}>
                     <img
@@ -451,8 +485,8 @@ class Home extends React.Component {
                   </div>
                  
                 </Carousel>
-                {/* <ReactTooltip id="dummy"><Dummy></Dummy></ReactTooltip> */}
-                </div>
+                
+                </div> */}
                 
                
                 <div className="nameDes">

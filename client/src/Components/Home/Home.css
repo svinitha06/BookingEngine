@@ -347,8 +347,43 @@ p h1 h6 {
      font-weight: 900;
      font-size: 20px;
 }
-  
-
+  .carousel.item{/* position: relative; */
+    display: none;
+    float: left;
+    width: 100%;
+    height: 44vh !important;
+    /* margin-left: 3em; */
+    margin-right: -100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: transform .9s ease-in-out;
+  }
+  .carousel-inner{
+    position: relative;
+    /* width: 100%; */
+    overflow: hidden;
+    margin-left: -11em !important;
+    margin-top: 3em !important;
+  }
+  .carousel-control-next{
+    margin-right: 11em !important;
+  }
+  .carousel-control-prev{
+    margin-left: -11em !important;
+  }
+  .carousel-indicators {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 73% !important;
+    /* margin-left: 15%; */
+    list-style: none;
+}
 @media only screen and (max-width: 768px) {
   .homeDiv {
     padding: 5px 0;

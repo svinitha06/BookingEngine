@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Form2.css";
+import Modal from '@material-ui/core/Modal';
 import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
@@ -137,10 +138,14 @@ export class Form extends Component {
         alphaError: "",
       });
     }
+    if(this.state.firstName !== null && this.state.lastName !== null && validator.isEmail(this.state.email) && this.state.address !== "" && this.state.contact.length == 10){
+    this.setState({
+      open:true
+    })
     this.getHoteldetails();
+  }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
-    //  <Redirect to="/display"/>
   };
 
   getHoteldetails = async () => {
@@ -155,6 +160,21 @@ export class Form extends Component {
     console.log(data, "hotelNow");
     await db.getPostHotelDetails(data);
   };
+  
+  handleClose=()=>{
+    // this.setState({
+    //   open:false
+    // })
+    <Redirect to="/"/>
+  }
+  handleBook=()=>{
+   
+
+ this.setState({
+      open:false,
+     bookNowMsg:"Booking has been made"
+})
+  }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -248,9 +268,9 @@ export class Form extends Component {
                           <label>First Name</label>
                         </div>
                         <div className="firstInput">
-                          {/* <input type="text"></input> */}
-                          <div className="d-flex">
-                            {/* <div className="ui input"></div> */}
+                       
+                          <div className="d-flex ">
+                           
                             <input
                               type="text"
                               placeholder="First Name"
@@ -267,10 +287,9 @@ export class Form extends Component {
                               />
                             )}
                           </div>
-                          <div>
+                          {/* <div>
                             <p className="ad-first">{this.state.firstError}</p>
-                          </div>
-                          {/* {this.state.lastError} */}
+                          </div> */}
                         </div>
                       </div>
                       <div className="fieldAndInput">
@@ -279,6 +298,7 @@ export class Form extends Component {
                         </div>
                         <div className="firstInput">
                           {/* <input type="text"></input> */}
+                          <div>
                           <input
                             type="text"
                             placeholder="Last Name"
@@ -294,6 +314,8 @@ export class Form extends Component {
                               className="ml-2 mt-8"
                             />
                           )}
+                          </div>
+                          
                         </div>
                       </div>
                       <div className="fieldAndInput">
@@ -309,7 +331,7 @@ export class Form extends Component {
                               value={this.state.contact}
                               onChange={this.handleContact}
                               className={`${
-                                this.state.contactError !== ""
+                                this.state.contactError || this.state.alphaError !== ""
                                   ? "firstError"
                                   : ""
                               }`}
@@ -326,10 +348,10 @@ export class Form extends Component {
                                 className="ml-2 mt-8"
                               />
                             )}
-                            <div>
+                            {/* <div>
                               <p className="ad-4">{this.state.contactError}</p>
                               <p className="ad-al">{this.state.alphaError}</p>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>
@@ -339,7 +361,7 @@ export class Form extends Component {
                         </div>
                         <div className="firstInput">
                           {/* <input type="text"></input> */}
-                          <div className="d-flex w-100" className="d-flex ">
+                          <div  className="d-flex ">
                             {/* <div className="ui input"></div> */}
                             <input
                               type="email"
@@ -356,11 +378,11 @@ export class Form extends Component {
                                 className="ml-2 mt-8"
                               />
                             )}
-                            <div>
+                            {/* <div>
                               <p className="ad-third">
                                 {this.state.emailError}
                               </p>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>
@@ -392,11 +414,11 @@ export class Form extends Component {
                                   className="ml-2 mt-8"
                                 />
                               )}
-                              <div>
+                              {/* <div>
                                 <p className="ad-5">
                                   {this.state.addressError}
                                 </p>
-                              </div>
+                              </div> */}
                             </div>
                             {/* {this.state.addressError} */}
                           </div>
@@ -405,9 +427,34 @@ export class Form extends Component {
                     </div>
                   </div>
                   <div className="submit-form">
-                    <Link as={NavLink} to="/details">
+                   
                       <button onClick={this.handleSubmit}>Submit</button>
+                      {this.state.open && 
+                    <Modal
+                      open={this.state.open}
+                      onClose={()=>this.setState({open:false})}
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                    >
+                   <div className="modal-open">
+                     {console.log(this.props)}
+                     <div className="contents-modal">
+                     <h1>
+                       Hello   {this.state.firstName}</h1>
+                     <h4 className="head-confirm">Booking Confirmed !!</h4>
+                     
+                  
+                     </div>
+                     
+                  <div className="bookNow">
+                    <Link as={NavLink} to="/">
+                    <button  >Back to Home</button>
+
                     </Link>
+                    </div>
+                  {/* onClick={this.handleClose */}
+                   </div>
+                    </Modal>}
                   </div>
                 </div>
               </form>
