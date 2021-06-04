@@ -138,17 +138,13 @@ export class Form extends Component {
         alphaError: "",
       });
     }
-    if (
-      this.state.firstName !== null &&
-      this.state.lastName !== null &&
-      validator.isEmail(this.state.email) &&
-      this.state.address !== "" &&
-      this.state.contact.length == 10
-    ) {
-      this.setState({
-        open: true,
-      });
-    }
+    if(this.state.firstName !== null && this.state.lastName !== null && validator.isEmail(this.state.email) && this.state.address !== "" && this.state.contact.length == 10){
+    this.setState({
+      open:true
+    })
+    this.getHoteldetails();
+
+  }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
   };
@@ -168,19 +164,23 @@ export class Form extends Component {
 
   handleClose = () => {
     // this.setState({
-    //   open:false
+    //   open:false,
+     
     // })
-    <Redirect to="/" />;
-  };
-  handleBook = () => {
-    this.setState({
-      open: false,
-      bookNowMsg: "Booking has been made",
-    });
-  };
-  handlePost = () => {
-    this.getHoteldetails();
-  };
+    // this.history.push("/")
+    this.props.history.push("/") 
+    
+  }
+  handleBook=()=>{
+   
+
+ this.setState({
+      open:false,
+     bookNowMsg:"Booking has been made"
+})
+  }
+  // handlePost=()=>{
+  // }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -442,7 +442,7 @@ export class Form extends Component {
                     {this.state.open && (
                       <Modal
                         open={this.state.open}
-                        onClose={() => this.setState({ open: false })}
+                        onClose={this.handleClose}
                         aria-labelledby="simple-modal-title"
                         aria-describedby="simple-modal-description"
                       >
@@ -490,4 +490,4 @@ const mapStateToProps = (state) => ({
   customerDetails: get(state, "customerDetails", []),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));
