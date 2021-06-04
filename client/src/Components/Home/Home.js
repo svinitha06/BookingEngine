@@ -2,7 +2,7 @@ import React from "react";
 import "./Home.css";
 import { get, functions, bind, isEmpty, trim } from "lodash";
 import _ from "lodash";
-import Carousel from 'react-bootstrap/Carousel'
+import Carousel from "react-bootstrap/Carousel";
 import giphy from "../../asset/giphy.gif";
 // import Carousel from "react-elastic-carousel";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
@@ -15,7 +15,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
 import tryL from "../../asset/try.jpg";
-import ReactTooltip from 'react-tooltip';
+import ReactTooltip from "react-tooltip";
 import { withRouter, Link } from "react-router-dom";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import GpsFixedIcon from "@material-ui/icons/GpsFixed";
@@ -75,14 +75,14 @@ class Home extends React.Component {
     this.setState({ flag: !this.state.flag });
 
     this.getcall();
-    // this.getLocation()
-    // this.getRoomRates();
+    
   }
   getcall = async () => {
     let res = await db.getproperty();
     this.props.property(res);
     this.setState({
       loader: false,
+      
     });
     // console.log(res, "sherin");
   };
@@ -93,8 +93,7 @@ class Home extends React.Component {
       end: e.value[1],
       dateError: "",
     });
-    console.log("e.value 0", e.value[0]);
-    console.log("e.value", e.value);
+   
 
     this.setState({
       start: e.value[0],
@@ -130,9 +129,9 @@ class Home extends React.Component {
   };
   handleCount = () => {
     let count = 0;
-    if (this.state.adultValue/4) {
+    if (this.state.adultValue / 4) {
       this.setState({
-        roomValue: Math.ceil(this.state.adultValue / 2)
+        roomValue: Math.ceil(this.state.adultValue / 2),
       });
     } else {
       this.setState({
@@ -215,7 +214,9 @@ class Home extends React.Component {
       cityError: "",
       loader: true,
     });
-    if (!trim(e)) {
+    if (
+      !trim(e)
+   ) {
       let res = await db.getproperty();
       this.props.property(res);
     }
@@ -418,80 +419,42 @@ class Home extends React.Component {
         {this.props.propertyList.length && !this.state.loader ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
-              <div className="wrapper" >
-                <div className="carousel-NOW"  >
-              <Carousel>
-  <Carousel.Item >
-    <img
-      className="d-block w-100"
-      src={get(data, "Image[0]")}
-      alt="First slide"
-      height="250vh"
-    />
-   
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={get(data, "Image[1]")}
-      alt="Second slide"
-      height="250vh"
-
-    />
-   
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={get(data, "Image[2]")}
-      alt="Third slide"
-      height="250vh"
-
-    />
-   
-  </Carousel.Item>
-  
-</Carousel>
-          </div>   
-                {/* <div >
-                <Carousel showArrows={false} >
-                  <div style={{ marginLeft: "7em" }}>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[0]")}
-                    ></img>
-                  </div>
-                  <div>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[1]")}
-                    ></img>
-                  </div>
-                  <div>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[2]")}
-                    ></img>
-                  </div>
-                  <div>
-                    <img
-                      className="ImageTile"
-                      key={index}
-                      src={get(data, "Image[3]")}
-                    ></img>
-                  </div>
-                 
-                </Carousel>
+              <div className="wrapper">
+                <div className="carousel-NOW">
+                  <Carousel>
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100"
+                        src={get(data, "Image[0]")}
+                        alt="First slide"
+                        height="250vh"
+                      />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100"
+                        src={get(data, "Image[1]")}
+                        alt="Second slide"
+                        height="250vh"
+                      />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      <img
+                        className="d-block w-100"
+                        src={get(data, "Image[2]")}
+                        alt="Third slide"
+                        height="250vh"
+                      />
+                    </Carousel.Item>
+                  </Carousel>
+                </div>
                 
-                </div> */}
                 
-               
+          
+
                 <div className="nameDes">
                   <h1>{get(data, "name", "--")}</h1>
-                   
+
                   <p className="starFill">
                     {_.range(
                       0,
@@ -521,7 +484,7 @@ class Home extends React.Component {
                       </div>
                       <div className="pin">
                         <PinDropIcon style={{ color: "#FF5733" }}></PinDropIcon>
-                        <p className="pin-des">{get(data,"location", "--")}</p>
+                        <p className="pin-des">{get(data, "location", "--")}</p>
                       </div>
                       <div className="pin">
                         <PhoneInTalkIcon></PhoneInTalkIcon>
@@ -552,7 +515,9 @@ class Home extends React.Component {
             <img className="image-error" src={giphy} alt="loading..."></img>
           </div>
         ) : null}
-        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)? "":null}
+        {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
+          ? ""
+          : null}
         {/* {console.log(this.props,"now check")} */}
 
         <p className="customMade2">
@@ -563,40 +528,34 @@ class Home extends React.Component {
           ? this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>
                 <div className="wrapper">
-                <div className="carousel-NOW"  >
-              <Carousel>
-  <Carousel.Item >
-    <img
-      className="d-block w-100"
-      src={get(data, "Image[0]")}
-      alt="First slide"
-      height="250vh"
-    />
-   
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={get(data, "Image[1]")}
-      alt="Second slide"
-      height="250vh"
-
-    />
-   
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={get(data, "Image[2]")}
-      alt="Third slide"
-      height="250vh"
-
-    />
-   
-  </Carousel.Item>
-  
-</Carousel>
-          </div>   
+                  <div className="carousel-NOW">
+                    <Carousel>
+                      <Carousel.Item>
+                        <img
+                          className="d-block w-100"
+                          src={get(data, "Image[0]")}
+                          alt="First slide"
+                          height="250vh"
+                        />
+                      </Carousel.Item>
+                      <Carousel.Item>
+                        <img
+                          className="d-block w-100"
+                          src={get(data, "Image[1]")}
+                          alt="Second slide"
+                          height="250vh"
+                        />
+                      </Carousel.Item>
+                      <Carousel.Item>
+                        <img
+                          className="d-block w-100"
+                          src={get(data, "Image[2]")}
+                          alt="Third slide"
+                          height="250vh"
+                        />
+                      </Carousel.Item>
+                    </Carousel>
+                  </div>
                   {/* <Carousel showArrows={false}>
                     <div style={{ marginLeft: "12em" }}>
                       <img
@@ -665,7 +624,7 @@ class Home extends React.Component {
                             style={{ color: "#FF5733" }}
                           ></PinDropIcon>
                           <p className="pin-des">
-                            {get(data,"location", "--")}
+                            {get(data, "location", "--")}
                           </p>
                         </div>
                         <div className="pin">
