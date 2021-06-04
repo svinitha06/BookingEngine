@@ -20,6 +20,9 @@
     margin-left: -1px;
   } */
 
+  a.ui.button.submit-form{
+    margin-left: 31%;
+  }
 .ui button .ui {
   margin-top: 38px;
   margin-left: 37px;
@@ -263,13 +266,13 @@ select {
 .fieldAndInput,
 .fieldAndInputFirst {
   display: grid;
-  grid-template-columns: 20% 80%;
-  margin-top: 1%;
-  margin-bottom: 3%;
+  grid-template-columns: 30% 92%;
+  margin-top: 12%;
+  margin-bottom: -2%;
 }
 /* did a change here */
 /* since affecting the error msg */
-.firstInput input{
+.firstInput input {
   border: 1px solid grey;
 }
 .firstInput input,
@@ -278,7 +281,6 @@ select {
   padding: 2% !important;
   border-radius: 7px !important;
   /* border: 1px solid grey !important; */
-
 }
 .fieldAndInput label,
 .fieldAndInputFirst label {
@@ -291,13 +293,18 @@ select {
 .guestDetailForm {
   padding: 2%;
   margin-left: 17%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  margin-top: -3%;
+  margin-bottom: -9%;
+  margin-right: 17%;
 }
 .guestDetailsHeading {
   margin-top: 1% !important;
   padding: 1% !important;
   margin-left: 2% !important;
+}
+.detailContainer{
+  margin-left: -16%;
+  margin-bottom: 14%;
 }
 .content-wrap {
   background: #f8f8ff;
@@ -311,22 +318,74 @@ select {
 .submit-form {
   margin-top: 6%;
 }
-.submit-form button {
+
+.submit-form button,
+.submit-form Button {
   padding: 13px 26px;
   border-radius: 4px;
-  margin-left: 47%;
+  margin-left: 2%;
   background-color: transparent;
   border: none;
   outline: none;
   color: #fff;
-  background-color: rgba(57, 61, 63, 0.8);
+  background-color: rgb(31, 118, 153);
   border: 1px solid transparent;
   transition: all 0.3s;
-  font-size: 18px;
+  font-size: 16px;
 }
+/* .ui.button {
+  padding: 10px 26px !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: #fff !important;
+  background-color: rgba(57, 61, 63, 0.8) !important;
+  border: 1px solid transparent !important;
+  transition: all 0.3s !important;
+  font-size: 16px !important;
+  font-weight: normal !important;
+  margin-left: 1%;
+} */
+/* a.ui.buttton.submit-form {
+  padding: 13px 26px !important;
+  border-radius: 4px !important;
+  margin-left: 47% !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: #fff !important;
+  background-color: rgba(57, 61, 63, 0.8) !important;
+  border: 1px solid transparent !important;
+  transition: all 0.3s !important;
+  font-size: 18px !important;
+} */
+
+
+/* .submit-form .ui.button .backbutton{
+  margin-left: 10%;
+} */
 .submit-form button:hover {
   color: black !important;
   background-color: transparent;
+  opacity: 0.7;
+  border: 1px solid #565656;
+  margin-left: 3%;
+}
+/* .ui.button{
+  background: rgb(32, 155, 204);
+  color: white;
+} */
+
+.ui.button {
+  background: rgb(31, 118, 153) !important;
+  color: #f7f7f7 !important;
+}
+.ui.button, .ui.buttons .button, .ui.buttons .or {
+  font-size: 129%;
+}
+.ui.buttton.submit-form {
+  color: black !important;
+  background-color:white;
   opacity: 0.7;
   border: 1px solid #565656;
 }
@@ -378,7 +437,7 @@ select {
 }
 .secondContainer {
   display: grid;
-  grid-template-columns: 30% 30% 40%;
+  grid-template-columns: 50% 50%;
   margin-top: 1%;
   padding: 3%;
   background: #e6e2e2;
@@ -392,6 +451,11 @@ select {
 /* PRICE CONTAINER CSS- DO NOT DELETE */
 /* PRICE CONTAINER CSS- DO NOT DELETE */
 /* PRICE CONTAINER CSS- DO NOT DELETE */
+.priceDetailsContainer,
+.priceLabel {
+  display: grid;
+  grid-template-columns: 35% 20% 20% 25%;
+}
 
 .priceSummary {
   width: 64% !important;
@@ -411,12 +475,16 @@ select {
   padding-bottom: 1.5%;
   justify-content: flex-start;
 }
+.priceLabel div {
+  font-weight: 600;
+}
 .detailsOfPrice {
   padding: 3%;
   border-radius: 22px;
   padding-top: 0% !important;
   margin-left: 3%;
   display: grid;
+  margin-top: 7%;
   grid-template-rows: 80% 20%;
 }
 .priceContainerTwo h2 {
@@ -424,17 +492,17 @@ select {
   margin-bottom: 2%;
   justify-content: left !important;
 }
-.priceContainerOne {
+/* .priceContainerOne {
   display: grid;
   grid-template-columns: 70% 30%;
   margin-top: 3%;
-}
+} */
 .priceContainerTwo {
   background: #e5e2e2;
   border-radius: 22px;
   padding: 3%;
 }
-.modal-open{
+.modal-open {
   background: #005aa7;
   background: linear-gradient(to right, #005aa7, #fffde4);
   width: 36%;
@@ -447,46 +515,44 @@ select {
   border-radius: 51px;
 }
 
-.bookNow{
+.bookNow {
   margin-top: 2em;
   margin-left: 2.75em;
 }
-.bookNow button{
+.bookNow button {
   /* margin-right: -47px; */
- /* margin-top: -25px; */
- padding: 16px 30px;
- background-color: transparent;
- border: none;
- outline: none;
- color: #fff;
+  /* margin-top: -25px; */
+  padding: 16px 30px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
   background-color: rgba(57, 61, 63, 0.8);
- border: 1px solid transparent;
- transition: all 0.3s;
- font-size: 18px;
- /* cursor: pointer; */
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  font-size: 18px;
+  /* cursor: pointer; */
 }
-.bookNow button:hover{
-color: black !important;
- background-color: transparent;
- opacity: 0.7;
- border: 1px solid #565656;
+.bookNow button:hover {
+  color: black !important;
+  background-color: transparent;
+  opacity: 0.7;
+  border: 1px solid #565656;
 }
-.contents-modal{
-      /* align-items: center; */
-      margin-top: -1.75em;
-      margin-left: 0.5em;
-      background: rgba(0,0,0,0.3);
-      width: 90%;
-      padding-left: 3em;
-      padding-top: 1em;
-      padding-bottom: 1em;
-      border-radius: 40px;
-      padding-right: 0.5em !important;
-      /* justify-content: center; */
-      /* position: absolute; */
+.contents-modal {
+  /* align-items: center; */
+  margin-top: -1.75em;
+  margin-left: 0.5em;
+  background: rgba(0, 0, 0, 0.3);
+  width: 90%;
+  padding-left: 3em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 40px;
+  padding-right: 0.5em !important;
+  /* justify-content: center; */
+  /* position: absolute; */
 }
-.firstError{
+.firstError {
   border: 1px solid red !important;
-
 }
-
