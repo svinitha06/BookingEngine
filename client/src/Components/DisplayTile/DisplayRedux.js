@@ -25,6 +25,7 @@ import {
   room,
   propRoomType,
   roomTypesRate,
+  bookingDetails,
 } from "../../actions/index";
 
 class DisplayRedux extends Component {
@@ -62,17 +63,18 @@ class DisplayRedux extends Component {
         var countObj = this.state.list.map((data) => {
           return {
             id: data._id,
+            propertyId: data.PropertyId,
             count: 0,
             isChecked: false,
             priceO: 0,
-            // rate: 0,
+            roomType: data.roomType,
           };
         });
         this.setState({ countObj: countObj });
       })
       .catch((error) => {
         // console.log("Error gtting data", error);
-        <h1>Error fetching data</h1>
+        <h1>Error fetching data</h1>;
         this.setState({ error: !this.state.error });
       });
     this.getSomething(this.props.match.params.id);
@@ -102,7 +104,7 @@ class DisplayRedux extends Component {
   };
   handleMinus = (id) => {
     var count = this.state.countObj;
-    let rateObj = this.state.listOfAP;
+    // let rateObj = this.state.listOfAP;
     // let t = this.state.totalPrice;
 
     count.forEach((data) => {
@@ -112,30 +114,44 @@ class DisplayRedux extends Component {
     });
     this.setState({ countObj: count });
     this.checkEnable();
+    this.props.hotelDetails({
+      bookingData: this.state.countObj,
+    });
+    // console.log(
+    //   "value of isDisable from caal in handleminus = ",
+    //   this.checkEnable()
+    // );
+    console.log("countObj price inside Handle minus = ", this.state.countObj);
+    console.log("list of rooms  inside Handle minus= ", this.state.list);
     console.log(
-      "value of isDisable from caal in handleminus = ",
-      this.checkEnable()
+      "this.props.hotelDetails inside Handleminus = ",
+      this.props.hotelDetails
     );
   };
   handlePlus = (id) => {
     var count = this.state.countObj;
-    let rateObj = this.state.listOfAP;
-    console.log("count obj inside of handle plus = ", count);
+    // let rateObj = this.state.listOfAP;
+    // console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
       if (data.id === id) {
         data.count += 1;
       }
     });
     // console.log("p = ", p);
-    console.log("countObj price  = ", this.state.countObj);
+
     this.setState({
       countObj: count,
       // finalTotalPrice:
     });
     this.checkEnable();
+    this.props.bookingDetails({
+      bookingData: this.state.countObj,
+    });
+    console.log("countObj price inside Handle PLus = ", this.state.countObj);
+    console.log("list of rooms  inside Handle PLus= ", this.state.list);
     console.log(
-      "value of isDisable from caal in handlePlus = ",
-      this.checkEnable()
+      "this.props.hotelDetails inside HandlePLus = ",
+      this.props.hotelDetails
     );
   };
   calculateTotal = () => {
@@ -144,7 +160,7 @@ class DisplayRedux extends Component {
     let t = 0;
     var p = 0;
     // console.log("value of BEFORE t inside handlePlus", t);
-    console.log("count obj inside of handle plus = ", count);
+    // console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
       // console.log("count inside handlePlus = ", data.count);
       rateObj.forEach((rate) => {
@@ -156,8 +172,8 @@ class DisplayRedux extends Component {
       // console.log("value of After t inside handlePlus", t);
       // }
     });
-    console.log("p = ", p);
-    console.log("countObj price  = ", this.state.countObj);
+    // console.log("p = ", p);
+    console.log("countObj price inside caculateTotal = ", this.state.countObj);
     return t;
   };
   handleChange = (id) => {
@@ -179,19 +195,15 @@ class DisplayRedux extends Component {
   };
   checkEnable = () => {
     var temp = this.calculateTotal();
-    console.log("inside checkEnable temp = ", temp);
-    console.log("inside checkenable isDisable  = ", this.state.isDisable);
 
     if (temp > 0 && this.state.isDisable === true) {
       this.setState({
         isDisable: !this.state.isDisable,
       });
-      console.log("inside checkEnable disable  = ", this.state.isDisable);
     } else if (temp === 0 && this.state.isDisable === false) {
       this.setState({
         isDisable: !this.state.isDisable,
       });
-      console.log("inside checkEnable disable  = ", this.state.isDisable);
     }
     return this.state.isDisable;
   };
@@ -201,11 +213,10 @@ class DisplayRedux extends Component {
       color: "white",
       backgroundColor: "DodgerBlue",
       padding: "10px",
-      fontFamily:  "Arial, Helvetica, sans-serif",
+      fontFamily: "Arial, Helvetica, sans-serif",
       textAlign: "center",
     };
     let total = this.calculateTotal();
-    // console.log("this.state.totalPrice", this.state.totalPrice);
 
     var propertyName = "";
     var ap = 0,
@@ -314,7 +325,7 @@ class DisplayRedux extends Component {
                   // console.log("finalPrice = ", finalPrice);
                   // console.log("rooms = ", room);
                   if (room > 0) price = finalPrice * room;
-                  console.log("price = ", price);
+                  // console.log("price = ", price);
                   // console.log(
                   //   "this.state.totalpriceTow = ",
                   //   this.state.totalpriceTwo
@@ -322,7 +333,7 @@ class DisplayRedux extends Component {
                   count.forEach((data) => {
                     if (data.id === post._id) data.priceO = price;
                   });
-                  console.log("count Obj agter priceO = ", count);
+                  // console.log("count Obj agter priceO = ", count);
                   return (
                     <div key={index} className="homeContainerOne">
                       {/* <h1>{this.state.}</h1> */}
@@ -478,7 +489,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     roomDetails: bindActionCreators(roomDetails, dispatch),
     roomTypesRate: bindActionCreators(roomTypesRate, dispatch),
-
+    bookingDetails: bindActionCreators(bookingDetails, dispatch),
     date: bindActionCreators(date, dispatch),
     room: bindActionCreators(room, dispatch),
     property: bindActionCreators(property, dispatch),
@@ -489,6 +500,7 @@ const mapStateToProps = (state) => {
     roomDetailsList: get(state, "roomDetailsList", []),
     roomTypeRatesData: get(state, "roomTypeRatesData", []),
     propertyList: get(state, "propertyList", []),
+    bookingDetails: get(state, "bookingDetails", []),
     dateRange: get(state, "dateRange", []),
   };
 };
