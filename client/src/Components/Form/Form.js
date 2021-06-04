@@ -142,7 +142,6 @@ export class Form extends Component {
     this.setState({
       open:true
     })
-    this.getHoteldetails();
   }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
@@ -174,6 +173,9 @@ export class Form extends Component {
       open:false,
      bookNowMsg:"Booking has been made"
 })
+  }
+  handlePost=()=>{
+    this.getHoteldetails();
   }
   render() {
     const minValue = new Date(
@@ -448,7 +450,7 @@ export class Form extends Component {
                      
                   <div className="bookNow">
                     <Link as={NavLink} to="/">
-                    <button  >Back to Home</button>
+                    <button  onClick={this.handlePost}>Back to Home</button>
 
                     </Link>
                     </div>
