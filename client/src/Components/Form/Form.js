@@ -36,6 +36,9 @@ export class Form extends Component {
       alphaError: "",
       hotelFlag: true,
       goBackTo: this.props.navigation,
+      checkInDate: "",
+      checkOutDate: "",
+      proId: 0,
     };
   }
   componentDidMount() {
@@ -43,8 +46,8 @@ export class Form extends Component {
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
-    console.log("this.props from form", this.props);
-    console.log("goback", this.state.go);
+
+    // console.log("property in form did mount ", this.props.propertyList);
   }
   handleHotel = () => {
     // const { hotelFlag } = this.state;
@@ -138,13 +141,18 @@ export class Form extends Component {
         alphaError: "",
       });
     }
-    if(this.state.firstName !== null && this.state.lastName !== null && validator.isEmail(this.state.email) && this.state.address !== "" && this.state.contact.length == 10){
-    this.setState({
-      open:true
-    })
-    this.getHoteldetails();
-
-  }
+    if (
+      this.state.firstName !== null &&
+      this.state.lastName !== null &&
+      validator.isEmail(this.state.email) &&
+      this.state.address !== "" &&
+      this.state.contact.length == 10
+    ) {
+      this.setState({
+        open: true,
+      });
+      this.getHoteldetails();
+    }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
   };
@@ -165,28 +173,43 @@ export class Form extends Component {
   handleClose = () => {
     // this.setState({
     //   open:false,
-     
+
     // })
     // this.history.push("/")
-    this.props.history.push("/") 
-    
-  }
-  handleBook=()=>{
-   
-
- this.setState({
-      open:false,
-     bookNowMsg:"Booking has been made"
-})
-  }
+    this.props.history.push("/");
+  };
+  handleBook = () => {
+    this.setState({
+      open: false,
+      bookNowMsg: "Booking has been made",
+    });
+  };
   // handlePost=()=>{
   // }
+
+  handleDateParts = (d) => {
+    const formattedDate = {
+      date: d.getDate(),
+      month: d.getMonth() + 1,
+      year: d.getFullYear(),
+    };
+    return `${formattedDate.date}-${formattedDate.month}-${formattedDate.year}`;
+  };
   render() {
+    // this.setState({ proId: this.props.booking[0].propertyId });
+    console.log("proId", this.state.proId);
+    console.log("Booking Prop", this.props.booking);
+    console.log("propertyList prop ", this.props.propertyList);
+    // console.log("booking in render =", this.props.booking);
     const minValue = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
       new Date().getDate()
     );
+
+    this.state.checkInDate = this.handleDateParts(this.props.dateRange.start);
+    this.state.checkOutDate = this.handleDateParts(this.props.dateRange.end);
+
     return (
       <div className="container-form">
         <div className="form">
@@ -200,57 +223,105 @@ export class Form extends Component {
                     <div className="hotel-Details">
                       <div className="hotelHeading">
                         <h1>Hotel Details</h1>
-                        <div>
-                          <button onClick={this.handleHotel}>
-                            <KeyboardArrowDownIcon />
-                          </button>
-                        </div>
                       </div>
                       {/* {this.state.hotelFlag && <HotelDetail />} */}
                       <div className="hotelDetailContainer">
                         <div className="firstContainer">
-                          <div className="hotelImage">
-                            <img src={Image}></img>
-                          </div>
-                          <div className="hotelNameContainer">
-                            <div className="hotelName">
-                              <h2>Crown </h2>
-                            </div>
-                            <div className="hotelRating">3/5</div>
-                            <div className="hotelLocation">
-                              <h5>Chennai ,India</h5>
-                            </div>
-                          </div>
+                          {/* {this.props.propertyList.map((data,index)=>{
+                            if(data.PropertyId === data2.propertyId)
+                          })} */}
+                          {
+                            // var nameOfHotel;
+                            this.props.propertyList.map((data, i) => {
+                              if (
+                                data.PropertyId ===
+                                this.props.booking[0].propertyId
+                              ) {
+                                var nameOfHotel = data.name;
+                                var address = data.Address;
+                                var imageHotel = data.Image[0];
+                                return (
+                                  <div className="insideReturn">
+                                    <div className="hotelImage">
+                                      <img src={imageHotel}></img>
+                                    </div>
+                                    <div className="hotelNameContainer">
+                                      <div className="hotelName">
+                                        <h2>{nameOfHotel}</h2>
+                                      </div>
+                                      <div className="hotelLocation">
+                                        <h5>{address}</h5>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            })
+                          }
                         </div>
+
                         <div className="secondContainer">
                           <div>
                             <h3>Check-in Date </h3>
-
-                            {this.props.dateRange &&
-                              this.props.dateRange.start.toString()}
+                            {this.state.checkInDate}
+                            {/* {this.props.dateRange.start.toString()} */}
                           </div>
                           <div>
-                            <h3>Check-ot Date</h3> 2 june 20221
-                          </div>
-                          <div>
-                            <h3>Rooms</h3> 1
+                            <h3>Check-ot Date</h3>
+                            {this.state.checkOutDate}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+
                   <div className="priceSummary">
                     <div className="priceHeading">
                       <h1>Price Summary</h1>
                     </div>
                     <div className="detailsOfPrice">
                       <div className="priceContainerOne">
-                        <div>num of rroms</div>
-                        <div>price</div>
-                        <div>num of rroms</div>
-                        <div>price</div>
-                        <div>num of rroms</div>
-                        <div>price</div>
+                        <div className="priceLabel">
+                          <div>
+                            <h3>Room Type</h3>
+                          </div>
+                          <div>
+                            <h3>Price </h3>
+                          </div>
+                          <div>
+                            <h3>Rooms</h3>
+                          </div>
+                          <div>
+                            <h3>Food</h3>
+                          </div>
+                        </div>
+
+                        {this.props.booking.map((data, index) => {
+                          var roomName;
+                          var price;
+                          var food;
+                          var foodValue;
+                          var roomCount;
+                          if (data.count > 0) {
+                            roomName = data.roomType;
+                            price = data.priceO;
+                            food = data.isChecked;
+                            roomCount = data.count;
+                            foodValue = "";
+                            if (food === true) {
+                              foodValue = "Included";
+                            } else foodValue = "Not Included";
+
+                            return (
+                              <div className="priceDetailsContainer">
+                                <div>{roomName}</div>
+                                <div>{price}</div>
+                                <div>{roomCount}</div>
+                                <div>{foodValue}</div>
+                              </div>
+                            );
+                          }
+                        })}
                       </div>
                       <div>
                         <div className="priceContainerTwo">
@@ -488,6 +559,7 @@ const mapStateToProps = (state) => ({
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
   propertyList: get(state, "propertyList", []),
   customerDetails: get(state, "customerDetails", []),
+  booking: state.bookedRoomDetails.bookingData,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));
