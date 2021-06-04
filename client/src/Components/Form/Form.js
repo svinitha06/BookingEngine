@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Form2.css";
-import Modal from '@material-ui/core/Modal';
+import Modal from "@material-ui/core/Modal";
 import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
@@ -42,7 +42,6 @@ export class Form extends Component {
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
-      
     });
     console.log("this.props from form", this.props);
     console.log("goback", this.state.go);
@@ -162,11 +161,8 @@ export class Form extends Component {
     console.log(data, "hotelNow");
     await db.getPostHotelDetails(data);
   };
-  
-  handleClose=()=>{
-    // if(this.state.open===false){
-      // <Redirect to="/"/>
-    // 
+
+  handleClose = () => {
     // this.setState({
     //   open:false,
      
@@ -278,9 +274,7 @@ export class Form extends Component {
                           <label>First Name</label>
                         </div>
                         <div className="firstInput">
-                       
                           <div className="d-flex ">
-                           
                             <input
                               type="text"
                               placeholder="First Name"
@@ -309,23 +303,22 @@ export class Form extends Component {
                         <div className="firstInput">
                           {/* <input type="text"></input> */}
                           <div>
-                          <input
-                            type="text"
-                            placeholder="Last Name"
-                            value={this.state.lastName}
-                            onChange={this.handleLastName}
-                            className={`${
-                              this.state.lastError !== "" ? "firstError" : ""
-                            }`}
-                          ></input>
-                          {this.state.lastError !== "" && (
-                            <ErrorIcon
-                              color="secondary"
-                              className="ml-2 mt-8"
-                            />
-                          )}
+                            <input
+                              type="text"
+                              placeholder="Last Name"
+                              value={this.state.lastName}
+                              onChange={this.handleLastName}
+                              className={`${
+                                this.state.lastError !== "" ? "firstError" : ""
+                              }`}
+                            ></input>
+                            {this.state.lastError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
                           </div>
-                          
                         </div>
                       </div>
                       <div className="fieldAndInput">
@@ -341,7 +334,8 @@ export class Form extends Component {
                               value={this.state.contact}
                               onChange={this.handleContact}
                               className={`${
-                                this.state.contactError || this.state.alphaError !== ""
+                                this.state.contactError ||
+                                this.state.alphaError !== ""
                                   ? "firstError"
                                   : ""
                               }`}
@@ -371,7 +365,7 @@ export class Form extends Component {
                         </div>
                         <div className="firstInput">
                           {/* <input type="text"></input> */}
-                          <div  className="d-flex ">
+                          <div className="d-flex ">
                             {/* <div className="ui input"></div> */}
                             <input
                               type="email"
@@ -437,34 +431,34 @@ export class Form extends Component {
                     </div>
                   </div>
                   <div className="submit-form">
-                   
-                      <button onClick={this.handleSubmit}>Submit</button>
-                      {this.state.open && 
-                    <Modal
-                      open={this.state.open}
-                      onClose={this.handleClose}
-                      aria-labelledby="simple-modal-title"
-                      aria-describedby="simple-modal-description"
-                    >
-                   <div className="modal-open">
-                     {console.log(this.props)}
-                     <div className="contents-modal">
-                     <h1>
-                       Hello   {this.state.firstName}</h1>
-                     <h4 className="head-confirm">Booking Confirmed !!</h4>
-                     
-                  
-                     </div>
-                     
-                  <div className="bookNow">
-                    <Link as={NavLink} to="/">
-                    <button  >Back to Home</button>
+                    <button onClick={this.handleSubmit}>Submit</button>
+                    {this.state.open && (
+                      <Modal
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
+                      >
+                        <div className="modal-open">
+                          {console.log(this.props)}
+                          <div className="contents-modal">
+                            <h1>Hello {this.state.firstName}</h1>
+                            <h4 className="head-confirm">
+                              Booking Confirmed !!
+                            </h4>
+                          </div>
 
-                    </Link>
-                    </div>
-                  {/* onClick={this.handleClose */}
-                   </div>
-                    </Modal>}
+                          <div className="bookNow">
+                            <Link as={NavLink} to="/">
+                              <button onClick={this.handlePost}>
+                                Back to Home
+                              </button>
+                            </Link>
+                          </div>
+                          {/* onClick={this.handleClose */}
+                        </div>
+                      </Modal>
+                    )}
                   </div>
                 </div>
               </form>
