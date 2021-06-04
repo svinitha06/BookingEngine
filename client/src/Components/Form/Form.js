@@ -200,11 +200,11 @@ export class Form extends Component {
                     <div className="hotel-Details">
                       <div className="hotelHeading">
                         <h1>Hotel Details</h1>
-                        <div>
+                        {/* <div>
                           <button onClick={this.handleHotel}>
                             <KeyboardArrowDownIcon />
                           </button>
-                        </div>
+                        </div> */}
                       </div>
                       {/* {this.state.hotelFlag && <HotelDetail />} */}
                       <div className="hotelDetailContainer">
@@ -429,14 +429,12 @@ export class Form extends Component {
                     </div>
                   </div>
                   <div className="submit-form">
-                    {/* <div className="backButton"> */}
-                    <Button
-                      className="submit-form"
+                    <Button className="submit-form"
                       as={NavLink}
-                      to={"/basiclayout/1"}
-                    >
+                      to={"/basiclayout/1"}>
                       Back
                     </Button>
+                      
                     {/* </div> */}
                     <button onClick={this.handleSubmit}>Book Now</button>
                     {this.state.open && (
