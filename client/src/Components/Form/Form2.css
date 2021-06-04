@@ -1041,16 +1041,17 @@ a.ui.buttton.submit-form {
   padding: 3%;
 }
 .modal-open {
-  background: #005aa7;
-  background: linear-gradient(to right, #005aa7, #fffde4);
+  background: #485a61;
+  background: linear-gradient(to right, #485a61, #fffde4);
   width: 36%;
   height: 49vh;
   margin-left: 16.5em;
   margin-top: 6em;
   padding: 3em;
-  color: white;
+  color: #272d2d;
+  text-shadow: cornflowerblue !important;
   font-size: x-large;
-  border-radius: 51px;
+  /* border-radius: 51px; */
 }
 
 .bookNow {
@@ -1078,18 +1079,20 @@ a.ui.buttton.submit-form {
   border: 1px solid #565656;
 }
 .contents-modal {
-  /* align-items: center; */
-  margin-top: -1.75em;
-  margin-left: 0.5em;
-  background: rgba(0, 0, 0, 0.3);
-  width: 90%;
-  padding-left: 3em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  border-radius: 40px;
-  padding-right: 0.5em !important;
-  /* justify-content: center; */
-  /* position: absolute; */
+      /* align-items: center; */
+      margin-top: -1.75em;
+      margin-left: 0.5em;
+      /* background: rgba(0, 0, 0, 0.3); */
+      width: 90%;
+      padding-left: 1em;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      border: none;
+      box-shadow: -9px 9px 10px -3px black;
+      /* border-radius: 40px; */
+      padding-right: 0.5em !important;
+      /* justify-content: center; */
+      /* position: absolute; */
 }
 .firstError {
   border: 1px solid red !important;
@@ -1166,4 +1169,9 @@ margin-left: 37px;
 
 .ui.button, .ui.buttons .button, .ui.buttons .or {
   font-size: 17px;
+}
+.modal-gif{
+  margin-top: -16em;
+  width: 30%;
+  margin-left: 9em;
 }

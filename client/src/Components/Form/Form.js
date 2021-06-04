@@ -510,6 +510,7 @@ import Image from "../Form/Image.jpeg";
 import { hotelDetails } from "../../actions/index";
 import * as db from "../../api/index";
 import { bindActionCreators } from "redux";
+import modalBell from "../../asset/modalBell.gif"
 
 export class Form extends Component {
   constructor(props) {
@@ -652,20 +653,24 @@ export class Form extends Component {
     // this.history.push("/display");
   };
   getHoteldetails = async () => {
-    // var hotelName;
-    // this.props.propertyList.map((data)=>{
-    //   // if(data.PropertyId === this.props.booking[0].propertyId){
-    //    hotelName=data.name
-    //   // }
-console.log(this.props.propertyList,"checkHotel")
+    var hotelName;
+    this.props.propertyList.map((data)=>{
+      if(data.PropertyId === this.props.booking[0].propertyId){
+       hotelName=data.name
+      }})
 // })
     
     const data = {
       guestName: this.state.firstName + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
-    //  hotelNow: hotelName,
+     hotelNow: hotelName,
       address: this.state.address,
+      checkIn:this.state.checkInDate,
+      checkOut:this.state.checkOutDate,
+      bookedDate:new Date(),
+
+     
     };
   
     
@@ -701,8 +706,8 @@ console.log(this.props.propertyList,"checkHotel")
   };
   render() {
     // this.setState({ proId: this.props.booking[0].propertyId });
-    console.log("proId", this.state.proId);
     console.log("Booking Prop", this.props.booking);
+    console.log(this.props,"demo")
     console.log("propertyList prop ", this.props.propertyList);
     // console.log("booking in render =", this.props.booking);
     const minValue = new Date(
@@ -1032,6 +1037,8 @@ console.log(this.props.propertyList,"checkHotel")
                             </Link>
                           </div>
                           {/* onClick={this.handleClose */}
+                          <img src={modalBell} className="modal-gif"></img>
+
                         </div>
                       </Modal>
                     )}
