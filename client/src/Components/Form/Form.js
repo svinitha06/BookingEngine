@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import "./Form.css";
+=======
+import "./Form2.css";
+>>>>>>> d7154727d3c98c64d957259c38493a8af1814240
 import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
@@ -7,7 +11,6 @@ import { withRouter, Link } from "react-router-dom";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import { NavLink } from "react-router-dom";
 import { Button } from "semantic-ui-react";
-import Modal from '@material-ui/core/Modal';
 import validator from "validator";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import HotelDetail from "./HotelDetail";
@@ -35,18 +38,16 @@ export class Form extends Component {
       addressError: "",
       alphaError: "",
       hotelFlag: true,
-      open:false,
-      bookNowMsg:"",
-      bookOpen:false
+      goBackTo: this.props.navigation,
     };
   }
   componentDidMount() {
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
-
     });
     console.log("this.props from form", this.props);
+    console.log("goback", this.state.go);
   }
   handleHotel = () => {
     // const { hotelFlag } = this.state;
@@ -140,14 +141,10 @@ export class Form extends Component {
         alphaError: "",
       });
     }
-    if(this.state.firstName !== null && this.state.lastName !== null && validator.isEmail(this.state.email) && this.state.address !== "" && this.state.contact.length == 10){
-    this.setState({
-      open:true
-    })
     this.getHoteldetails();
-  }
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
+    //  <Redirect to="/display"/>
   };
 
   getHoteldetails = async () => {
@@ -162,21 +159,6 @@ export class Form extends Component {
     console.log(data, "hotelNow");
     await db.getPostHotelDetails(data);
   };
-  
-  handleClose=()=>{
-    // this.setState({
-    //   open:false
-    // })
-    <Redirect to="/"/>
-  }
-  handleBook=()=>{
-   
-
- this.setState({
-      open:false,
-     bookNowMsg:"Booking has been made"
-})
-  }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -185,25 +167,12 @@ export class Form extends Component {
     );
     return (
       <div className="container-form">
+        <div className="backButton">
+          <Button as={NavLink} to={"/basiclayout/1"}>
+            Back
+          </Button>
+        </div>
         <div className="form">
-          {/* <div className="form-date">
-            <Button className="ui button">Back</Button>
-            <div className="final-date">
-              <span className="push">
-                <h6> Check-in / Check-out</h6>
-              </span>
-              <DateRangePickerComponent
-                placeholder="Check-in/Check-out"
-                startDate={this.state.start}
-                endDate={this.state.end}
-                min={minValue}
-                format={"dd-MMM-yy"}
-                color={"black"}
-                className="form-datepicker"
-                id="datepickeridform"
-              ></DateRangePickerComponent>
-            </div>
-          </div> */}
           <div>
             <div></div>
             <div className="form-design">
@@ -271,6 +240,7 @@ export class Form extends Component {
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
 
                 <div className="form-contents">
                   <div className="guestHeading">
@@ -411,38 +381,180 @@ export class Form extends Component {
                       </div>
                     </div>
                     {/* {this.state.addressError} */}
+=======
+                {/* New Form Here Don't DEL */}
+                <div className="newGuestDetail">
+                  <div className="guestDetailsHeading">
+                    <h1>Guest Details</h1>
+                  </div>
+                  <div className="guestDetailForm">
+                    <div className="detailContainer">
+                      <div className="fieldAndInputFirst">
+                        <div>
+                          <label>First Name</label>
+                        </div>
+                        <div className="firstInput">
+                          {/* <input type="text"></input> */}
+                          <div className="d-flex">
+                            {/* <div className="ui input"></div> */}
+                            <input
+                              type="text"
+                              placeholder="First Name"
+                              value={this.state.firstName}
+                              onChange={this.handleFirstName}
+                              className={`${
+                                this.state.firstError !== "" ? "firstError" : ""
+                              }`}
+                            ></input>
+                            {this.state.firstError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
+                          </div>
+                          <div>
+                            <p className="ad-first">{this.state.firstError}</p>
+                          </div>
+                          {/* {this.state.lastError} */}
+                        </div>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Last Name</label>
+                        </div>
+                        <div className="firstInput">
+                          {/* <input type="text"></input> */}
+                          <input
+                            type="text"
+                            placeholder="Last Name"
+                            value={this.state.lastName}
+                            onChange={this.handleLastName}
+                            className={`${
+                              this.state.lastError !== "" ? "firstError" : ""
+                            }`}
+                          ></input>
+                          {this.state.lastError !== "" && (
+                            <ErrorIcon
+                              color="secondary"
+                              className="ml-2 mt-8"
+                            />
+                          )}
+                        </div>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Contact </label>
+                        </div>
+                        <div className="firstInput">
+                          {/* <input type="text"></input> */}
+                          <div className="d-flex">
+                            {/* <div className="ui input"></div> */}
+                            <input
+                              placeholder="Mobile"
+                              value={this.state.contact}
+                              onChange={this.handleContact}
+                              className={`${
+                                this.state.contactError !== ""
+                                  ? "firstError"
+                                  : ""
+                              }`}
+                            ></input>
+                            {this.state.contactError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
+                            {this.state.alphaError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
+                            <div>
+                              <p className="ad-4">{this.state.contactError}</p>
+                              <p className="ad-al">{this.state.alphaError}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Email </label>
+                        </div>
+                        <div className="firstInput">
+                          {/* <input type="text"></input> */}
+                          <div className="d-flex w-100" className="d-flex ">
+                            {/* <div className="ui input"></div> */}
+                            <input
+                              type="email"
+                              placeholder="E-mail"
+                              value={this.state.email}
+                              onChange={this.handleEmail}
+                              className={`${
+                                this.state.emailError !== "" ? "firstError" : ""
+                              }`}
+                            ></input>
+                            {this.state.emailError !== "" && (
+                              <ErrorIcon
+                                color="secondary"
+                                className="ml-2 mt-8"
+                              />
+                            )}
+                            <div>
+                              <p className="ad-third">
+                                {this.state.emailError}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="fieldAndInput">
+                        <div>
+                          <label>Address</label>
+                        </div>
+                        <div className="firstInput">
+                          <div
+                          // className="d-flex"
+                          >
+                            <div className="d-flex">
+                              {/* <div className="ui input"></div> */}
+                              <input
+                                className="form-contents5"
+                                type="text-area"
+                                placeholder="Address"
+                                value={this.state.address}
+                                onChange={this.handleAddress}
+                                className={`${
+                                  this.state.addressError !== ""
+                                    ? "firstError"
+                                    : ""
+                                }`}
+                              ></input>
+                              {this.state.addressError !== "" && (
+                                <ErrorIcon
+                                  color="secondary"
+                                  className="ml-2 mt-8"
+                                />
+                              )}
+                              <div>
+                                <p className="ad-5">
+                                  {this.state.addressError}
+                                </p>
+                              </div>
+                            </div>
+                            {/* {this.state.addressError} */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+>>>>>>> d7154727d3c98c64d957259c38493a8af1814240
                   </div>
                   <div className="submit-form">
-                    {/* <Link as={NavLink} to="/details"> */}
-                    <button onClick={this.handleSubmit}>Submit</button>
-                    {/* </Link> */}
-                    {this.state.open && 
-                    <Modal
-                      open={this.state.open}
-                      onClose={()=>this.setState({open:false})}
-                      aria-labelledby="simple-modal-title"
-                      aria-describedby="simple-modal-description"
-                    >
-                   <div className="modal-open">
-                     {console.log(this.props)}
-                     <div className="contents-modal">
-                     <h1>
-                       Hello   {this.state.firstName}</h1>
-                     <h4 className="head-confirm">Booking Confirmed !!</h4>
-                     
-                  
-                     </div>
-                     
-                  <div className="bookNow">
-                    <Link as={NavLink} to="/">
-                    <button  >Back to Home</button>
-
+                    <Link as={NavLink} to="/details">
+                      <button onClick={this.handleSubmit}>Submit</button>
                     </Link>
-                    </div>
-                  {/* onClick={this.handleClose */}
-                   </div>
-                    </Modal>}
-                    {this.state.bookNowMsg}
                   </div>
                 </div>
               </form>
