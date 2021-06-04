@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-import "./Form.css";
-=======
 import "./Form2.css";
->>>>>>> d7154727d3c98c64d957259c38493a8af1814240
 import { Redirect } from "react-router-dom";
 import { get } from "lodash";
 import { connect } from "react-redux";
@@ -240,148 +236,6 @@ export class Form extends Component {
                     </div>
                   </div>
                 </div>
-<<<<<<< HEAD
-
-                <div className="form-contents">
-                  <div className="guestHeading">
-                    <h1>Guest Details</h1>
-                  </div>
-                  <div className="d-flex form-contents1">
-                    <label>First Name</label>
-                    <div className="d-flex w-100">
-                      {/* <div className="ui input"></div> */}
-                      <input
-                        type="text"
-                        placeholder="First Name"
-                        value={this.state.firstName}
-                        onChange={this.handleFirstName}
-                        className={`${
-                          this.state.firstError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.firstError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                    </div>
-                    <div>
-                      <p className="ad-first">{this.state.firstError}</p>
-                    </div>
-
-                    <label>Last Name</label>
-                    <div className="d-flex w-100">
-                      {/* <div className="ui input"></div> */}
-                      <input
-                        type="text"
-                        placeholder="Last Name"
-                        value={this.state.lastName}
-                        onChange={this.handleLastName}
-                        className={`${
-                          this.state.lastError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.lastError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                      <div>
-                        <p className="ad-second">{this.state.lastError}</p>
-                      </div>
-                    </div>
-
-                    {/* {this.state.lastError} */}
-                  </div>
-
-                  <br />
-
-                  <div style={{ marginLeft: "2.5em" }}>
-                    <br />
-                    <div className="d-flex form-contents6"></div>
-                    <div className="d-flex w-100">
-                      <label>Email Address</label>
-                      {/* <div className="ui input"></div> */}
-                      <input
-                        type="email"
-                        placeholder="E-mail"
-                        value={this.state.email}
-                        onChange={this.handleEmail}
-                        className={`${
-                          this.state.emailError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.emailError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                      <div>
-                        <p className="ad-third">{this.state.emailError}</p>
-                      </div>
-                    </div>
-                    {/* {this.state.emailError} */}
-                  </div>
-
-                  <div className="d-flex form-contents7">
-                    <label>Contact</label>
-                    <div className="d-flex">
-                      {/* <div className="ui input"></div> */}
-                      <input
-                        placeholder="Mobile"
-                        value={this.state.contact}
-                        onChange={this.handleContact}
-                        className={`${
-                          this.state.contactError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.contactError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                      {this.state.alphaError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                      <div>
-                        <p className="ad-4">{this.state.contactError}</p>
-                        <p className="ad-al">{this.state.alphaError}</p>
-                      </div>
-                    </div>
-
-                    {/* {this.state.contactError} */}
-                    <br />
-                    <label>Gender</label>
-                    <div className="GENDER"></div>
-                    <select
-                      name="Gender"
-                      id="gender-select"
-                      onChange={this.handleGender}
-                    >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-
-                  <div className="d-flex form-contents2 Address">
-                    <label>Address</label>
-                  </div>
-
-                  <div className="d-flex form-contents2 Address">
-                    <div></div>
-                    <div className="d-flex">
-
-                      <input
-                        className="form-contents5"
-                        type="text-area"
-                        placeholder="Address"
-                        value={this.state.address}
-                        onChange={this.handleAddress}
-                        className={`${
-                          this.state.addressError !== "" ? "firstError" : ""
-                        }`}
-                      ></input>
-                      {this.state.addressError !== "" && (
-                        <ErrorIcon color="secondary" className="ml-2 mt-8" />
-                      )}
-                      <div>
-                        <p className="ad-5">{this.state.addressError}</p>
-                      </div>
-                    </div>
-                    {/* {this.state.addressError} */}
-=======
                 {/* New Form Here Don't DEL */}
                 <div className="newGuestDetail">
                   <div className="guestDetailsHeading">
@@ -549,7 +403,6 @@ export class Form extends Component {
                         </div>
                       </div>
                     </div>
->>>>>>> d7154727d3c98c64d957259c38493a8af1814240
                   </div>
                   <div className="submit-form">
                     <Link as={NavLink} to="/details">
