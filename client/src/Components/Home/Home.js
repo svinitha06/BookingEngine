@@ -563,7 +563,41 @@ class Home extends React.Component {
           ? this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>
                 <div className="wrapper">
-                  <Carousel showArrows={false}>
+                <div className="carousel-NOW"  >
+              <Carousel>
+  <Carousel.Item >
+    <img
+      className="d-block w-100"
+      src={get(data, "Image[0]")}
+      alt="First slide"
+      height="250vh"
+    />
+   
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={get(data, "Image[1]")}
+      alt="Second slide"
+      height="250vh"
+
+    />
+   
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={get(data, "Image[2]")}
+      alt="Third slide"
+      height="250vh"
+
+    />
+   
+  </Carousel.Item>
+  
+</Carousel>
+          </div>   
+                  {/* <Carousel showArrows={false}>
                     <div style={{ marginLeft: "12em" }}>
                       <img
                         className="ImageTile"
@@ -592,7 +626,7 @@ class Home extends React.Component {
                         src={get(data, "Image[3]")}
                       ></img>
                     </div>
-                  </Carousel>
+                  </Carousel> */}
 
                   <div className="nameDes">
                     <h1>{get(data, "name", "--")}</h1>

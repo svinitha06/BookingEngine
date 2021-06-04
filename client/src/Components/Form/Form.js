@@ -42,6 +42,7 @@ export class Form extends Component {
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
+      
     });
     console.log("this.props from form", this.props);
     console.log("goback", this.state.go);
