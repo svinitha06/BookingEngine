@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import { get, functions, bind, isEmpty, trim } from "lodash";
 import _ from "lodash";
+import Dummy from "./Dummy"
 import giphy from "../../asset/giphy.gif";
 import Carousel from "react-elastic-carousel";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
@@ -14,6 +15,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
 import tryL from "../../asset/try.jpg";
+import ReactTooltip from 'react-tooltip';
 import { withRouter, Link } from "react-router-dom";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
 import GpsFixedIcon from "@material-ui/icons/GpsFixed";
@@ -262,10 +264,6 @@ class Home extends React.Component {
         <div>
           <div className="banner">
             <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
-            <div className="banner-content">
-              {/* <h2>Enjoy your stay</h2> */}
-              <p>StayCation</p>
-            </div>
           </div>
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
@@ -420,8 +418,9 @@ class Home extends React.Component {
         {this.props.propertyList.length && !this.state.loader ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
-              <div className="wrapper">
-                <Carousel showArrows={false}>
+              <div className="wrapper" >
+                <div data-for="dummy" data-tip="tooltip">
+                <Carousel showArrows={false} >
                   <div style={{ marginLeft: "7em" }}>
                     <img
                       className="ImageTile"
@@ -450,11 +449,15 @@ class Home extends React.Component {
                       src={get(data, "Image[3]")}
                     ></img>
                   </div>
+                 
                 </Carousel>
-
+                {/* <ReactTooltip id="dummy"><Dummy></Dummy></ReactTooltip> */}
+                </div>
+                
+               
                 <div className="nameDes">
                   <h1>{get(data, "name", "--")}</h1>
-
+                   
                   <p className="starFill">
                     {_.range(
                       0,
