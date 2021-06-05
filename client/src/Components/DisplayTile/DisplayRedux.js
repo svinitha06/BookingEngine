@@ -26,6 +26,7 @@ import {
   propRoomType,
   roomTypesRate,
   bookingDetails,
+  additionOfPrices,
 } from "../../actions/index";
 
 class DisplayRedux extends Component {
@@ -187,6 +188,8 @@ class DisplayRedux extends Component {
   };
   handleReserve = () => {
     let theTotal = this.calculateTotal();
+    this.props.additionOfPrices({ Amount: theTotal });
+
     if (theTotal <= 0) {
       alert("Please select a Room!");
       return true;
@@ -493,6 +496,7 @@ const mapDispatchToProps = (dispatch) => {
     date: bindActionCreators(date, dispatch),
     room: bindActionCreators(room, dispatch),
     property: bindActionCreators(property, dispatch),
+    additionOfPrices: bindActionCreators(additionOfPrices, dispatch),
   };
 };
 const mapStateToProps = (state) => {
@@ -502,6 +506,7 @@ const mapStateToProps = (state) => {
     propertyList: get(state, "propertyList", []),
     bookingDetails: get(state, "bookingDetails", []),
     dateRange: get(state, "dateRange", []),
+    additionOfPrices: get(state, "additionOfPrices", []),
   };
 };
 

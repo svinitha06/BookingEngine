@@ -1,15 +1,15 @@
 /* .form h2 { */
-  /* background-color: rgb(185, 180, 173); */
-  /* display: flex;
+/* background-color: rgb(185, 180, 173); */
+/* display: flex;
   justify-content: center;
   align-items: center; */
-  /* font-style: oblique; */
+/* font-style: oblique; */
 /* } */
 
 /* .form-contents1 {
   margin-top: 25px; */
 
-  /* margin-bottom: 1em; */
+/* margin-bottom: 1em; */
 /* }
 .form-contents label {
   width: 15% !important;
@@ -20,15 +20,15 @@
     margin-left: -1px;
   } */
 
-  /* a.ui.button.submit-form{
+/* a.ui.button.submit-form{
     margin-left: 31%;
   }
 .ui button .ui {
   margin-top: 38px;
   margin-left: 37px;
   margin-bottom: -2%; */
-  /* margin-left: 1%; */
-  /* border: 2.5px solid rgb(25 23 23);
+/* margin-left: 1%; */
+/* border: 2.5px solid rgb(25 23 23);
   border-radius: 10%;
   margin-bottom: -3%;
 } */
@@ -42,14 +42,14 @@
   margin-bottom: 2em;
   margin-bottom: 11%;
   width: 58%; */
-  /* padding: 19%; */
+/* padding: 19%; */
 /* }
 #address-det {
   margin-bottom: 6% !important;
   height: 56vh !important;
   width: 364%; */
-  /* padding: 65px; */
-  /* margin-left: -38%;
+/* padding: 65px; */
+/* margin-left: -38%;
   margin-top: 28%;
   margin-bottom: 47px;
   padding: 59px;
@@ -105,8 +105,8 @@
   margin-right: 26px;
   margin-left: 34px;
   border: 3px solid rgb(27, 27, 27); */
-  /* display: grid; */
-  /* grid-template-columns: 30% 70%; */
+/* display: grid; */
+/* grid-template-columns: 30% 70%; */
 /* } */
 
 /* .final-date {
@@ -157,7 +157,7 @@ select {
 }
 .firstName input {
   /* width: 50%; */
-  /* width: 56% !important;
+/* width: 56% !important;
   margin-left: 8% !important;
   padding: 2.3% !important;
 }
@@ -180,7 +180,8 @@ select {
   margin-left: 8% !important;
 }
 .secondDiv {
-  margin-top: 5% !important; */ */
+  margin-top: 5% !important; */
+*/
 /* } */
 /* Sherin And Shruti CLasses */
 /* Sherin And Shruti CLasses */
@@ -814,39 +815,63 @@ select {
 /* new details */
 
 .newGuestDetail {
-  width: 42%;
+  width: 58%;
   background: white;
   border-radius: 22px;
   padding: 1%;
-  margin-left: 13%;
+  margin-left: 4%;
   box-shadow: 10px 10px 5px #aaaaaa;
-  margin-bottom: 4%;
+  margin-bottom: 1.5%;
 }
-.fieldAndInput,
+.fieldAndInput {
+  display: grid;
+  grid-template-columns: 30% 92%;
+
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+
 .fieldAndInputFirst {
   display: grid;
-  grid-template-columns: 20% 80%;
-  margin-top: 1%;
-  margin-bottom: 3%;
+  grid-template-columns: 30% 92%;
+  margin-top: 12%;
+  margin-bottom: 2%;
 }
+
 /* did a change here */
 /* since affecting the error msg */
 .firstInput input {
   border: 1px solid grey;
+  width: 90% !important;
+  padding: 2% !important;
+  border-radius: 7px !important;
+  margin-bottom: 5% !important;
+
+  /* border: 1px solid grey !important; */
 }
-.firstInput input,
+.firstInput-Address input {
+  border: 1px solid grey;
+  width: 90% !important;
+  padding: 2% !important;
+  border-radius: 7px !important;
+  margin-bottom: 5% !important;
+  height: 10% !important;
+}
+.addressDiv {
+  height: 100% !important;
+}
 .fieldAndInputFirst input {
-  width: 60% !important;
+  width: 90% !important;
   padding: 2% !important;
   border-radius: 7px !important;
   /* border: 1px solid grey !important; */
 }
 .fieldAndInput label,
-.fieldAndInputFirst label {
+.firstInput-Address label {
   font-size: 18px;
 }
-.fieldAndInputFirst .firstInput input {
-  margin-bottom: 5% !important;
+.fieldAndInputFirst label {
+  font-size: 18px;
 }
 
 .guestDetailForm {
@@ -870,53 +895,42 @@ select {
 /* Button css Not to DELETE */
 
 .submit-form {
-  margin-top: 6%;
+  margin-top: 2%;
 }
-.submit-form button,
-.submit-form Button {
+.submit-form button {
   padding: 13px 26px;
   border-radius: 4px;
-  margin-left: 47%;
+  margin-left: 12%;
   background-color: transparent;
   border: none;
   outline: none;
   color: #fff;
-  background-color: rgba(57, 61, 63, 0.8);
+  background-color: rgba(117, 162, 179, 0.8);
+
   border: 1px solid transparent;
   transition: all 0.3s;
   font-size: 16px;
 }
-/* .ui.button {
-  padding: 10px 26px !important;
+a.ui.button.submit-form {
+  padding: 14px 36px !important;
+  border-radius: 4px !important;
+  /* margin-left: 32% !important%; */
   background-color: transparent !important;
   border: none !important;
   outline: none !important;
   color: #fff !important;
-  background-color: rgba(57, 61, 63, 0.8) !important;
-  border: 1px solid transparent !important;
+  background-color: rgb(144, 181, 193) !important;
+  border: 1px solid transparent !important ;
   transition: all 0.3s !important;
   font-size: 16px !important;
-  font-weight: normal !important;
-  margin-left: 1%;
-} */
-a.ui.buttton.submit-form {
-  padding: 13px 26px !important;
-  border-radius: 4px !important;
-  margin-left: 47% !important;
-  background-color: transparent !important;
-  border: none !important;
-  outline: none !important;
-  color: #fff !important;
-  background-color: rgba(57, 61, 63, 0.8) !important;
-  border: 1px solid transparent !important;
-  transition: all 0.3s !important;
-  font-size: 18px !important;
+  font-weight: 100 !important;
 }
-.submit-form button:hover {
+.submit-form button:hover,
+a.ui.button.submit-form:hover {
   color: black !important;
-  background-color: transparent;
-  opacity: 0.7;
-  border: 1px solid #565656;
+  background-color: transparent !important;
+  opacity: 0.7 !important;
+  border: 1px solid #565656 !important;
 }
 /* HOTEL DETAILS CSS - NOT TO DELETE */
 .hotelHeading {
@@ -928,8 +942,8 @@ a.ui.buttton.submit-form {
   justify-content: flex-start;
 }
 .hotel-Details {
-  width: 70% !important;
-  margin-left: 21%;
+  width: 81% !important;
+  margin-left: 8%;
   border-radius: 22px;
   box-shadow: 10px 10px 5px #aaaaaa;
   padding: 1%;
@@ -942,10 +956,12 @@ a.ui.buttton.submit-form {
 .hotelImage {
   width: 100% !important;
   margin-bottom: 5%;
+  height: 100%;
 }
 .hotelImage img {
   width: 100% !important;
   border-radius: 22px;
+  height: 100%;
 }
 .hotelNameContainer {
   margin-left: 5%;
@@ -981,8 +997,7 @@ a.ui.buttton.submit-form {
   border-radius: 22px;
 }
 .parentOfHotels {
-  display: grid;
-  grid-template-columns: 60% 40%;
+  display: flex;
 }
 /* PRICE CONTAINER CSS- DO NOT DELETE */
 /* PRICE CONTAINER CSS- DO NOT DELETE */
@@ -993,16 +1008,26 @@ a.ui.buttton.submit-form {
   display: grid;
   grid-template-columns: 35% 20% 20% 25%;
 }
+.priceDetailsContainerOne {
+  display: grid;
+  grid-template-columns: 35% 20% 20% 25%;
+  margin-top: 5%;
+}
+.priceDetailsContainerTwo {
+  display: grid;
+  grid-template-columns: 35% 20% 20% 25%;
+}
 
 .priceSummary {
-  width: 75% !important;
-  margin-left: 2%;
+  width: 81% !important;
+  margin-left: 8%;
   border-radius: 22px;
   box-shadow: 10px 10px 5px #aaaaaa;
   padding: 1%;
   margin-bottom: 3%;
   /* height: 91%; */
   background: white !important;
+  margin-right: 0%;
 }
 .priceHeading {
   display: flex;
@@ -1021,24 +1046,25 @@ a.ui.buttton.submit-form {
   padding-top: 0% !important;
   margin-left: 3%;
   display: grid;
-  margin-top: 7%;
-  margin-bottom: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   grid-template-rows: 80% 20%;
 }
-.priceContainerTwo h2 {
+.priceContainerTwo h3 {
   background-color: none !important;
   margin-bottom: 2%;
   justify-content: left !important;
+  display: inline;
 }
-/* .priceContainerOne {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  margin-top: 3%;
-} */
+.needSpace {
+  margin-right: 60%;
+}
+
 .priceContainerTwo {
   background: #e5e2e2;
   border-radius: 22px;
   padding: 3%;
+  margin-top: 2%;
 }
 .modal-open {
   background: #485a61;
@@ -1053,46 +1079,21 @@ a.ui.buttton.submit-form {
   font-size: x-large;
   /* border-radius: 51px; */
 }
-
-.bookNow {
-  margin-top: 2em;
-  margin-left: 2.75em;
-}
-.bookNow button {
-  /* margin-right: -47px; */
-  /* margin-top: -25px; */
-  padding: 16px 30px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  background-color: rgba(57, 61, 63, 0.8);
-  border: 1px solid transparent;
-  transition: all 0.3s;
-  font-size: 18px;
-  /* cursor: pointer; */
-}
-.bookNow button:hover {
-  color: black !important;
-  background-color: transparent;
-  opacity: 0.7;
-  border: 1px solid #565656;
-}
 .contents-modal {
-      /* align-items: center; */
-      margin-top: -1.75em;
-      margin-left: 0.5em;
-      /* background: rgba(0, 0, 0, 0.3); */
-      width: 90%;
-      padding-left: 1em;
-      padding-top: 1em;
-      padding-bottom: 1em;
-      border: none;
-      box-shadow: -9px 9px 10px -3px black;
-      /* border-radius: 40px; */
-      padding-right: 0.5em !important;
-      /* justify-content: center; */
-      /* position: absolute; */
+  /* align-items: center; */
+  margin-top: -1.75em;
+  margin-left: 0.5em;
+  /* background: rgba(0, 0, 0, 0.3); */
+  width: 90%;
+  padding-left: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border: none;
+  box-shadow: -9px 9px 10px -3px black;
+  /* border-radius: 40px; */
+  padding-right: 0.5em !important;
+  /* justify-content: center; */
+  /* position: absolute; */
 }
 .firstError {
   border: 1px solid red !important;
@@ -1105,40 +1106,8 @@ a.ui.buttton.submit-form {
   border: 1px solid #565656;
   margin-left: 3%;
 }
-/* .ui.button{
-  background: rgb(32, 155, 204);
-  color: white;
-} */
 
-.ui.button {
-  background: rgb(31, 118, 153) !important;
-  color: #f7f7f7 !important;
-}
-.ui.button, .ui.buttons .button, .ui.buttons .or {
-  font-size: 129%;
-}
-.ui.buttton.submit-form {
-  color: black !important;
-  background-color:white;
-  opacity: 0.7;
-  border: 1px solid #565656;
-}
-.submit-form button,
-.submit-form Button {
-  padding: 13px 26px;
-  border-radius: 4px;
-  margin-left: 2%;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  background-color: rgb(31, 118, 153);
-  border: 1px solid transparent;
-  transition: all 0.3s;
-  font-size: 16px;
-}
-
-.detailContainer{
+.detailContainer {
   margin-left: -16%;
   margin-bottom: 14%;
 }
@@ -1151,27 +1120,40 @@ a.ui.buttton.submit-form {
   margin-right: 17%;
 }
 
-.fieldAndInput,
-.fieldAndInputFirst {
-  display: grid;
-  grid-template-columns: 30% 92%;
-  margin-top: 12%;
-  margin-bottom: -2%;
-}
-
-a.ui.button.submit-form{
-  margin-left: 31%;
+a.ui.button.submit-form {
+  margin-left: 32% !important;
 }
 .ui button .ui {
-margin-top: 38px;
-margin-left: 37px;
+  margin-top: 38px;
+  margin-left: 37px;
 }
 
-.ui.button, .ui.buttons .button, .ui.buttons .or {
+.ui.button,
+.ui.buttons .button,
+.ui.buttons .or {
   font-size: 17px;
 }
-.modal-gif{
+.modal-gif {
   margin-top: -16em;
   width: 30%;
   margin-left: 9em;
+}
+/* PAGE HEADING */
+.pageHeading {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+.formMsgTwo {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+}
+.formMsgTwo img {
+  border-style: none;
+  margin-top: 2%;
+  width: 50%;
 }
