@@ -117,7 +117,7 @@ label input {
   text-align: justify;
 }
 .button-price {
-  margin-left: 52% !important;
+  margin-left: 60% !important;
 }
 .icon-p {
   margin-left: 10.8px;
@@ -187,7 +187,9 @@ h6 {
     inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12) !important;
 } */
 .total-price h3 span {
-  margin-left: 62.5% !important;
+  margin-left: 61.5% !important;
+  font-weight: 600;
+  color: #0c6c6f;
 }
 .total-price h3 {
   margin-left: 34%;
@@ -299,5 +301,9 @@ a.ui.button.reserve-left {
   margin-top: 6% !important;
 }
 .availableRoooms {
-  display: flex !important;
+  display: flex;
+  color: grey;
+  font-size: 13px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
 }

@@ -307,11 +307,18 @@ class DisplayRedux extends Component {
                                   {post.roomType}
                                 </h2>
                               </div>
-                              <div className="rate-container">
-                                <span>
-                                  <h2>₹ {finalPrice}</h2>
-                                </span>
-                                <h5>per Day/Night</h5>
+                              <div>
+                                <div className="rate-container">
+                                  <span>
+                                    <h2>₹ {finalPrice}</h2>
+                                  </span>
+                                  <h5>per Day/Night</h5>
+                                </div>
+
+                                <div className="availableRoooms">
+                                  <label>Available Rooms : </label>
+                                  <span>{post.availability}</span>
+                                </div>
                               </div>
                             </div>
                             <p className="roomDescOne">
@@ -371,10 +378,7 @@ class DisplayRedux extends Component {
                                     <AddIcon />
                                   </button>
                                 </div>
-                                <div className="availableRoooms">
-                                  <label>Available Rooms : </label>
-                                  <span>{post.availability}</span>
-                                </div>
+
                                 <div className="include-food">
                                   <label>
                                     Include Food :
