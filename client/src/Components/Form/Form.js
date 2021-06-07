@@ -165,14 +165,13 @@
 //   handleClose = () => {
 //     // this.setState({
 //     //   open:false,
-     
+
 //     // })
 //     // this.history.push("/")
-//     this.props.history.push("/") 
-    
+//     this.props.history.push("/")
+
 //   }
 //   handleBook=()=>{
-   
 
 //  this.setState({
 //       open:false,
@@ -434,7 +433,7 @@
 //                       to={"/basiclayout/1"}>
 //                       Back
 //                     </Button>
-                      
+
 //                     {/* </div> */}
 //                     <button onClick={this.handleSubmit}>Book Now</button>
 //                     {this.state.open && (
@@ -510,8 +509,9 @@ import Image from "../Form/Image.jpeg";
 import { hotelDetails } from "../../actions/index";
 import * as db from "../../api/index";
 import { bindActionCreators } from "redux";
-import modalBell from "../../asset/modalBell.gif"
-
+import modalBell from "../../asset/modalBell.gif";
+import ImageSlogan from "./slogan.png";
+import ImageTwo from "./NewImage.png";
 export class Form extends Component {
   constructor(props) {
     super(props);
@@ -534,14 +534,21 @@ export class Form extends Component {
       checkInDate: "",
       checkOutDate: "",
       proId: 0,
+      thePrice: this.props.finalTotalPrice,
     };
   }
   componentDidMount() {
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
-     
     });
+    console.log("total in form prop = ", this.state.thePrice);
+    console.log("this.props.finalTotalPrice = ", this.props.finalTotalPrice);
+    console.log(
+      "this.props.totalPriceInState TYPE = ",
+      typeof this.props.totalPriceInState
+    );
+    console.log("this.props", this.props);
 
     // console.log("property in form did mount ", this.props.propertyList);
   }
@@ -654,26 +661,24 @@ export class Form extends Component {
   };
   getHoteldetails = async () => {
     var hotelName;
-    this.props.propertyList.map((data)=>{
-      if(data.PropertyId === this.props.booking[0].propertyId){
-       hotelName=data.name
-      }})
-// })
-    
+    this.props.propertyList.map((data) => {
+      if (data.PropertyId === this.props.booking[0].propertyId) {
+        hotelName = data.name;
+      }
+    });
+    // })
+
     const data = {
       guestName: this.state.firstName + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
-     hotelNow: hotelName,
+      hotelNow: hotelName,
       address: this.state.address,
-      checkIn:this.state.checkInDate,
-      checkOut:this.state.checkOutDate,
-      bookedDate:new Date(),
-
-     
+      checkIn: this.state.checkInDate,
+      checkOut: this.state.checkOutDate,
+      bookedDate: new Date(),
     };
-  
-    
+
     this.props.hotelDetails(data);
     console.log(data, "hotelNow");
     await db.getPostHotelDetails(data);
@@ -707,7 +712,7 @@ export class Form extends Component {
   render() {
     // this.setState({ proId: this.props.booking[0].propertyId });
     console.log("Booking Prop", this.props.booking);
-    console.log(this.props,"demo")
+    console.log(this.props, "demo");
     console.log("propertyList prop ", this.props.propertyList);
     // console.log("booking in render =", this.props.booking);
     const minValue = new Date(
@@ -726,324 +731,355 @@ export class Form extends Component {
             <div></div>
             <div className="form-design">
               <form>
-                <h2>Book your Room</h2>
-                <div className="parentOfHotels">
-                  <div className="childContainer">
-                    <div className="hotel-Details">
-                      <div className="hotelHeading">
-                        <h1>Hotel Details</h1>
-                      </div>
-
-                      <div className="hotelDetailContainer">
-                        <div className="firstContainer">
-                          {this.props.propertyList.map((data, i) => {
-                            if (
-                              data.PropertyId ===
-                              this.props.booking[0].propertyId
-                            ) {
-                              var nameOfHotel = data.name;
-                              var address = data.Address;
-                              var imageHotel = data.Image[0];
-                              return (
-                                <div className="insideReturn">
-                                  <div className="hotelImage">
-                                    <img src={imageHotel}></img>
-                                  </div>
-                                  <div className="hotelNameContainer">
-                                    <div>
-                                      <div className="hotelName">
-                                        <h2>{nameOfHotel}</h2>
-                                      </div>
-                                      <div className="hotelLocation">
-                                        <h5>{address}</h5>
-                                      </div>
-                                    </div>
-                                    <div className="secondContainer">
-                                      <div className="checkDate">
-                                        <h3>Check-in Date </h3>
-                                        <p>{this.state.checkInDate}</p>
-                                      </div>
-                                      <div className="checkDate">
-                                        <h3>Check-out Date</h3>
-                                        <p>{this.state.checkOutDate}</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            }
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="priceSummary">
-                    <div className="priceHeading">
-                      <h1>Price Summary</h1>
-                    </div>
-                    <div className="detailsOfPrice">
-                      <div className="priceContainerOne">
-                        <div className="priceLabel">
-                          <div>
-                            <h3>Room Type</h3>
-                          </div>
-                          <div>
-                            <h3>Price </h3>
-                          </div>
-                          <div>
-                            <h3>Rooms</h3>
-                          </div>
-                          <div>
-                            <h3>Food</h3>
-                          </div>
-                        </div>
-
-                        {this.props.booking.map((data, index) => {
-                          var roomName;
-                          var price;
-                          var food;
-                          var foodValue;
-                          var roomCount;
-                          if (data.count > 0) {
-                            roomName = data.roomType;
-                            price = data.priceO;
-                            food = data.isChecked;
-                            roomCount = data.count;
-                            foodValue = "";
-                            if (food === true) {
-                              foodValue = "Included";
-                            } else foodValue = "Not Included";
-
-                            return (
-                              <div className="priceDetailsContainer">
-                                <div>{roomName}</div>
-                                <div>{price}</div>
-                                <div>{roomCount}</div>
-                                <div>{foodValue}</div>
-                              </div>
-                            );
-                          }
-                        })}
-                      </div>
-                      <div>
-                        <div className="priceContainerTwo">
-                          <h2>Total : 2000</h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="pageHeading">
+                  <h1>Book your Room</h1>
                 </div>
-                {/* New Form Here Don't DEL */}
-                <div className="newGuestDetail">
-                  <div className="guestDetailsHeading">
-                    <h1>Guest Details</h1>
-                  </div>
-                  <div className="guestDetailForm">
-                    <div className="detailContainer">
-                      <div className="fieldAndInputFirst">
-                        <div>
-                          <label>First Name</label>
-                        </div>
-                        <div className="firstInput">
-                          <div className="d-flex ">
-                            <input
-                              type="text"
-                              placeholder="First Name"
-                              value={this.state.firstName}
-                              onChange={this.handleFirstName}
-                              className={`${
-                                this.state.firstError !== "" ? "firstError" : ""
-                              }`}
-                            ></input>
-                            {this.state.firstError !== "" && (
-                              <ErrorIcon
-                                color="secondary"
-                                className="ml-2 mt-8"
-                              />
-                            )}
-                          </div>
-                          {/* <div>
-                            <p className="ad-first">{this.state.firstError}</p>
-                          </div> */}
-                        </div>
-                      </div>
-                      <div className="fieldAndInput">
-                        <div>
-                          <label>Last Name</label>
-                        </div>
-                        <div className="firstInput">
-                          {/* <input type="text"></input> */}
+                <div className="parentOfHotels">
+                  <div className="newGuestDetail">
+                    <div className="guestDetailsHeading">
+                      <h1>Guest Details</h1>
+                    </div>
+                    <div className="guestDetailForm">
+                      <div className="detailContainer">
+                        <div className="fieldAndInputFirst">
                           <div>
-                            <input
-                              type="text"
-                              placeholder="Last Name"
-                              value={this.state.lastName}
-                              onChange={this.handleLastName}
-                              className={`${
-                                this.state.lastError !== "" ? "firstError" : ""
-                              }`}
-                            ></input>
-                            {this.state.lastError !== "" && (
-                              <ErrorIcon
-                                color="secondary"
-                                className="ml-2 mt-8"
-                              />
-                            )}
+                            <label>First Name</label>
                           </div>
-                        </div>
-                      </div>
-                      <div className="fieldAndInput">
-                        <div>
-                          <label>Contact </label>
-                        </div>
-                        <div className="firstInput">
-                          {/* <input type="text"></input> */}
-                          <div className="d-flex">
-                            {/* <div className="ui input"></div> */}
-                            <input
-                              placeholder="Mobile"
-                              value={this.state.contact}
-                              onChange={this.handleContact}
-                              className={`${
-                                this.state.contactError ||
-                                this.state.alphaError !== ""
-                                  ? "firstError"
-                                  : ""
-                              }`}
-                            ></input>
-                            {this.state.contactError !== "" && (
-                              <ErrorIcon
-                                color="secondary"
-                                className="ml-2 mt-8"
-                              />
-                            )}
-                            {this.state.alphaError !== "" && (
-                              <ErrorIcon
-                                color="secondary"
-                                className="ml-2 mt-8"
-                              />
-                            )}
-                            {/* <div>
-                              <p className="ad-4">{this.state.contactError}</p>
-                              <p className="ad-al">{this.state.alphaError}</p>
-                            </div> */}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="fieldAndInput">
-                        <div>
-                          <label>Email </label>
-                        </div>
-                        <div className="firstInput">
-                          {/* <input type="text"></input> */}
-                          <div className="d-flex ">
-                            {/* <div className="ui input"></div> */}
-                            <input
-                              type="email"
-                              placeholder="E-mail"
-                              value={this.state.email}
-                              onChange={this.handleEmail}
-                              className={`${
-                                this.state.emailError !== "" ? "firstError" : ""
-                              }`}
-                            ></input>
-                            {this.state.emailError !== "" && (
-                              <ErrorIcon
-                                color="secondary"
-                                className="ml-2 mt-8"
-                              />
-                            )}
-                            {/* <div>
-                              <p className="ad-third">
-                                {this.state.emailError}
-                              </p>
-                            </div> */}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="fieldAndInput">
-                        <div>
-                          <label>Address</label>
-                        </div>
-                        <div className="firstInput">
-                          <div
-                          // className="d-flex"
-                          >
-                            <div className="d-flex">
-                              {/* <div className="ui input"></div> */}
+                          <div className="firstInput">
+                            <div className="d-flex ">
                               <input
-                                className="form-contents5"
-                                type="text-area"
-                                placeholder="Address"
-                                value={this.state.address}
-                                onChange={this.handleAddress}
+                                type="text"
+                                value={this.state.firstName}
+                                onChange={this.handleFirstName}
                                 className={`${
-                                  this.state.addressError !== ""
+                                  this.state.firstError !== ""
                                     ? "firstError"
                                     : ""
                                 }`}
                               ></input>
-                              {this.state.addressError !== "" && (
+                              {this.state.firstError !== "" && (
+                                <ErrorIcon
+                                  color="secondary"
+                                  className="ml-2 mt-8"
+                                />
+                              )}
+                            </div>
+                            {/* <div>
+                            <p className="ad-first">{this.state.firstError}</p>
+                          </div> */}
+                          </div>
+                        </div>
+                        <div className="fieldAndInput">
+                          <div>
+                            <label>Last Name</label>
+                          </div>
+                          <div className="firstInput">
+                            {/* <input type="text"></input> */}
+                            <div>
+                              <input
+                                type="text"
+                                value={this.state.lastName}
+                                onChange={this.handleLastName}
+                                className={`${
+                                  this.state.lastError !== ""
+                                    ? "firstError"
+                                    : ""
+                                }`}
+                              ></input>
+                              {this.state.lastError !== "" && (
+                                <ErrorIcon
+                                  color="secondary"
+                                  className="ml-2 mt-8"
+                                />
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="fieldAndInput">
+                          <div>
+                            <label>Contact </label>
+                          </div>
+                          <div className="firstInput">
+                            {/* <input type="text"></input> */}
+                            <div className="d-flex">
+                              {/* <div className="ui input"></div> */}
+                              <input
+                                value={this.state.contact}
+                                onChange={this.handleContact}
+                                className={`${
+                                  this.state.contactError ||
+                                  this.state.alphaError !== ""
+                                    ? "firstError"
+                                    : ""
+                                }`}
+                              ></input>
+                              {this.state.contactError !== "" && (
+                                <ErrorIcon
+                                  color="secondary"
+                                  className="ml-2 mt-8"
+                                />
+                              )}
+                              {this.state.alphaError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
                                   className="ml-2 mt-8"
                                 />
                               )}
                               {/* <div>
+                              <p className="ad-4">{this.state.contactError}</p>
+                              <p className="ad-al">{this.state.alphaError}</p>
+                            </div> */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="fieldAndInput">
+                          <div>
+                            <label>Email </label>
+                          </div>
+                          <div className="firstInput">
+                            {/* <input type="text"></input> */}
+                            <div className="d-flex ">
+                              {/* <div className="ui input"></div> */}
+                              <input
+                                type="email"
+                                value={this.state.email}
+                                onChange={this.handleEmail}
+                                className={`${
+                                  this.state.emailError !== ""
+                                    ? "firstError"
+                                    : ""
+                                }`}
+                              ></input>
+                              {this.state.emailError !== "" && (
+                                <ErrorIcon
+                                  color="secondary"
+                                  className="ml-2 mt-8"
+                                />
+                              )}
+                              {/* <div>
+                              <p className="ad-third">
+                                {this.state.emailError}
+                              </p>
+                            </div> */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="fieldAndInput">
+                          <div>
+                            <label>Address</label>
+                          </div>
+                          <div className="firstInput-Address">
+                            <div className="addressDiv">
+                              <div className="d-flex">
+                                {/* <div className="ui input"></div> */}
+                                <input
+                                  className="form-contents5"
+                                  type="text-area"
+                                  value={this.state.address}
+                                  onChange={this.handleAddress}
+                                  className={`${
+                                    this.state.addressError !== ""
+                                      ? "firstError"
+                                      : ""
+                                  }`}
+                                ></input>
+                                {this.state.addressError !== "" && (
+                                  <ErrorIcon
+                                    color="secondary"
+                                    className="ml-2 mt-8"
+                                  />
+                                )}
+                                {/* <div>
                                 <p className="ad-5">
                                   {this.state.addressError}
                                 </p>
                               </div> */}
+                              </div>
+                              {/* {this.state.addressError} */}
                             </div>
-                            {/* {this.state.addressError} */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="submit-form">
+                      {/* <div className="backButton"> */}
+                      <Button
+                        className="submit-form"
+                        as={NavLink}
+                        to={"/basiclayout/1"}
+                      >
+                        Back
+                      </Button>
+                      {/* </div> */}
+                      <button onClick={this.handleSubmit}>Book Now</button>
+                      {this.state.open && (
+                        <Modal
+                          open={this.state.open}
+                          onClose={this.handleClose}
+                          aria-labelledby="simple-modal-title"
+                          aria-describedby="simple-modal-description"
+                        >
+                          <div className="modal-open">
+                            {console.log(this.props)}
+                            <div className="contents-modal">
+                              <h1>Hello {this.state.firstName}</h1>
+                              <h4 className="head-confirm">
+                                Booking Confirmed !!
+                              </h4>
+                            </div>
+
+                            <div className="bookNow">
+                              <Link as={NavLink} to="/">
+                                <button onClick={this.handlePost}>
+                                  Back to Home
+                                </button>
+                              </Link>
+                            </div>
+                            {/* onClick={this.handleClose */}
+                            <img src={modalBell} className="modal-gif"></img>
+                          </div>
+                        </Modal>
+                      )}
+                    </div>
+                    <div className="formMsgTwo">
+                      <img src={ImageTwo}></img>
+                    </div>
+                  </div>
+
+                  <div className="hotelAndPrice">
+                    <div className="childContainer">
+                      <div className="hotel-Details">
+                        <div className="hotelHeading">
+                          <h1>Hotel Details</h1>
+                        </div>
+
+                        <div className="hotelDetailContainer">
+                          <div className="firstContainer">
+                            {this.props.propertyList.map((data, i) => {
+                              if (
+                                data.PropertyId ===
+                                this.props.booking[0].propertyId
+                              ) {
+                                var nameOfHotel = data.name;
+                                var address = data.Address;
+                                var imageHotel = data.Image[0];
+                                return (
+                                  <div className="insideReturn">
+                                    <div className="hotelImage">
+                                      <img src={imageHotel}></img>
+                                    </div>
+                                    <div className="hotelNameContainer">
+                                      <div>
+                                        <div className="hotelName">
+                                          <h2>{nameOfHotel}</h2>
+                                        </div>
+                                        <div className="hotelLocation">
+                                          <h5>{address}</h5>
+                                        </div>
+                                      </div>
+                                      <div className="secondContainer">
+                                        <div className="checkDate">
+                                          <h3>Check-in Date </h3>
+                                          <p>{this.state.checkInDate}</p>
+                                        </div>
+                                        <div className="checkDate">
+                                          <h3>Check-out Date</h3>
+                                          <p>{this.state.checkOutDate}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="priceSummary">
+                      <div className="priceHeading">
+                        <h1>Price Summary</h1>
+                      </div>
+                      <div className="detailsOfPrice">
+                        <div className="priceContainerOne">
+                          <div className="priceLabel">
+                            <div>
+                              <h3>Room Type</h3>
+                            </div>
+                            <div>
+                              <h3>Rooms</h3>
+                            </div>
+                            <div>
+                              <h3>Food</h3>
+                            </div>
+                            <div>
+                              <h3>Price </h3>
+                            </div>
+                          </div>
+
+                          {this.props.booking.map((data, index) => {
+                            var roomName;
+                            var price;
+                            var food;
+                            var foodValue;
+                            var roomCount;
+                            if (data.count > 0) {
+                              roomName = data.roomType;
+                              price = data.priceO;
+                              food = data.isChecked;
+                              roomCount = data.count;
+
+                              foodValue = "";
+                              if (food === true) {
+                                foodValue = "Yes";
+                              } else foodValue = "No";
+
+                              return (
+                                <div className="priceDetailsContainer">
+                                  <div>{roomName}</div>
+                                  <div>{roomCount}</div>
+                                  <div>{food}</div>
+                                  <div>{price}</div>
+                                </div>
+                              );
+                            }
+                          })}
+                          <div className="priceDetailsContainerOne">
+                            <div>Amount</div>
+                            <div></div>
+                            <div></div>
+
+                            <div>{this.state.thePrice}</div>
+                          </div>
+                          <div className="priceDetailsContainerTwo">
+                            <div>GST</div>
+                            <div></div>
+                            <div></div>
+                            <div>{this.state.thePrice * 0.18}</div>
+                          </div>
+                          <div className="priceDetailsContainerTwo">
+                            <div>Discount (5%)</div>
+                            <div></div>
+                            <div></div>
+                            <div>{this.state.thePrice * 0.05}</div>
+                          </div>
+                        </div>
+                        <div>
+                          <div className="priceContainerTwo">
+                            <h3 className="needSpace">Total</h3>
+                            <h3>
+                              :
+                              {this.state.thePrice +
+                                this.state.thePrice * 0.18 -
+                                this.state.thePrice * 0.05}
+                            </h3>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="submit-form">
-                    {/* <div className="backButton"> */}
-                    <Button
-                      className="submit-form"
-                      as={NavLink}
-                      to={"/basiclayout/1"}
-                    >
-                      Back
-                    </Button>
-                    {/* </div> */}
-                    <button onClick={this.handleSubmit}>Book Now</button>
-                    {this.state.open && (
-                      <Modal
-                        open={this.state.open}
-                        onClose={this.handleClose}
-                        aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description"
-                      >
-                        <div className="modal-open">
-                          {console.log(this.props)}
-                          <div className="contents-modal">
-                            <h1>Hello {this.state.firstName}</h1>
-                            <h4 className="head-confirm">
-                              Booking Confirmed !!
-                            </h4>
-                          </div>
-
-                          <div className="bookNow">
-                            <Link as={NavLink} to="/">
-                              <button onClick={this.handlePost}>
-                                Back to Home
-                              </button>
-                            </Link>
-                          </div>
-                          {/* onClick={this.handleClose */}
-                          <img src={modalBell} className="modal-gif"></img>
-
-                        </div>
-                      </Modal>
-                    )}
-                  </div>
                 </div>
+                {/* New Form Here Don't DEL */}
               </form>
             </div>
           </div>
@@ -1065,6 +1101,7 @@ const mapStateToProps = (state) => ({
   propertyList: get(state, "propertyList", []),
   customerDetails: get(state, "customerDetails", []),
   booking: state.bookedRoomDetails.bookingData,
+  finalTotalPrice: state.totalPriceInState.Amount,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));

@@ -69,6 +69,11 @@ export default (state = initialState, action) => {
         ...state,
         bookedRoomDetails: action.data,
       };
+    case "TOTAL_PRICE_ROOMS":
+      return {
+        ...state,
+        totalPriceInState: action.data,
+      };
     default:
       return state;
   }
