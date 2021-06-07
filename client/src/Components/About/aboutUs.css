@@ -53,7 +53,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .service-content{
     flex: 1 1 250px;
@@ -62,7 +62,7 @@
     text-align: center;
     background-color: #fff;
     color: #565656;
-    padding: 50px 15px 25px;
+    padding: 20px 15px 25px;
     border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     position: relative;
@@ -74,19 +74,6 @@ font-size: 12px;
 margin: 15px 0 25px;
 line-height: 1.6;
 }
-.service-content button{
-    padding: 10px 30px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-    background: rgba(0,0,0,0.8);
-    /* border: 1px solid transparent; */
-    transition: all 0.3s;
-    cursor: pointer;
-}
-.service-content button:hover{
-    color: #565656;
-    background-color: transparent;
-    border: 1px solid #565656;
+.content-wrap{
+    width: 106% !important;
 }

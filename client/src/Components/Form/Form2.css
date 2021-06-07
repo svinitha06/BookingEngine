@@ -1182,3 +1182,14 @@ a.ui.button.submit-form {
   opacity: 0.7;
   border: 1px solid #565656;
 }
+.errorPost{
+  color: #3b3b3c;
+  border: 1px solid red;
+  width: 50%;
+  margin-left: 6em;
+  /* background-color: dodgerblue; */
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin-bottom: 1.5em;
+}

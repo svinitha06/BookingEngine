@@ -5,7 +5,7 @@ import "./aboutUs.css";
 class AboutUs extends Component {
   render() {
     return (
-      <div>
+      <div className="about-full">
         <div className="d-flex">
           <div className="video-content">
             <video src={bookingEngine} controls width="100%" autoPlay></video>
@@ -13,15 +13,18 @@ class AboutUs extends Component {
           <div className="about-content">
             <h1>About us</h1>
             <p>
-              Empty characters, blank characters, invisible characters and
-              whitespace characters. They look like a space, but are in fact a
-              different (unicode) character. They can be used if you want to
-              represent an empty space without using space. Let's say you want
-              to use an empty value in a website or application, but spaces are
-              not accepted. For this situation you can use one of the characters
-              on this site. For example, sending an empty message, or setting a
-              form value to blank. If the application filters out other unicode
-              characters then the characters on this site might not work.
+              We attribute trivago's success to our company culture built on
+              human learning and emotional intelligence. This balance continues
+              to attract the best talents from every corner of the globe.Our
+              team of creative and driven entrepreneurs come together to build a
+              hotel search that is fast, intuitive and unbiased, with the
+              longstanding mission…As we provide a search website, users do not
+              book directly on our platform. When they click on an offer for a
+              hotel room or other accommodation at a certain price, they are
+              referred to our advertisers’ websites where they can complete
+              their booking. Users can search our platform on desktop and mobile
+              devices, and benefit from a familiar user interface, resulting in
+              a consistent user experience.
             </p>
           </div>
         </div>
@@ -35,7 +38,7 @@ class AboutUs extends Component {
                 </div>
                 <h2>Comfy Stay</h2>
                 <p>Enjoy your staycation.providing best hotels,etc</p>
-                <button>Read More</button>
+                
               </div>
               <div className="service-content">
                 <div className="icon-contain">
@@ -43,7 +46,7 @@ class AboutUs extends Component {
                 </div>
                 <h2>Make it easy</h2>
                 <p>Enjoy your staycation.providing best hotels,etc</p>
-                <button>Read More</button>
+               
               </div>
               <div className="service-content">
                 <div className="icon-contain">
@@ -51,10 +54,9 @@ class AboutUs extends Component {
                 </div>
                 <h2>24/7</h2>
                 <p>Enjoy your staycation.providing best hotels,etc</p>
-                <button>Read More</button>
+               
               </div>
             </div>
-            
           </div>
         </section>
       </div>
