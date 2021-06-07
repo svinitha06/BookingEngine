@@ -1045,20 +1045,20 @@ export class Form extends Component {
                             }
                           })}
                           <div className="priceDetailsContainerOne">
-                            <div>Amount</div>
+                            <div style={{color:"green",fontWeight:"600"}}>Amount</div>
                             <div></div>
                             <div></div>
 
                             <div>{this.state.thePrice}</div>
                           </div>
                           <div className="priceDetailsContainerTwo">
-                            <div>GST</div>
+                            <div  style={{color:"blue",fontWeight:"600"}}>GST</div>
                             <div></div>
                             <div></div>
                             <div>{this.state.thePrice * 0.18}</div>
                           </div>
                           <div className="priceDetailsContainerTwo">
-                            <div>Discount (5%)</div>
+                            <div  style={{color:"red",fontWeight:"600"}}>Discount</div>
                             <div></div>
                             <div></div>
                             <div>{this.state.thePrice * 0.05}</div>
@@ -1066,7 +1066,7 @@ export class Form extends Component {
                         </div>
                         <div>
                           <div className="priceContainerTwo">
-                            <h3 className="needSpace">Total</h3>
+                            <h3 className="needSpace">TOTAL</h3>
                             <h3>
                               :
                               {this.state.thePrice +

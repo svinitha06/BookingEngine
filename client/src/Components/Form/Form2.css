@@ -1142,7 +1142,8 @@ a.ui.button.submit-form {
 .pageHeading {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
+  /* justify-content: center; */
+ margin-left: 4%;
   margin-top: 2%;
   margin-bottom: 3%;
 }
