@@ -59,26 +59,8 @@ const bookingSchema= new mongoose.Schema({
     address:{
         type: String,
         required: false
-    },
-    hotelNow:{
-        type: String,
-        required: false
-    },
-    checkIn:{
-        type: String,
-        required: false
-    },
-    checkOut:{
-        type: String,
-        required: false
-    },
-    bookedDate:{
-        type: String,
-        required: false
     }
-
-
 
 })
 
-module.exports=booking=mongoose.model('booking', bookingSchema);
+module.exports=booking=mongoose.model('booking',bookingSchema);
