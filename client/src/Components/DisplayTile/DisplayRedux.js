@@ -371,7 +371,10 @@ class DisplayRedux extends Component {
                                     <AddIcon />
                                   </button>
                                 </div>
-
+                                <div className="availableRoooms">
+                                  <label>Available Rooms : </label>
+                                  <span>{post.availability}</span>
+                                </div>
                                 <div className="include-food">
                                   <label>
                                     Include Food :
