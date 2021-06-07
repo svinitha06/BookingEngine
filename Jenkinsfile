@@ -11,13 +11,11 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/MS396584/BookingEngine.git'
             }
         }
-       stage('Build'){
-           steps{
-             script{
-                dockerImage = docker.build imagename
-                   }
-                }
-           }
+      
+        
+        
+        
+        
        stage('Sonar Analysis'){
             steps {
                  withSonarQubeEnv("scan") {
