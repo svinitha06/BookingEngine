@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
-import Home from "./Components/Home/Home";
 import BookNow from "./Components/BookNow/BookNow";
+
+import Home from "./Components/Home/Home";
 import Header from "./Components/Header/Header";
 import AboutUs from "./Components/About/AboutUs";
 import Footer from "./Components/Footer/Footer";
