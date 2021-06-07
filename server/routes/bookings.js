@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const booking = require('../Models/booking');
 const nodemailer = require('nodemailer');
+const bodyParser =require('body-parser');
+const { ObjectID } = require('bson');
 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -11,6 +13,7 @@ mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@
 
 const router = express.Router()
 router.use(express.json());
+router.use(bodyParser.json());
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -64,10 +67,10 @@ router.post("/Book", async (req, res) => {
   book.save().then(() => {
       res.status(201).send(book);
       return transporter.sendMail({
-          to: req.body.email,
-          from: 'bookinghotel.engine@gmail.com',
-          subject: 'Booking was Successful!',
-          text: 'You have successfully booked Hotel ' + req.body.hotelNow +' with us, your , Check In Date is  ' + req.body.checkIn +' and Check Out Date is ' + req.body.checkOut +'. You Booked it on  ' + req.body.bookedDate+'.'
+        from: 'bookinghotel.engine@gmail.com', // sender address
+        to: req.body.email, // list of receivers
+        subject: "Booking was Successful! ", // Subject line
+        html: `<html><head><style>.centre { display: flex; justify-content: center; align-items: center; height:200px; border: 3px solid green;}</style></head><body><p><img src="https://www.lamalmaisonnice.com/wp-content/uploads/2021/06/Sans-titre-2-1024x621.png" height="300px" width="800px"></p><h3 style="color:black">Dear <strong>${req.body.guestName}</strong>, your booking was successful with us. Your booking details are as follows: </h3><div class ="center"><p><strong>Hotel: </strong>${req.body.hotelNow}</p><p><strong>Check In Date: </strong>${req.body.checkIn}</p><p><strong>Check Out Date: </strong>${req.body.checkOut}</p><p><strong>Booking ID: </strong>${req.body.bookingId}</p><p><strong>Booked on: </strong>${req.body.bookedDate}</p></body></div><p><strong>For any enquiry reach out to us on this number +91 7836528737 or you can reply to this email.</strong></p><p><img src="https://www.kashmirpen.com/wp-content/uploads/2020/07/booked.png" width="80px"/></p><p>Warm regards,</p><p>Team Booking Engine</p></body></html>`, // html body
         });
   }).catch((err) => {
       res.status(400).send(err);

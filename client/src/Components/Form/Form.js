@@ -512,6 +512,7 @@ import { bindActionCreators } from "redux";
 import modalBell from "../../asset/modalBell.gif";
 import ImageSlogan from "./slogan.png";
 import ImageTwo from "./NewImage.png";
+import { ObjectID } from "bson";
 export class Form extends Component {
   constructor(props) {
     super(props);
@@ -672,14 +673,15 @@ export class Form extends Component {
     // })
 
     const data = {
-      guestName: this.state.firstName + this.state.lastName,
+      guestName: this.state.firstName + ' ' + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
       hotelNow: hotelName,
       address: this.state.address,
       checkIn: this.state.checkInDate,
       checkOut: this.state.checkOutDate,
-      bookedDate: new Date(),
+      bookedDate: new Date().toLocaleDateString(),
+      bookingId: new ObjectID(),
     };
 
     this.props.hotelDetails(data);
