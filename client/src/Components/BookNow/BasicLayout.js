@@ -63,6 +63,13 @@ export class BasicLayout extends Component {
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
+    // if (performance.navigation.TYPE_RELOAD) {
+    //   console.info("This page is reloaded");
+    //   // <Redirect to="/"></Redirect>;
+    //   <Redirect exact to="/" />;
+    // } else {
+    //   console.info("This page is not reloaded");
+    // }
   }
   // setRooms = (event) => {
   //   ReactDOM.render(

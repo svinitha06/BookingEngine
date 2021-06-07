@@ -509,7 +509,7 @@ class Home extends React.Component {
                       </div>
                     </div>
                     <div>
-                      <div className="viewDetails">
+                      <div className="viewDetails" id={data.name}>
                         <Link
                           to={{
                             pathname: `/basiclayout/${data.PropertyId}`,
@@ -621,7 +621,7 @@ class Home extends React.Component {
                         </div>
                       </div>
                       <div>
-                        <div className="viewDetails">
+                        <div className="viewDetails" id={data.name}>
                           <Link
                             to={{
                               pathname: `/basiclayout/${data.PropertyId}`,
