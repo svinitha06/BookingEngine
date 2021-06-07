@@ -590,11 +590,9 @@ select {
   /* margin-left: 1%; */
   border: 2.5px solid rgb(25 23 23);
   border-radius: 10%;
-  margin-bottom: -3%;
 }
 
 .form-contents3 {
-  width: 200%;
   margin-top: 40px;
   margin-left: 49px;
   padding-right: 31px;
@@ -761,7 +759,8 @@ select {
   /* margin-bottom: 1em !important; */
   margin-left: -11em;
   font-size: 14px;
-  font-family: ui-rounded !important;
+  font-family: "Times New Roman", Times, serif, Helvetica, ui-rounded, Arial,
+    sans-serif !important;
   font-style: normal;
   color: red;
   opacity: 0.7;
@@ -772,7 +771,9 @@ select {
   margin-left: -12em;
   padding: 1em;
   font-size: 14px;
-  font-family: ui-rounded !important;
+  font-family: "Times New Roman", Times, serif, Helvetica, ui-rounded, Arial,
+    sans-serif !important;
+
   font-style: normal;
   color: red;
   opacity: 0.7;
@@ -782,7 +783,9 @@ select {
   margin-left: -15em;
   padding: 1em;
   font-size: 14px;
-  font-family: ui-rounded !important;
+  font-family: "Times New Roman", Times, serif, Helvetica, ui-rounded, Arial,
+    sans-serif !important;
+
   font-style: normal;
   color: red;
   opacity: 0.7;
@@ -792,7 +795,9 @@ select {
   margin-left: -20em;
   padding: 1em;
   font-size: 14px;
-  font-family: ui-rounded !important;
+  font-family: "Times New Roman", Times, serif, Helvetica, ui-rounded, Arial,
+    sans-serif !important;
+
   font-style: normal;
   color: red;
   opacity: 0.7;
@@ -802,7 +807,9 @@ select {
   margin-left: -12.5em;
   padding: 1em;
   font-size: 14px;
-  font-family: ui-rounded !important;
+  font-family: "Times New Roman", Times, serif, Helvetica, ui-rounded, Arial,
+    sans-serif !important;
+
   font-style: normal;
   color: red;
   opacity: 0.7;
@@ -903,13 +910,11 @@ select {
   padding: 11px 15px;
   border-radius: 4px;
   margin-left: 1%;
-  background-color: transparent;
+
   border: none;
   outline: none;
   color: #fff;
   background-color: rgba(117, 162, 179, 0.8);
-
-  border: 1px solid transparent;
   /* transition: all 0.3s; */
   font-size: 16px;
 }
@@ -917,12 +922,10 @@ a.ui.button.submit-form {
   padding: 12px 26px !important;
   border-radius: 4px !important;
   /* margin-left: 32% !important%; */
-  background-color: transparent !important;
   border: none !important;
   outline: none !important;
   color: #fff !important;
   background-color: rgb(144, 181, 193) !important;
-  border: 1px solid transparent !important ;
   /* transition: all 0.3s !important; */
   font-size: 16px !important;
   font-weight: 100 !important;
@@ -1064,7 +1067,6 @@ a.ui.button.submit-form:hover {
 .priceContainerTwo {
   background: #e5e2e2;
   border-radius: 22px;
-  display: flex;
   font-size: 20px;
   margin-left: -2%;
   padding: 1%;

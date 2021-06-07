@@ -6,9 +6,6 @@
   height: 76vh;
 }
 
-
-
-
 .homeContainer {
   width: 85%;
   /* margin-top: 6em; */
@@ -77,25 +74,24 @@
 }
 .nameDes h1 {
   margin-top: 6px !important;
-  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
-
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 }
 .e-date-range-wrapper {
-      /* margin-bottom: 1% !important; */
-      border: 1px solid black !important;
-      padding: 14px !important;
-      /* background-color: rgba(162, 255, 250, 0.4) !important; */
-      background-color: #edeff7 !important;
-      margin-left: 7.5%;
-      margin-right: 1.25px;
-      margin-top: -1.5px;
-      height: 4.5em;
-      /* border-radius: 22px !important; */
+  /* margin-bottom: 1% !important; */
+  border: 1px solid black !important;
+  padding: 14px !important;
+  /* background-color: rgba(162, 255, 250, 0.4) !important; */
+  background-color: #edeff7 !important;
+  margin-left: 7.5%;
+  margin-right: 1.25px;
+  margin-top: -1.5px;
+  height: 4.5em;
+  /* border-radius: 22px !important; */
 }
 ::-webkit-input-placeholder {
   color: black !important;
   font-weight: 700 !important;
-  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 
   font-size: 15px;
 }
@@ -164,30 +160,30 @@
   padding: 5px;
   font-size: 19px;
 }
-.viewDetails{
+.viewDetails {
   margin-left: 26em;
   margin-top: -4em;
   /* margin-bottom: 2em !important; */
 }
-.viewDetails button{
-     /* margin-right: -47px; */
-    /* margin-top: -25px; */
-    padding: 16px 30px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-    background-color: rgba(117, 162, 179, 0.8);
-    border: 1px solid transparent;
-    transition: all 0.3s;
-    font-size: 18px;
-    /* cursor: pointer; */
+.viewDetails button {
+  /* margin-right: -47px; */
+  /* margin-top: -25px; */
+  padding: 16px 30px;
+  /* background-color: transparent; */
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: rgba(117, 162, 179, 0.8);
+  /* border: 1px solid transparent; */
+  transition: all 0.3s;
+  font-size: 18px;
+  /* cursor: pointer; */
 }
-.viewDetails button:hover{
+.viewDetails button:hover {
   color: black !important;
-    background-color: transparent;
-    opacity: 0.7;
-    border: 1px solid #565656;
+  background-color: transparent;
+  opacity: 0.7;
+  border: 1px solid #565656;
 }
 .starFill {
   /* margin-left: 10em; */
@@ -197,7 +193,7 @@
   margin-left: 25px;
   margin-top: -23px !important;
   font-weight: 800 !important;
-  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 
   font-size: 15px;
 }
@@ -213,7 +209,7 @@
   margin-left: 2%;
   margin-right: 2%;
 }
-.image-error{
+.image-error {
   margin-top: -45px;
   margin-bottom: 2em;
   margin-left: -3em !important;
@@ -245,13 +241,13 @@
   margin-left: 7px;
 }
 .now {
-   /* padding: 8px; */
-   padding-top: 12px;
-   padding-right: 1em;
-   padding-left: 1em;
-   font-weight: 600;
-   font-size: 16px;
-   
+  /* padding: 8px; */
+  padding-top: 12px;
+  padding-right: 1em;
+  padding-left: 1em;
+  font-weight: 600;
+  font-size: 16px;
+
   /* padding: 8px;
   font-weight: 600;
   font-size: 16px; */
@@ -296,8 +292,7 @@
   border: 1px solid black;
   color: black !important;
   font-weight: 700 !important;
-  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
-
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 
   /* margin-right: 1em; */
   /* padding-right: 1em; */
@@ -310,12 +305,11 @@
   margin-top: 7px !important;
 }
 p h1 h6 {
-  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
-
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 }
 
 .content-css {
-  font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 
   font-size: 14px;
 }
@@ -323,83 +317,94 @@ p h1 h6 {
   margin-left: 16em;
   margin-top: 1em !important;
   color: red;
-  font-family: 'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
   border: 1px solid black;
   height: 50px;
   padding: 9px;
 }
-.loadingSym{
+.loadingSym {
   width: 74px !important;
   height: 135px !important;
   margin-left: 40em;
   margin-top: 3em;
   margin-bottom: 3em;
 }
-.customMade{
-  
+.customMade {
   font-size: 15px;
   font-weight: 900 !important;
   opacity: 0.8;
 }
-.customMade2{
-           /* margin-right: 3em !important; */
-    margin-left: -45em !important;
-    margin-top: 6em;
-    height: 0vh;
-    padding-bottom: 24px !important;
-    margin-left: 16em;
-    font-family: 'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
-    font-weight: 900;
-    font-size: 20px;
+.customMade2 {
+  /* margin-right: 3em !important; */
+  margin-left: -45em !important;
+  margin-top: 6em;
+  height: 0vh;
+  padding-bottom: 24px !important;
+  margin-left: 16em;
+  font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
+  font-weight: 900;
+  font-size: 20px;
 }
-  .carousel.item{/* position: relative; */
-    display: none;
-    float: left;
-    width: 100%;
-    height: 44vh !important;
-    /* margin-left: 3em; */
-    margin-right: -100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transition: transform .9s ease-in-out;
-  }
-  .carousel-inner{
-    position: relative;
-    /* width: 100%; */
-    overflow: hidden;
-    margin-left: -11em !important;
-    margin-top: 3em !important;
-  }
-  .carousel-control-next{
-    margin-right: 11em !important;
-  }
-  .carousel-control-prev{
-    margin-left: -11em !important;
-  }
-  .carousel-indicators {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 15;
-    display: flex;
-    justify-content: center;
-    padding-left: 0;
-    margin-right: 73% !important;
-    /* margin-left: 15%; */
-    list-style: none;
+.carousel.item {
+  /* position: relative; */
+  display: none;
+  float: left;
+  width: 100%;
+  height: 44vh !important;
+  /* margin-left: 3em; */
+  margin-right: -100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: transform 0.9s ease-in-out;
+}
+.carousel-inner {
+  position: relative;
+  /* width: 100%; */
+  overflow: hidden;
+  margin-left: -11em !important;
+  margin-top: 3em !important;
+}
+.carousel-control-next {
+  margin-right: 11em !important;
+}
+.carousel-control-prev {
+  margin-left: -11em !important;
+}
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 73% !important;
+  /* margin-left: 15%; */
+  list-style: none;
 }
 
-.e-input-group input.e-input, .e-input-group textarea.e-input, .e-input-group input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]), .e-input-group.e-control-wrapper input.e-input, .e-input-group.e-control-wrapper textarea.e-input, .e-input-group.e-control-wrapper input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus), .e-input-group.e-control-wrapper textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
+.e-input-group input.e-input,
+.e-input-group textarea.e-input,
+.e-input-group
+  input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus),
+.e-input-group
+  textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]),
+.e-input-group.e-control-wrapper input.e-input,
+.e-input-group.e-control-wrapper textarea.e-input,
+.e-input-group.e-control-wrapper
+  input.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]):not(:focus),
+.e-input-group.e-control-wrapper
+  textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
   border: 0 solid;
   border-width: 0;
   font-weight: 900 !important;
   color: black !important;
 }
-.e-input-group.e-control-wrapper input.e-input{
+.e-input-group.e-control-wrapper input.e-input {
   font-weight: 900 !important;
 }
-.errorAPI{
+.errorAPI {
   color: #3b3b3c;
   border: 1px solid red;
   width: 50%;
