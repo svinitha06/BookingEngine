@@ -9,7 +9,6 @@ export const getpropertyLocation = async (data) => {
   const res = await axios.get(
     `http://localhost:5000/property/Property/${data}`
   );
-  
   return res.data;
 };
 export const getFilteredSearch = async (data) => {

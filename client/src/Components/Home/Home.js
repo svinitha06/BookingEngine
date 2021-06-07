@@ -56,7 +56,6 @@ class Home extends React.Component {
       loader: true,
       viewDetailsError: "",
       flag: true,
-      errorAPI: false,
     };
   }
   componentDidMount() {
@@ -76,22 +75,16 @@ class Home extends React.Component {
     this.setState({ flag: !this.state.flag });
 
     this.getcall();
+    
   }
   getcall = async () => {
-    let res = await db.getproperty().catch((err) => {
-      console.log("errorApi");
-      // return err
-      this.setState({
-        errorAPI: !this.state.errorAPI,
-      });
-    });
-
+    let res = await db.getproperty();
     this.props.property(res);
     this.setState({
       loader: false,
+      
     });
-
-    console.log(res, "getProperty");
+    // console.log(res, "sherin");
   };
 
   handleDate = (e) => {
@@ -100,6 +93,7 @@ class Home extends React.Component {
       end: e.value[1],
       dateError: "",
     });
+   
 
     this.setState({
       start: e.value[0],
@@ -133,20 +127,15 @@ class Home extends React.Component {
       console.log(res, "search");
     }
   };
-  handleIncCount = () => {
-    // let count = this.state.adultValue + this.state.childValue;
-    if ((this.state.adultValue + this.state.childValue) % 4 == 0) {
+  handleCount = () => {
+    let count = 0;
+    if (this.state.adultValue / 4) {
       this.setState({
-        roomValue: this.state.roomValue + 1,
+        roomValue: Math.ceil(this.state.adultValue / 2),
       });
-    }
-  };
-  handleDecCount = () => {
-    console.log(this.state.adultValue, "adult");
-    console.log(this.state.childValue, "child");
-    if ((this.state.adultValue + this.state.childValue) % 4 == 0) {
+    } else {
       this.setState({
-        roomValue: this.state.roomValue - 1,
+        roomValue: Math.ceil(this.state.childValue / 2),
       });
     }
   };
@@ -166,28 +155,22 @@ class Home extends React.Component {
       this.props.adult({
         adultValue: this.state.adultValue - 1,
       });
-      this.setState(
-        {
-          adultValue: this.state.adultValue - 1,
-        },
-        () => this.handleDecCount()
-      );
+      this.setState({
+        adultValue: this.state.adultValue - 1,
+      });
     }
-    // this.handleDecCount()
+    // this.handleCount();
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
       this.props.child({
         childValue: this.state.childValue - 1,
       });
-      this.setState(
-        {
-          childValue: this.state.childValue - 1,
-        },
-        () => this.handleDecCount()
-      );
+      this.setState({
+        childValue: this.state.childValue - 1,
+      });
     }
-    // this.handleDecCount()
+    // this.handleCount();
   };
   handleInc = () => {
     this.props.room({
@@ -204,7 +187,7 @@ class Home extends React.Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    this.handleIncCount();
+    this.handleCount();
   };
   handleIncChild = () => {
     this.props.child({
@@ -213,7 +196,7 @@ class Home extends React.Component {
     this.setState({
       childValue: this.state.childValue + 1,
     });
-    this.handleIncCount();
+    // this.handleCount();
   };
   handleClick = (event) => {
     this.setState({
@@ -231,7 +214,9 @@ class Home extends React.Component {
       cityError: "",
       loader: true,
     });
-    if (!trim(e)) {
+    if (
+      !trim(e)
+   ) {
       let res = await db.getproperty();
       this.props.property(res);
     }
@@ -273,15 +258,13 @@ class Home extends React.Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-
     // console.log(this.props.propertyList[0].PropertyId, "sherin");
     // log()
-
     return (
       <div className="fullContainer">
         <div>
           <div className="banner">
-            <img src={tryL} width="110%" style={{ height: "64vh" }}></img>
+            <img src={tryL} width="110%" style={{ height: "76vh" }}></img>
           </div>
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
@@ -296,7 +279,7 @@ class Home extends React.Component {
                   name="browser"
                   id="browser"
                   onChange={(e) => {
-                    this.handleFilter(e.target.value.toLowerCase());
+                    this.handleFilter(e.target.value);
                   }}
                   className={`${
                     this.state.cityError !== "" ? "cityError" : ""
@@ -357,6 +340,26 @@ class Home extends React.Component {
                     getContentAnchorEl={null}
                   >
                     <div className="d-flex">
+                      <p className="menu-drop">Rooms</p>
+                      <div className="decre">
+                        <button
+                          className="circular ui icon button"
+                          onClick={this.handleDec}
+                        >
+                          <RemoveIcon />
+                        </button>
+                      </div>
+                      <p className="now">{this.state.roomValue}</p>
+                      <div className="incre">
+                        <button
+                          className="circular ui icon button"
+                          onClick={this.handleInc}
+                        >
+                          <AddIcon />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="d-flex">
                       <p className="menu-drop">Adults</p>
                       <div className="a-decre">
                         <button
@@ -396,26 +399,6 @@ class Home extends React.Component {
                         </button>
                       </div>
                     </div>
-                    <div className="d-flex">
-                      <p className="menu-drop">Rooms</p>
-                      <div className="decre">
-                        <button
-                          className="circular ui icon button"
-                          onClick={this.handleDec}
-                        >
-                          <RemoveIcon />
-                        </button>
-                      </div>
-                      <p className="now">{this.state.roomValue}</p>
-                      <div className="incre">
-                        <button
-                          className="circular ui icon button"
-                          onClick={this.handleInc}
-                        >
-                          <AddIcon />
-                        </button>
-                      </div>
-                    </div>
                   </Menu>
                 </div>
               </div>
@@ -432,11 +415,8 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        {this.state.errorAPI && (
-          <h1 className="errorAPI">Error fetching data</h1>
-        )}
         {this.state.loader && <CircularProgress className="loadingSym" />}
-        { this.props.propertyList.length && !this.state.loader ? (
+        {this.props.propertyList.length && !this.state.loader ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
@@ -468,6 +448,9 @@ class Home extends React.Component {
                     </Carousel.Item>
                   </Carousel>
                 </div>
+                
+                
+          
 
                 <div className="nameDes">
                   <h1>{get(data, "name", "--")}</h1>
@@ -530,16 +513,17 @@ class Home extends React.Component {
             <h2 className="noProp"> Sorry!! No properties available.</h2>
 
             <img className="image-error" src={giphy} alt="loading..."></img>
-            <p className="customMade2">
-          <i className="customMade">Related Search : </i>Check out the
-          properties available{" "}
-        </p>
           </div>
         ) : null}
         {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
           ? ""
           : null}
-        
+        {/* {console.log(this.props,"now check")} */}
+
+        <p className="customMade2">
+          <i className="customMade">Related Search : </i>Check out the
+          properties available{" "}
+        </p>
         {!this.props.propertyList.length
           ? this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>
@@ -572,6 +556,36 @@ class Home extends React.Component {
                       </Carousel.Item>
                     </Carousel>
                   </div>
+                  {/* <Carousel showArrows={false}>
+                    <div style={{ marginLeft: "12em" }}>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[0]")}
+                      ></img>
+                    </div>
+                    <div>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[1]")}
+                      ></img>
+                    </div>
+                    <div>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[2]")}
+                      ></img>
+                    </div>
+                    <div>
+                      <img
+                        className="ImageTile"
+                        key={index}
+                        src={get(data, "Image[3]")}
+                      ></img>
+                    </div>
+                  </Carousel> */}
 
                   <div className="nameDes">
                     <h1>{get(data, "name", "--")}</h1>

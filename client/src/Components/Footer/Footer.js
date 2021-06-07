@@ -27,7 +27,7 @@ import "./Footer.css"
                     <div className="col">
                         <h4>Services</h4>
                         <ul className="list-unstyled">
-                            <li>(+91)7831232123</li>
+                            <li>(+91)783</li>
                             <li>Delhi,India</li>
                             <li>45A,South Nagapan St.</li>
                         </ul>
@@ -47,7 +47,7 @@ import "./Footer.css"
             </div>
             <hr style={{backgroundColor:"black"}}/>
                 <div className="row">
-                    <p className="col-sm" style={{color:"black",paddingLeft:"29em"}}>
+                    <p className="col-sm" style={{color:"black",paddingLeft:"24em"}}>
                         &copy;{new Date().getFullYear()} Booling Engine | All rights reserved | Terms of Service | Privacy
                     </p>
                 </div>

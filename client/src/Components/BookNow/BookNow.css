@@ -118,7 +118,7 @@ select {
   textarea.e-input:hover:not(.e-success):not(.e-warning):not(.e-error):not([disabled]) {
   border: 0 solid;
   border-width: 0;
-  font-weight: 900 !important;
+  font-weight: 500 !important;
   color: white;
 }
 .error {
