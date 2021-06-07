@@ -44,7 +44,7 @@ pipeline{
                 sh 'docker pull localhost:8095/booking/bookingengine:2.0'
                 sh 'docker stop booking'
                 sh 'docker rm booking'
-                sh 'docker run --name booking -p 5000:5000 localhost:8095/booking/bookingengine:2.0'
+                sh 'docker run -d --name booking -p 5000:5000 localhost:8095/booking/bookingengine:2.0'
             }
         }
     }
