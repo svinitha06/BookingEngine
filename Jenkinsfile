@@ -13,7 +13,13 @@ pipeline{
         }
       
         
-        
+         stage('Build'){
+           steps{
+             script{
+                 sh 'docker build -t bookingengine .'
+                   }
+                }
+           }
         
         
        stage('Sonar Analysis'){
