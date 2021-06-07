@@ -127,18 +127,21 @@ class Home extends React.Component {
       console.log(res, "search");
     }
   };
-  handleCount = () => {
-    let count = 0;
-    if (this.state.adultValue / 4) {
+  handleIncCount = () => {
+    // let count = this.state.adultValue + this.state.childValue;
+    if ((this.state.adultValue+this.state.childValue)%4==0) {
       this.setState({
-        roomValue: Math.ceil(this.state.adultValue / 2),
-      });
-    } else {
-      this.setState({
-        roomValue: Math.ceil(this.state.childValue / 2),
-      });
-    }
+        roomValue:this.state.roomValue + 1,
+      });}
   };
+  handleDecCount=()=>{
+    console.log(this.state.adultValue,"adult")
+    console.log(this.state.childValue,"child")
+    if ((this.state.adultValue+this.state.childValue)%4==0) {
+      this.setState({
+        roomValue:this.state.roomValue - 1,
+      });}
+  }
 
   handleDec = () => {
     if (this.state.roomValue !== 1) {
@@ -157,9 +160,9 @@ class Home extends React.Component {
       });
       this.setState({
         adultValue: this.state.adultValue - 1,
-      });
+      },()=>this.handleDecCount());
     }
-    // this.handleCount();
+    // this.handleDecCount()
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
@@ -168,9 +171,10 @@ class Home extends React.Component {
       });
       this.setState({
         childValue: this.state.childValue - 1,
-      });
+      },()=>this.handleDecCount());
     }
-    // this.handleCount();
+    // this.handleDecCount()
+
   };
   handleInc = () => {
     this.props.room({
@@ -187,7 +191,7 @@ class Home extends React.Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
-    this.handleCount();
+    this.handleIncCount();
   };
   handleIncChild = () => {
     this.props.child({
@@ -196,7 +200,7 @@ class Home extends React.Component {
     this.setState({
       childValue: this.state.childValue + 1,
     });
-    // this.handleCount();
+    this.handleIncCount();
   };
   handleClick = (event) => {
     this.setState({
@@ -279,7 +283,7 @@ class Home extends React.Component {
                   name="browser"
                   id="browser"
                   onChange={(e) => {
-                    this.handleFilter(e.target.value);
+                    this.handleFilter(e.target.value.toLowerCase());
                   }}
                   className={`${
                     this.state.cityError !== "" ? "cityError" : ""
