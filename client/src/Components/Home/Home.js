@@ -436,7 +436,7 @@ class Home extends React.Component {
           <h1 className="errorAPI">Error fetching data</h1>
         )}
         {this.state.loader && <CircularProgress className="loadingSym" />}
-        { this.props.propertyList.length && !this.state.loader ? (
+        {this.props.propertyList.length && !this.state.loader ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
@@ -531,15 +531,15 @@ class Home extends React.Component {
 
             <img className="image-error" src={giphy} alt="loading..."></img>
             <p className="customMade2">
-          <i className="customMade">Related Search : </i>Check out the
-          properties available{" "}
-        </p>
+              <i className="customMade">Related Search : </i>Check out the
+              properties available{" "}
+            </p>
           </div>
         ) : null}
         {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
           ? ""
           : null}
-        
+
         {!this.props.propertyList.length
           ? this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>

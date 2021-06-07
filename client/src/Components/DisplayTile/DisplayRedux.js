@@ -1,6 +1,32 @@
+// import React from 'react'
+// import { connect } from "react-redux";
+// import { Route, Redirect } from "react-router-dom";
+
+// const RefreshRoute = ({ component: DisplayRedux, isDataAvailable }) => (
+//   <Route
+
+//     render={props =>
+//       isDataAvailable ? (
+//         <DisplayRedux />
+//       ) : (
+//         <Redirect
+//           to={{
+//             pathname: "/"
+//           }}
+//         />
+//       )
+//     }
+//   />
+// );
+
+// const mapStateToProps = state => ({
+//   isDataAvailable: state.reducer.isDataAvailable
+// });
+
+// export default connect(mapStateToProps)(RefreshRoute);
+
 import React, { Component } from "react";
 import axios from "axios";
-
 import { get } from "lodash";
 import "./DisplayTile.css";
 import WifiRoundedIcon from "@material-ui/icons/WifiRounded";
@@ -15,7 +41,6 @@ import { roomDetails } from "../../actions";
 import { Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { AlignBottom } from "react-bootstrap-icons";
-import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import Slide from "react-reveal/Slide";
@@ -23,7 +48,6 @@ import {
   date,
   property,
   room,
-  propRoomType,
   roomTypesRate,
   bookingDetails,
   additionOfPrices,
@@ -54,13 +78,10 @@ class DisplayRedux extends Component {
         `http://localhost:5000/rooms/getRoomType/${this.props.match.params.id}`
       )
       .then((responseOfApi) => {
-        // sudoProp = this.props.match.params.id;
         this.props.roomDetails(responseOfApi.data);
         this.setState({
-          // list: responseOfApi.data,
           list: this.props.roomDetailsList,
         });
-        // console.log("this.props.state", this.props);
         var countObj = this.state.list.map((data) => {
           return {
             id: data._id,
@@ -75,7 +96,6 @@ class DisplayRedux extends Component {
         this.setState({ countObj: countObj });
       })
       .catch((error) => {
-        // console.log("Error gtting data", error);
         <h1>Error fetching data</h1>;
         this.setState({ error: !this.state.error });
       });
@@ -87,7 +107,6 @@ class DisplayRedux extends Component {
       url: `http://localhost:5000/rate/getplan`,
       headers: {
         "Content-Type": "application/json",
-        // "x-access-token": sessionStorage.getItem("token"),
         propertyId: this.props.match.params.id,
         checkInDate: this.props.dateRange.start,
       },
@@ -102,13 +121,9 @@ class DisplayRedux extends Component {
       .catch((e) => {
         console.log("error logging data", e);
       });
-    // return res;
   };
   handleMinus = (id) => {
     var count = this.state.countObj;
-    // let rateObj = this.state.listOfAP;
-    // let t = this.state.totalPrice;
-
     count.forEach((data) => {
       if (data.id === id && data.count > 0) {
         data.count -= 1;
@@ -116,66 +131,37 @@ class DisplayRedux extends Component {
     });
     this.setState({ countObj: count });
     this.checkEnable();
-    this.props.hotelDetails({
+    this.props.bookingDetails({
       bookingData: this.state.countObj,
     });
-    // console.log(
-    //   "value of isDisable from caal in handleminus = ",
-    //   this.checkEnable()
-    // );
-    console.log("countObj price inside Handle minus = ", this.state.countObj);
-    console.log("list of rooms  inside Handle minus= ", this.state.list);
-    console.log(
-      "this.props.hotelDetails inside Handleminus = ",
-      this.props.hotelDetails
-    );
   };
   handlePlus = (id) => {
     var count = this.state.countObj;
-    // let rateObj = this.state.listOfAP;
-    // console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
       if (data.id === id && data.count < data.available) {
         data.count += 1;
       }
     });
-    // console.log("p = ", p);
-
     this.setState({
       countObj: count,
-      // finalTotalPrice:
     });
     this.checkEnable();
     this.props.bookingDetails({
       bookingData: this.state.countObj,
     });
-    console.log("countObj price inside Handle PLus = ", this.state.countObj);
-    console.log("list of rooms  inside Handle PLus= ", this.state.list);
-    console.log(
-      "this.props.hotelDetails inside HandlePLus = ",
-      this.props.bookingDetails
-    );
   };
   calculateTotal = () => {
     var count = this.state.countObj;
     let rateObj = this.state.listOfAP;
     let t = 0;
-    var p = 0;
-    // console.log("value of BEFORE t inside handlePlus", t);
-    // console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
-      // console.log("count inside handlePlus = ", data.count);
       rateObj.forEach((rate) => {
         if (rate.roomTypeId === data.id) {
           if (!data.isChecked) t += rate.plan.EP * data.count;
           else t += rate.plan.AP * data.count;
         }
       });
-      // console.log("value of After t inside handlePlus", t);
-      // }
     });
-    // console.log("p = ", p);
-    console.log("countObj price inside caculateTotal = ", this.state.countObj);
     return t;
   };
   handleChange = (id) => {
@@ -225,9 +211,17 @@ class DisplayRedux extends Component {
     var propertyName = "";
     var ap = 0,
       ep = 0;
-    // console.log("THE PROP VALUE + ", this.props);
     if (this.state.error) return <h1 style={mystyle}>Error Fetching data</h1>;
-    // let propertyName = "";
+    // if (window.performance) {
+    //   console.info("window.performance works fine on this browser");
+    // }
+    // console.info(performance.navigation.type);
+    // if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+    //   console.info("This page is reloaded");
+    //   alert("page reloaded");
+    // } else {
+    //   console.info("This page is not reloaded");
+    // }
     return (
       <div className="displayOne">
         {this.props.propertyList.forEach((data) => {
@@ -287,11 +281,8 @@ class DisplayRedux extends Component {
                   count.forEach((data) => {
                     if (data.id === post._id) data.priceO = price;
                   });
-                  // console.log("count Obj agter priceO = ", count);
                   return (
                     <div key={index} className="homeContainerOne">
-                      {/* <h1>{this.state.}</h1> */}
-
                       <div className="wrapperOne">
                         <div>
                           <img
@@ -303,10 +294,13 @@ class DisplayRedux extends Component {
                           <div>
                             <div className="rate-name">
                               <div>
-                                <h2 style={{ marginTop: "6px" }}>
-                                  {post.roomType}
-                                </h2>
+                                <div>
+                                  <h2 style={{ marginTop: "6px" }}>
+                                    {post.roomType}
+                                  </h2>
+                                </div>
                               </div>
+
                               <div>
                                 <div className="rate-container">
                                   <span>
@@ -417,13 +411,7 @@ class DisplayRedux extends Component {
                 </div>
                 <div className="btn-placement">
                   <div>
-                    <Button
-                      className="reserve-left"
-                      // class="ui inverted green button"
-                      as={NavLink}
-                      to="/"
-                      // onClick={() => this.state.onBack()}
-                    >
+                    <Button className="reserve-left" as={NavLink} to="/">
                       Go Back
                     </Button>
                   </div>
@@ -445,6 +433,8 @@ class DisplayRedux extends Component {
       </div>
     );
   }
+}
+if (location.reload === true) {
 }
 const mapDispatchToProps = (dispatch) => {
   return {

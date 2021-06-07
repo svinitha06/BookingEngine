@@ -910,7 +910,7 @@ select {
   background-color: rgba(117, 162, 179, 0.8);
 
   border: 1px solid transparent;
-  transition: all 0.3s;
+  /* transition: all 0.3s; */
   font-size: 16px;
 }
 a.ui.button.submit-form {
@@ -923,7 +923,7 @@ a.ui.button.submit-form {
   color: #fff !important;
   background-color: rgb(144, 181, 193) !important;
   border: 1px solid transparent !important ;
-  transition: all 0.3s !important;
+  /* transition: all 0.3s !important; */
   font-size: 16px !important;
   font-weight: 100 !important;
 }
@@ -1055,8 +1055,10 @@ a.ui.button.submit-form:hover {
 }
 
 .needSpace {
+  margin-bottom: 2%;
   margin-right: 58%;
-  margin-left: 2%;
+  margin-top: 1%;
+  margin-left: 5%;
 }
 
 .priceContainerTwo {
@@ -1067,6 +1069,8 @@ a.ui.button.submit-form:hover {
   margin-left: -2%;
   padding: 1%;
   font-weight: 600;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 .modal-open {
   background: #485a61;
@@ -1174,7 +1178,7 @@ a.ui.button.submit-form {
   color: #fff;
   background-color: rgba(57, 61, 63, 0.8);
   border: 1px solid transparent;
-  transition: all 0.3s;
+  /* transition: all 0.3s; */
   font-size: 18px;
   cursor: pointer;
 }

@@ -1085,13 +1085,13 @@ export class Form extends Component {
                             </div>
                             <div></div>
                             <div></div>
-                            <div>{this.state.thePrice * 0.05}</div>
+                            <div>{this.state.thePrice * 0.16}</div>
                           </div>
                         </div>
                         <div>
                           <div className="priceContainerTwo">
                             <p className="needSpace">TOTAL</p>
-                            <p>
+                            <p style={{ marginLeft: "52%" }}>
                               {this.state.thePrice +
                                 this.state.thePrice * 0.18 -
                                 this.state.thePrice * 0.05}

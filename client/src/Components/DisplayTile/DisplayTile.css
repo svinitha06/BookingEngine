@@ -303,7 +303,7 @@ a.ui.button.reserve-left {
 .availableRoooms {
   display: flex;
   color: grey;
-  font-size: 13px;
+  font-size: 15px;
   flex-wrap: nowrap;
   justify-content: flex-end;
 }
