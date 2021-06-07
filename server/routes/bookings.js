@@ -66,7 +66,7 @@ router.post("/Book", async (req, res) => {
       return transporter.sendMail({
           to: req.body.email,
           from: 'bookinghotel.engine@gmail.com',
-          subject: 'Booking was Successful!!',
+          subject: 'Booking was Successful!',
           text: 'You have successfully booked Hotel ' + req.body.hotelNow +' with us, your , Check In Date is  ' + req.body.checkIn +' and Check Out Date is ' + req.body.checkOut +'. You Booked it on  ' + req.body.bookedDate+'.'
         });
   }).catch((err) => {
