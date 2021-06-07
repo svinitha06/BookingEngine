@@ -535,6 +535,7 @@ export class Form extends Component {
       checkOutDate: "",
       proId: 0,
       thePrice: this.props.finalTotalPrice,
+      errorPost: false,
     };
   }
   componentDidMount() {
@@ -681,7 +682,13 @@ export class Form extends Component {
 
     this.props.hotelDetails(data);
     console.log(data, "hotelNow");
-    await db.getPostHotelDetails(data);
+    await db.getPostHotelDetails(data).catch((err) => {
+      console.log("errorApi");
+      // return err
+      this.setState({
+        errorPost: !this.state.errorPost,
+      });
+    });;
   };
 
   handleClose = () => {
@@ -708,6 +715,9 @@ export class Form extends Component {
       year: d.getFullYear(),
     };
     return `${formattedDate.date}-${formattedDate.month}-${formattedDate.year}`;
+  };
+  handleBack = () => {
+    this.props.history.goBack();
   };
   render() {
     // this.setState({ proId: this.props.booking[0].propertyId });
@@ -906,12 +916,17 @@ export class Form extends Component {
                       <Button
                         className="submit-form"
                         as={NavLink}
-                        to={"/basiclayout/1"}
+                        to={`basiclayout/${this.props.booking[0].propertyId}`}
+                        // onClick={this.handleBack}
                       >
                         Back
                       </Button>
                       {/* </div> */}
                       <button onClick={this.handleSubmit}>Book Now</button>
+
+                      {/* {this.state.errorPost && (
+          <h1 className="errorPost">Error fetching data</h1>
+        )} */}
                       {this.state.open && (
                         <Modal
                           open={this.state.open}
@@ -1038,7 +1053,7 @@ export class Form extends Component {
                                 <div className="priceDetailsContainer">
                                   <div>{roomName}</div>
                                   <div>{roomCount}</div>
-                                  <div>{food}</div>
+                                  <div>{foodValue}</div>
                                   <div>{price}</div>
                                 </div>
                               );
@@ -1068,7 +1083,6 @@ export class Form extends Component {
                           <div className="priceContainerTwo">
                             <h3 className="needSpace">TOTAL</h3>
                             <h3>
-                              :
                               {this.state.thePrice +
                                 this.state.thePrice * 0.18 -
                                 this.state.thePrice * 0.05}
@@ -1079,7 +1093,6 @@ export class Form extends Component {
                     </div>
                   </div>
                 </div>
-                {/* New Form Here Don't DEL */}
               </form>
             </div>
           </div>

@@ -69,6 +69,7 @@ class DisplayRedux extends Component {
             isChecked: false,
             priceO: 0,
             roomType: data.roomType,
+            available: data.availability,
           };
         });
         this.setState({ countObj: countObj });
@@ -134,7 +135,7 @@ class DisplayRedux extends Component {
     // let rateObj = this.state.listOfAP;
     // console.log("count obj inside of handle plus = ", count);
     count.forEach((data) => {
-      if (data.id === id) {
+      if (data.id === id && data.count < data.available) {
         data.count += 1;
       }
     });
@@ -260,35 +261,6 @@ class DisplayRedux extends Component {
                   var finalEP = 0;
                   var finalAP = 0;
                   var count = this.state.countObj;
-                  // var rateData = this.state.rateObj;
-                  // var len1 = this.state.list.length;
-                  // var len2 = this.state.listOfAP.length;
-                  // console.log("this.state.list", this.state.list);
-                  // console.log("this.state.list.length", this.state.list.length);
-                  // console.log("this.state.listOfAP", this.state.listOfAP);
-                  // console.log(
-                  //   "this.state.listOfAP.length",
-                  //   this.state.listOfAP.length
-                  // );
-
-                  // let k = 0,
-                  // let j = 0;
-                  // var id1 = post._id;
-                  // for (var j = 0; j < len2; j++) {
-                  //   var id2 = this.state.listOfAP[j].roomTypeId;
-                  //   if (post._id === id2) {
-                  //     ap = this.state.listOfAP[j].plan.AP;
-                  //     ep = this.state.listOfAP[j].plan.EP;
-                  //     break;
-                  //   }
-                  //   console.log("for j = ", j);
-                  //   console.log("ap = ", ap);
-                  //   console.log("ep = ", ep);
-                  // }
-
-                  // console.log("rate1=", rate1);
-                  // p = rate1 * room;
-                  // console.log("p = ", p);
                   var rateObj2 = this.state.listOfAP;
                   rateObj2.forEach((i) => {
                     if (i.roomTypeId === post._id) {
@@ -296,18 +268,6 @@ class DisplayRedux extends Component {
                       finalEP = i.plan.EP;
                     }
                   });
-                  // count.forEach((data) => {
-                  //   rateObj2.forEach((theRate) => {
-                  //     if (post._id === theRate.roomTypeId) {
-                  //       isCheck = data.isChecked;
-                  //       if (isCheck) finalPrice = finalAP;
-                  //       else finalPrice = finalEP;
-                  //     }
-                  //   });
-                  // });
-
-                  // console.log("finalPrice = ", finalPrice);
-                  // console.log("isCheck = ", isCheck);
                   count.forEach((data) => {
                     if (data.id === post._id) room = data.count;
                   });
@@ -322,17 +282,8 @@ class DisplayRedux extends Component {
                     }
                   });
 
-                  // count.forEach((data) => {
-                  //   total += data.count;
-                  // });
-                  // console.log("finalPrice = ", finalPrice);
-                  // console.log("rooms = ", room);
                   if (room > 0) price = finalPrice * room;
-                  // console.log("price = ", price);
-                  // console.log(
-                  //   "this.state.totalpriceTow = ",
-                  //   this.state.totalpriceTwo
-                  // );
+
                   count.forEach((data) => {
                     if (data.id === post._id) data.priceO = price;
                   });
@@ -420,7 +371,10 @@ class DisplayRedux extends Component {
                                     <AddIcon />
                                   </button>
                                 </div>
-
+                                <div className="availableRoooms">
+                                  <label>Available Rooms : </label>
+                                  <span>{post.availability}</span>
+                                </div>
                                 <div className="include-food">
                                   <label>
                                     Include Food :

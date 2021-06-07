@@ -815,7 +815,7 @@ select {
 /* new details */
 
 .newGuestDetail {
-  width: 58%;
+  width: 78%;
   background: white;
   border-radius: 22px;
   padding: 1%;
@@ -900,7 +900,7 @@ select {
 .submit-form button {
   padding: 13px 26px;
   border-radius: 4px;
-  margin-left: 12%;
+  margin-left: 1%;
   background-color: transparent;
   border: none;
   outline: none;
@@ -1057,7 +1057,7 @@ a.ui.button.submit-form:hover {
   display: inline;
 }
 .needSpace {
-  margin-right: 60%;
+  margin-right: 65%;
 }
 
 .priceContainerTwo {

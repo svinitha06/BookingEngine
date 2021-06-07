@@ -57,17 +57,18 @@ router.get('/booking',function(req,res)
 //       res.status(400).send({ message: err });
 //     }
 //   });
+
 router.post("/Book", async (req, res) => {
   console.log(req.body);
   const book = new booking(req.body)
   book.save().then(() => {
       res.status(201).send(book);
       return transporter.sendMail({
-                to: req.body.email,
-                from: 'bookinghotel.engine@gmail.com',
-                subject: 'Booking was Successful!',
-                html: '<h2>You have successfully booked a room with us! happy stay!</h2>',
-              });
+          to: req.body.email,
+          from: 'bookinghotel.engine@gmail.com',
+          subject: 'Booking was Successful!',
+          text: 'You have successfully booked Hotel ' + req.body.hotelNow +' with us, your , Check In Date is  ' + req.body.checkIn +' and Check Out Date is ' + req.body.checkOut +'. You Booked it on  ' + req.body.bookedDate+'.'
+        });
   }).catch((err) => {
       res.status(400).send(err);
   })
