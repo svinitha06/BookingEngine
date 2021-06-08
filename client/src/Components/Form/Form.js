@@ -512,6 +512,7 @@ import { bindActionCreators } from "redux";
 import modalBell from "../../asset/modalBell.gif";
 import ImageSlogan from "./slogan.png";
 import ImageTwo from "./NewImage.png";
+import { ObjectID } from "bson";
 export class Form extends Component {
   constructor(props) {
     super(props);
@@ -536,7 +537,7 @@ export class Form extends Component {
       proId: 0,
       thePrice: this.props.finalTotalPrice,
       errorPost: false,
-      open:false
+      open: false,
     };
   }
   componentDidMount() {
@@ -651,7 +652,8 @@ export class Form extends Component {
       this.state.lastName !== null &&
       validator.isEmail(this.state.email) &&
       this.state.address !== "" &&
-      this.state.contact.length == 10 && !this.state.errorPost
+      this.state.contact.length == 10 &&
+      !this.state.errorPost
     ) {
       this.setState({
         open: true,
@@ -671,28 +673,26 @@ export class Form extends Component {
     // })
 
     const data = {
-      guestName: this.state.firstName + this.state.lastName,
+      guestName: this.state.firstName + ' ' + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
       hotelNow: hotelName,
       address: this.state.address,
       checkIn: this.state.checkInDate,
       checkOut: this.state.checkOutDate,
-      bookedDate: new Date(),
-      
+      bookedDate: new Date().toLocaleDateString(),
+      bookingId: new ObjectID(),
     };
 
     this.props.hotelDetails(data);
     console.log(data, "hotelNow");
-    await db.getPostHotelDetails(data)
-    .catch((err) => {
+    await db.getPostHotelDetails(data).catch((err) => {
       console.log("errorPost");
       // return err
       this.setState({
         errorPost: !this.state.errorPost,
-
       });
-    });;
+    });
   };
 
   handleClose = () => {
@@ -889,6 +889,7 @@ export class Form extends Component {
                                 <input
                                   className="form-contents5"
                                   type="text-area"
+                                  // rows="3"
                                   value={this.state.address}
                                   onChange={this.handleAddress}
                                   className={`${
@@ -929,9 +930,9 @@ export class Form extends Component {
                       <button onClick={this.handleSubmit}>Book Now</button>
 
                       {this.state.errorPost && (
-          <h1 className="errorPost">Error fetching data</h1>
-        )}
-                      {this.state.open && !this.state.errorPost &&(
+                        <h1 className="errorPost">Error fetching data</h1>
+                      )}
+                      {this.state.open && !this.state.errorPost && (
                         <Modal
                           open={this.state.open}
                           onClose={this.handleClose}
@@ -1064,33 +1065,39 @@ export class Form extends Component {
                             }
                           })}
                           <div className="priceDetailsContainerOne">
-                            <div style={{color:"green",fontWeight:"600"}}>Amount</div>
+                            <div style={{ color: "green", fontWeight: "600" }}>
+                              Amount
+                            </div>
                             <div></div>
                             <div></div>
 
                             <div>{this.state.thePrice}</div>
                           </div>
                           <div className="priceDetailsContainerTwo">
-                            <div  style={{color:"blue",fontWeight:"600"}}>GST</div>
+                            <div style={{ color: "blue", fontWeight: "600" }}>
+                              GST
+                            </div>
                             <div></div>
                             <div></div>
                             <div>{this.state.thePrice * 0.18}</div>
                           </div>
                           <div className="priceDetailsContainerTwo">
-                            <div  style={{color:"red",fontWeight:"600"}}>Discount</div>
+                            <div style={{ color: "red", fontWeight: "600" }}>
+                              Discount
+                            </div>
                             <div></div>
                             <div></div>
-                            <div>{this.state.thePrice * 0.05}</div>
+                            <div>{this.state.thePrice * 0.16}</div>
                           </div>
                         </div>
                         <div>
                           <div className="priceContainerTwo">
-                            <h3 className="needSpace">TOTAL</h3>
-                            <h3>
+                            <p className="needSpace">TOTAL</p>
+                            <p style={{ marginLeft: "52%" }}>
                               {this.state.thePrice +
                                 this.state.thePrice * 0.18 -
                                 this.state.thePrice * 0.05}
-                            </h3>
+                            </p>
                           </div>
                         </div>
                       </div>

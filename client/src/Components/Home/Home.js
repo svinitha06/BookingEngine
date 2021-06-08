@@ -580,7 +580,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
                       </div>
                     </div>
                     <div>
-                      <div className="viewDetails">
+                      <div className="viewDetails" id={data.name}>
                         <Link
                           to={{
                             pathname: `/basiclayout/${data.PropertyId}`,
@@ -693,7 +693,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
                         </div>
                       </div>
                       <div>
-                        <div className="viewDetails">
+                        <div className="viewDetails" id={data.name}>
                           <Link
                             to={{
                               pathname: `/basiclayout/${data.PropertyId}`,

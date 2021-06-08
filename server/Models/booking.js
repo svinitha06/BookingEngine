@@ -78,6 +78,10 @@ const bookingSchema= new mongoose.Schema({
     bookedDate:{
         type: String,
         required: false
+    },
+    bookingId:{
+        type: String,
+        required: false
     }
 
 })

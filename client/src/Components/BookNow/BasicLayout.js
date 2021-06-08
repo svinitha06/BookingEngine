@@ -32,6 +32,9 @@ import { DateRangePickerInput } from "react-dates";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import { Route, Redirect } from "react-router";
+import { WindowSidebar } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 // import { StarFill } from "react-bootstrap-icons";
 
@@ -41,9 +44,9 @@ export class BasicLayout extends Component {
 
     this.state = {
       roomAnchor: null,
-      roomValue: 1,
-      adultValue: 1,
-      childValue: 0,
+      roomValue: this.props.roomVal,
+      adultValue: this.props.adultVal,
+      childValue: this.props.childVal,
       listOfProperties: [],
       dateError: "",
       cityError: "",
@@ -60,55 +63,57 @@ export class BasicLayout extends Component {
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
-    console.log("start = ", this.props.dateRange.start);
-    console.log("This.state = ", this.state);
-
-    console.log("props = ", this.props);
+    // if (performance.navigation.TYPE_RELOAD) {
+    //   console.info("This page is reloaded");
+    //   // <Redirect to="/"></Redirect>;
+    //   <Redirect exact to="/" />;
+    // } else {
+    //   console.info("This page is not reloaded");
+    // }
   }
-  setRooms = (event) => {
-    ReactDOM.render(
-      <ModalCompo2 total={event.target.value} open={true} />,
-      document.getElementById("all-rooms")
-    );
-    window.onbeforeunload = function () {
-      return false;
-    };
-    // {window.location.reload?this.props.history.push("/"):null}
-  };
+  // setRooms = (event) => {
+  //   ReactDOM.render(
+  //     <ModalCompo2 total={event.target.value} open={true} />,
+  //     document.getElementById("all-rooms")
+  //   );
+  //   window.onbeforeunload = function () {
+  //     return false;
+  //   };
+  // };
 
-  // handleDate = () => {
-  //   this.props.date({
-  //     start: e.value[0],
-  //   });
-  //   this.setState({
-  //     start: e.value[0],
-  //     // end: e.value[1],
-  //     dateError: "",
-  //     clicked: false,
-  //   });
-  //   console.log("basiclayout = ", e.value);
-  //   console.log("basiclayout0 = ", e.value[0]);
-  //   console.log("statr = ", start);
-  // };
-  // handleValidate = () => {
-  //   this.setState({
-  //     clicked: true,
-  //   });
-  //   if (this.state.start == null) {
-  //     this.setState({
-  //       dateError: "Please select the date",
-  //     });
-  //   }
-  // };
-  handleCount = () => {
-    let count = 0;
-    if ((this.state.childValue + this.state.adultValue) / 4) {
+  handleIncCount = () => {
+    // let count = this.state.adultValue + this.state.childValue;
+    console.log(
+      "Math.floor(this.state.adultValue + this.state.childValue / 3)",
+      Math.floor((this.state.adultValue + this.state.childValue) / 3)
+    );
+
+    if (
+      (this.state.adultValue + this.state.childValue) % 4 == 0 &&
+      Math.floor((this.state.adultValue + this.state.childValue) / 3) >=
+        this.state.roomValue
+    ) {
       this.setState({
-        roomValue: Math.floor(this.state.adultValue / 2) + 1,
+        roomValue: this.state.roomValue + 1,
       });
-    } else {
+      this.props.room({
+        roomValue: this.state.roomValue + 1,
+      });
+    }
+  };
+  handleDecCount = () => {
+    console.log(this.state.adultValue, "adult");
+    console.log(this.state.childValue, "child");
+    if (
+      (this.state.adultValue + this.state.childValue) % 4 == 0 &&
+      Math.floor((this.state.adultValue + this.state.childValue) / 3) <=
+        this.state.roomValue
+    ) {
       this.setState({
-        roomValue: Math.ceil(this.state.childValue / 2),
+        roomValue: this.state.roomValue - 1,
+      });
+      this.props.room({
+        roomValue: this.state.roomValue - 1,
       });
     }
   };
@@ -128,20 +133,28 @@ export class BasicLayout extends Component {
       this.props.adult({
         adultValue: this.state.adultValue - 1,
       });
-      this.setState({
-        adultValue: this.state.adultValue - 1,
-      });
+      this.setState(
+        {
+          adultValue: this.state.adultValue - 1,
+        },
+        () => this.handleDecCount()
+      );
     }
+    // this.handleDecCount()
   };
   handleDecChild = () => {
     if (this.state.childValue !== 0) {
       this.props.child({
         childValue: this.state.childValue - 1,
       });
-      this.setState({
-        childValue: this.state.childValue - 1,
-      });
+      this.setState(
+        {
+          childValue: this.state.childValue - 1,
+        },
+        () => this.handleDecCount()
+      );
     }
+    // this.handleDecCount()
   };
   handleInc = () => {
     this.props.room({
@@ -158,6 +171,7 @@ export class BasicLayout extends Component {
     this.setState({
       adultValue: this.state.adultValue + 1,
     });
+    this.handleIncCount();
   };
   handleIncChild = () => {
     this.props.child({
@@ -166,6 +180,7 @@ export class BasicLayout extends Component {
     this.setState({
       childValue: this.state.childValue + 1,
     });
+    this.handleIncCount();
   };
   handleClick = (event) => {
     this.setState({
@@ -177,34 +192,6 @@ export class BasicLayout extends Component {
       roomAnchor: null,
     });
   };
-  // handleFilter = (e) => {
-  //   const listCityProp = [...this.state.listOfProperties];
-  //   if (e == "") {
-  //     console.log("citytyyyy");
-  //     this.setState({
-  //       listOfProperties: listCityProp,
-  //     });
-  //     console.log(this.state.listOfProperties, "im here");
-  //     return;
-  //   }
-  //   if (this.state.city !== this.state.listOfProperties.location) {
-  //     console.log("loosu");
-  //     this.setState({
-  //       cityError: "Enter valid city",
-  //     });
-  //   }
-
-  //   const cityDrop = listCityProp.filter((city) => city.location.includes(e));
-
-  //   this.setState({
-  //     listOfProperties: cityDrop,
-  //   });
-
-  //   console.log(this.state.listOfProperties);
-  // };
-  // executeOnClick(isExpanded) {
-  //   console.log(isExpanded);
-  // }
 
   render() {
     const minValue = new Date(
@@ -212,12 +199,10 @@ export class BasicLayout extends Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-    console.log("this.state.dateRange", this.state.dateRange);
-    console.log("his.props.roomVal", this.props.roomVal);
-    console.log("his.props.adultVal", this.props.adultVal);
 
-    console.log("his.props.roomVal.adultValue", this.props.roomVal.adultValue);
-    console.log("his.props.childVal", this.props.childVal);
+    // <Route exact path="/">
+    //   {window.location.reload ? <Redirect to="/" /> : null}
+    // </Route>;
 
     return (
       <div className="basiclayoutClass">
