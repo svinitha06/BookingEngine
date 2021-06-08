@@ -24,20 +24,20 @@ pipeline{
                    }
       stage('Nexus'){
             steps {
-                sh 'docker tag booking-fe:1.0 localhost:12012/booking-fe:1.0'
+                sh 'docker tag booking-fe:1.0 localhost:12012/booking-fe:${BUILD_NUMBER}'
                 sh 'docker login -u admin -p admin@123 localhost:12012'
-                sh 'docker push localhost:12012/booking-fe:1.0'
+                sh 'docker push localhost:12012/booking-fe:${BUILD_NUMBER}'
                    }
                     }
         stage('Pulling the Nexus'){
             steps{
-                sh 'docker pull localhost:12012/booking-fe:1.0'}
+                sh 'docker pull localhost:12012/booking-fe:${BUILD_NUMBER}'}
         }
         stage('Running the container'){
             steps{
                 sh 'docker stop Bookingengine-fe'
                 sh 'docker rm Bookingengine-fe'
-                sh 'docker run --name Bookingengine-fe -p 3000:3000 localhost:12012/booking-fe:1.0'}
+                sh 'docker run --name Bookingengine-fe -p 3000:3000 localhost:12012/booking-fe:${BUILD_NUMBER}'}
             
             }
     }
