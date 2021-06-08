@@ -5,15 +5,16 @@
   width: 100%;
   height: 76vh;
 }
-.carousel-control-next:focus, .carousel-control-next:hover, .carousel-control-prev:focus, .carousel-control-prev:hover {
+.carousel-control-next:focus,
+.carousel-control-next:hover,
+.carousel-control-prev:focus,
+.carousel-control-prev:hover {
   color: #fff;
   text-decoration: none;
   outline: 0;
-  opacity: .9;
-  background: rgba(0,0,0,0.7) !important;
+  opacity: 0.9;
+  background: rgba(0, 0, 0, 0.7) !important;
 }
-
-
 
 .homeContainer {
   width: 82%;
@@ -425,7 +426,7 @@ p h1 h6 {
   margin-bottom: 1.5em !important;
   margin-top: -1em;
 }
-.errorOffline{
+.errorOffline {
   background-color: ghostwhite;
   width: 35%;
   margin-left: 32%;
@@ -435,25 +436,25 @@ p h1 h6 {
   padding-top: 2%;
   height: 21.5vh;
 }
-.errorOffline h1{
+.errorOffline h1 {
   margin-left: 10%;
   margin-top: 5%;
 }
-.cancel{
+.cancel {
   margin-left: 95%;
   margin-bottom: -7%;
   margin-top: -4% !important;
   background: red;
   opacity: 0.7;
   width: 3.5%;
-  padding-left: 0.5%;
+  /* padding-left: 0.5%; */
   padding-right: 0.5px;
   color: white;
   padding-right: -10%;
   cursor: pointer;
   /* padding: 0 !important; */
 }
-.networkError{
+.networkError {
   margin-left: 22%;
   margin-top: -2%;
   margin-bottom: 3%;

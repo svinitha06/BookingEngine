@@ -1,2 +1,107 @@
 /* Suraj css */
 /* Ayushi CSS */
+.creditCardContainer {
+  background-color: white;
+  /* box-shadow: 10px 10px 5px #aaaaaa; */
+  border-radius: 22px;
+  width: 88%;
+  padding: 3%;
+  margin-top: 5%;
+  /* margin-left: 30%; */
+}
+.cardNumber,
+.forDivision {
+  margin-bottom: 2%;
+}
+.cardNumber input,
+.cardName input {
+  border: 1px solid grey;
+  border-radius: 4px;
+  width: 58%;
+  padding: 1.5%;
+}
+/* .cardNumber input ::placeholder {
+  color: grey !important;
+} */
+.forDivision {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: center;
+  margin-top: 3%;
+}
+.monthContainer input {
+  width: 33%;
+  border-radius: 4px;
+  border: 1px solid grey;
+  padding: 2%;
+}
+.cvvContainer input {
+  width: 45%;
+  border-radius: 4px;
+  border: 1px solid grey;
+  padding: 2%;
+}
+.monthContainer select {
+  width: 42% !important;
+  background: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 51%;
+  padding: 1.5%;
+  margin: 0.5%;
+}
+.monthContainer {
+  margin-right: 2%;
+  width: 44%;
+}
+.parentPayment {
+  width: 70%;
+  /* background: bisque; */
+  padding: 3%;
+  margin-left: 20%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  background: white;
+  border-radius: 22px;
+}
+.divideIntoTwo {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  margin-bottom: 4%;
+}
+.payButton button {
+  margin-bottom: 1%;
+  padding: 2%;
+  background: white;
+  width: 76% !important;
+  border: none;
+  border-radius: 5px;
+}
+.choiceOfPayment {
+  margin-top: 12%;
+}
+.choiceHeading {
+  margin-bottom: 8%;
+  margin-left: 7%;
+}
+
+.payButton p {
+  display: inline;
+}
+.payButton {
+  margin-top: 20%;
+  margin-left: 20%;
+}
+.payButtonTwo button {
+  margin-bottom: 1%;
+  padding: 2%;
+  background: white;
+  width: 76% !important;
+  border: none;
+  border-radius: 5px;
+}
+.payButtonTwo p {
+  display: inline;
+}
