@@ -29,6 +29,7 @@ pipeline{
                 sh 'docker push localhost:12012/bookingengine-be:${BUILD_NUMBER}'
             }
         }
+        
         stage('run the container'){
             steps{
                 sh 'docker pull localhost:12012/bookingengine-be:${BUILD_NUMBER}'
