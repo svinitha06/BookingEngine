@@ -73,6 +73,9 @@ class DisplayRedux extends Component {
   }
 
   componentDidMount() {
+    if (window.scrollX > 400) {
+      window.scroll(0, 0);
+    }
     axios
       .get(
         `http://localhost:5000/rooms/getRoomType/${this.props.match.params.id}`
@@ -208,8 +211,7 @@ class DisplayRedux extends Component {
     let total = this.calculateTotal();
 
     var propertyName = "";
-    var ap = 0,
-      ep = 0;
+    if (!navigator.onLine) return <h1>Network Error. Check your connection</h1>;
     if (this.state.error) return <h1 style={mystyle}>Error Fetching data</h1>;
     // if (window.performance) {
     //   console.info("window.performance works fine on this browser");
