@@ -163,12 +163,7 @@ export class Form extends Component {
     await db.getPostHotelDetails(data);
   };
   
-  handleClose=()=>{
-    // this.setState({
-    //   open:false
-    // })
-    <Redirect to="/"/>
-  }
+  
   handleBook=()=>{
    
 

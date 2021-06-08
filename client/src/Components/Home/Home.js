@@ -300,6 +300,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
 
   executeOnClick(isExpanded) {
     console.log(isExpanded);
+    // expanded(true)
   }
   handleHomeClose = () => {
     this.setState({
@@ -507,7 +508,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
         ) }
 
         {this.state.loader && <CircularProgress className="loadingSym" />}
-        {this.props.propertyList.length && !this.state.loader ? (
+        {this.props.propertyList.length && !this.state.loader && !this.state.errorAPI? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
@@ -610,8 +611,10 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
         {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
           ? ""
           : null}
-
-        {!this.props.propertyList.length
+{/* {this.state.errorAPI && (
+          <h1 className="errorAPI">Error fetching data</h1>
+        )} */}
+        {!this.props.propertyList.length && !this.state.errorAPI
           ? // && this.state.errorOffline
             this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>

@@ -177,7 +177,7 @@ class DisplayRedux extends Component {
     this.props.additionOfPrices({ Amount: theTotal });
 
     if (theTotal <= 0) {
-      alert("Please select a Room!");
+      // alert("Please select a Room!");
       return true;
     }
     return false;
