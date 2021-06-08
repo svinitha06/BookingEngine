@@ -541,17 +541,20 @@ export class Form extends Component {
     };
   }
   componentDidMount() {
+    if (window.scrollX > 400) {
+      window.scroll(0, 0);
+    }
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
-    console.log("total in form prop = ", this.state.thePrice);
-    console.log("this.props.finalTotalPrice = ", this.props.finalTotalPrice);
-    console.log(
-      "this.props.totalPriceInState TYPE = ",
-      typeof this.props.totalPriceInState
-    );
-    console.log("this.props", this.props);
+    // console.log("total in form prop = ", this.state.thePrice);
+    // console.log("this.props.finalTotalPrice = ", this.props.finalTotalPrice);
+    // console.log(
+    //   "this.props.totalPriceInState TYPE = ",
+    //   typeof this.props.totalPriceInState
+    // );
+    // console.log("this.props", this.props);
 
     // console.log("property in form did mount ", this.props.propertyList);
   }
@@ -673,7 +676,7 @@ export class Form extends Component {
     // })
 
     const data = {
-      guestName: this.state.firstName + ' ' + this.state.lastName,
+      guestName: this.state.firstName + " " + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
       hotelNow: hotelName,
@@ -724,6 +727,13 @@ export class Form extends Component {
     this.props.history.goBack();
   };
   render() {
+    const mystyle = {
+      color: "white",
+      backgroundColor: "DodgerBlue",
+      padding: "10px",
+      fontFamily: "Arial, Helvetica, sans-serif",
+      textAlign: "center",
+    };
     // this.setState({ proId: this.props.booking[0].propertyId });
     console.log("Booking Prop", this.props.booking);
     console.log(this.props, "demo");
@@ -734,6 +744,8 @@ export class Form extends Component {
       new Date().getMonth(),
       new Date().getDate()
     );
+    if (!navigator.onLine)
+      return <h1 style={mystyle}>Network Error. Check your connection</h1>;
 
     this.state.checkInDate = this.handleDateParts(this.props.dateRange.start);
     this.state.checkOutDate = this.handleDateParts(this.props.dateRange.end);
