@@ -679,6 +679,7 @@ export class Form extends Component {
       checkIn: this.state.checkInDate,
       checkOut: this.state.checkOutDate,
       bookedDate: new Date(),
+      
     };
 
     this.props.hotelDetails(data);

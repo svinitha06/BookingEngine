@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import { get, functions, bind, isEmpty, trim } from "lodash";
 import _ from "lodash";
+import Modal from "@material-ui/core/Modal";
 import Carousel from "react-bootstrap/Carousel";
 import giphy from "../../asset/giphy.gif";
 // import Carousel from "react-elastic-carousel";
@@ -11,6 +12,7 @@ import { StarFill } from "react-bootstrap-icons";
 import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import ShowMoreText from "react-show-more-text";
+import PermScanWifiIcon from "@material-ui/icons/PermScanWifi";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
@@ -57,6 +59,7 @@ class Home extends React.Component {
       viewDetailsError: "",
       flag: true,
       errorAPI: false,
+      errorOffline: false,
     };
   }
   componentDidMount() {
@@ -83,6 +86,7 @@ class Home extends React.Component {
       // return err
       this.setState({
         errorAPI: !this.state.errorAPI,
+        // errorOffline: !this.state.errorOffline,
       });
     });
 
@@ -122,10 +126,20 @@ class Home extends React.Component {
       this.setState({
         loader: true,
       });
-      let res = await db.getFilteredSearch({
-        location: this.state.searchValue,
-        roomsrequired: this.state.roomValue,
-      });
+
+      let res = await db
+        .getFilteredSearch({
+          location: this.state.searchValue,
+          roomsrequired: this.state.roomValue,
+        })
+        .catch((err) => {
+          this.setState({
+            loader: false,
+            errorOffline: true,
+            open:true
+          });
+          return Promise.reject(err);
+        });
       this.props.property(res.data);
       this.setState({
         loader: false,
@@ -226,11 +240,8 @@ class Home extends React.Component {
     });
   };
   handleFilter = async (e) => {
-    this.setState({
-      searchValue: e,
-      cityError: "",
-      loader: true,
-    });
+    
+
     if (!trim(e)) {
       let res = await db.getproperty();
       this.props.property(res);
@@ -243,9 +254,36 @@ class Home extends React.Component {
       clearTimeout(searchValidator);
     }
     this.getLocation(e);
+    if (this.state.errorOffline === true) {
+      this.setState({
+        // searchValue: e,
+        // cityError: "",
+        loader: false,
+        open: true,
+        // errorOffline:false
+      });
+    } else {
+      this.setState({
+        searchValue: e,
+        cityError: "",
+        loader: true,
+        open: false,
+        // errorOffline:false
+      });
+    }
+console.log(this.state.errorOffline,this.state.open,"errorOffline check")
+
   };
   getLocation = async (data) => {
-    let res = await db.getpropertyLocation(data);
+    let res = await db.getpropertyLocation(data).catch((err) => {
+      this.setState({
+        loader: false,
+        errorOffline: true,
+        open:true
+      });
+console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
+      return Promise.reject(err);
+    });
     this.props.property(res);
     console.log(res, res.length, "come on");
     if (res.length === 0) {
@@ -263,10 +301,17 @@ class Home extends React.Component {
   executeOnClick(isExpanded) {
     console.log(isExpanded);
   }
-  // handleGo=(data)=>{
-  //   <Link to={`/basiclayout/${data}`}></Link>
-  // }
-
+  handleHomeClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
+  handleViewErrorOff=()=>{
+    this.setState({
+      open:true,
+      errorOffline:true
+    })
+  }
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -435,8 +480,34 @@ class Home extends React.Component {
         {this.state.errorAPI && (
           <h1 className="errorAPI">Error fetching data</h1>
         )}
+
+        {this.state.errorOffline && (
+          <Modal
+            open={this.state.open}
+            onClose={this.handleHomeClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <div className="errorOffline">
+              <p className="cancel" onClick={this.handleHomeClose}>
+                X
+              </p>
+
+              <h1>
+                Lost internet connection{" "}
+                <PermScanWifiIcon style={{ color: "red" }} />
+              </h1>
+              <p>
+                It appears you are offline. Any changes you make to your page
+                may be lost. Please connect to the internet and try again !
+                Kindly reload the page.
+              </p>
+            </div>
+          </Modal>
+        ) }
+
         {this.state.loader && <CircularProgress className="loadingSym" />}
-        { this.props.propertyList.length && !this.state.loader ? (
+        {this.props.propertyList.length && !this.state.loader ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
@@ -516,7 +587,7 @@ class Home extends React.Component {
                             props: { hotelName: get(data, "name", "--") },
                           }}
                         >
-                          <button>View Details</button>
+                          <button onClick={this.handleViewErrorOff}>View Details</button>
                         </Link>
                       </div>
                     </div>
@@ -531,17 +602,18 @@ class Home extends React.Component {
 
             <img className="image-error" src={giphy} alt="loading..."></img>
             <p className="customMade2">
-          <i className="customMade">Related Search : </i>Check out the
-          properties available{" "}
-        </p>
+              <i className="customMade">Related Search : </i>Check out the
+              properties available{" "}
+            </p>
           </div>
         ) : null}
         {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
           ? ""
           : null}
-        
+
         {!this.props.propertyList.length
-          ? this.props.propertyEmptyList.map((data, index) => (
+          ? // && this.state.errorOffline
+            this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>
                 <div className="wrapper">
                   <div className="carousel-NOW">

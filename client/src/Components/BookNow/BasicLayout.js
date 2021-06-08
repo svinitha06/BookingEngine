@@ -73,6 +73,7 @@ export class BasicLayout extends Component {
     window.onbeforeunload = function () {
       return false;
     };
+    // {window.location.reload?this.props.history.push("/"):null}
   };
 
   // handleDate = () => {
