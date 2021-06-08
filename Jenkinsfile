@@ -34,17 +34,18 @@ pipeline{
            }
         stage('nexus'){
             steps{
-                sh 'docker tag bookingengine localhost:8095/booking/bookingengine:${currentBuild.number}'
+                def buildnumber = currentBuild.number
+                sh 'docker tag bookingengine localhost:8095/booking/bookingengine:${buildnumber}'
                 sh 'docker login -u admin -p admin123 localhost:8095'
-                sh 'docker push localhost:8095/booking/bookingengine:${currentBuild.number}'
+                sh 'docker push localhost:8095/booking/bookingengine:${buildnumber}'
             }
         }
         stage('run the container'){
             steps{
-                sh 'docker pull localhost:8095/booking/bookingengine:${currentBuild.number}'
+                sh 'docker pull localhost:8095/booking/bookingengine:${buildnumber}'
                 sh 'docker stop booking'
                 sh 'docker rm booking'
-                sh 'docker run -d --name booking -p 5000:5000 localhost:8095/booking/bookingengine:${currentBuild.number}'
+                sh 'docker run -d --name booking -p 5000:5000 localhost:8095/booking/bookingengine:${buildnumber}'
             }
         }
     }
