@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./payment.css";
 import GpayIcon from "../Payment/GpayIcon.jpeg";
+import Image_Upi from "../Payment/FinalUPI.png";
 import { ImCreditCard } from "react-icons/im";
 import { IconContext } from "react-icons";
 import { FcGoogle } from "react-icons/fc";
@@ -39,36 +40,72 @@ export class Payment extends Component {
           <div className="divideIntoTwo">
             <div className="choiceOfPayment">
               <div className="choiceHeading">
-                <h2>Payment Option</h2>
+                <h1>Payment Option</h1>
               </div>
               {/* <i class="fas fa-credit-card"></i>
               <i class="far fa-credit-card"></i> */}
 
               <div className="payButton">
                 <button onClick={this.handleCredit}>
-                  <IconContext.Provider
-                    value={{ color: "orange", size: "3em" }}
-                  >
-                    <ImCreditCard />
-                  </IconContext.Provider>
-                  <p> Credit/Debit/ATM</p>
+                  <div className="imageAndCredit">
+                    <IconContext.Provider
+                      value={{ color: "orange", size: "2.5em" }}
+                    >
+                      <ImCreditCard />
+                    </IconContext.Provider>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                        color: "darkblue",
+                        marginLeft: "5%",
+                      }}
+                    >
+                      Credit/Debit
+                    </p>
+                  </div>
+
+                  <p>Visa, MasterCard,Rupay and more</p>
                 </button>
               </div>
               <div className="payButtonTwo">
                 <button onClick={this.handleGPay}>
-                  {" "}
-                  <IconContext.Provider value={{ size: "3em" }}>
-                    <FcGoogle />
-                  </IconContext.Provider>
-                  <p>GooglePay</p>
+                  <img src={Image_Upi}></img>
+                  <div className="imageAndUpi">
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                        color: "darkblue",
+                        marginLeft: "3%",
+                      }}
+                    >
+                      UPI
+                    </p>
+                    <p>Pay direct from Bank Account</p>
+                  </div>
                   {/* <img src={GpayIcon}></img>G-Pay */}
                 </button>
               </div>
               {/* <div> Net Banking</div> */}
             </div>
-            <div>
+            <div className="parentPaymentFirst">
               {this.state.isActiveGPay ? (
-                <h1>GPAY</h1>
+                <div className="UPIContents">
+                  <h2>Enter UPI ID</h2>
+                  <div className="ui input">
+                    <input type="text" placeholder="MobileNumber@UPI"></input>
+                    {/* <div className="UPIImage">
+                   <img src={ImageOne} style={{ width: "20%" }}></img>
+                   </div> */}
+                  </div>
+                  <div className="UPIImage">
+                    <img
+                      // src={ImageOne}
+                      style={{ width: "20%" }}
+                    ></img>
+                  </div>
+                </div>
               ) : (
                 <div className="creditCardContainer">
                   <div className="childContainer">
@@ -128,9 +165,10 @@ export class Payment extends Component {
               )}
             </div>
           </div>
+          <div className="PaymentButton">
+            <button className="ui payment button"> Make Payment</button>
+          </div>
         </div>
-
-        <div className="UPIContainer"></div>
       </div>
     );
   }
