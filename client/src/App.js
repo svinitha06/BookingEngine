@@ -3,7 +3,7 @@ import { Switch, Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 import BookNow from "./Components/BookNow/BookNow";
-
+import Payment from "./Components/Payment/Payment";
 import Home from "./Components/Home/Home";
 import Header from "./Components/Header/Header";
 import AboutUs from "./Components/About/AboutUs";
@@ -37,6 +37,9 @@ class App extends Component {
           </Route>
           <Route path="/details">
             <Details />
+          </Route>
+          <Route path="/payment">
+            <Payment />
           </Route>
         </Switch>
         </div>

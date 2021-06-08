@@ -59,6 +59,9 @@ export class BasicLayout extends Component {
   //   console.log("checking it", numOfRooms);
   // };
   componentDidMount() {
+    if (true) {
+      window.scroll(0, 0);
+    }
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,

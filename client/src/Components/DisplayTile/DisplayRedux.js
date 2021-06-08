@@ -73,7 +73,7 @@ class DisplayRedux extends Component {
   }
 
   componentDidMount() {
-    if (window.scrollX > 400) {
+    if (true) {
       window.scroll(0, 0);
     }
     axios

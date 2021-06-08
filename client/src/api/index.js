@@ -1,8 +1,9 @@
 import axios from "axios";
 // import { property } from "../../src/actions/index";
 // import { roomDetails } from "../../src/actions/index";
+let host="http://localhost:5000"
 export const getproperty = async () => {
-  const res = await axios.get("http://localhost:5000/property/Property");
+  const res = await axios.get(`${host}/property/Property`);
   return res.data;
 };
 export const getpropertyLocation = async (data) => {

@@ -63,6 +63,9 @@ class Home extends React.Component {
     };
   }
   componentDidMount() {
+    if (true) {
+      window.scroll(0, 0);
+    }
     if (this.state.flag) {
       const today = new Date();
       const tomorrow = new Date(today);
@@ -154,6 +157,10 @@ class Home extends React.Component {
         roomValue: this.state.roomValue + 1,
       });
     }
+    this.props.room({
+      roomValue: this.state.roomValue + 1,
+    });
+   
   };
   handleDecCount = () => {
     console.log(this.state.adultValue, "adult");
@@ -163,6 +170,10 @@ class Home extends React.Component {
         roomValue: this.state.roomValue - 1,
       });
     }
+    this.props.room({
+      roomValue: this.state.roomValue - 1,
+    });
+    
   };
 
   handleDec = () => {
@@ -180,6 +191,9 @@ class Home extends React.Component {
       this.props.adult({
         adultValue: this.state.adultValue - 1,
       });
+      this.props.room({
+        roomValue: this.state.roomValue - 1,
+      });
       this.setState(
         {
           adultValue: this.state.adultValue - 1,
@@ -193,6 +207,9 @@ class Home extends React.Component {
     if (this.state.childValue !== 0) {
       this.props.child({
         childValue: this.state.childValue - 1,
+      });
+      this.props.room({
+        roomValue: this.state.roomValue - 1,
       });
       this.setState(
         {
@@ -322,6 +339,9 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
 
     // console.log(this.props.propertyList[0].PropertyId, "sherin");
     // log()
+    if(!navigator.onLine && this.state.errorAPI && this.state.errorOffline){
+      return <h1>Network Error : Check your connection</h1>
+    }
 
     return (
       <div className="fullContainer">
@@ -478,7 +498,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
             </div>
           </div>
         </div>
-        {this.state.errorAPI && (
+        {this.state.errorAPI && navigator.onLine &&(
           <h1 className="errorAPI">Error fetching data</h1>
         )}
 
@@ -614,6 +634,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
 {/* {this.state.errorAPI && (
           <h1 className="errorAPI">Error fetching data</h1>
         )} */}
+        {!navigator.onLine ?<h1 className="networkError">Network error:Check your internet connection</h1> :null}
         {!this.props.propertyList.length && !this.state.errorAPI
           ? // && this.state.errorOffline
             this.props.propertyEmptyList.map((data, index) => (

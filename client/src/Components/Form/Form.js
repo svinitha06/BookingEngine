@@ -51,7 +51,7 @@ export class Form extends Component {
     };
   }
   componentDidMount() {
-    if (window.scrollX > 400) {
+    if (true) {
       window.scroll(0, 0);
     }
     this.setState({
@@ -171,8 +171,11 @@ export class Form extends Component {
       this.setState({
         open: true,
       });
-      this.getHoteldetails();
-    }
+    this.props.history.push("/payment")
+
+  }
+    this.getHoteldetails();
+
     // <Link to={{pathname:"/display"}}/>
     // this.history.push("/display");
   };
@@ -457,7 +460,7 @@ export class Form extends Component {
                         Back
                       </Button>
                       {/* </div> */}
-                      <button onClick={this.handleSubmit}>Book Now</button>
+                      <button onClick={this.handleSubmit}>Pay Now</button>
                       {this.state.errorPost && (
                         <Modal
                           open={this.state.openPost}

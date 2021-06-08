@@ -243,7 +243,7 @@
   margin-right: 4px;
 }
 .c-decre {
-  margin-left: 21px;
+  margin-left: 18px;
   margin-right: 4px;
 }
 .incre {
@@ -452,6 +452,17 @@ p h1 h6 {
   padding-right: -10%;
   cursor: pointer;
   /* padding: 0 !important; */
+}
+.networkError{
+  margin-left: 22%;
+  margin-top: -2%;
+  margin-bottom: 3%;
+}
+.MuiMenu-list {
+  outline: 0;
+  border: none !important;
+  border-radius: 33px;
+  background: #90b4c2;
 }
 @media only screen and (max-width: 768px) {
   .homeDiv {

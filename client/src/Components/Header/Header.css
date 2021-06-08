@@ -26,6 +26,7 @@ a.right.item.active {
 .About {
   font-size: 17px;
   font-weight: 600;
+  margin-left: -19%;
 }
 .headline {
   font-family: Arial, Helvetica, sans-serif !important;
@@ -33,6 +34,10 @@ a.right.item.active {
 .my-div {
   width: 102%;
 }
-
+.ui.menu:not(.vertical) .right.item, .ui.menu:not(.vertical) .right.menu {
+  display: flex;
+  margin-left: auto!important;
+  background: none !important;
+}
 @media (max-width: 990px) {
 }
