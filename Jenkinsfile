@@ -16,8 +16,8 @@ pipeline{
          stage('Build'){
            steps{
              script{
-                 def buildnumber = currentBuild.number
-                 sh 'docker build -t bookingengine:$buildnumber .'
+             
+                 sh 'docker build -t bookingengine .'
                    }
                 }
            }
