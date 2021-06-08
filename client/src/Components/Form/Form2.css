@@ -603,7 +603,6 @@ select {
   padding: 19%;
 } */
 
-
 .form-contents5 {
   padding: 62px !important;
 }
@@ -739,7 +738,9 @@ select {
   margin-top: -19px !important;
   margin-left: -166px;
   font-size: 14px;
-  font-family: ui-rounded !important;
+  /* font-family: ui-rounded !important; */
+  font-family: "Times New Roman", serif, Helvetica, ui-rounded, Arial,
+    sans-serif !important;
   font-style: normal;
   color: red;
   opacity: 0.7;
@@ -1192,7 +1193,7 @@ a.ui.button.submit-form {
 .hotelAndPrice {
   margin-right: 5%;
 }
-.errorPostFetch{
+.errorPostFetch {
   background-color: ghostwhite;
   width: 28%;
   margin-left: 32%;
@@ -1202,20 +1203,20 @@ a.ui.button.submit-form {
   padding-top: 2%;
   height: 16.5vh;
 }
-.errorPostFetch h1{
+.errorPostFetch h1 {
   min-height: 1rem;
   font-size: 2rem;
   margin-left: 12%;
   margin-top: 3%;
 }
-.cancelPost{
+.cancelPost {
   margin-left: 95%;
   margin-bottom: -7%;
   margin-top: -4% !important;
   background: red;
   opacity: 0.7;
   width: 3.5%;
-  padding-left: 0.5%;
+  /* padding-left: 0.5%; */
   padding-right: 11px;
   color: white;
   padding-right: -10%;

@@ -47,36 +47,69 @@ router.post("/addProperty", async (req, res) => {
             field: "PropertyId",
         });
         console.log("oldCount", oldCount);
-        let newCount = await counters.findOneAndUpdate(
-            {
+        if (oldCount!== null) {
+            var newCount = await counters.findOneAndUpdate(
+                {
+                    field: "PropertyId",
+                },
+                {
+                    count: oldCount.count + 1,
+                },
+                {
+                    new: true,
+                }
+            );
+            var newProperty = new propertyMaster({
+                PropertyId: newCount.count,
+                name: req.body.name,
+                Image: req.body.Image,
+                location: req.body.location,
+                description: req.body.description,
+                ratings: req.body.ratings,
+                website: req.body.website,
+                contact: req.body.contact,
+                Address: req.body.Address,
+            });
+            newProperty.save(function (err, Person) {
+                if (err) res.status("400").send(err);
+                else res.send(Person);
+            });
+        } else {
+            var newCount = new counters({
                 field: "PropertyId",
-            },
-            {
-                count: oldCount.count + 1,
-            },
-            {
-                new: true,
-            }
-        );
+                count: 1
+            })
+            newCount.save().then(function(err1,count) {
+                
+                    var newProperty = new propertyMaster({
+                        PropertyId: 1,
+                        name: req.body.name,
+                        Image: req.body.Image,
+                        location: req.body.location,
+                        description: req.body.description,
+                        ratings: req.body.ratings,
+                        website: req.body.website,
+                        contact: req.body.contact,
+                        Address: req.body.Address,
+                    });
+
+                    newProperty.save(function (err, Person) {
+                        console.log("1", err)
+                        if (err) res.status("400").send(err);
+                        else res.send(Person);
+                    });
+               
+            }).catch((err) => {
+                res.status(400).send(err);
+            })
+        }
+
+
         console.log("newCount", newCount);
 
-        var newProperty = new propertyMaster({
-            PropertyId: newCount.count,
-            name: req.body.name,
-            Image: req.body.Image,
-            location: req.body.location,
-            description: req.body.description,
-            ratings: req.body.ratings,
-            website: req.body.website,
-            contact: req.body.contact,
-            Address: req.body.Address,
-        });
-        newProperty.save(function (err, Person) {
-            if (err) res.status("400").send(err);
-            else res.send(Person);
-        });
     } catch (error) {
         console.log("catch", error);
+        res.status(400).send(error)
     }
 });
 
@@ -118,10 +151,10 @@ router.get('/Property/search', async (req, res) => {
 router.get('/Property/:location', async (req, res) => {
     try {
         const post = await propertyMaster.find({ location: (req.params.location) });
-        // if (post.length === 0) {
-        //     res.status(404).send("Hotels for location " + req.params.location + " not found")
-        // }
-        // else
+        if (post.length === 0) {
+            res.status(404).send("Hotels for location " + req.params.location + " not found")
+        }
+        else
             res.json(post);
     } catch (err) {
         res.status(400).send(err)

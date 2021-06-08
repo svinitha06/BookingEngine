@@ -1,8 +1,4 @@
 pipeline{
-    environment {
-    imagename = "bookingengine"
-    dockerImage = ''
-  }
     agent any
     stages {
        
@@ -11,42 +7,35 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/MS396584/BookingEngine.git'
             }
         }
-      
-        
-         stage('Build'){
-           steps{
-             script{
-             
-                 sh 'docker build -t bookingengine .'
-                   }
-                }
-           }
-        
-        
        stage('Sonar Analysis'){
             steps {
-                 withSonarQubeEnv("scan") {
-                 sh "${tool("scan")}/bin/sonar-scanner \
-                     -Dsonar.projectKey=Booking \
-                     -Dsonar.projectName=BookingEngine \
+                 withSonarQubeEnv("Sonar_server") {
+                 sh "${tool("Sonar scanner")}/bin/sonar-scanner \
+                     -Dsonar.projectKey=Booking-be \
+                     -Dsonar.projectName=BookingEngine-be \
                      -Dsonar.sources=server/"
                                        }
                  }
            }
-        stage('nexus'){
+        stage('docker'){
             steps{
-                
-                sh 'docker tag bookingengine localhost:8095/booking/bookingengine:${BUILD_NUMBER}'
-                sh 'docker login -u admin -p admin123 localhost:8095'
-                sh 'docker push localhost:8095/booking/bookingengine:${BUILD_NUMBER}'
+                sh 'docker build -t bookingengine-be:1.0 .'
             }
         }
+        stage('nexus'){
+            steps{
+                sh 'docker tag bookingengine-be:1.0 localhost:12012/bookingengine-be:${BUILD_NUMBER}'
+                sh 'docker login -u admin -p admin@123 localhost:12012'
+                sh 'docker push localhost:12012/bookingengine-be:${BUILD_NUMBER}'
+            }
+        }
+        
         stage('run the container'){
             steps{
-                sh 'docker pull localhost:8095/booking/bookingengine:${BUILD_NUMBER}'
-                sh 'docker stop booking'
-                sh 'docker rm booking'
-                sh 'docker run -d --name booking -p 5000:5000 localhost:8095/booking/bookingengine:${BUILD_NUMBER}'
+                sh 'docker pull localhost:12012/bookingengine-be:${BUILD_NUMBER}'
+                sh 'docker stop Booking-backend'
+                sh 'docker rm Booking-backend'
+                sh 'docker run --name Booking-backend -p 5000:5000 localhost:12012/bookingengine-be:${BUILD_NUMBER}'
             }
         }
     }
