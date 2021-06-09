@@ -76,7 +76,9 @@ class DisplayRedux extends Component {
     if (true) {
       window.scroll(0, 0);
     }
-    
+    if(this.props.propertyList.length===0){
+      this.props.history.push("/")
+    }
     
     axios
       .get(
@@ -288,7 +290,11 @@ class DisplayRedux extends Component {
                     if (data.id === post._id) data.priceO = price;
                   });
                   return (
-                    <div key={index} className="homeContainerOne">
+                    <div
+                      key={index}
+                      className="homeContainerOne"
+                      id={post.roomType}
+                    >
                       <div className="wrapperOne">
                         <div>
                           <img

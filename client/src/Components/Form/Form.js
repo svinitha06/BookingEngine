@@ -54,6 +54,9 @@ export class Form extends Component {
     if (true) {
       window.scroll(0, 0);
     }
+    if(this.props.roomDetailsList.length===0){
+      this.props.history.push("/")
+    }
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
@@ -80,6 +83,7 @@ export class Form extends Component {
       firstError: "",
     });
     console.log(event.target.value);
+   
   };
 
   handleLastName = (event) => {
@@ -174,10 +178,9 @@ export class Form extends Component {
     this.props.history.push("/payment")
 
   }
+ 
     this.getHoteldetails();
 
-    // <Link to={{pathname:"/display"}}/>
-    // this.history.push("/display");
   };
   getHoteldetails = async () => {
     var hotelName;
@@ -186,10 +189,8 @@ export class Form extends Component {
         hotelName = data.name;
       }
     });
-    // })
-
     const data = {
-      guestName: this.state.firstName + " " + this.state.lastName,
+      guestName: this.state.firstName ,
       email: this.state.email,
       mobile: this.state.contact,
       hotelNow: hotelName,
@@ -202,23 +203,6 @@ export class Form extends Component {
 
     this.props.hotelDetails(data);
     console.log(data, "hotelNow");
-    await db.getPostHotelDetails(data).catch((err) => {
-      console.log("errorPost");
-      // return err
-
-      this.setState({
-        errorPost: !this.state.errorPost,
-        openPost: true,
-      });
-    });
-    // .catch((err) => {
-    //   this.setState({
-    //     openOffline: true,
-    //     errorPostOffline: true,
-    //     open: false,
-    //   });
-    //   return Promise.reject(err);
-    // });
   };
 
   handleClose = () => {
@@ -484,34 +468,7 @@ export class Form extends Component {
                         </Modal>
                       )}
 
-                      {this.state.open && !this.state.errorPost && (
-                        <Modal
-                          open={this.state.open}
-                          onClose={this.handleClose}
-                          aria-labelledby="simple-modal-title"
-                          aria-describedby="simple-modal-description"
-                        >
-                          <div className="modal-open">
-                            {console.log(this.props)}
-                            <div className="contents-modal">
-                              <h1>Hello {this.state.firstName}</h1>
-                              <h4 className="head-confirm">
-                                Booking Confirmed !!
-                              </h4>
-                            </div>
-
-                            <div className="bookNow">
-                              <Link as={NavLink} to="/">
-                                <button onClick={this.handlePost}>
-                                  Back to Home
-                                </button>
-                              </Link>
-                            </div>
-                            {/* onClick={this.handleClose */}
-                            <img src={modalBell} className="modal-gif"></img>
-                          </div>
-                        </Modal>
-                      )}
+                      
                     </div>
                     <div className="formMsgTwo">
                       <img src={ImageTwo}></img>
@@ -676,8 +633,8 @@ const mapStateToProps = (state) => ({
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
   propertyList: get(state, "propertyList", []),
   customerDetails: get(state, "customerDetails", []),
-  booking: state.bookedRoomDetails.bookingData,
-  finalTotalPrice: state.totalPriceInState.Amount,
+  booking: get(state,"bookedRoomDetails.bookingData",[]),
+  finalTotalPrice: get(state,"totalPriceInState.Amount",[]),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));
