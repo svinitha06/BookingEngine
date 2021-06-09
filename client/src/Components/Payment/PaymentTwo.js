@@ -5,7 +5,7 @@ import { ImCreditCard } from "react-icons/im";
 import { IconContext } from "react-icons";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import paytm from "./image_upi.png";
+
 export class Payment extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,6 @@ export class Payment extends Component {
     this.state = {
       isActiveCredit: true,
       isActiveGPay: false,
-      isActiveNetBanking: false,
     };
   }
   handleCredit = () => {
@@ -24,25 +23,16 @@ export class Payment extends Component {
     this.setState({
       isActiveCredit: true,
       isActiveGPay: false,
-      isActiveNetBanking: false,
     });
   };
   handleGPay = () => {
+    console.log("inside GPAY");
+    console.log(" isActiveCredit", this.state.isActiveCredit);
+    console.log(" isActiveGPay", this.state.isActiveGPay);
     this.setState({
       isActiveCredit: false,
       isActiveGPay: true,
-      isActiveNetBanking: false,
     });
-  };
-  handleNetBanking = () => {
-    this.setState({
-      isActiveCredit: false,
-      isActiveGPay: false,
-      isActiveNetBanking: true,
-    });
-  };
-  handleCancel = () => {
-    this.props.history.goBack();
   };
   render() {
     return (
@@ -100,20 +90,28 @@ export class Payment extends Component {
               </div>
               {/* <div> Net Banking</div> */}
               <div className="netBankingContainer">
-                <button onClick={this.handleNetBanking}>Net Banking</button>
+                <button>Net Banking</button>
               </div>
             </div>
             <div className="parentPaymentFirst">
-              <div className="cancelButtonDiv">
-                <div></div>
-                <div className="extra">
-                  <button className="cancelButton" onClick={this.handleCancel}>
-                    Cancel
-                  </button>
+              {this.state.isActiveGPay ? (
+                <div className="UPIContents">
+                  <h2>Enter UPI ID</h2>
+                  <div className="ui input">
+                    <input type="text" placeholder="MobileNumber@UPI"></input>
+                    {/* <div className="UPIImage">
+                   <img src={ImageOne} style={{ width: "20%" }}></img>
+                   </div> */}
+                  </div>
+                  <div className="UPIImage">
+                    <img
+                      // src={ImageOne}
+                      style={{ width: "20%" }}
+                    ></img>
+                  </div>
                 </div>
-              </div>
-
-              {this.state.isActiveCredit && (
+              ) : null}
+              {this.state.isActiveCredit ? (
                 <div className="creditCardContainer">
                   <div className="childContainer">
                     <div className="cardNumber">
@@ -169,37 +167,7 @@ export class Payment extends Component {
                     </div>
                   </div>
                 </div>
-              )}
-              {this.state.isActiveGPay && (
-                <div className="UPIContents">
-                  <h2>Enter UPI ID</h2>
-                  <div className="upiInput">
-                    <input type="text" placeholder="MobileNumber@UPI"></input>
-                    <div className="UPIImage">
-                      <img src={paytm} style={{ width: "20%" }}></img>
-                    </div>
-                  </div>
-                  <div className="UPIImage">
-                    <img
-                      // src={ImageOne}
-                      style={{ width: "20%" }}
-                    ></img>
-                  </div>
-                </div>
-              )}
-              {this.state.isActiveNetBanking && (
-                <div>
-                  <h1>Net Banking</h1>
-                </div>
-              )}
-              <div className="PaymentButton">
-                <div className="lastDivPayment">
-                  <h2>Pay :{this.props.finalTotalPrice}</h2>
-                  <button id="paymentbuttonLast" className="ui payment button">
-                    Make Payment
-                  </button>
-                </div>
-              </div>
+              ) : null}
             </div>
           </div>
         </div>
