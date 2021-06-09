@@ -1216,7 +1216,7 @@ a.ui.button.submit-form {
   opacity: 0.7;
   width: 3.5%;
   padding-left: 0.5%;
-  padding-right: 11px;
+  /* padding-right: 11px; */
   color: white;
   padding-right: -10%;
   cursor: pointer;

@@ -607,6 +607,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
                             pathname: `/basiclayout/${data.PropertyId}`,
                             props: { hotelName: get(data, "name", "--") },
                           }}
+                          
                         >
                           <button onClick={this.handleViewErrorOff}>View Details</button>
                         </Link>

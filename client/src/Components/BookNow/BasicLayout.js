@@ -59,9 +59,11 @@ export class BasicLayout extends Component {
   //   console.log("checking it", numOfRooms);
   // };
   componentDidMount() {
+   
     if (true) {
       window.scroll(0, 0);
     }
+    
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
@@ -202,11 +204,11 @@ export class BasicLayout extends Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-
+    
     // <Route exact path="/">
     //   {window.location.reload ? <Redirect to="/" /> : null}
     // </Route>;
-
+    
     return (
       <div className="basiclayoutClass">
         <div className="adjustHeight">
@@ -326,6 +328,11 @@ export class BasicLayout extends Component {
         </div>
 
         <DisplayRedux />
+        {/* if(window.location.reload){
+      // this.props.history.push("/")
+    window.location.replace('http://localhost:3000/')
+     } */}
+     {/* {!window.location.reload ? null :window.location.assign('http://localhost:3000/')} */}
       </div>
     );
   }
