@@ -15,7 +15,7 @@
 .UPIContents {
   margin-left: 7%;
   margin-top: 10%;
-  margin-bottom: 51%;
+  /* margin-bottom: 51%; */
   height: 88px;
 }
 
@@ -34,9 +34,28 @@
 .PaymentButton {
   margin-left: 68%;
 }
-.PaymentButton .ui.payment button {
+/* .PaymentButton .ui.payment button {
   background: darkblue !important;
   color: white !important;
+} */
+#paymentbuttonLast {
+  background: linear-gradient(
+    90deg,
+    rgba(77, 77, 230, 1) 8%,
+    rgba(77, 77, 230, 1) 21%,
+    rgba(91, 91, 246, 1) 49%,
+    rgba(91, 91, 246, 1) 86%
+  ) !important;
+  color: white !important;
+}
+#paymentbuttonLast:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(101, 101, 240) 8%,
+    rgb(102, 102, 236) 21%,
+    rgb(117, 117, 245) 49%,
+    rgb(109, 109, 236) 86%
+  ) !important;
 }
 /* .ui.button {
   background-color: cadetblue;
@@ -138,7 +157,19 @@ color: grey !important;
   background: white;
   width: 76% !important;
   border: none;
+  transition: 0.3s;
+
   border-radius: 5px;
+}
+.payButton button:hover,
+.payButtonTwo button:hover {
+  transition: 0.3s;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(182, 179, 179, 0.4),
+    transparent
+  );
 }
 .choiceOfPayment {
   margin-top: 12%;
