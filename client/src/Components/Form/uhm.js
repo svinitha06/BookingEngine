@@ -349,7 +349,7 @@ export class Payment extends Component {
                             </h2>
 
                             <div className="HotelModal">
-                              <label>Hotel  </label>
+                              <label>Hotel </label>
                               <p>{this.props.customerDetails.hotelNow}</p>
                               <label> Check-in </label>
                               <p>{this.props.customerDetails.checkIn}</p>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./payment.css";
-import GpayIcon from "../Payment/GpayIcon.jpeg";
+// import GpayIcon from "../Payment/GpayIcon.jpeg";
 import ErrorIcon from "@material-ui/icons/Error";
 import Image_Upi from "../Payment/FinalUPI.png";
 import { ImCreditCard } from "react-icons/im";
@@ -30,12 +30,19 @@ export class Payment extends Component {
       cardCvv: "",
       cardMonth: "",
       cardYear: "",
-      errorNow: "",
+      errorNumber: "",
+      errorName: "",
+      errorCvv: "",
+      errorMonth: "",
+      errorYear: "",
       UPItext: "",
       errorNowUPI: "",
       open: false,
       errorPost: false,
       isActiveNetBanking: false,
+      errorCvv2: "",
+      errorNumber2: "",
+      openUPI: false,
     };
   }
   componentDidMount() {
@@ -78,15 +85,32 @@ export class Payment extends Component {
         this.state.cardName) == ""
     ) {
       this.setState({
-        errorNow: "*Required",
+        errorNumber: "Required",
+        errorName: "Required",
+        errorCvv: "Required",
+        errorMonth: "Required",
+        errorYear: "Required",
       });
     }
+    if (this.state.cardNumber.length !== 16) {
+      this.setState({
+        errorNumber: "Required",
+      });
+    }
+    if (this.state.cardCvv.length !== 3) {
+      this.setState({
+        errorCvv: "Required",
+      });
+    }
+
     if (
-      (this.state.cardCvv &&
-        this.state.cardMonth &&
-        this.state.cardNumber &&
-        this.state.cardYear &&
-        this.state.cardName) !== ""
+      this.state.cardCvv !== "" &&
+      this.state.cardMonth !== "" &&
+      this.state.cardNumber !== "" &&
+      this.state.cardYear !== "" &&
+      this.state.cardName !== "" &&
+      this.state.cardCvv.length === 3 &&
+      this.state.cardNumber.length === 16
     ) {
       this.setState({
         open: true,
@@ -100,30 +124,41 @@ export class Payment extends Component {
         errorNowUPI: "*Required",
       });
     }
+    if (this.state.UPItext !== "") {
+      this.setState({
+        openUPI: true,
+      });
+      this.handlePostApi();
+    }
   };
   handleInputChange1 = (event) => {
     this.setState({
       cardNumber: event.target.value,
+      errorNumber: "",
     });
   };
   handleInputChange2 = (event) => {
     this.setState({
       cardName: event.target.value,
+      errorName: "",
     });
   };
   handleInputChange3 = (event) => {
     this.setState({
       cardMonth: event.target.value,
+      errorMonth: "",
     });
   };
   handleInputChange4 = (event) => {
     this.setState({
       cardYear: event.target.value,
+      errorYear: "",
     });
   };
   handleInputChange5 = (event) => {
     this.setState({
       cardCvv: event.target.value,
+      errorCvv: "",
     });
   };
   handleInputChange = (event) => {
@@ -143,10 +178,10 @@ export class Payment extends Component {
     //   });
     // });
     // console.log(this.props.customerDetails)
-  handleCancel = () => {
-    this.props.history.goBack();
+    // handleCancel = () => {
+    //   this.props.history.goBack();
+    // };
   };
-}
   render() {
     return (
       <div>
@@ -210,9 +245,7 @@ export class Payment extends Component {
               <div className="cancelButtonDiv">
                 <div></div>
                 <div className="extra">
-                  <button className="cancelButton" onClick={this.handleCancel}>
-                    Cancel
-                  </button>
+                  <button className="cancelButton">Cancel</button>
                 </div>
               </div>
 
@@ -231,7 +264,7 @@ export class Payment extends Component {
                         name="number"
                         value={this.state.cardNumber}
                         className={`${
-                          this.state.errorNow !== "" ? "firstError" : ""
+                          this.state.errorNumber !== "" ? "firstError" : ""
                         }`}
                         onChange={this.handleInputChange1}
                       ></input>
@@ -245,7 +278,7 @@ export class Payment extends Component {
                         type="text"
                         value={this.state.cardName}
                         className={`${
-                          this.state.errorNow !== "" ? "firstError" : ""
+                          this.state.errorName !== "" ? "firstError" : ""
                         }`}
                         onChange={this.handleInputChange2}
                       ></input>
@@ -259,7 +292,7 @@ export class Payment extends Component {
                           id="selectedMonth"
                           value={this.state.cardMonth}
                           className={`${
-                            this.state.errorNow !== "" ? "firstError" : ""
+                            this.state.errorMonth !== "" ? "firstError" : ""
                           }`}
                           onChange={this.handleInputChange3}
                         >
@@ -283,7 +316,7 @@ export class Payment extends Component {
                           id="selectedyear"
                           value={this.state.cardYear}
                           className={`${
-                            this.state.errorNow !== "" ? "firstError" : ""
+                            this.state.errorYear !== "" ? "firstError" : ""
                           }`}
                           onChange={this.handleInputChange4}
                         >
@@ -301,66 +334,76 @@ export class Payment extends Component {
                       </div>
                       <div className="cvvContainer">
                         <label>Card CVV</label>
-                        <input type="number" min="000" max="999"></input>
+                        <input
+                          type="number"
+                          min="000"
+                          max="999"
+                          className={`${
+                            this.state.errorCvv !== "" ? "firstError" : ""
+                          }`}
+                          onChange={this.handleInputChange5}
+                        ></input>
                       </div>
                     </div>
                   </div>
-                  <div className="PaymentButton">
-                    <button
-                      className="ui payment button"
-                      onClick={this.handlePaymentCredit}
+
+                  {this.state.open && !this.state.errorPost && (
+                    <Modal
+                      open={this.state.open}
+                      onClose={this.handleClose}
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
                     >
-                      {" "}
-                      Make Payment
-                    </button>
-                    {this.state.open && !this.state.errorPost && (
-                      <Modal
-                        open={this.state.open}
-                        onClose={this.handleClose}
-                        aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description"
-                      >
-                        <div className="modal-open">
-                          {console.log(this.props)}
-                          <div className="contents-modal">
-                            <h1 className="head-confirm">
-                              Booking Confirmed !!
-                            </h1>
-                            <h2 className="main-head">
-                              Hello {this.props.customerDetails.guestName}
-                            </h2>
+                      <div className="modal-open">
+                        {console.log(this.props)}
+                        <div className="contents-modal">
+                          <h1 className="head-confirm">Booking Confirmed !!</h1>
+                          <h2 className="main-head">
+                            Hello {this.props.customerDetails.guestName}
+                          </h2>
 
-                            <div className="HotelModal">
-                              <label>Hotel  </label>
-                              <p>{this.props.customerDetails.hotelNow}</p>
-                              <label> Check-in </label>
-                              <p>{this.props.customerDetails.checkIn}</p>
-                              <label>Check-out </label>
-                              <p>{this.props.customerDetails.checkOut}</p>
-                              <label> Booking ID</label>
-                              <p>
-                                123452653
-                                {/* {this.props.customerDetails.bookingId} */}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="bookNow">
-                            <Link as={NavLink} to="/">
-                              <button onClick={this.handlePost}>
-                                Back to Home
-                              </button>
-                            </Link>
-                            <p className="i-p">
-                              {" "}
-                              <i>For any queries,contact us on 0462-222442</i>
+                          <div className="HotelModal">
+                            <label>Hotel </label>
+                            <p>{this.props.customerDetails.hotelNow}</p>
+                            <label> Check-in </label>
+                            <p>{this.props.customerDetails.checkIn}</p>
+                            <label>Check-out </label>
+                            <p>{this.props.customerDetails.checkOut}</p>
+                            <label> Booking ID</label>
+                            <p>
+                              123452653
+                              {/* {this.props.customerDetails.bookingId} */}
                             </p>
                           </div>
-                          {/* onClick={this.handleClose */}
-                          {/* <img src={modalBell} className="modal-gif"></img> */}
                         </div>
-                      </Modal>
-                    )}
+
+                        <div className="bookNow">
+                          <Link as={NavLink} to="/">
+                            <button onClick={this.handlePost}>
+                              Back to Home
+                            </button>
+                          </Link>
+                          <p className="i-p">
+                            {" "}
+                            <i>For any queries,contact us on 0462-222442</i>
+                          </p>
+                        </div>
+                        {/* onClick={this.handleClose */}
+                        {/* <img src={modalBell} className="modal-gif"></img> */}
+                      </div>
+                    </Modal>
+                  )}
+                  <div className="PaymentButton">
+                    <div className="lastDivPayment">
+                      <h2>Pay :{this.props.finalTotalPrice}</h2>
+                      <button
+                        id="paymentbuttonLast"
+                        className="ui payment button"
+                        onClick={this.handlePaymentCredit}
+                      >
+                        Make Payment
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -368,7 +411,14 @@ export class Payment extends Component {
                 <div className="UPIContents">
                   <h2>Enter UPI ID</h2>
                   <div className="upiInput">
-                    <input type="text" placeholder="MobileNumber@UPI"></input>
+                    <input
+                      type="text"
+                      placeholder="MobileNumber@UPI"
+                      className={`${
+                        this.state.errorNowUPI !== "" ? "firstError" : ""
+                      }`}
+                      onChange={this.handleInputChange}
+                    ></input>
                     <div className="UPIImage">
                       <img src={paytm} style={{ width: "20%" }}></img>
                     </div>
@@ -379,6 +429,64 @@ export class Payment extends Component {
                       style={{ width: "20%" }}
                     ></img>
                   </div>
+                  <div className="PaymentButton">
+                    <div className="lastDivPayment">
+                      <h2>Pay :{this.props.finalTotalPrice}</h2>
+                      <button
+                        id="paymentbuttonLast"
+                        className="ui payment button"
+                        onClick={this.handlePaymentUPI}
+                      >
+                        Make Payment
+                      </button>
+                    </div>
+                  </div>
+                  {this.state.openUPI && !this.state.errorPost && (
+                    <Modal
+                      open={this.state.openUPI}
+                      onClose={this.handleClose}
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                    >
+                      <div className="modal-open">
+                        {console.log(this.props)}
+                        <div className="contents-modal">
+                          <h1 className="head-confirm">Booking Confirmed !!</h1>
+                          <h2 className="main-head">
+                            Hello {this.props.customerDetails.guestName}
+                          </h2>
+
+                          <div className="HotelModal">
+                            <label>Hotel </label>
+                            <p>{this.props.customerDetails.hotelNow}</p>
+                            <label> Check-in </label>
+                            <p>{this.props.customerDetails.checkIn}</p>
+                            <label>Check-out </label>
+                            <p>{this.props.customerDetails.checkOut}</p>
+                            <label> Booking ID</label>
+                            <p>
+                              123452653
+                              {/* {this.props.customerDetails.bookingId} */}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="bookNow">
+                          <Link as={NavLink} to="/">
+                            <button onClick={this.handlePost}>
+                              Back to Home
+                            </button>
+                          </Link>
+                          <p className="i-p">
+                            {" "}
+                            <i>For any queries,contact us on 0462-222442</i>
+                          </p>
+                        </div>
+                        {/* onClick={this.handleClose */}
+                        {/* <img src={modalBell} className="modal-gif"></img> */}
+                      </div>
+                    </Modal>
+                  )}
                 </div>
               )}
               {this.state.isActiveNetBanking && (
@@ -386,14 +494,6 @@ export class Payment extends Component {
                   <h1>Net Banking</h1>
                 </div>
               )}
-              <div className="PaymentButton">
-                <div className="lastDivPayment">
-                  <h2>Pay :{this.props.finalTotalPrice}</h2>
-                  <button id="paymentbuttonLast" className="ui payment button">
-                    Make Payment
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
