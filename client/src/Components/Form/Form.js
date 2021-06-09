@@ -605,7 +605,7 @@ export class Form extends Component {
                             <p style={{ marginLeft: "52%" }}>
                               {this.state.thePrice +
                                 this.state.thePrice * 0.18 -
-                                this.state.thePrice * 0.05}
+                                this.state.thePrice * 0.16}
                             </p>
                           </div>
                         </div>

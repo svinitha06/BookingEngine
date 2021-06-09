@@ -34,10 +34,20 @@ a.right.item.active {
 .my-div {
   width: 102%;
 }
-.ui.menu:not(.vertical) .right.item, .ui.menu:not(.vertical) .right.menu {
+.ui.menu:not(.vertical) .right.item,
+.ui.menu:not(.vertical) .right.menu {
   display: flex;
-  margin-left: auto!important;
+  margin-left: auto !important;
   background: none !important;
 }
 @media (max-width: 990px) {
+}
+.logo img {
+  width: 17%;
+}
+.logo p {
+  font-weight: 600;
+  font-size: 26px;
+  color: rgb(8, 105, 117);
+  font-family: "Times New Roman", Times, serif !important;
 }

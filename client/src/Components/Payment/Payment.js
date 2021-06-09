@@ -10,13 +10,14 @@ import { NavLink } from "react-router-dom";
 import modalBell from "../../asset/modalBell.gif";
 import { FcGoogle } from "react-icons/fc";
 import Modal from "@material-ui/core/Modal";
-import { withRouter, Link } from "react-router-dom";
 import * as db from "../../api/index";
 import { get, functions, bind, isEmpty, trim } from "lodash";
 import { hotelDetails } from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { ObjectID } from "bson";
 
+import { withRouter, Link } from "react-router-dom";
+import paytm from "./image_upi.png";
 export class Payment extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +35,7 @@ export class Payment extends Component {
       errorNowUPI: "",
       open: false,
       errorPost: false,
+      isActiveNetBanking: false,
     };
   }
   componentDidMount() {
@@ -50,15 +52,21 @@ export class Payment extends Component {
     this.setState({
       isActiveCredit: true,
       isActiveGPay: false,
+      isActiveNetBanking: false,
     });
   };
   handleGPay = () => {
-    console.log("inside GPAY");
-    console.log(" isActiveCredit", this.state.isActiveCredit);
-    console.log(" isActiveGPay", this.state.isActiveGPay);
     this.setState({
       isActiveCredit: false,
       isActiveGPay: true,
+      isActiveNetBanking: false,
+    });
+  };
+  handleNetBanking = () => {
+    this.setState({
+      isActiveCredit: false,
+      isActiveGPay: false,
+      isActiveNetBanking: true,
     });
   };
   handlePaymentCredit = () => {
@@ -135,7 +143,10 @@ export class Payment extends Component {
     //   });
     // });
     // console.log(this.props.customerDetails)
+  handleCancel = () => {
+    this.props.history.goBack();
   };
+}
   render() {
     return (
       <div>
@@ -191,42 +202,21 @@ export class Payment extends Component {
                 </button>
               </div>
               {/* <div> Net Banking</div> */}
+              <div className="netBankingContainer">
+                <button onClick={this.handleNetBanking}>Net Banking</button>
+              </div>
             </div>
             <div className="parentPaymentFirst">
-              {this.state.isActiveGPay ? (
-                <div className="UPIContents">
-                  <h2>Enter UPI ID</h2>
-                  <div className="ui input">
-                    <input
-                      type="text"
-                      placeholder="MobileNumber@UPI"
-                      value={this.state.UPItext}
-                      className={`${
-                        this.state.errorNowUPI !== "" ? "firstError" : ""
-                      }`}
-                      onChange={this.handleInputChange}
-                    ></input>
-                    {/* <div className="UPIImage">
-                   <img src={ImageOne} style={{ width: "20%" }}></img>
-                   </div> */}
-                  </div>
-                  <div className="UPIImage">
-                    <img
-                      // src={ImageOne}
-                      style={{ width: "20%" }}
-                    ></img>
-                  </div>
-                  <div className="PaymentButton">
-                    <button
-                      className="ui payment button"
-                      onClick={this.handlePaymentUPI}
-                    >
-                      {" "}
-                      Make Payment
-                    </button>
-                  </div>
+              <div className="cancelButtonDiv">
+                <div></div>
+                <div className="extra">
+                  <button className="cancelButton" onClick={this.handleCancel}>
+                    Cancel
+                  </button>
                 </div>
-              ) : (
+              </div>
+
+              {this.state.isActiveCredit && (
                 <div className="creditCardContainer">
                   <div className="childContainer">
                     <div className="cardNumber">
@@ -234,8 +224,8 @@ export class Payment extends Component {
 
                       <input
                         placeholder="**** **** **** ****"
-                        maxLength="16"
-                        minLength="16"
+                        max="9999999999999999"
+                        min="0000000000000001"
                         min="0"
                         type="number"
                         name="number"
@@ -311,15 +301,7 @@ export class Payment extends Component {
                       </div>
                       <div className="cvvContainer">
                         <label>Card CVV</label>
-
-                        <input
-                          maxLength="3"
-                          value={this.state.cardCvv}
-                          className={`${
-                            this.state.errorNow !== "" ? "firstError" : ""
-                          }`}
-                          onChange={this.handleInputChange5}
-                        ></input>
+                        <input type="number" min="000" max="999"></input>
                       </div>
                     </div>
                   </div>
@@ -382,6 +364,36 @@ export class Payment extends Component {
                   </div>
                 </div>
               )}
+              {this.state.isActiveGPay && (
+                <div className="UPIContents">
+                  <h2>Enter UPI ID</h2>
+                  <div className="upiInput">
+                    <input type="text" placeholder="MobileNumber@UPI"></input>
+                    <div className="UPIImage">
+                      <img src={paytm} style={{ width: "20%" }}></img>
+                    </div>
+                  </div>
+                  <div className="UPIImage">
+                    <img
+                      // src={ImageOne}
+                      style={{ width: "20%" }}
+                    ></img>
+                  </div>
+                </div>
+              )}
+              {this.state.isActiveNetBanking && (
+                <div>
+                  <h1>Net Banking</h1>
+                </div>
+              )}
+              <div className="PaymentButton">
+                <div className="lastDivPayment">
+                  <h2>Pay :{this.props.finalTotalPrice}</h2>
+                  <button id="paymentbuttonLast" className="ui payment button">
+                    Make Payment
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

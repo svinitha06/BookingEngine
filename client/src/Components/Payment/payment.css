@@ -12,65 +12,65 @@
   /* box-shadow: 4px 10px 11px; */
 }
 
-.UPIContents {
-  margin-left: 7%;
-  margin-top: 10%;
-  margin-bottom: 51%;
-  height: 88px;
-}
+/* .UPIContents { */
+/* margin-left: 7%;
+  margin-top: 10%; */
+/* margin-bottom: 51%; */
+/* height: 88px; */
+/* } */
 
-.ui.input {
+/* .ui.input {
   font-size: 96%;
   width: 91%;
-  border: none !important;
+} */
+.upiInput input {
+  padding: 2%;
+  border: 1px solid grey;
+  width: 70%;
+}
+.UPIImage img {
+  width: 32%;
+  margin-left: 18%;
 }
 
-.UPIImage {
-  margin-top: 12%;
-  margin-left: 12%;
-  /* margin-right: 0%; */
-  width: 338%;
-}
-
-.PaymentButton {
-  margin-left: 68%;
-}
-.PaymentButton .ui.payment button {
+/* .PaymentButton {
+  margin-left: 25%;
+  display: flex;
+  flex-direction: row
+  justify-content: space-around;
+} */
+/* .PaymentButton .ui.payment button {
   background: darkblue !important;
   color: white !important;
-}
-/* .ui.button {
-  background-color: cadetblue;
 } */
-/* 
-.UPIHeading{
-  margin-top: -8%;
-  margin-left: 13%;
-  margin-bottom: 10%;
-  color: dodgerblue;
+#paymentbuttonLast {
+  background: linear-gradient(
+    90deg,
+    rgba(77, 77, 230, 1) 8%,
+    rgba(77, 77, 230, 1) 21%,
+    rgba(91, 91, 246, 1) 49%,
+    rgba(91, 91, 246, 1) 86%
+  ) !important;
+  color: white !important;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 100;
+  margin-right: 30%;
+  padding: 2% 4%;
+}
+#paymentbuttonLast:hover {
+  background: linear-gradient(
+    90deg,
+    rgb(101, 101, 240) 8%,
+    rgb(102, 102, 236) 21%,
+    rgb(117, 117, 245) 49%,
+    rgb(109, 109, 236) 86%
+  ) !important;
 }
 
-.UPIImage{ */
-/* width: 7% !important;
-  margin-left: 3% !important; */
-/* margin-top: 4% !important;
-}  */
-/* 
-.description{
-  margin-top: -10%;
-  margin-left: 13%;
-  margin-bottom: 14%;
-} */
 /* Ayushi CSS */
-.creditCardContainer {
-  background-color: white;
-  /* box-shadow: 10px 10px 5px #aaaaaa; */
-  border-radius: 22px;
-  width: 88%;
-  padding: 3%;
-  margin-top: 5%;
-  /* margin-left: 30%; */
-}
+
 .cardNumber,
 .forDivision {
   margin-bottom: 2%;
@@ -99,12 +99,7 @@ color: grey !important;
   border: 1px solid grey;
   padding: 2%;
 }
-.cvvContainer input {
-  width: 45%;
-  border-radius: 4px;
-  border: 1px solid grey;
-  padding: 4.5% !important;
-}
+
 .monthContainer select {
   width: 42% !important;
   background: white;
@@ -118,64 +113,41 @@ color: grey !important;
   margin-right: 2%;
   width: 44%;
 }
-.parentPayment {
-  width: 70%;
-  /* background: bisque; */
-  padding: 3%;
-  margin-left: 13%;
-  margin-top: 4%;
-  margin-bottom: 5%;
-  background: white;
-  border-radius: 22px;
-  /* box-shadow: 10px 4px 4px; */
-  box-shadow: 10px 10px 5px #aaaaaa;
-}
 .divideIntoTwo {
   display: grid;
   grid-template-columns: 30% 70%;
+  /* border: 1px solid black; */
   margin-bottom: 4%;
+  margin-top: 0.3%;
 }
-.payButton button {
-  margin-bottom: 1%;
-  padding: 2%;
-  background: white;
-  width: 76% !important;
-  border: none;
-  border-radius: 5px;
-}
-.choiceOfPayment {
-  margin-top: 12%;
-}
-.choiceHeading {
-  margin-bottom: 8%;
-  margin-left: 7%;
+.payButton button:hover,
+.payButtonTwo button:hover {
+  transition: 0.3s;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(182, 179, 179, 0.4),
+    transparent
+  );
 }
 
 .payButton p {
   display: inline;
 }
-.payButton {
+/* .payButton {
   margin-top: 20%;
   margin-left: 20%;
-}
-.payButtonTwo button {
-  margin-bottom: 1%;
-  padding: 2%;
-  background: white;
-  width: 76% !important;
-  border: none;
-  border-radius: 5px;
-  margin-left: 16%;
-}
+} */
+
 .payButtonTwo p {
   display: inline;
 }
-.PaymentButton button {
+/* .PaymentButton button {
   padding: 6% 8% !important;
   background: #4040d8 !important;
   color: white !important;
   font-size: 17px !important;
-}
+} */
 
 /* Ayushi CSS */
 .creditCardContainer {
@@ -183,10 +155,15 @@ color: grey !important;
   /* box-shadow: 10px 10px 5px #aaaaaa; */
   border-radius: 22px;
   width: 100%;
-  padding: 3%;
-  margin-top: 12%;
-  /* margin-left: 30%; */
+  height: 100%;
+  padding: 0%;
+  margin-bottom: 5%;
+  margin-top: 0%;
 }
+.PaymentButton {
+  margin-top: 2%;
+}
+
 .cardNumber,
 .forDivision {
   margin-bottom: 2%;
@@ -216,10 +193,10 @@ color: grey !important;
   padding: 2%;
 }
 .cvvContainer input {
-  width: 45%;
+  width: 100%;
   border-radius: 4px;
   border: 1px solid grey;
-  padding: 2%;
+  padding: 13%;
 }
 .monthContainer select {
   width: 30% !important;
@@ -234,41 +211,48 @@ color: grey !important;
   margin-right: 2%;
   width: 52%;
 }
-/* .parentPayment {
+
+.parentPayment {
   width: 70%;
-  background: bisque;
-  padding: 3%;
-  margin-left: 20%;
-  margin-top: 2%;
+  /* background: bisque; */
+  /* padding: 3%; */
+  margin-left: 10% !important;
+  margin-top: 4%;
   margin-bottom: 5%;
   background: white;
-  border-radius: 22px;
-} */
-.divideIntoTwo {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  margin-bottom: 4%;
+  /* border-radius: 22px; */
 }
+
 .payButton button {
-  margin-bottom: 9%;
-  padding: 2%;
+  /* margin-bottom: 9%;
+  padding: 2%; */
   background: white;
   width: 100% !important;
+  height: 100%;
   border: none;
   border-radius: 5px;
 }
 .choiceOfPayment {
-  margin-top: 12%;
+  /* margin-top: 12%; */
+  display: grid;
+  grid-template-rows: 20% 25% 25% 30%;
+  /* border-right: 1px solid black; */
+  border: 1px solid grey;
 }
 .choiceHeading {
-  margin-bottom: 8%;
-  margin-left: -1%;
   color: darkblue;
+  margin-top: 5%;
+  margin-left: 5%;
 }
 
 .payButton p {
   display: inline;
   color: grey;
+}
+.payButton {
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  width: 100%;
 }
 /* .payButton {
   margin-top: 20%;
@@ -280,6 +264,7 @@ color: grey !important;
   padding: 2%;
   background: white;
   width: 100% !important;
+  height: 100%;
   border: none;
   border-radius: 5px;
 }
@@ -289,10 +274,10 @@ color: grey !important;
   margin-top: -9%;
 }
 .payButtonTwo img {
-  width: 22%;
+  width: 14%;
 }
 .payButtonTwo {
-  margin-left: -6%;
+  border-bottom: 1px solid grey;
 }
 .imageAndUpi {
   display: flex;
@@ -312,6 +297,34 @@ color: grey !important;
 }
 .parentPaymentFirst {
   margin-left: 12%;
+  display: grid;
+  grid-template-rows: 15% 65% 20%;
+}
+.cancelButtonDiv {
+  display: grid;
+  grid-template-columns: 55% 45%;
+}
+.cancelButton {
+  /* width: 9%; */
+  background: linear-gradient(
+    90deg,
+    rgba(77, 77, 230, 1) 8%,
+    rgba(77, 77, 230, 1) 21%,
+    rgba(91, 91, 246, 1) 49%,
+    rgba(91, 91, 246, 1) 86%
+  ) !important;
+  color: white !important;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  padding: 4% 7%;
+  margin-left: 5%;
+}
+.lastDivPayment {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 /*SherinPOST*/
 
