@@ -583,6 +583,18 @@ export class Payment extends Component {
                         </div>
                       </div>
                     </form>
+                    <div className="PaymentButton">
+                      <div className="lastDivPayment">
+                        <h2>Pay :{this.props.finalTotalPrice}</h2>
+                        <button
+                          id="paymentbuttonLast"
+                          className="ui payment button"
+                          onClick={this.handlePaymentCredit}
+                        >
+                          Make Payment
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
