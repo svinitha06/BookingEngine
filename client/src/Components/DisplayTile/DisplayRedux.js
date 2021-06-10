@@ -81,7 +81,7 @@ class DisplayRedux extends Component {
       this.props.history.push("/")
     }
     var env=process.env.NODE_ENV||'development';
-var host = env === 'development' ? "http://localhost:5000":"http://c105db4e3674.ngrok.io"
+var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.ngrok.io"
     axios
       .get(
         `${host}/rooms/getRoomType/${this.props.match.params.id}`
@@ -111,7 +111,7 @@ var host = env === 'development' ? "http://localhost:5000":"http://c105db4e3674.
   }
   getSomething = async (id) => {
     var env=process.env.NODE_ENV||'development';
-    var host = env === 'development' ? "http://localhost:5000":"http://c105db4e3674.ngrok.io"
+    var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.ngrok.io"
     let res = await axios({
       method: "get",
       url: `${host}/rate/getplan`,
