@@ -56,7 +56,7 @@ export class Form extends Component {
     }
     if (this.props.roomDetailsList.length === 0) {
       this.props.history.push("/");
-    }
+    
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
@@ -69,16 +69,9 @@ export class Form extends Component {
         contact: this.props.customerDetails.mobile,
         address: this.props.customerDetails.address,
       });
-    }
-    // console.log("total in form prop = ", this.state.thePrice);
-    // console.log("this.props.finalTotalPrice = ", this.props.finalTotalPrice);
-    // console.log(
-    //   "this.props.totalPriceInState TYPE = ",
-    //   typeof this.props.totalPriceInState
-    // );
-    // console.log("this.props", this.props);
-
-    // console.log("property in form did mount ", this.props.propertyList);
+    }}
+    this.getHoteldetails();
+    console.log(this.props,"karan kaiser")
   }
   handleHotel = () => {
     // const { hotelFlag } = this.state;
@@ -131,7 +124,7 @@ export class Form extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    const ascii = this.state.contact.charCodeAt(0);
+    const ascii = this.state.contact.charCodeAt(0)
     if (this.state.firstName === null) {
       this.setState({
         firstError: "Enter Firstname",
@@ -186,7 +179,6 @@ export class Form extends Component {
       this.props.history.push("/payment");
     }
 
-    this.getHoteldetails();
   };
   getHoteldetails = async () => {
     var hotelName;
@@ -206,8 +198,8 @@ export class Form extends Component {
       bookedDate: new Date().toLocaleDateString(),
       bookingId: new ObjectID(),
     };
-
-    this.props.hotelDetails(data);
+   
+   this.props.hotelDetails(data);
     console.log(data, "hotelNow");
   };
 

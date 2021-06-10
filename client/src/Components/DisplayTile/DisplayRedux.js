@@ -181,7 +181,6 @@ class DisplayRedux extends Component {
     this.setState({ countObj: count });
   };
   handleReserve = () => {
-    this.props.hotelDetails([]);
     let theTotal = this.calculateTotal();
     this.props.additionOfPrices({ Amount: theTotal });
 

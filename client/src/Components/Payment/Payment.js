@@ -57,7 +57,7 @@ export class Payment extends Component {
     if (this.props.customerDetails.length === 0) {
       this.props.history.push("/");
     }
-    console.log(this.props.customerDetails, "vanakkam");
+   
   }
   onBankChange = (e) => {
     this.setState({ value: e.target.value });
@@ -479,7 +479,7 @@ export class Payment extends Component {
                         <button
                           id="paymentbuttonLast"
                           className="ui payment button"
-                          onClick={this.handlePaymentUPI}
+                          onClick={this.handlePaymentCredit}
                         >
                           Make Payment
                         </button>
@@ -703,7 +703,7 @@ export class Payment extends Component {
                           <button
                             id="paymentbuttonLast"
                             className="ui payment button"
-                            onClick={this.handlePaymentUPI}
+                            onClick={this.handlePaymentNetBanking}
                           >
                             Make Payment
                           </button>
@@ -736,7 +736,7 @@ export class Payment extends Component {
                             <label> Booking ID</label>
                             <p>
                               123452653
-                              {/* {this.props.customerDetails.bookingId} */}
+                              {console.log(this.props.customerDetails.bookingId,"booking ID check")}
                             </p>
                           </div>
                         </div>
