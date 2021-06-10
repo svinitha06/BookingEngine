@@ -465,7 +465,7 @@ export class Payment extends Component {
                   <div className="PaymentButton">
                     <div className="lastDivPayment">
                       <div className="forPay">
-                        <p>Pay :{this.props.finalTotalPrice}</p>
+                        <p>Pay :{this.props.finalTotalPrice + (this.props.finalTotalPrice*0.02)}</p>
                       </div>
                       <div className="cancelButtonDiv">
                         <button
@@ -508,7 +508,7 @@ export class Payment extends Component {
                     <div className="PaymentButton">
                       <div className="lastDivPayment">
                         <div className="forPay">
-                          <p>Pay :{this.props.finalTotalPrice}</p>
+                          <p>Pay :{this.props.finalTotalPrice + (this.props.finalTotalPrice*0.02)}</p>
                         </div>
                         <div className="cancelButtonDiv">
                           <button
@@ -691,7 +691,7 @@ export class Payment extends Component {
                     <div className="PaymentButton">
                       <div className="lastDivPayment">
                         <div className="forPay">
-                          <p>Pay :{this.props.finalTotalPrice}</p>
+                          <p>Pay :{this.props.finalTotalPrice + (this.props.finalTotalPrice*0.02)}</p>
                         </div>
                         <div className="cancelButtonDiv">
                           <button
