@@ -15,7 +15,7 @@ import { get, functions, bind, isEmpty, trim } from "lodash";
 import { hotelDetails } from "../../actions/index";
 import { bindActionCreators } from "redux";
 import { ObjectID } from "bson";
-
+import netBanking from "./netbanking.jpg";
 import { withRouter, Link } from "react-router-dom";
 import paytm from "./image_upi.png";
 export class Payment extends Component {
@@ -38,19 +38,19 @@ export class Payment extends Component {
       UPItext: "",
       errorNowUPI: "",
       open: false,
-      openNetBank:false,
+      openNetBank: false,
       errorPost: false,
       isActiveNetBanking: false,
       errorCvv2: "",
       errorNumber2: "",
       openUPI: false,
       // netBankText:"",
-      netPassword:"",
-      netUserId:"",
-      errorPassword:"",
+      netPassword: "",
+      netUserId: "",
+      errorPassword: "",
       // errorNetBankText:"",
-      errorUserId:"",
-      value:"State Bank of India"
+      errorUserId: "",
+      value: "State Bank of India",
     };
   }
   componentDidMount() {
@@ -59,6 +59,9 @@ export class Payment extends Component {
     }
     console.log(this.props.customerDetails, "vanakkam");
   }
+  onBankChange = (e) => {
+    this.setState({ value: e.target.value });
+  };
   handleCredit = () => {
     console.log("inside handle credit ");
     console.log(" isActiveCredit", this.state.isActiveCredit);
@@ -143,42 +146,39 @@ export class Payment extends Component {
     }
 
   };
-  handlePaymentNetBanking=()=>{
-    if(( this.state.netUserId && this.state.netPassword)===""){
+  handlePaymentNetBanking = () => {
+    if ((this.state.netUserId && this.state.netPassword) === "") {
       this.setState({
         // errorNetBankText:"Required",
-        errorUserId:"required",
-        errorPassword:"required"
-      })
+        errorUserId: "required",
+        errorPassword: "required",
+      });
     }
-    if(( this.state.netUserId!=="" && this.state.netPassword!=="")){
+    if (this.state.netUserId !== "" && this.state.netPassword !== "") {
       this.setState({
-        openNetBank:true,
+        openNetBank: true,
       });
       this.handlePostApi();
-     
-
     }
-
-  }
-//   handleNetBankChange=(e)=>{
-// this.setState({
-//   netBankText:e.target.value,
-//   errorNetBankText:""
-// })
-//   }
-  handleNetBankUserId=(e)=>{
+  };
+  //   handleNetBankChange=(e)=>{
+  // this.setState({
+  //   netBankText:e.target.value,
+  //   errorNetBankText:""
+  // })
+  //   }
+  handleNetBankUserId = (e) => {
     this.setState({
-      netUserId:e.target.value,
-      errorUserId:""
-    })
-      }
-      handleNetBankPassword=(e)=>{
-        this.setState({
-          netPassword:e.target.value,
-          errorPassword:""
-        })
-          }
+      netUserId: e.target.value,
+      errorUserId: "",
+    });
+  };
+  handleNetBankPassword = (e) => {
+    this.setState({
+      netPassword: e.target.value,
+      errorPassword: "",
+    });
+  };
   handleInputChange1 = (event) => {
     this.setState({
       cardNumber: event.target.value,
@@ -266,35 +266,17 @@ export class Payment extends Component {
                       </p>
                     </div>
 
-                    <p>Visa, MasterCard,Rupay and more</p>
+                    <p className="forGreyColorVisa">
+                      Visa, MasterCard,Rupay and more
+                    </p>
                   </div>
                 </button>
               </div>
               <div className="payButtonTwo">
                 <button onClick={this.handleGPay}>
-                  <img src={Image_Upi}></img>
-                  <div className="imageAndUpi">
-                    <p
-                      style={{
-                        fontWeight: "bold",
-                        fontSize: "18px",
-                        color: "darkblue",
-                        marginLeft: "3%",
-                      }}
-                    >
-                      UPI
-                    </p>
-                    <p>Pay direct from Bank Account</p>
-                  </div>
-                  {/* <img src={GpayIcon}></img>G-Pay */}
-                </button>
-              </div>
-              {/* <div> Net Banking</div> */}
-              <div className="netBankingContainer">
-                <div className="payButtonthree">
-                  <button onClick={this.handleNetBanking}>
-                    {/* <img src={Image_Netbanking}></img> */}
-                    <div className="Netbankingandimage">
+                  <div className="BindTogether">
+                    <img src={Image_Upi}></img>
+                    <div className="imageAndUpi">
                       <p
                         style={{
                           fontWeight: "bold",
@@ -303,27 +285,42 @@ export class Payment extends Component {
                           marginLeft: "3%",
                         }}
                       >
+                        UPI
+                      </p>
+                      <p className="forGreyColor">
+                        Pay direct from Bank Account
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* <img src={GpayIcon}></img>G-Pay */}
+                </button>
+              </div>
+              {/* <div> Net Banking</div> */}
+              <div className="netBankingContainer">
+                <div className="payButtonthree">
+                  <button onClick={this.handleNetBanking}>
+                    <div className="Netbankingandimage">
+                      <img src={netBanking}></img>
+                      <p
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                          color: "darkblue",
+                          marginLeft: "-20%",
+                        }}
+                      >
                         Net Banking
                       </p>
-                      <p style={{marginLeft:"26%"}}>All Major banks Available</p>
+                      <p className="forGreyColorNet">
+                        All Major banks Available
+                      </p>
                     </div>
                   </button>
                 </div>
               </div>
             </div>
             <div className="parentPaymentFirst">
-              <div className="cancelButtonDiv">
-                <div></div>
-                <div className="extra">
-                  <button
-                    className="cancelButton"
-                    onClick={this.props.history.goBack}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-
               {this.state.isActiveCredit && (
                 <div className="creditCardContainer">
                   <div className="childContainer">
@@ -335,14 +332,13 @@ export class Payment extends Component {
                         type="number"
                         name="number"
                         value={this.state.cardNumber}
- 
                         className={`${
-                          this.state.errorNumber  !== "" ? "firstError" : ""
+                          this.state.errorNumber !== "" ? "firstError" : ""
                         }`}
                         onChange={this.handleInputChange1}
                       ></input>
 
-                     {/* {this.state.errorNumber2} */}
+                      {/* {this.state.errorNumber2} */}
                     </div>
                     <div className="cardName">
                       <label> Name on Card</label>
@@ -468,14 +464,26 @@ export class Payment extends Component {
                   )}
                   <div className="PaymentButton">
                     <div className="lastDivPayment">
-                      <h2>Pay :{this.props.finalTotalPrice}</h2>
-                      <button
-                        id="paymentbuttonLast"
-                        className="ui payment button"
-                        onClick={this.handlePaymentCredit}
-                      >
-                        Make Payment
-                      </button>
+                      <div className="forPay">
+                        <p>Pay :{this.props.finalTotalPrice}</p>
+                      </div>
+                      <div className="cancelButtonDiv">
+                        <button
+                          className="cancelButton"
+                          onClick={this.props.history.goBack}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                      <div className="makePaymentDiv">
+                        <button
+                          id="paymentbuttonLast"
+                          className="ui payment button"
+                          onClick={this.handlePaymentUPI}
+                        >
+                          Make Payment
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -499,17 +507,29 @@ export class Payment extends Component {
                     </div>
                     <div className="PaymentButton">
                       <div className="lastDivPayment">
-                        <h2>Pay :{this.props.finalTotalPrice}</h2>
-                        <button
-                          id="paymentbuttonLast"
-                          className="ui payment button"
-                          onClick={this.handlePaymentUPI}
-                        >
-                          Make Payment
-                        </button>
+                        <div className="forPay">
+                          <p>Pay :{this.props.finalTotalPrice}</p>
+                        </div>
+                        <div className="cancelButtonDiv">
+                          <button
+                            className="cancelButton"
+                            onClick={this.props.history.goBack}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                        <div className="makePaymentDiv">
+                          <button
+                            id="paymentbuttonLast"
+                            className="ui payment button"
+                            onClick={this.handlePaymentUPI}
+                          >
+                            Make Payment
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    {this.state.openUPI &&  (
+                    {this.state.openUPI && (
                       <Modal
                         open={this.state.openUPI}
                         onClose={this.handleClose}
@@ -580,8 +600,12 @@ export class Payment extends Component {
                             name="bank"
                             value="State Bank of India"
                             id="State Bank of India"
+                            checked={this.state.value === "State Bank of India"}
+                            onChange={this.onBankChange}
                           ></input>
-                          <label for="State Bank of India">State Bank of India</label>
+                          <label for="State Bank of India">
+                            State Bank of India
+                          </label>
 
                           {/* // checked={value === "State Bank of India"}
                             // onChange={handleChange}></input> */}
@@ -593,11 +617,10 @@ export class Payment extends Component {
                               name="bank"
                               value="HDFC Bank"
                               id="HDFC Bank"
+                              onChange={this.onBankChange}
+                              checked={this.state.value === "HDFC Bank"}
                             ></input>
                             <label for="HDFC Bank">HDFC Bank</label>
-
-                            {/* // checked={value === "HDFC Bank"}
-                              // onChange={handleChange}></input> */}
                           </div>
                         </div>
                       </div>
@@ -608,11 +631,10 @@ export class Payment extends Component {
                             name="bank"
                             value="Axis Bank"
                             id="AXIS"
+                            onChange={this.onBankChange}
+                            checked={this.state.value === "Axis Bank"}
                           ></input>
                           <label for="AXIS">Axis Bank</label>
-
-                          {/* // checked={value === "Axis Bank"}
-                            // onChange={handleChange}></input> */}
                         </div>
                         <div class="field">
                           <div class="ui radio checkbox">
@@ -621,6 +643,10 @@ export class Payment extends Component {
                               name="bank"
                               value="Punjab National Bank"
                               id="PNB"
+                              onChange={this.onBankChange}
+                              checked={
+                                this.state.value === "Punjab National Bank"
+                              }
                             ></input>
                             <label for="PNB">Punjab National Bank</label>
 
@@ -631,36 +657,61 @@ export class Payment extends Component {
                       </div>
                       <div className="userdetails">
                         <div className="Usercontents">
-                        <div className="userNow">
-                          <h4>USER ID</h4>
-                            <input type="text"  className={`${
-                          this.state.errorUserId  !== "" ? "firstError" : ""
-                        }`} value={this.state.netUserId} onChange={this.handleNetBankUserId}></input>
+                          <div className="userNow">
+                            <p>USER ID</p>
+                            <input
+                              type="text"
+                              className={`${
+                                this.state.errorUserId !== ""
+                                  ? "firstError"
+                                  : ""
+                              }`}
+                              value={this.state.netUserId}
+                              onChange={this.handleNetBankUserId}
+                            ></input>
                           </div>
                         </div>
                         <div className="userNow">
-                        <h4>PASSWORD</h4>
-                          <input type="text"  className={`${
-                          this.state.errorPassword  !== "" ? "firstError" : ""
-                        }`} value={this.state.netPassword} onChange={this.handleNetBankPassword}></input>
+                          <p>PASSWORD</p>
+                          <input
+                            type="text"
+                            className={`${
+                              this.state.errorPassword !== ""
+                                ? "firstError"
+                                : ""
+                            }`}
+                            value={this.state.netPassword}
+                            onChange={this.handleNetBankPassword}
+                          ></input>
                         </div>
                       </div>
                     </form>
                     <div className="PaymentButton">
                       <div className="lastDivPayment">
-                        <h2>Pay :{this.props.finalTotalPrice}</h2>
-                        <button
-                          id="paymentbuttonLast"
-                          className="ui payment button"
-                          onClick={this.handlePaymentNetBanking}
-                        >
-                          Make Payment
-                        </button>
+                        <div className="forPay">
+                          <p>Pay :{this.props.finalTotalPrice}</p>
+                        </div>
+                        <div className="cancelButtonDiv">
+                          <button
+                            className="cancelButton"
+                            onClick={this.props.history.goBack}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                        <div className="makePaymentDiv">
+                          <button
+                            id="paymentbuttonLast"
+                            className="ui payment button"
+                            onClick={this.handlePaymentUPI}
+                          >
+                            Make Payment
+                          </button>
+                        </div>
                       </div>
                     </div>
-                   
                   </div>
-                  {this.state.openNetBank &&  (
+                  {this.state.openNetBank && (
                     <Modal
                       open={this.state.openNetBank}
                       onClose={this.handleClose}

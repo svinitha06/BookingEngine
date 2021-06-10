@@ -18,23 +18,28 @@
   margin-top: 4%;
 }
 .UPIImage {
-  margin-top: 4%;
+  margin-top: 8%;
+  margin-bottom: 8%;
 }
 .UPIImage img {
   width: 32%;
   margin-left: 18%;
 }
 .UPIContents {
-  margin-top: 4%;
+  margin-top: 8%;
+  height: 100% !important;
 }
-.cancelButtonDiv {
+/* .cancelButtonDiv {
   margin-top: 3%;
-}
+} */
 /* .upiInput input {
   border: 1px solid #cac6c6;
 } */
 .UPIParentContainer {
   height: 350px !important;
+}
+.makePaymentDiv {
+  margin-left: 10%;
 }
 #paymentbuttonLast {
   /* background: linear-gradient(
@@ -46,12 +51,10 @@
   ) !important; */
   background: #0d8c96 !important;
   color: white !important;
-  font-size: 16px;
+  font-size: 17px;
   border-radius: 8px;
   border: none;
   font-weight: 100;
-  margin-right: 30%;
-  padding: 2% 4%;
 }
 #paymentbuttonLast:hover {
   background: linear-gradient(
@@ -94,15 +97,6 @@ color: #cac6c6 !important;
   padding: 2%;
 }
 
-.monthContainer select {
-  width: 42% !important;
-  background: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 51%;
-  padding: 1.5%;
-  margin: 0.5%;
-}
 .monthContainer {
   margin-right: 2%;
   width: 44%;
@@ -146,13 +140,14 @@ color: #cac6c6 !important;
   /* box-shadow: 10px 10px 5px #aaaaaa; */
   border-radius: 22px;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   padding: 0%;
-  margin-bottom: 5%;
+  /* margin-bottom: 5%; */
   margin-top: 3%;
 }
 .PaymentButton {
   margin-top: 2%;
+  margin-bottom: 6%;
 }
 
 .cardNumber,
@@ -177,12 +172,7 @@ color: #cac6c6 !important;
   align-items: center;
   margin-top: 3%;
 }
-.monthContainer input {
-  width: 33%;
-  border-radius: 4px;
-  border: 1px solid #cac6c6;
-  padding: 2%;
-}
+
 .cvvContainer input {
   width: 100%;
   border-radius: 4px;
@@ -192,15 +182,13 @@ color: #cac6c6 !important;
 .monthContainer select {
   width: 30% !important;
   background: white;
-  border: 1px solid black;
+  border: 1px solid grey;
   border-radius: 4px;
+  color: black !important;
   width: 51%;
   padding: 3% !important;
   margin: 0.5%;
-}
-.monthContainer {
-  margin-right: 2%;
-  width: 52%;
+  margin-right: 5%;
 }
 
 .parentPayment {
@@ -223,6 +211,9 @@ color: #cac6c6 !important;
   height: 100%;
   border: none;
   border-radius: 5px;
+}
+.childContainer {
+  margin-bottom: 7%;
 }
 .choiceOfPayment {
   display: grid;
@@ -294,35 +285,35 @@ color: #cac6c6 !important;
 }
 .parentPaymentFirst {
   margin-left: 12%;
-  display: grid;
-  grid-template-rows: 15% 65% 20%;
+  /* display: grid;
+  grid-template-rows: 15% 65% 20%; */
 }
-.cancelButtonDiv {
+/* .cancelButtonDiv {
   display: grid;
   grid-template-columns: 55% 45%;
+} */
+.cancelButtonDiv {
+  margin-left: 12%;
 }
 .cancelButton {
-  /* width: 9%; */
-  /* background: linear-gradient(
-    90deg,
-    rgba(77, 77, 230, 1) 8%,
-    rgba(77, 77, 230, 1) 21%,
-    rgba(91, 91, 246, 1) 49%,
-    rgba(91, 91, 246, 1) 86%
-  ) !important; */
   background: #0d8c96 !important;
   color: white !important;
   border-radius: 8px;
   border: none;
-  font-size: 16px;
-  padding: 4% 7%;
-  margin-left: 5%;
+  font-size: 17px;
+  padding: 26% 42%;
 }
 .lastDivPayment {
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+.forPay p {
+  font-size: 22px !important;
+  font-weight: 600;
+  color: #0a8d96;
 }
 /*SherinPOST*/
 
@@ -450,10 +441,10 @@ color: #cac6c6 !important;
 .payButtonthree p {
   display: inline;
   color: grey;
-  margin-top: -9%;
+  margin-top: -20%;
 }
 .payButtonthree img {
-  width: 14%;
+  width: 18%;
 }
 .payButtonthree {
   /* border-bottom: 1px solid black; */
@@ -462,7 +453,9 @@ color: #cac6c6 !important;
 }
 .Netbankingandimage {
   display: grid;
-  height: 4em;
+  /* height: 4em; */
+  margin-left: 5%;
+  margin-top: 8%;
 }
 .Netbankingcontents {
   margin-top: 2%;
@@ -541,32 +534,52 @@ color: #cac6c6 !important;
 }
 .field,
 .ui.radio.checkbox {
-width: 100% !important;
+  width: 100% !important;
 }
 .ui.form {
-font-size: 1rem;
-margin-top: 5%;
+  font-size: 1rem;
+  margin-top: 5%;
 }
 
 .userdetails {
-margin-top: -1%;
+  margin-top: -1%;
 }
 .field {
-display: flex;
-margin-top: 1%;
-/* margin-left: 10%; */
+  display: flex;
+  margin-top: 1%;
+  /* margin-left: 10%; */
 }
 .second {
-margin-left: 1%;
+  margin-left: 1%;
 }
-.userNow{
+.userNow {
   display: grid;
   grid-template-columns: 20% 80%;
 }
-.userNow input{
+.userNow input {
   width: 60% !important;
   margin-bottom: 1em !important;
 }
-.Netbankingcontents h2{
-font-weight: 900;
+.userNow p {
+  font-size: 15px;
+  font-weight: 600;
+}
+.Netbankingcontents h2 {
+  font-weight: 900;
+}
+.forGreyColor,
+.forGreyColorVisa,
+.forGreyColorNet {
+  color: grey !important;
+}
+.forGreyColorVisa {
+  margin-left: -19% !important;
+}
+.forGreyColorNet {
+  margin-left: -1% !important;
+  margin-top: -11% !important;
+}
+.bindTogether {
+  display: flex;
+  margin-top: 4%;
 }
