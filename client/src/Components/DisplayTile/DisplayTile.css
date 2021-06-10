@@ -90,8 +90,8 @@
   position: relative;
   border: none;
   height: 20% !important;
-
-  background-color: rgba(117, 162, 179, 0.8) !important;
+  background-color: rgb(8 105 117) !important;
+  /* background-color: rgba(117, 162, 179, 0.8) !important; */
 
   /* box-shadow: 4px 4px 12px #eee; */
 }
@@ -167,7 +167,8 @@ h6 {
   font-weight: 500 !important;
   border-radius: 0px !important;
   color: white !important;
-  background: #90b4c2 !important;
+  background: rgb(8 105 117) !important;
+  /* background: #90b4c2 !important; */
   text-align: center !important;
   position: relative !important;
   border: none !important;
@@ -209,7 +210,8 @@ a.ui.button.reserve-left {
   font-weight: 500 !important;
 
   color: white !important;
-  background: #90b4c2 !important;
+  background: rgb(8 105 117) !important;
+  /* background: #90b4c2 !important; */
   border: none !important;
 
   text-align: center !important;

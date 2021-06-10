@@ -53,6 +53,8 @@ export class BasicLayout extends Component {
       clicked: false,
       open: false,
       city: "",
+      start:null,
+      end:null
     };
   }
   // getRoomNum = (numOfRooms) => {
@@ -197,7 +199,20 @@ export class BasicLayout extends Component {
       roomAnchor: null,
     });
   };
+  handleDateChange = (e) => {
+    this.props.date({
+      start: e.value[0],
+      end: e.value[1],
+    });
 
+    this.setState({
+      start: e.value[0],
+      end: e.value[1],
+      clicked: false,
+    });
+
+   
+  };
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -227,6 +242,7 @@ export class BasicLayout extends Component {
                   format={"dd-MMM-yy"}
                   color={"black"}
                   className="datepicker"
+                  onChange={this.handleDateChange}
                 ></DateRangePickerComponent>
               </div>
             </div>

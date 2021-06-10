@@ -66,6 +66,10 @@ class Home extends React.Component {
     if (true) {
       window.scroll(0, 0);
     }
+    this.setState({
+      start: this.props.dateRange.start,
+      end: this.props.dateRange.end,
+    });
     if (this.state.flag) {
       const today = new Date();
       const tomorrow = new Date(today);

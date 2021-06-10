@@ -4,18 +4,27 @@
     margin-top: 6em;
 }
 .about-content{
-        /* border: 1px solid black; */
+      /* border: 1px solid black; */
     /* margin: 6em; */
     width: 40%;
     margin-top: 7em;
     margin-left: 6em;
     padding: 17px;
-    font-family:'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
-
+    font-family: 'Times New Roman', Helvetica,ui-rounded,Arial,  sans-serif  !important;
     height: 20%;
-    box-shadow: 10px 10px 5px #aaaaaa;
-    
+    box-shadow: -10px 10px 11px grey;
     /* margin-bottom: 0em !important; */
+}
+.about-content h1{
+   color: #086975;
+}
+.about-container h1{
+   color: #086975;
+
+}
+.icon-container h2{
+   color: #086975;
+
 }
 .about-container{
     width: 90%;
@@ -24,7 +33,8 @@
 }
 .services h1{
     text-align: center;
-    color: #565656;
+    color: #086975;
+   
     padding-bottom: 15px;
     padding-top: 30px;
     position: relative;

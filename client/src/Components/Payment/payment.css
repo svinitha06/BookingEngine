@@ -327,7 +327,7 @@ color: #cac6c6 !important;
 /*SherinPOST*/
 
 .main-head {
-  margin-left: 29%;
+  margin-left: 18%;
   margin-bottom: -22%;
   margin-top: -7% !important;
 }
@@ -338,14 +338,14 @@ color: #cac6c6 !important;
   width: 92%;
 }
 .modal-open {
-  background: bisque;
-  /* background: linear-gradient(to right, #485a61, #fffde4); */
+  background: #12565f;
+  background: linear-gradient(to right, #12565f, #fffde4);
   width: 35%;
   height: 73vh;
   margin-left: 16.5em;
   margin-top: 3em;
   padding: 3em;
-  color: #272d2d;
+  color: black;
   text-shadow: cornflowerblue !important;
   font-size: x-large;
   /* border-radius: 51px; */
@@ -389,7 +389,7 @@ color: #cac6c6 !important;
   margin-right: 5%;
   font-weight: 900;
   margin-left: 8%;
-  box-shadow: 5px 3px 8px 1px dark#cac6c6;
+  box-shadow: 5px 3px 8px 1px darkslategray;
 }
 .bookNow {
   margin-top: 7%;
@@ -442,9 +442,10 @@ color: #cac6c6 !important;
   padding: 2%;
   background: white;
   width: 100% !important;
+  height: 100%;
   border: none;
   border-radius: 5px;
-  margin-top: 7%;
+  /* margin-top: 7%; */
 }
 .payButtonthree p {
   display: inline;
@@ -455,7 +456,9 @@ color: #cac6c6 !important;
   width: 14%;
 }
 .payButtonthree {
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
+  width: 100%;
+  height: 100%;
 }
 .Netbankingandimage {
   display: grid;
@@ -465,14 +468,14 @@ color: #cac6c6 !important;
   margin-top: 2%;
 }
 
-.ui.input {
+/* .ui.input {
   width: 47%;
-}
+} */
 
-.ui.radio.checkbox {
+/* .ui.radio.checkbox {
   min-height: 15px;
   margin-top: 4%;
-}
+} */
 
 .ui.radio.checkbox label:after,
 .ui.radio.checkbox label:after {
@@ -496,12 +499,12 @@ color: #cac6c6 !important;
   left: 0;
 }
 
-.ui.input {
+/* .ui.input {
   width: 47% !important;
   border-radius: 7px;
   font-size: 96%;
   width: 91%;
-}
+} */
 
 .ui.checkbox input.hidden + label {
   cursor: pointer;
@@ -510,10 +513,10 @@ color: #cac6c6 !important;
   margin-top: -22%;
 }
 
-.ui.radio.checkbox {
+/* .ui.radio.checkbox {
   min-height: 15px;
   margin-top: -1%;
-}
+} */
 /* .ui.input2{
     width: 47%;
     border-radius: 7px;
@@ -521,11 +524,12 @@ color: #cac6c6 !important;
     width: 91%;
   } */
 
-.ui.form .field {
+/* .ui.form .field {
   clear: both;
   margin: 0 0 1em;
   margin-top: -2%;
-}
+  display: flex;
+} */
 
 .ui.form {
   font-size: 1rem;
@@ -534,4 +538,35 @@ color: #cac6c6 !important;
 
 .userdetails {
   margin-top: -1%;
+}
+.field,
+.ui.radio.checkbox {
+width: 100% !important;
+}
+.ui.form {
+font-size: 1rem;
+margin-top: 5%;
+}
+
+.userdetails {
+margin-top: -1%;
+}
+.field {
+display: flex;
+margin-top: 1%;
+/* margin-left: 10%; */
+}
+.second {
+margin-left: 1%;
+}
+.userNow{
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+.userNow input{
+  width: 60% !important;
+  margin-bottom: 1em !important;
+}
+.Netbankingcontents h2{
+font-weight: 900;
 }

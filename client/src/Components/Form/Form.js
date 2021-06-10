@@ -54,13 +54,22 @@ export class Form extends Component {
     if (true) {
       window.scroll(0, 0);
     }
-    if(this.props.roomDetailsList.length===0){
-      this.props.history.push("/")
+    if (this.props.roomDetailsList.length === 0) {
+      this.props.history.push("/");
     }
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
+    if (this.props.customerDetails !== []) {
+      this.setState({
+        firstName: (this.props.customerDetails.guestName),
+        // lastName: (this.props.customerDetails.guestName).split(" ")[1],
+        email: this.props.customerDetails.email,
+        contact: this.props.customerDetails.mobile,
+        address: this.props.customerDetails.address,
+      });
+    }
     // console.log("total in form prop = ", this.state.thePrice);
     // console.log("this.props.finalTotalPrice = ", this.props.finalTotalPrice);
     // console.log(
@@ -83,7 +92,6 @@ export class Form extends Component {
       firstError: "",
     });
     console.log(event.target.value);
-   
   };
 
   handleLastName = (event) => {
@@ -175,12 +183,10 @@ export class Form extends Component {
       this.setState({
         open: true,
       });
-    this.props.history.push("/payment")
+      this.props.history.push("/payment");
+    }
 
-  }
- 
     this.getHoteldetails();
-
   };
   getHoteldetails = async () => {
     var hotelName;
@@ -190,7 +196,7 @@ export class Form extends Component {
       }
     });
     const data = {
-      guestName: this.state.firstName ,
+      guestName: this.state.firstName + " " + this.state.lastName,
       email: this.state.email,
       mobile: this.state.contact,
       hotelNow: hotelName,
@@ -467,8 +473,6 @@ export class Form extends Component {
                           </div>
                         </Modal>
                       )}
-
-                      
                     </div>
                     <div className="formMsgTwo">
                       <img src={ImageTwo}></img>
@@ -633,8 +637,8 @@ const mapStateToProps = (state) => ({
   roomTypeRatesData: get(state, "roomTypeRatesData", []),
   propertyList: get(state, "propertyList", []),
   customerDetails: get(state, "customerDetails", []),
-  booking: get(state,"bookedRoomDetails.bookingData",[]),
-  finalTotalPrice: get(state,"totalPriceInState.Amount",[]),
+  booking: get(state, "bookedRoomDetails.bookingData", []),
+  finalTotalPrice: get(state, "totalPriceInState.Amount", []),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Form));

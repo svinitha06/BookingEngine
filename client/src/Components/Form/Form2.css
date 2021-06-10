@@ -697,7 +697,7 @@ select {
 }
 .input {
   background-color: none !important;
-  border: 1px solid grey !important;
+  /* border: 1px solid grey !important; */
 }
 .firstName {
   width: 100% !important;

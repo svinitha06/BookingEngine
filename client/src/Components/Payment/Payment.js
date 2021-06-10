@@ -38,11 +38,19 @@ export class Payment extends Component {
       UPItext: "",
       errorNowUPI: "",
       open: false,
+      openNetBank:false,
       errorPost: false,
       isActiveNetBanking: false,
       errorCvv2: "",
       errorNumber2: "",
       openUPI: false,
+      // netBankText:"",
+      netPassword:"",
+      netUserId:"",
+      errorPassword:"",
+      // errorNetBankText:"",
+      errorUserId:"",
+      value:"State Bank of India"
     };
   }
   componentDidMount() {
@@ -131,6 +139,40 @@ export class Payment extends Component {
       this.handlePostApi();
     }
   };
+  handlePaymentNetBanking=()=>{
+    if(( this.state.netUserId && this.state.netPassword)===""){
+      this.setState({
+        // errorNetBankText:"Required",
+        errorUserId:"required",
+        errorPassword:"required"
+      })
+    }
+    if(( this.state.netUserId!=="" && this.state.netPassword!=="")){
+      this.setState({
+        openNetBank:true,
+      });
+      this.handlePostApi();
+
+    }
+  }
+//   handleNetBankChange=(e)=>{
+// this.setState({
+//   netBankText:e.target.value,
+//   errorNetBankText:""
+// })
+//   }
+  handleNetBankUserId=(e)=>{
+    this.setState({
+      netUserId:e.target.value,
+      errorUserId:""
+    })
+      }
+      handleNetBankPassword=(e)=>{
+        this.setState({
+          netPassword:e.target.value,
+          errorPassword:""
+        })
+          }
   handleInputChange1 = (event) => {
     this.setState({
       cardNumber: event.target.value,
@@ -254,7 +296,7 @@ export class Payment extends Component {
                       >
                         Net Banking
                       </p>
-                      <p>All Major banks Available</p>
+                      <p style={{marginLeft:"26%"}}>All Major banks Available</p>
                     </div>
                   </button>
                 </div>
@@ -291,7 +333,7 @@ export class Payment extends Component {
                         onChange={this.handleInputChange1}
                       ></input>
 
-                     {this.state.errorNumber2}
+                     {/* {this.state.errorNumber2} */}
                     </div>
                     <div className="cardName">
                       <label> Name on Card</label>
@@ -458,7 +500,7 @@ export class Payment extends Component {
                         </button>
                       </div>
                     </div>
-                    {this.state.openUPI && !this.state.errorPost && (
+                    {this.state.openUPI &&  (
                       <Modal
                         open={this.state.openUPI}
                         onClose={this.handleClose}
@@ -513,32 +555,38 @@ export class Payment extends Component {
                 <div>
                   <div className="Netbankingcontents">
                     <div>
-                      <h3>Net Banking</h3>
-                      <div class="ui input">
-                        <input type="text" placeholder="Search"></input>
+                      <h2>Net Banking</h2>
+                      {/* <div class="ui input">
+                        <input type="text" placeholder="Search" value={this.state.netBankText} onChange={this.handleNetBankChange} className={`${
+                          this.state.errorNetBankText  !== "" ? "firstError" : ""
+                        }`}></input>
                         <div></div>
-                      </div>
+                      </div> */}
                     </div>
                     <form class="ui form">
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <label>State Bank of India</label>
                           <input
                             type="radio"
                             name="bank"
                             value="State Bank of India"
+                            id="State Bank of India"
                           ></input>
+                          <label for="State Bank of India">State Bank of India</label>
+
                           {/* // checked={value === "State Bank of India"}
                             // onChange={handleChange}></input> */}
                         </div>
                         <div class="field">
                           <div class="ui radio checkbox">
-                            <label>HDFC Bank</label>
                             <input
                               type="radio"
                               name="bank"
                               value="HDFC Bank"
+                              id="HDFC Bank"
                             ></input>
+                            <label for="HDFC Bank">HDFC Bank</label>
+
                             {/* // checked={value === "HDFC Bank"}
                               // onChange={handleChange}></input> */}
                           </div>
@@ -546,23 +594,27 @@ export class Payment extends Component {
                       </div>
                       <div class="field">
                         <div class="ui radio checkbox">
-                          <label>Axis Bank</label>
                           <input
                             type="radio"
                             name="bank"
                             value="Axis Bank"
+                            id="AXIS"
                           ></input>
+                          <label for="AXIS">Axis Bank</label>
+
                           {/* // checked={value === "Axis Bank"}
                             // onChange={handleChange}></input> */}
                         </div>
                         <div class="field">
                           <div class="ui radio checkbox">
-                            <label>Punjab National Bank</label>
                             <input
                               type="radio"
                               name="bank"
                               value="Punjab National Bank"
+                              id="PNB"
                             ></input>
+                            <label for="PNB">Punjab National Bank</label>
+
                             {/* // checked={value === "Punjab National Bank"}
                               // onChange={handleChange}></input> */}
                           </div>
@@ -570,14 +622,18 @@ export class Payment extends Component {
                       </div>
                       <div className="userdetails">
                         <div className="Usercontents">
+                        <div className="userNow">
                           <h4>USER ID</h4>
-                          <div className="ui input">
-                            <input type="text" placeholder="UserID"></input>
+                            <input type="text"  className={`${
+                          this.state.errorUserId  !== "" ? "firstError" : ""
+                        }`} value={this.state.netUserId} onChange={this.handleNetBankUserId}></input>
                           </div>
                         </div>
+                        <div className="userNow">
                         <h4>PASSWORD</h4>
-                        <div className="ui input">
-                          <input type="text" placeholder="Password"></input>
+                          <input type="text"  className={`${
+                          this.state.errorPassword  !== "" ? "firstError" : ""
+                        }`} value={this.state.netPassword} onChange={this.handleNetBankPassword}></input>
                         </div>
                       </div>
                     </form>
@@ -587,13 +643,60 @@ export class Payment extends Component {
                         <button
                           id="paymentbuttonLast"
                           className="ui payment button"
-                          onClick={this.handlePaymentCredit}
+                          onClick={this.handlePaymentNetBanking}
                         >
                           Make Payment
                         </button>
                       </div>
                     </div>
+                   
                   </div>
+                  {this.state.openNetBank &&  (
+                    <Modal
+                      open={this.state.openNetBank}
+                      onClose={this.handleClose}
+                      aria-labelledby="simple-modal-title"
+                      aria-describedby="simple-modal-description"
+                    >
+                      <div className="modal-open">
+                        {console.log(this.props)}
+                        <div className="contents-modal">
+                          <h1 className="head-confirm">Booking Confirmed !!</h1>
+                          <h2 className="main-head">
+                            Hello {this.props.customerDetails.guestName}
+                          </h2>
+
+                          <div className="HotelModal">
+                            <label>Hotel </label>
+                            <p>{this.props.customerDetails.hotelNow}</p>
+                            <label> Check-in </label>
+                            <p>{this.props.customerDetails.checkIn}</p>
+                            <label>Check-out </label>
+                            <p>{this.props.customerDetails.checkOut}</p>
+                            <label> Booking ID</label>
+                            <p>
+                              123452653
+                              {/* {this.props.customerDetails.bookingId} */}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="bookNow">
+                          <Link as={NavLink} to="/">
+                            <button onClick={this.handlePost}>
+                              Back to Home
+                            </button>
+                          </Link>
+                          <p className="i-p">
+                            {" "}
+                            <i>For any queries,contact us on 0462-222442</i>
+                          </p>
+                        </div>
+                        {/* onClick={this.handleClose */}
+                        {/* <img src={modalBell} className="modal-gif"></img> */}
+                      </div>
+                    </Modal>
+                  )}
                 </div>
               )}
             </div>
