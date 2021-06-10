@@ -76,6 +76,10 @@ class DisplayRedux extends Component {
     if (true) {
       window.scroll(0, 0);
     }
+    if(this.props.propertyList.length===0){
+      this.props.history.push("/")
+    }
+    
     axios
       .get(
         `http://localhost:5000/rooms/getRoomType/${this.props.match.params.id}`
@@ -223,6 +227,9 @@ class DisplayRedux extends Component {
     // } else {
     //   console.info("This page is not reloaded");
     // }
+//     if(window.location.reload)  {this.props.history.push("/")
+// }
+
     return (
       <div className="displayOne">
         {this.props.propertyList.forEach((data) => {

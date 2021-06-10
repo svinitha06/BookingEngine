@@ -53,15 +53,19 @@ export class BasicLayout extends Component {
       clicked: false,
       open: false,
       city: "",
+      start:null,
+      end:null
     };
   }
   // getRoomNum = (numOfRooms) => {
   //   console.log("checking it", numOfRooms);
   // };
   componentDidMount() {
+   
     if (true) {
       window.scroll(0, 0);
     }
+    
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
@@ -195,18 +199,31 @@ export class BasicLayout extends Component {
       roomAnchor: null,
     });
   };
+  handleDateChange = (e) => {
+    this.props.date({
+      start: e.value[0],
+      end: e.value[1],
+    });
 
+    this.setState({
+      start: e.value[0],
+      end: e.value[1],
+      clicked: false,
+    });
+
+   
+  };
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
       new Date().getMonth(),
       new Date().getDate()
     );
-
+    
     // <Route exact path="/">
     //   {window.location.reload ? <Redirect to="/" /> : null}
     // </Route>;
-
+    
     return (
       <div className="basiclayoutClass">
         <div className="adjustHeight">
@@ -225,6 +242,7 @@ export class BasicLayout extends Component {
                   format={"dd-MMM-yy"}
                   color={"black"}
                   className="datepicker"
+                  onChange={this.handleDateChange}
                 ></DateRangePickerComponent>
               </div>
             </div>
@@ -326,6 +344,11 @@ export class BasicLayout extends Component {
         </div>
 
         <DisplayRedux />
+        {/* if(window.location.reload){
+      // this.props.history.push("/")
+    window.location.replace('http://localhost:3000/')
+     } */}
+     {/* {!window.location.reload ? null :window.location.assign('http://localhost:3000/')} */}
       </div>
     );
   }

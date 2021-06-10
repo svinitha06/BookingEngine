@@ -697,7 +697,7 @@ select {
 }
 .input {
   background-color: none !important;
-  border: 1px solid grey !important;
+  /* border: 1px solid grey !important; */
 }
 .firstName {
   width: 100% !important;
@@ -886,7 +886,7 @@ select {
   margin-left: 2% !important;
 }
 .content-wrap {
-  background: #f8f8ff;
+  background: #f3f3f3;
 }
 /* Button css Not to DELETE */
 /* Button css Not to DELETE */
@@ -1065,35 +1065,19 @@ a.ui.button.submit-form:hover {
   display: grid;
   grid-template-columns: 50% 50%;
 }
-.modal-open {
-  background: #485a61;
-  background: linear-gradient(to right, #485a61, #fffde4);
-  width: 36%;
-  height: 49vh;
-  margin-left: 16.5em;
-  margin-top: 6em;
-  padding: 3em;
-  color: #272d2d;
-  text-shadow: cornflowerblue !important;
-  font-size: x-large;
-  /* border-radius: 51px; */
-}
-.contents-modal {
-  /* align-items: center; */
+
+/* .contents-modal {
   margin-top: -1.75em;
   margin-left: 0.5em;
-  /* background: rgba(0, 0, 0, 0.3); */
   width: 90%;
   padding-left: 1em;
   padding-top: 1em;
   padding-bottom: 1em;
   border: none;
   box-shadow: -9px 9px 10px -3px black;
-  /* border-radius: 40px; */
   padding-right: 0.5em !important;
-  /* justify-content: center; */
-  /* position: absolute; */
-}
+ 
+} */
 .firstError {
   border: 1px solid red !important;
 }
@@ -1157,28 +1141,7 @@ a.ui.button.submit-form {
   margin-top: 2%;
   width: 50%;
 }
-.bookNow {
-  margin-top: 3em;
-  margin-left: 2.75em;
-}
-.bookNow button {
-  margin-right: -47px;
-  margin-top: -25px;
-  padding: 16px 30px;
-  border: none;
-  outline: none;
-  color: #fff;
-  background-color: rgba(57, 61, 63, 0.8);
-  /* transition: all 0.3s; */
-  font-size: 18px;
-  cursor: pointer;
-}
-.bookNow button:hover {
-  color: black !important;
-  background-color: transparent;
-  opacity: 0.7;
-  border: 1px solid #565656;
-}
+
 .errorPost {
   color: #3b3b3c;
   border: 1px solid red;

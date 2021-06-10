@@ -10,7 +10,7 @@ export const getproperty = async () => {
 };
 export const getpropertyLocation = async (data) => {
   const res = await axios.get(
-    `http://localhost:5000/property/Property/${data}`
+    `${host}/property/Property/${data}`
   );
   
   return res.data;
@@ -18,7 +18,7 @@ export const getpropertyLocation = async (data) => {
 export const getFilteredSearch = async (data) => {
   let res = await axios({
     method: "get",
-    url: `http://localhost:5000/property/Property/search`,
+    url: `${host}/property/Property/search`,
     headers: {
       "Content-Type": "application/json",
       location: data.location,
@@ -30,14 +30,14 @@ export const getFilteredSearch = async (data) => {
 };
 export const getpropertyRoom = async (data) => {
   const res = await axios.get(
-    `http://localhost:5000/rooms/getRoomType/${data}`
+    `${host}/rooms/getRoomType/${data}`
   );
   return res.data;
 };
 export const getPostHotelDetails = async (data) => {
   console.log(data,"hotel")
   const res = await axios.post(
-    `http://localhost:5000/book/Book`,data
+    `${host}/book/Book`,data
   
   );
   return res;

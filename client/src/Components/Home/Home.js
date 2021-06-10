@@ -66,6 +66,10 @@ class Home extends React.Component {
     if (true) {
       window.scroll(0, 0);
     }
+    this.setState({
+      start: this.props.dateRange.start,
+      end: this.props.dateRange.end,
+    });
     if (this.state.flag) {
       const today = new Date();
       const tomorrow = new Date(today);
@@ -502,7 +506,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
           <h1 className="errorAPI">Error fetching data</h1>
         )}
 
-        {this.state.errorOffline && (
+        {/* {this.state.errorOffline && (
           <Modal
             open={this.state.open}
             onClose={this.handleHomeClose}
@@ -525,7 +529,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
               </p>
             </div>
           </Modal>
-        ) }
+        ) } */}
 
         {this.state.loader && <CircularProgress className="loadingSym" />}
         {this.props.propertyList.length && !this.state.loader && !this.state.errorAPI? (
@@ -607,6 +611,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
                             pathname: `/basiclayout/${data.PropertyId}`,
                             props: { hotelName: get(data, "name", "--") },
                           }}
+                          
                         >
                           <button onClick={this.handleViewErrorOff}>View Details</button>
                         </Link>
