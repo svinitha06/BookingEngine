@@ -4,7 +4,7 @@ import axios from "axios";
 // let host="http://localhost:5000"
 
 var env=process.env.NODE_ENV||'development';
-var host = env === 'development' ? "http://localhost:5000":"http://c105db4e3674.ngrok.io"
+var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.ngrok.io"
 export const getproperty = async () => {
   const res = await axios.get(`${host}/property/Property`);
   return res.data;
