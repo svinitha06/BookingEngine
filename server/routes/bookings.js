@@ -2,13 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const booking = require('../Models/booking');
 const nodemailer = require('nodemailer');
-const bodyParser =require('body-parser');
+const bodyParser = require('body-parser');
 const { ObjectID } = require('bson');
 
 mongoose.connect(`mongodb+srv://sathishm2408:${encodeURIComponent('S@chu2408')}@cluster0.ifzlg.mongodb.net/BookingEngine?retryWrites=true&w=majority`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
 })
 
 const router = express.Router()
@@ -21,62 +21,37 @@ var transporter = nodemailer.createTransport({
     pass: 'shruti$123'
   }
 });
-//GET API
 
-router.get('/booking',function(req,res)
-{
-    try{
-        booking.find(function(err,response){
-            if(err)
-            res.status(400).send(err)
-            else
-            res.send(response)
-        })
-    }
-    catch(error){
-        res.send(error)
-    }
+//GET API
+router.get('/booking', function (req, res) {
+  try {
+    booking.find(function (err, response) {
+      if (err)
+        res.status(400).send(err)
+      else
+        res.send(response)
+    })
+  }
+  catch (error) {
+    res.send(error)
+  }
 })
 
 //POST API
-// router.post("/Book", async (req, res) => {
-//     const post = new booking({
-//       propertyId: req.body.propertyId,
-//       roomType: req.body.roomType,
-//       guestName: req.body.guestName,
-//       mobile: req.body.mobile,
-//       email: req.body.email,
-//       Adults: req.body.Adults,
-//       Children: req.body.Children,
-//       planType: req.body.planType,
-//       stayingDays: req.body.stayingDays,
-//       totalRate: req.body.totalRate,
-//       address: req.body.address
-//     });
-//     try {
-//       const savedPost = await post.save();
-//       res.json(savedPost);
-//     } catch (err) {
-//       res.status(400).send({ message: err });
-//     }
-//   });
-
 router.post("/Book", async (req, res) => {
   console.log(req.body);
   const book = new booking(req.body)
   book.save().then(() => {
-      res.status(201).send(book);
-      return transporter.sendMail({
-        from: 'bookinghotel.engine@gmail.com', // sender address
-        to: req.body.email, // list of receivers
-        subject: "Booking was Successful! ", // Subject line
-        html: `<html><head><style>.centre { display: flex; justify-content: center; align-items: center; height:200px; border: 3px solid green;}</style></head><body><p><img src="https://www.lamalmaisonnice.com/wp-content/uploads/2021/06/Sans-titre-2-1024x621.png" height="300px" width="800px"></p><h3 style="color:black">Dear <strong>${req.body.guestName}</strong>, your booking was successful with us. Your booking details are as follows: </h3><div class ="center"><p><strong>Hotel: </strong>${req.body.hotelNow}</p><p><strong>Check In Date: </strong>${req.body.checkIn}</p><p><strong>Check Out Date: </strong>${req.body.checkOut}</p><p><strong>Booking ID: </strong>${req.body.bookingId}</p><p><strong>Booked on: </strong>${req.body.bookedDate}</p></body></div><p><strong>For any enquiry reach out to us on this number +91 7836528737 or you can reply to this email.</strong></p><p><img src="https://www.kashmirpen.com/wp-content/uploads/2020/07/booked.png" width="80px"/></p><p>Warm regards,</p><p>Team Booking Engine</p></body></html>`, // html body
-        });
+    res.status(201).send(book);
+    return transporter.sendMail({
+      from: 'bookinghotel.engine@gmail.com', // sender address
+      to: req.body.email, // list of receivers
+      subject: "Booking was Successful! ", // Subject line
+      html: `<html><head><style>.centre { display: flex; justify-content: center; align-items: center; height:200px; border: 3px solid green;}</style></head><body><p><img src="https://www.lamalmaisonnice.com/wp-content/uploads/2021/06/Sans-titre-2-1024x621.png" height="300px" width="800px"></p><h3 style="color:black">Dear <strong>${req.body.guestName}</strong>, your booking was successful with us. Your booking details are as follows: </h3><p><div class ="center"><p><img src="https://i2.wp.com/www.bafonline.org.uk/wp-content/uploads/2017/11/Details-button.png" width="250px" height="60px"></p><strong>Hotel: </strong>${req.body.hotelNow}</p><p><strong>Check In Date: </strong>${req.body.checkIn}</p><p><strong>Check Out Date: </strong>${req.body.checkOut}</p><p><strong>Booking ID: </strong>${req.body.bookingId}</p><p><strong>Booked on: </strong>${req.body.bookedDate}</p></body></div><p><img src="https://www.kashmirpen.com/wp-content/uploads/2020/07/booked.png" width="250px" height="80px"/></p><p><strong>For any enquiry or cancellation of your booking, contact us on this number +91 7836528737 or write us to this email.</strong></p><p><strong>Warm regards,</strong></p><p><img src="https://hydraislandgreece.com/wp-content/uploads/2019/12/HotelBlueIcon-300x250.png" width="60px"/><h3><strong>Booking Engine</strong></h3></p></body></html>`, // html body
+    });
   }).catch((err) => {
-      res.status(400).send(err);
+    res.status(400).send(err);
   })
 })
-  
-
 
 module.exports = router;

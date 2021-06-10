@@ -196,25 +196,27 @@ export class Payment extends Component {
 
               <div className="payButton">
                 <button onClick={this.handleCredit}>
-                  <div className="imageAndCredit">
-                    <IconContext.Provider
-                      value={{ color: "orange", size: "2.5em" }}
-                    >
-                      <ImCreditCard />
-                    </IconContext.Provider>
-                    <p
-                      style={{
-                        fontWeight: "bold",
-                        fontSize: "18px",
-                        color: "darkblue",
-                        marginLeft: "5%",
-                      }}
-                    >
-                      Credit/Debit
-                    </p>
-                  </div>
+                  <div className="imageAnddP">
+                    <div className="imageAndCredit">
+                      <IconContext.Provider
+                        value={{ color: "orange", size: "2.5em" }}
+                      >
+                        <ImCreditCard />
+                      </IconContext.Provider>
+                      <p
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                          color: "darkblue",
+                          marginLeft: "5%",
+                        }}
+                      >
+                        Credit/Debit
+                      </p>
+                    </div>
 
-                  <p>Visa, MasterCard,Rupay and more</p>
+                    <p>Visa, MasterCard,Rupay and more</p>
+                  </div>
                 </button>
               </div>
               <div className="payButtonTwo">
@@ -238,14 +240,36 @@ export class Payment extends Component {
               </div>
               {/* <div> Net Banking</div> */}
               <div className="netBankingContainer">
-                <button onClick={this.handleNetBanking}>Net Banking</button>
+                <div className="payButtonthree">
+                  <button onClick={this.handleNetBanking}>
+                    {/* <img src={Image_Netbanking}></img> */}
+                    <div className="Netbankingandimage">
+                      <p
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                          color: "darkblue",
+                          marginLeft: "3%",
+                        }}
+                      >
+                        Net Banking
+                      </p>
+                      <p>All Major banks Available</p>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
             <div className="parentPaymentFirst">
               <div className="cancelButtonDiv">
                 <div></div>
                 <div className="extra">
-                  <button className="cancelButton">Cancel</button>
+                  <button
+                    className="cancelButton"
+                    onClick={this.props.history.goBack}
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
 
@@ -406,90 +430,170 @@ export class Payment extends Component {
                 </div>
               )}
               {this.state.isActiveGPay && (
-                <div className="UPIContents">
-                  <h2>Enter UPI ID</h2>
-                  <div className="upiInput">
-                    <input
-                      type="text"
-                      placeholder="MobileNumber@UPI"
-                      className={`${
-                        this.state.errorNowUPI !== "" ? "firstError" : ""
-                      }`}
-                      onChange={this.handleInputChange}
-                    ></input>
+                <div className="UPIParentContainer">
+                  <div className="UPIContents">
+                    <h2>Enter UPI ID</h2>
+                    <div className="upiInput">
+                      <input
+                        type="text"
+                        placeholder="MobileNumber@UPI"
+                        className={`${
+                          this.state.errorNowUPI !== "" ? "firstError" : ""
+                        }`}
+                        onChange={this.handleInputChange}
+                      ></input>
+                    </div>
                     <div className="UPIImage">
-                      <img src={paytm} style={{ width: "20%" }}></img>
+                      <img src={paytm}></img>
                     </div>
-                  </div>
-                  <div className="UPIImage">
-                    <img
-                      // src={ImageOne}
-                      style={{ width: "20%" }}
-                    ></img>
-                  </div>
-                  <div className="PaymentButton">
-                    <div className="lastDivPayment">
-                      <h2>Pay :{this.props.finalTotalPrice}</h2>
-                      <button
-                        id="paymentbuttonLast"
-                        className="ui payment button"
-                        onClick={this.handlePaymentUPI}
+                    <div className="PaymentButton">
+                      <div className="lastDivPayment">
+                        <h2>Pay :{this.props.finalTotalPrice}</h2>
+                        <button
+                          id="paymentbuttonLast"
+                          className="ui payment button"
+                          onClick={this.handlePaymentUPI}
+                        >
+                          Make Payment
+                        </button>
+                      </div>
+                    </div>
+                    {this.state.openUPI && !this.state.errorPost && (
+                      <Modal
+                        open={this.state.openUPI}
+                        onClose={this.handleClose}
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description"
                       >
-                        Make Payment
-                      </button>
-                    </div>
-                  </div>
-                  {this.state.openUPI && !this.state.errorPost && (
-                    <Modal
-                      open={this.state.openUPI}
-                      onClose={this.handleClose}
-                      aria-labelledby="simple-modal-title"
-                      aria-describedby="simple-modal-description"
-                    >
-                      <div className="modal-open">
-                        {console.log(this.props)}
-                        <div className="contents-modal">
-                          <h1 className="head-confirm">Booking Confirmed !!</h1>
-                          <h2 className="main-head">
-                            Hello {this.props.customerDetails.guestName}
-                          </h2>
+                        <div className="modal-open">
+                          {console.log(this.props)}
+                          <div className="contents-modal">
+                            <h1 className="head-confirm">
+                              Booking Confirmed !!
+                            </h1>
+                            <h2 className="main-head">
+                              Hello {this.props.customerDetails.guestName}
+                            </h2>
 
-                          <div className="HotelModal">
-                            <label>Hotel </label>
-                            <p>{this.props.customerDetails.hotelNow}</p>
-                            <label> Check-in </label>
-                            <p>{this.props.customerDetails.checkIn}</p>
-                            <label>Check-out </label>
-                            <p>{this.props.customerDetails.checkOut}</p>
-                            <label> Booking ID</label>
-                            <p>
-                              123452653
-                              {/* {this.props.customerDetails.bookingId} */}
+                            <div className="HotelModal">
+                              <label>Hotel </label>
+                              <p>{this.props.customerDetails.hotelNow}</p>
+                              <label> Check-in </label>
+                              <p>{this.props.customerDetails.checkIn}</p>
+                              <label>Check-out </label>
+                              <p>{this.props.customerDetails.checkOut}</p>
+                              <label> Booking ID</label>
+                              <p>
+                                123452653
+                                {/* {this.props.customerDetails.bookingId} */}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="bookNow">
+                            <Link as={NavLink} to="/">
+                              <button onClick={this.handlePost}>
+                                Back to Home
+                              </button>
+                            </Link>
+                            <p className="i-p">
+                              {" "}
+                              <i>For any queries,contact us on 0462-222442</i>
                             </p>
                           </div>
+                          {/* onClick={this.handleClose */}
+                          {/* <img src={modalBell} className="modal-gif"></img> */}
                         </div>
-
-                        <div className="bookNow">
-                          <Link as={NavLink} to="/">
-                            <button onClick={this.handlePost}>
-                              Back to Home
-                            </button>
-                          </Link>
-                          <p className="i-p">
-                            {" "}
-                            <i>For any queries,contact us on 0462-222442</i>
-                          </p>
-                        </div>
-                        {/* onClick={this.handleClose */}
-                        {/* <img src={modalBell} className="modal-gif"></img> */}
-                      </div>
-                    </Modal>
-                  )}
+                      </Modal>
+                    )}
+                  </div>
                 </div>
               )}
               {this.state.isActiveNetBanking && (
                 <div>
-                  <h1>Net Banking</h1>
+                  <div className="Netbankingcontents">
+                    <div>
+                      <h3>Net Banking</h3>
+                      <div class="ui input">
+                        <input type="text" placeholder="Search"></input>
+                        <div></div>
+                      </div>
+                    </div>
+                    <form class="ui form">
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <label>State Bank of India</label>
+                          <input
+                            type="radio"
+                            name="bank"
+                            value="State Bank of India"
+                          ></input>
+                          {/* // checked={value === "State Bank of India"}
+                            // onChange={handleChange}></input> */}
+                        </div>
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <label>HDFC Bank</label>
+                            <input
+                              type="radio"
+                              name="bank"
+                              value="HDFC Bank"
+                            ></input>
+                            {/* // checked={value === "HDFC Bank"}
+                              // onChange={handleChange}></input> */}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <label>Axis Bank</label>
+                          <input
+                            type="radio"
+                            name="bank"
+                            value="Axis Bank"
+                          ></input>
+                          {/* // checked={value === "Axis Bank"}
+                            // onChange={handleChange}></input> */}
+                        </div>
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <label>Punjab National Bank</label>
+                            <input
+                              type="radio"
+                              name="bank"
+                              value="Punjab National Bank"
+                            ></input>
+                            {/* // checked={value === "Punjab National Bank"}
+                              // onChange={handleChange}></input> */}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="userdetails">
+                        <div className="Usercontents">
+                          <h4>USER ID</h4>
+                          <div className="ui input">
+                            <input type="text" placeholder="UserID"></input>
+                          </div>
+                        </div>
+                        <h4>PASSWORD</h4>
+                        <div className="ui input">
+                          <input type="text" placeholder="Password"></input>
+                        </div>
+                      </div>
+                    </form>
+                    <div className="PaymentButton">
+                      <div className="lastDivPayment">
+                        <h2>Pay :{this.props.finalTotalPrice}</h2>
+                        <button
+                          id="paymentbuttonLast"
+                          className="ui payment button"
+                          onClick={this.handlePaymentCredit}
+                        >
+                          Make Payment
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
