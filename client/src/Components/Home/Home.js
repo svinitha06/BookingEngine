@@ -502,7 +502,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
           <h1 className="errorAPI">Error fetching data</h1>
         )}
 
-        {this.state.errorOffline && (
+        {/* {this.state.errorOffline && (
           <Modal
             open={this.state.open}
             onClose={this.handleHomeClose}
@@ -525,7 +525,7 @@ console.log(this.state.errorOffline,this.state.open,"insidegetlocation")
               </p>
             </div>
           </Modal>
-        ) }
+        ) } */}
 
         {this.state.loader && <CircularProgress className="loadingSym" />}
         {this.props.propertyList.length && !this.state.loader && !this.state.errorAPI? (

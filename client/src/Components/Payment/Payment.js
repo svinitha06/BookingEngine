@@ -94,12 +94,12 @@ export class Payment extends Component {
     }
     if (this.state.cardNumber.length !== 16) {
       this.setState({
-        errorNumber: "Required",
+        errorNumber2: "enter valid card number",
       });
     }
     if (this.state.cardCvv.length !== 3) {
       this.setState({
-        errorCvv: "Required",
+        errorCvv: "valid",
       });
     }
 
@@ -257,19 +257,17 @@ export class Payment extends Component {
 
                       <input
                         placeholder="**** **** **** ****"
-                        max="9999999999999999"
-                        min="0000000000000001"
-                        min="0"
                         type="number"
                         name="number"
                         value={this.state.cardNumber}
+ 
                         className={`${
-                          this.state.errorNumber !== "" ? "firstError" : ""
+                          this.state.errorNumber  !== "" ? "firstError" : ""
                         }`}
                         onChange={this.handleInputChange1}
                       ></input>
 
-                      {/* {this.state.errorNow} */}
+                     {this.state.errorNumber2}
                     </div>
                     <div className="cardName">
                       <label> Name on Card</label>
