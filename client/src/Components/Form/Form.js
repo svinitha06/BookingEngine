@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Form2.css";
 import Modal from "@material-ui/core/Modal";
 import { Redirect } from "react-router-dom";
-import { get,split } from "lodash";
+import { get, split } from "lodash";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
@@ -56,22 +56,21 @@ export class Form extends Component {
     }
     if (this.props.roomDetailsList.length === 0) {
       this.props.history.push("/");
-    
-    this.setState({
-      start: this.props.dateRange.start,
-      end: this.props.dateRange.end,
-    });
-    if (this.props.customerDetails !== []) {
+
       this.setState({
-        firstName:split(this.props.customerDetails.guestName)[0],
-        lastName: split(this.props.customerDetails.guestName)[1],
+        start: this.props.dateRange.start,
+        end: this.props.dateRange.end,
+      });
+    }
+    if (get(this.props.customerDetails, "guestName", " ")) {
+      this.setState({
+        firstName: split(this.props.customerDetails.guestName," ")[0],
+        lastName: split(this.props.customerDetails.guestName," ")[1],
         email: this.props.customerDetails.email,
         contact: this.props.customerDetails.mobile,
         address: this.props.customerDetails.address,
       });
-    }}
-    this.getHoteldetails();
-    console.log(this.props,"karan kaiser")
+    }
   }
   handleHotel = () => {
     // const { hotelFlag } = this.state;
@@ -124,7 +123,7 @@ export class Form extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    const ascii = this.state.contact.charCodeAt(0)
+    const ascii = this.state.contact.charCodeAt(0);
     if (this.state.firstName === null) {
       this.setState({
         firstError: "Enter Firstname",
@@ -177,8 +176,8 @@ export class Form extends Component {
         open: true,
       });
       this.props.history.push("/payment");
+      this.getHoteldetails();
     }
-
   };
   getHoteldetails = async () => {
     var hotelName;
@@ -198,8 +197,8 @@ export class Form extends Component {
       bookedDate: new Date().toLocaleDateString(),
       bookingId: new ObjectID(),
     };
-   
-   this.props.hotelDetails(data);
+
+    this.props.hotelDetails(data);
     console.log(data, "hotelNow");
   };
 
@@ -580,7 +579,7 @@ export class Form extends Component {
                           </div>
                           <div className="priceDetailsContainerTwo">
                             <div style={{ color: "blue", fontWeight: "600" }}>
-                              GST
+                              GST (18%)
                             </div>
                             <div></div>
                             <div></div>
@@ -588,7 +587,7 @@ export class Form extends Component {
                           </div>
                           <div className="priceDetailsContainerTwo">
                             <div style={{ color: "red", fontWeight: "600" }}>
-                              Discount
+                              Discount (16%)
                             </div>
                             <div></div>
                             <div></div>

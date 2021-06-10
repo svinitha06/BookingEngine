@@ -57,7 +57,6 @@ export class Payment extends Component {
     if (this.props.customerDetails.length === 0) {
       this.props.history.push("/");
     }
-   
   }
   onBankChange = (e) => {
     this.setState({ value: e.target.value });
@@ -127,9 +126,7 @@ export class Payment extends Component {
         open: true,
       });
       this.handlePostApi();
-
     }
-
   };
   handlePaymentUPI = () => {
     if (this.state.UPItext == "") {
@@ -142,9 +139,7 @@ export class Payment extends Component {
         openUPI: true,
       });
       this.handlePostApi();
-
     }
-
   };
   handlePaymentNetBanking = () => {
     if ((this.state.netUserId && this.state.netPassword) === "") {
@@ -230,9 +225,11 @@ export class Payment extends Component {
     //   this.props.history.goBack();
     // };
   };
-  handleBackPayment=()=>{
+  handleBackPayment = () => {
     this.props.hotelDetails([]);
-  }
+    console.log("doubt ey");
+  };
+
   render() {
     return (
       <div>
@@ -282,8 +279,8 @@ export class Payment extends Component {
                           fontWeight: "bold",
                           fontSize: "18px",
                           color: "darkblue",
-                          marginLeft: "19%",
-                          margintop: "-22%",
+                          marginLeft: "3%",
+                          
                         }}
                       >
                         UPI
@@ -435,15 +432,17 @@ export class Payment extends Component {
                           <div className="HotelModal">
                             <label>Hotel </label>
                             <p>{this.props.customerDetails.hotelNow}</p>
-                            <label> Check-in </label>
-                            <p>{this.props.customerDetails.checkIn}</p>
-                            <label>Check-out </label>
-                            <p>{this.props.customerDetails.checkOut}</p>
                             <label> Booking ID</label>
+                            <p>123452653</p>
+                            <label>Amount </label>
                             <p>
-                              123452653
-                              {/* {this.props.customerDetails.bookingId} */}
+                              {" "}
+                              Rs.
+                              {this.props.finalTotalPrice +
+                                this.props.finalTotalPrice * 0.02}
                             </p>
+                            {/* <label>Payment Mode</label>
+                            <p>Net Banking </p> */}
                           </div>
                         </div>
 
@@ -550,15 +549,17 @@ export class Payment extends Component {
                             <div className="HotelModal">
                               <label>Hotel </label>
                               <p>{this.props.customerDetails.hotelNow}</p>
-                              <label> Check-in </label>
-                              <p>{this.props.customerDetails.checkIn}</p>
-                              <label>Check-out </label>
-                              <p>{this.props.customerDetails.checkOut}</p>
                               <label> Booking ID</label>
+                              <p>123452653</p>
+                              <label>Amount </label>
                               <p>
-                                123452653
-                                {/* {this.props.customerDetails.bookingId} */}
+                                {" "}
+                                Rs.
+                                {this.props.finalTotalPrice +
+                                  this.props.finalTotalPrice * 0.02}
                               </p>
+                              {/* <label>Payment Mode</label>
+                            <p>Net Banking </p> */}
                             </div>
                           </div>
 
@@ -730,16 +731,22 @@ export class Payment extends Component {
                           <div className="HotelModal">
                             <label>Hotel </label>
                             <p>{this.props.customerDetails.hotelNow}</p>
-                            <label> Check-in </label>
-                            <p>{this.props.customerDetails.checkIn}</p>
-                            <label>Check-out </label>
-                            <p>{this.props.customerDetails.checkOut}</p>
                             <label> Booking ID</label>
+                            <p>123452653</p>
+                            <label>Amount </label>
                             <p>
-                              123452653
-                              {console.log(this.props.customerDetails.bookingId,"booking ID check")}
+                              {" "}
+                              Rs.
+                              {this.props.finalTotalPrice +
+                                this.props.finalTotalPrice * 0.02}
                             </p>
+                            {/* <label>Payment Mode</label>
+                            <p>Net Banking </p> */}
                           </div>
+                          {console.log(
+                            this.props.customerDetails,
+                            "booking ID check"
+                          )}
                         </div>
 
                         <div className="bookNow">

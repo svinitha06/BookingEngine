@@ -905,7 +905,8 @@ select {
   border: none;
   outline: none;
   color: #fff;
-  background-color: rgba(117, 162, 179, 0.8);
+  /* background-color: rgba(117, 162, 179, 0.8); */
+  background-color: rgb(8 105 116) !important;
   /* transition: all 0.3s; */
   font-size: 16px;
 }
@@ -916,7 +917,8 @@ a.ui.button.submit-form {
   border: none !important;
   outline: none !important;
   color: #fff !important;
-  background-color: rgb(144, 181, 193) !important;
+  background-color: rgb(8 105 116) !important;
+  /* background-color: rgb(144, 181, 193) !important; */
   /* transition: all 0.3s !important; */
   font-size: 16px !important;
   font-weight: 100 !important;

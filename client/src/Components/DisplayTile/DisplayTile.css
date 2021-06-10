@@ -61,6 +61,7 @@
 }
 .roomdiv {
   display: flex;
+  margin-top: 2%;
 }
 .roomdiv h2 {
   margin: 0% !important;
@@ -155,6 +156,10 @@ h6 {
 .include-food label {
   margin-bottom: 6px;
 }
+.include-food{
+  margin-top: 6% !important;
+
+}
 .btn-placement .ui.button.reserve {
   /* display: inline-block !important; */
   padding: 0.9em 1.5em !important;
@@ -226,7 +231,7 @@ a.ui.button.reserve-left {
   border: 1px solid #565656 !important;
 }
 .containerBasic {
-  background-color: rgba(117, 162, 179, 0.8);
+  background-color: rgb(8 105 116) !important;
   opacity: 0.7;
 }
 /* .reserve :hover,.reserve-left :hover{
@@ -271,6 +276,7 @@ a.ui.button.reserve-left {
 }
 .property-center h1 {
   font-size: 3rem;
+  color: #086974 !important;
 }
 .rate-container h5 {
   margin-left: 3px;
@@ -290,7 +296,7 @@ a.ui.button.reserve-left {
   justify-content: space-between;
 }
 .roomDescOne {
-  margin-top: 6% !important;
+  margin-top: 2% !important;
 }
 .availableRoooms {
   display: flex;
@@ -299,3 +305,8 @@ a.ui.button.reserve-left {
   flex-wrap: nowrap;
   justify-content: flex-end;
 }
+.roomtypeHead p {
+  font-size: 25px !important;
+  font-weight: 600 !important;
+  color: #086974 !important;
+  }

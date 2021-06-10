@@ -308,10 +308,10 @@ class DisplayRedux extends Component {
                           <div>
                             <div className="rate-name">
                               <div>
-                                <div>
-                                  <h2 style={{ marginTop: "6px" }}>
+                                <div className="roomtypeHead">
+                                  <p style={{ marginTop: "6px" }}>
                                     {post.roomType}
-                                  </h2>
+                                  </p>
                                 </div>
                               </div>
 

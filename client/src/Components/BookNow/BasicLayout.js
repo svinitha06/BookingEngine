@@ -227,7 +227,7 @@ export class BasicLayout extends Component {
     return (
       <div className="basiclayoutClass">
         <div className="adjustHeight">
-          <img src={ImageOne} style={{ width: "100%" }}></img>
+          <img src={ImageOne} className="img_tile_BL"></img>
         </div>
         {/* DatePicker */}
         <div className="containerBasic">
