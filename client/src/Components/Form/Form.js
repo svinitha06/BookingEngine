@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Form2.css";
 import Modal from "@material-ui/core/Modal";
 import { Redirect } from "react-router-dom";
-import { get } from "lodash";
+import { get,split } from "lodash";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
@@ -63,8 +63,8 @@ export class Form extends Component {
     });
     if (this.props.customerDetails !== []) {
       this.setState({
-        firstName: (this.props.customerDetails.guestName),
-        // lastName: (this.props.customerDetails.guestName).split(" ")[1],
+        firstName:split(this.props.customerDetails.guestName)[0],
+        lastName: split(this.props.customerDetails.guestName)[1],
         email: this.props.customerDetails.email,
         contact: this.props.customerDetails.mobile,
         address: this.props.customerDetails.address,
@@ -230,7 +230,7 @@ export class Form extends Component {
     return `${formattedDate.date}-${formattedDate.month}-${formattedDate.year}`;
   };
   handleBack = () => {
-    this.props.history.goBack();
+    this.props.hotelDetails([]);
   };
   handlePostClose = () => {
     this.setState({
@@ -445,7 +445,7 @@ export class Form extends Component {
                         className="submit-form"
                         as={NavLink}
                         to={`basiclayout/${this.props.booking[0].propertyId}`}
-                        // onClick={this.handleBack}
+                        onClick={this.handleBack}
                       >
                         Back
                       </Button>

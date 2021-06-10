@@ -51,6 +51,7 @@ import {
   roomTypesRate,
   bookingDetails,
   additionOfPrices,
+  hotelDetails
 } from "../../actions/index";
 
 class DisplayRedux extends Component {
@@ -180,6 +181,7 @@ class DisplayRedux extends Component {
     this.setState({ countObj: count });
   };
   handleReserve = () => {
+    this.props.hotelDetails([]);
     let theTotal = this.calculateTotal();
     this.props.additionOfPrices({ Amount: theTotal });
 
@@ -188,6 +190,7 @@ class DisplayRedux extends Component {
       return true;
     }
     return false;
+
   };
   checkEnable = () => {
     var temp = this.calculateTotal();
@@ -457,6 +460,8 @@ const mapDispatchToProps = (dispatch) => {
     room: bindActionCreators(room, dispatch),
     property: bindActionCreators(property, dispatch),
     additionOfPrices: bindActionCreators(additionOfPrices, dispatch),
+    hotelDetails: bindActionCreators(hotelDetails, dispatch),
+
   };
 };
 const mapStateToProps = (state) => {

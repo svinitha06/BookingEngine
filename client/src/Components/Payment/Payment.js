@@ -124,7 +124,9 @@ export class Payment extends Component {
         open: true,
       });
       this.handlePostApi();
+
     }
+
   };
   handlePaymentUPI = () => {
     if (this.state.UPItext == "") {
@@ -137,7 +139,9 @@ export class Payment extends Component {
         openUPI: true,
       });
       this.handlePostApi();
+
     }
+
   };
   handlePaymentNetBanking=()=>{
     if(( this.state.netUserId && this.state.netPassword)===""){
@@ -152,8 +156,10 @@ export class Payment extends Component {
         openNetBank:true,
       });
       this.handlePostApi();
+     
 
     }
+
   }
 //   handleNetBankChange=(e)=>{
 // this.setState({
@@ -224,6 +230,9 @@ export class Payment extends Component {
     //   this.props.history.goBack();
     // };
   };
+  handleBackPayment=()=>{
+    this.props.hotelDetails([]);
+  }
   render() {
     return (
       <div>
@@ -443,7 +452,7 @@ export class Payment extends Component {
 
                         <div className="bookNow">
                           <Link as={NavLink} to="/">
-                            <button onClick={this.handlePost}>
+                            <button onClick={this.handleBackPayment}>
                               Back to Home
                             </button>
                           </Link>

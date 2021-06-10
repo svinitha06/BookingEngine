@@ -67,14 +67,14 @@
   margin: 0px;
   justify-content: center;
   position: absolute;
-  top: 73.5%;
+  top: 75.5%;
   /* border: 2px solid white; */
   /* box-shadow: 6px 4px 5px burlywood; */
   /* background: rgba(180, 243, 250, 0.2) !important; */
   padding-top: 12px;
   /* border-radius: 75px; */
-  /* background: rgba(117, 162, 179, 0.8); */
-  background-color: rgb(8, 105, 117,0.8);
+  background: rgba(117, 162, 179, 0.8);
+  /* background-color: rgb(8, 105, 117,0.8); */
   width: 85% !important;
   margin-left: 8%;
   /* /* opacity: 0.9; */
@@ -467,6 +467,14 @@ p h1 h6 {
   border: none !important;
   border-radius: 33px;
   background: #90b4c2;
+}
+.img_banner{
+  height: 64vh;
+  width: 92.25%;
+  margin-left: 10%;
+  margin-top: 1%;
+  box-shadow: 5px 9px 20px 3px lightslategrey;
+  border-radius: 32px;
 }
 @media only screen and (max-width: 768px) {
   .homeDiv {
