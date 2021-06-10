@@ -1,11 +1,15 @@
 import axios from "axios";
 // import { property } from "../../src/actions/index";
 // import { roomDetails } from "../../src/actions/index";
-let host="http://localhost:5000"
+// let host="http://localhost:5000"
+
+var env=process.env.NODE_ENV||'development';
+var host = env === 'development' ? "http://localhost:5000":"http://c105db4e3674.ngrok.io"
 export const getproperty = async () => {
   const res = await axios.get(`${host}/property/Property`);
   return res.data;
 };
+
 export const getpropertyLocation = async (data) => {
   const res = await axios.get(
     `${host}/property/Property/${data}`
@@ -40,6 +44,8 @@ export const getPostHotelDetails = async (data) => {
   );
   return res;
 };
+
+
 // const getRooomTypes = async () => {
 //   const resp = await axios.get("http://localhost:5000/rooms/getRoomTypes");
 //   return resp.data;

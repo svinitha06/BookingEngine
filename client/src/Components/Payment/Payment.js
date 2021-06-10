@@ -282,7 +282,8 @@ export class Payment extends Component {
                           fontWeight: "bold",
                           fontSize: "18px",
                           color: "darkblue",
-                          marginLeft: "3%",
+                          marginLeft: "19%",
+                          margintop: "-22%",
                         }}
                       >
                         UPI
