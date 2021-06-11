@@ -186,7 +186,7 @@ color: #cac6c6 !important;
   width: 70%;
   /* background: bisque; */
   /* padding: 3%; */
-  margin-left: 10% !important;
+  margin-left: 12% !important;
   margin-top: 4%;
   margin-bottom: 5%;
   background: white;
@@ -212,8 +212,25 @@ color: #cac6c6 !important;
   /* border-right: 1px solid black; */
   /* border: 1px solid #cac6c6; */
   border-right: 1px solid #cac6c6;
+  margin-top: 7%;
+  margin-left: 11%;
+  padding-right: 6%;
+  margin-bottom: 7%;
+  border-top-left-radius: 26px;
+  border-bottom-left-radius: 7px !important;
+
+  /*for now
+  display: grid;
+  grid-template-rows: 20% 25% 25% 30%;*/
+
+
+  /* border-right: 1px solid black; */
+  /* border: 1px solid #cac6c6; */
+
+/*forNOw
+  border-right: 1px solid #cac6c6;
   border-top-left-radius: 22px;
-  border-bottom-left-radius: 22px;
+  border-bottom-left-radius: 22px;*/
 }
 .choiceHeading {
   color: darkblue;
@@ -341,7 +358,7 @@ color: #cac6c6 !important;
   margin-right: -12% !important;
   padding-top: 4% !important;
   padding-bottom: 4% !important;
-  margin-top: 23% !important;
+  margin-top: 32% !important;
   margin-left: -5% !important;
 }
 .i-p {
@@ -374,7 +391,7 @@ color: #cac6c6 !important;
   box-shadow: 5px 3px 8px 1px darkslategray;
 }
 .bookNow {
-  margin-top: 7%;
+  margin-top: 18%;
   /* margin-bottom: -25%; */
   margin-left: 3em;
 }
@@ -429,7 +446,7 @@ color: #cac6c6 !important;
 .payButtonthree img {
   width: 18%;
   margin-bottom: 3%;
-  margin-left: 3%;
+  margin-left: -2%;
 }
 .payButtonthree {
   /* border-bottom: 1px solid black; */
@@ -562,9 +579,27 @@ color: #cac6c6 !important;
 }
 .forGreyColorNet {
   margin-left: -1% !important;
-  margin-top: -11% !important;
+  margin-top: -6% !important;
 }
 .BindTogether {
   display: flex;
   margin-top: 4%;
+}
+.upiInput ::-webkit-input-placeholder {
+ 
+    font-weight: lighter !important;
+    color:#AFB2B3 !important;
+
+}
+.cardNumber  ::-webkit-input-placeholder {
+ 
+  font-weight: lighter !important;
+  color:#AFB2B3 !important;
+
+}
+.cvvContainer  ::-webkit-input-placeholder {
+ 
+  font-weight: lighter !important;
+  color:#AFB2B3 !important;
+
 }

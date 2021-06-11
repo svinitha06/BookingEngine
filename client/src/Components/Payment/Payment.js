@@ -142,19 +142,19 @@ export class Payment extends Component {
     }
   };
   handlePaymentNetBanking = () => {
-    if ((this.state.netUserId && this.state.netPassword) === "") {
-      this.setState({
-        // errorNetBankText:"Required",
-        errorUserId: "required",
-        errorPassword: "required",
-      });
-    }
-    if (this.state.netUserId !== "" && this.state.netPassword !== "") {
+    // if ((this.state.netUserId && this.state.netPassword) === "") {
+    //   this.setState({
+    //     // errorNetBankText:"Required",
+    //     errorUserId: "required",
+    //     errorPassword: "required",
+    //   });
+    // }
+   
       this.setState({
         openNetBank: true,
       });
       this.handlePostApi();
-    }
+   
   };
   //   handleNetBankChange=(e)=>{
   // this.setState({
@@ -162,18 +162,18 @@ export class Payment extends Component {
   //   errorNetBankText:""
   // })
   //   }
-  handleNetBankUserId = (e) => {
-    this.setState({
-      netUserId: e.target.value,
-      errorUserId: "",
-    });
-  };
-  handleNetBankPassword = (e) => {
-    this.setState({
-      netPassword: e.target.value,
-      errorPassword: "",
-    });
-  };
+  // handleNetBankUserId = (e) => {
+  //   this.setState({
+  //     netUserId: e.target.value,
+  //     errorUserId: "",
+  //   });
+  // };
+  // handleNetBankPassword = (e) => {
+  //   this.setState({
+  //     netPassword: e.target.value,
+  //     errorPassword: "",
+  //   });
+  // };
   handleInputChange1 = (event) => {
     this.setState({
       cardNumber: event.target.value,
@@ -348,6 +348,7 @@ export class Payment extends Component {
                           this.state.errorName !== "" ? "firstError" : ""
                         }`}
                         onChange={this.handleInputChange2}
+                      
                       ></input>
                     </div>
                     <div className="forDivision">
@@ -409,6 +410,7 @@ export class Payment extends Component {
                             this.state.errorCvv !== "" ? "firstError" : ""
                           }`}
                           onChange={this.handleInputChange5}
+                          placeholder="XXX"
                         ></input>
                       </div>
                     </div>
@@ -433,7 +435,7 @@ export class Payment extends Component {
                             <label>Hotel </label>
                             <p>{this.props.customerDetails.hotelNow}</p>
                             <label> Booking ID</label>
-                            <p>123452653</p>
+                            <p>{this.props.customerDetails.bookingId.toString().substring(0,11)}</p>
                             <label>Amount </label>
                             <p>
                               {" "}
@@ -547,17 +549,17 @@ export class Payment extends Component {
                             </h2>
 
                             <div className="HotelModal">
-                              <label>Hotel </label>
-                              <p>{this.props.customerDetails.hotelNow}</p>
-                              <label> Booking ID</label>
-                              <p>123452653</p>
-                              <label>Amount </label>
-                              <p>
-                                {" "}
-                                Rs.
-                                {this.props.finalTotalPrice +
-                                  this.props.finalTotalPrice * 0.02}
-                              </p>
+                            <label>Hotel </label>
+                            <p>{this.props.customerDetails.hotelNow}</p>
+                            <label> Booking ID</label>
+                            <p>{this.props.customerDetails.bookingId.toString().substring(0,11)}</p>
+                            <label>Amount </label>
+                            <p>
+                              {" "}
+                              Rs.
+                              {this.props.finalTotalPrice +
+                                this.props.finalTotalPrice * 0.02}
+                            </p>
                               {/* <label>Payment Mode</label>
                             <p>Net Banking </p> */}
                             </div>
@@ -657,7 +659,7 @@ export class Payment extends Component {
                           </div>
                         </div>
                       </div>
-                      <div className="userdetails">
+                      {/* <div className="userdetails">
                         <div className="Usercontents">
                           <div className="userNow">
                             <p>USER ID</p>
@@ -686,7 +688,7 @@ export class Payment extends Component {
                             onChange={this.handleNetBankPassword}
                           ></input>
                         </div>
-                      </div>
+                      </div> */}
                     </form>
                     <div className="PaymentButton">
                       <div className="lastDivPayment">
@@ -729,10 +731,10 @@ export class Payment extends Component {
                           </h2>
 
                           <div className="HotelModal">
-                            <label>Hotel </label>
+                          <label>Hotel </label>
                             <p>{this.props.customerDetails.hotelNow}</p>
                             <label> Booking ID</label>
-                            <p>123452653</p>
+                            <p>{this.props.customerDetails.bookingId.toString().substring(0,11)}</p>
                             <label>Amount </label>
                             <p>
                               {" "}
@@ -740,13 +742,9 @@ export class Payment extends Component {
                               {this.props.finalTotalPrice +
                                 this.props.finalTotalPrice * 0.02}
                             </p>
-                            {/* <label>Payment Mode</label>
-                            <p>Net Banking </p> */}
+                            
                           </div>
-                          {console.log(
-                            this.props.customerDetails,
-                            "booking ID check"
-                          )}
+                         
                         </div>
 
                         <div className="bookNow">

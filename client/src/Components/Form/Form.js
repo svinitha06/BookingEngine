@@ -25,12 +25,12 @@ export class Form extends Component {
     super(props);
 
     this.state = {
-      firstName: null,
-      lastName: null,
-      email: "",
-      contact: "",
+      firstName: this.props.customerDetails?split(this.props.customerDetails.guestName, " ")[0]:"",
+      lastName: this.props.customerDetails?split(this.props.customerDetails.guestName, " ")[1]:"",
+      email:  "",
+      contact: this.props.customerDetails?this.props.customerDetails.mobile : "",
       gender: "male",
-      address: "",
+      address: this.props.customerDetails?this.props.customerDetails.address : "",
       firstError: "",
       lastError: "",
       emailError: "",
@@ -48,7 +48,9 @@ export class Form extends Component {
       openPost: false,
       errorPostOffline: false,
       openOffline: false,
+      
     };
+    console.log(this.props.customerDetails?this.props.customerDetails.guestName:"","find")
   }
   componentDidMount() {
     if (true) {
@@ -61,16 +63,19 @@ export class Form extends Component {
         start: this.props.dateRange.start,
         end: this.props.dateRange.end,
       });
+      if (get(this.props.customerDetails, "guestName", " ")) {
+        this.setState({
+          firstName: split(this.props.customerDetails.guestName, " ")[0],
+          lastName: split(this.props.customerDetails.guestName, " ")[1],
+          email: this.props.customerDetails.email,
+          contact: this.props.customerDetails.mobile,
+          address: this.props.customerDetails.address,
+        });
+      }
     }
-    if (get(this.props.customerDetails, "guestName", " ")) {
-      this.setState({
-        firstName: split(this.props.customerDetails.guestName," ")[0],
-        lastName: split(this.props.customerDetails.guestName," ")[1],
-        email: this.props.customerDetails.email,
-        contact: this.props.customerDetails.mobile,
-        address: this.props.customerDetails.address,
-      });
-    }
+    this.getHoteldetails();
+
+    console.log(this.getHoteldetails(), "223");
   }
   handleHotel = () => {
     // const { hotelFlag } = this.state;
@@ -103,6 +108,7 @@ export class Form extends Component {
     this.setState({
       contact: event.target.value,
       contactError: "",
+      alphaError:"",
     });
     if (this.state.contact === "") {
       this.setState({
@@ -123,13 +129,14 @@ export class Form extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    const ascii = this.state.contact.charCodeAt(0);
-    if (this.state.firstName === null) {
+    const ascii = this.state.contact ? this.state.contact.charCodeAt(0) : "";
+    console.log(this.state,"123")
+    if (this.state.firstName === null|| this.state.firstName === undefined|| this.state.firstName === "" ) {
       this.setState({
         firstError: "Enter Firstname",
       });
     }
-    if (this.state.lastName === null) {
+    if (this.state.lastName === null || this.state.lastName === undefined|| this.state.firstName === "") {
       this.setState({
         lastError: "Enter Lastname",
       });
@@ -144,19 +151,20 @@ export class Form extends Component {
       });
     }
 
-    if (this.state.address === "") {
+    if (this.state.address === null|| this.state.address === undefined|| this.state.address === "" ) {
       this.setState({
         addressError: "Enter address",
       });
     }
-    if (this.state.contact.length == 10) {
+    if (this.state.contact&&this.state.contact.length == 10 ) {
       this.setState({
         contactError: "",
+      
       });
-    } else if (ascii < "47" || ascii > "57") {
+    } else if (ascii < "47" || ascii > "57"|| this.state.contact === null ||this.state.contact === undefined|| this.state.contact === "") {
       this.setState({
         contactError: "",
-        alphaError: "No special characters",
+        alphaError: "Enter 10 digits",
       });
     } else {
       this.setState({
@@ -284,6 +292,7 @@ export class Form extends Component {
                                     ? "firstError"
                                     : ""
                                 }`}
+                                placeholder="Enter First Name"
                               ></input>
                               {this.state.firstError !== "" && (
                                 <ErrorIcon
@@ -313,7 +322,7 @@ export class Form extends Component {
                                     ? "firstError"
                                     : ""
                                 }`}
-                              ></input>
+                                placeholder="Enter Last Name"></input>
                               {this.state.lastError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
@@ -340,13 +349,14 @@ export class Form extends Component {
                                     ? "firstError"
                                     : ""
                                 }`}
-                              ></input>
+                                placeholder="10 Digits Only"></input>
                               {this.state.contactError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
                                   className="ml-2 mt-8"
                                 />
                               )}
+                              {/* {this.state.alphaError} */}
                               {this.state.alphaError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
@@ -377,7 +387,7 @@ export class Form extends Component {
                                     ? "firstError"
                                     : ""
                                 }`}
-                              ></input>
+                                placeholder="abc@y.com"></input>
                               {this.state.emailError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
@@ -411,7 +421,7 @@ export class Form extends Component {
                                       ? "firstError"
                                       : ""
                                   }`}
-                                ></input>
+                                  placeholder="Enter Address"></input>
                                 {this.state.addressError !== "" && (
                                   <ErrorIcon
                                     color="secondary"

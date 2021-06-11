@@ -1104,6 +1104,12 @@ a.ui.button.submit-form:hover {
   margin-bottom: -9%;
   margin-right: 17%;
 }
+.guestDetailForm ::-webkit-input-placeholder {
+ 
+    font-weight: lighter !important;
+    color:#AFB2B3 !important;
+
+}
 
 a.ui.button.submit-form {
   margin-left: 32% !important;
