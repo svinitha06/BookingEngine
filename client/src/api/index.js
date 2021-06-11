@@ -3,9 +3,11 @@ import axios from "axios";
 // import { roomDetails } from "../../src/actions/index";
 // let host="http://localhost:5000"
 
-var env=process.env.NODE_ENV||'development';
+var env=process.env.NODE_ENV||'production';
 var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.ngrok.io"
+
 export const getproperty = async () => {
+  console.log("zedge",process.env.NODE_ENV)
   const res = await axios.get(`${host}/property/Property`);
   return res.data;
 };
