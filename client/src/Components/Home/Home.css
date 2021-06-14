@@ -68,7 +68,7 @@
 .Home-head {
   justify-content: center;
   position: absolute;
-  top: 70%;
+  top: 74%;
   padding-top: 2%;
   padding-bottom: 2%;
   background: rgb(255 255 255) !important;
@@ -84,12 +84,13 @@
 .nameDes h1 {
   margin-top: 6px !important;
   font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
+  color: #3a3138 !important;
 }
 .e-date-range-wrapper {
   /* border: 1px solid #bbbaba !important; */
   padding: 14px !important;
   border: none !important;
-  background-color: #f3f3f3 !important;
+  background-color: #eceff6 !important;
   margin-left: 7.5%;
   margin-right: 1.25px;
   margin-top: -1.5px;
@@ -135,7 +136,7 @@
   display: grid;
 
   grid-template-columns: 50% 50% !important;
-  grid-template-columns: 55% 45% !important;
+  /* grid-template-columns: 55% 45% !important; */
 
   grid-gap: 1em;
   grid-auto-rows: minmax(100px, auto);
@@ -220,7 +221,7 @@
   width: 15%;
   /* height: 14px !important; */
   margin-left: 2%;
-  margin-right: 2%;
+  margin-right: 8%;
 }
 .image-error {
   margin-top: -45px;
@@ -276,7 +277,7 @@
   box-shadow: 4px 3px 2px !important;
 }
 .ui.button {
-  background: #f3f3f3 !important;
+  /* background: #f3f3f3 !important; */
   color: black !important;
   border-radius: 0px !important;
   /* border: 1px solid #bbbaba !important; */
@@ -297,7 +298,7 @@
     margin-right: 2em !important;
 } */
 #browser {
-  background-color: #f3f3f3 !important;
+  background-color: #eceff6 !important;
   font-size: 15px;
   width: 105%;
   height: 88%;
@@ -477,7 +478,9 @@ p h1 h6 {
   /* margin-top: 1%; */
   box-shadow: 5px 9px 20px 3px lightslategrey;
   /* border-radius: 32px; */
-  height: 64vh;
+  height: 54vh;
+  transition: 0.3s;
+  transform: scale(1.66);
 }
 @media only screen and (max-width: 768px) {
   .homeDiv {
@@ -535,8 +538,8 @@ p h1 h6 {
   margin-right: 5%;
 }
 #enterCity {
-  /* margin-left: -9%; */
-  margin-right: 5%;
+  margin-left: 5%;
+  margin-right: 6%;
 }
 #homeDate {
   margin-right: 6%;
@@ -547,4 +550,16 @@ p h1 h6 {
 #homeDate ::placeholder,
 #homeDate input {
   font-weight: 100 !important;
+}
+.checkButton button {
+  background: #3a3138 !important;
+}
+.checkButton button p {
+  color: white !important;
+}
+.checkButton button :hover {
+  background: #e6a964 !important;
+}
+.my-div .ui.segment {
+  background: rgb(51, 27, 3);
 }

@@ -27,7 +27,7 @@
 }
 .ui.card,
 .ui.cards > .card {
-  background: rgba(180, 243, 250,0.3) !important;
+  background: rgba(180, 243, 250, 0.3) !important;
   /* background: rgba(152, 219, 226, 0.829) !important; */
   border: none !important;
   margin-top: 50px !important;
@@ -80,6 +80,7 @@
   height: 30px;
   width: 1180px !important;
   color: white;
+  margin-bottom: 4%;
 }
 .ml-2,
 .mx-2 {
@@ -126,8 +127,7 @@ select {
   font-weight: 1000;
   box-shadow: rosybrown;
   margin-top: 4px;
-  font-size:14px;
-
+  font-size: 14px;
 }
 .roomError {
   border: 1.5px solid red;
@@ -141,6 +141,6 @@ select {
   width: 20%;
   margin-top: 1px;
 }
-.space{
-    margin-top: 15px;
+.space {
+  margin-top: 15px;
 }

@@ -44,6 +44,8 @@ import {
   faCoffee,
   faDumbbell,
 } from "@fortawesome/free-solid-svg-icons";
+import Fade from "react-reveal/Fade";
+import Reveal from "react-reveal/Reveal";
 
 let searchValidator = null;
 class Home extends React.Component {
@@ -334,29 +336,29 @@ class Home extends React.Component {
             ></img>
           </div>
           <div className="HoverText">
-            <div className="textInsideIt">
-              <p className="headOne">Golden </p>
-              <p className="headTwo">Summer</p>
-              <p className="headOne">Offer</p>
-            </div>
-            <div className="forIcons">
-              <div className="wifi">
-                <FontAwesomeIcon icon={faWifi} size="3x" color="lightgrey" />
-                <p className="colorGrey">Free Wifi</p>
+            <Fade left>
+              <div className="textInsideIt">
+                <p className="headOne">Golden </p>
+                <p className="headTwo">Summer</p>
+                <p className="headOne">Offer</p>
               </div>
-              <div className="coffee">
-                <FontAwesomeIcon icon={faCoffee} size="3x" color="lightgrey" />
-                <p className="colorGrey">Breakfast</p>
+            </Fade>
+            <Fade left>
+              <div className="forIcons">
+                <div className="wifi">
+                  <FontAwesomeIcon icon={faWifi} size="2x" color="white" />
+                  <p className="colorGrey">Free Wifi</p>
+                </div>
+                <div className="coffee">
+                  <FontAwesomeIcon icon={faCoffee} size="2x" color="white" />
+                  <p className="colorGrey">Breakfast</p>
+                </div>
+                <div className="gym">
+                  <FontAwesomeIcon icon={faDumbbell} size="2x" color="white" />
+                  <p className="colorGrey">Gym</p>
+                </div>
               </div>
-              <div className="gym">
-                <FontAwesomeIcon
-                  icon={faDumbbell}
-                  size="3x"
-                  color="lightgrey"
-                />
-                <p className="colorGrey">Gym</p>
-              </div>
-            </div>
+            </Fade>
           </div>
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
