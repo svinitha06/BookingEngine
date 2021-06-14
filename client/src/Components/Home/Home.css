@@ -75,7 +75,7 @@
   /* border-radius: 75px; */
   /* background-color:  */
 
-  background:rgba(8,105,116,0.8) !important;
+  background: rgba(8, 105, 116, 0.8) !important;
   /* background-color: rgb(8, 105, 117,0.8); */
   width: 85% !important;
   margin-left: 8%;
@@ -91,16 +91,15 @@
   font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 }
 .e-date-range-wrapper {
-  /* margin-bottom: 1% !important; */
   border: 1px solid black !important;
   padding: 14px !important;
-  /* background-color: rgba(162, 255, 250, 0.4) !important; */
-  background-color: #edeff7 !important;
+
+  background-color: #f3f3f3 !important;
   margin-left: 7.5%;
   margin-right: 1.25px;
   margin-top: -1.5px;
   height: 4.5em;
-  /* border-radius: 22px !important; */
+  border-radius: 22px !important;
 }
 ::-webkit-input-placeholder {
   color: black !important;
@@ -187,7 +186,7 @@
   border: none;
   outline: none;
   color: #fff;
-  background-color: rgb(8, 105, 117,0.8);
+  background-color: rgb(8, 105, 117, 0.8);
   /* background-color: rgba(117, 162, 179, 0.8); */
   /* border: 1px solid transparent; */
   transition: all 0.3s;
@@ -278,8 +277,9 @@
   box-shadow: 4px 3px 2px !important;
 }
 .ui.button {
-  background: #edeff7 !important;
+  background: #f3f3f3 !important;
   color: black !important;
+  border-radius: 22px !important;
 }
 .checkButton {
   margin-top: 3px;
@@ -295,14 +295,13 @@
     margin-right: 2em !important;
 } */
 #browser {
-  /* opacity: 0.6; */
-  background-color: #edeff7 !important;
+  background-color: #f3f3f3 !important;
   font-size: 15px;
   width: 105%;
   height: 88%;
   margin-left: 0em;
   margin-right: 0.5em;
-  /* border-radius: 22px; */
+  border-radius: 22px;
   margin-top: -2px;
   border: 1px solid black;
   color: black !important;
@@ -470,7 +469,7 @@ p h1 h6 {
   border-radius: 33px;
   background: #90b4c2;
 }
-.img_banner{
+.img_banner {
   height: 64vh;
   width: 92.25%;
   margin-left: 10%;
@@ -484,4 +483,7 @@ p h1 h6 {
     flex-wrap: wrap;
     margin-bottom: 8vh;
   }
+}
+input#browser {
+  border-radius: 22px !important;
 }

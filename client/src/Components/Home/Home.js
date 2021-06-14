@@ -16,7 +16,9 @@ import PermScanWifiIcon from "@material-ui/icons/PermScanWifi";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Button, Icon } from "semantic-ui-react";
 import Menu from "@material-ui/core/Menu";
-import tryL from "../../asset/try.jpg";
+// import tryL from "../../asset/try.jpg";
+import tryL from "./ImageHome9.jpeg";
+
 import ReactTooltip from "react-tooltip";
 import { withRouter, Link } from "react-router-dom";
 import PhoneInTalkIcon from "@material-ui/icons/PhoneInTalk";
@@ -134,12 +136,11 @@ class Home extends React.Component {
         loader: true,
       });
 
-      let res = await db
-        .getFilteredSearch({
-          location: this.state.searchValue,
-          roomsrequired: this.state.roomValue,
-        })
-       
+      let res = await db.getFilteredSearch({
+        location: this.state.searchValue,
+        roomsrequired: this.state.roomValue,
+      });
+
       this.props.property(res.data);
       this.setState({
         loader: false,
@@ -157,7 +158,6 @@ class Home extends React.Component {
     this.props.room({
       roomValue: this.state.roomValue + 1,
     });
-   
   };
   handleDecCount = () => {
     console.log(this.state.adultValue, "adult");
@@ -170,7 +170,6 @@ class Home extends React.Component {
     this.props.room({
       roomValue: this.state.roomValue - 1,
     });
-    
   };
 
   handleDec = () => {
@@ -254,7 +253,6 @@ class Home extends React.Component {
     });
   };
   handleFilter = async (e) => {
-    
     this.setState({
       searchValue: e,
       cityError: "",
@@ -272,10 +270,10 @@ class Home extends React.Component {
     //   clearTimeout(searchValidator);
     // }
     this.getLocation(e);
-    console.log("check check check filter")
+    console.log("check check check filter");
   };
   getLocation = async (data) => {
-    let res = await db.getpropertyLocation(data)
+    let res = await db.getpropertyLocation(data);
     this.props.property(res);
     console.log(res, res.length, "come on");
     if (res.length === 0) {
@@ -314,15 +312,19 @@ class Home extends React.Component {
 
     // console.log(this.props.propertyList[0].PropertyId, "sherin");
     // log()
-    if(!navigator.onLine && this.state.errorAPI && this.state.errorOffline){
-      return <h1>Network Error : Check your connection</h1>
+    if (!navigator.onLine && this.state.errorAPI && this.state.errorOffline) {
+      return <h1>Network Error : Check your connection</h1>;
     }
 
     return (
       <div className="fullContainer">
         <div>
           <div className="banner">
-            <img src={tryL} width="110%" style={{ height: "64vh" }} className="img_banner"
+            <img
+              src={tryL}
+              width="110%"
+              style={{ height: "64vh" }}
+              className="img_banner"
             ></img>
           </div>
           <div
@@ -338,7 +340,10 @@ class Home extends React.Component {
                   name="browser"
                   id="browser"
                   onChange={(e) => {
-                    this.handleFilter(e.target.value.toLowerCase());
+                    this.handleFilter(
+                      e.target.value
+                      // .toLowerCase()
+                    );
                   }}
                   className={`${
                     this.state.cityError !== "" ? "cityError" : ""
@@ -474,13 +479,12 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        {this.state.errorAPI && navigator.onLine &&(
+        {this.state.errorAPI && navigator.onLine && (
           <h1 className="errorAPI">Error fetching data</h1>
         )}
 
-
         {this.state.loader && <CircularProgress className="loadingSym" />}
-        {this.props.propertyList.length && !this.state.loader? (
+        {this.props.propertyList.length && !this.state.loader ? (
           this.props.propertyList.map((data, index) => (
             <div className="homeContainer" key={index}>
               <div className="wrapper">
@@ -559,9 +563,8 @@ class Home extends React.Component {
                             pathname: `/basiclayout/${data.PropertyId}`,
                             props: { hotelName: get(data, "name", "--") },
                           }}
-                          
                         >
-                          <button >View Details</button>
+                          <button>View Details</button>
                         </Link>
                       </div>
                     </div>
@@ -584,13 +587,16 @@ class Home extends React.Component {
         {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
           ? ""
           : null}
-{/* {this.state.errorAPI && (
+        {/* {this.state.errorAPI && (
           <h1 className="errorAPI">Error fetching data</h1>
         )} */}
-        {!navigator.onLine ?<h1 className="networkError">Network error:Check your internet connection</h1> :null}
-        {!this.props.propertyList.length 
-          ? 
-            this.props.propertyEmptyList.map((data, index) => (
+        {!navigator.onLine ? (
+          <h1 className="networkError">
+            Network error:Check your internet connection
+          </h1>
+        ) : null}
+        {!this.props.propertyList.length
+          ? this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>
                 <div className="wrapper">
                   <div className="carousel-NOW">
