@@ -18,8 +18,8 @@
   margin-top: 4%;
 }
 .UPIImage {
-  margin-top: 8%;
-  margin-bottom: 8%;
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 .UPIImage img {
   width: 32%;
@@ -137,7 +137,7 @@ color: #cac6c6 !important;
   margin-top: 3%;
 }
 .PaymentButton {
-  margin-top: 2%;
+  margin-top: 5%;
   margin-bottom: 6%;
 }
 
@@ -223,11 +223,10 @@ color: #cac6c6 !important;
   display: grid;
   grid-template-rows: 20% 25% 25% 30%;*/
 
-
   /* border-right: 1px solid black; */
   /* border: 1px solid #cac6c6; */
 
-/*forNOw
+  /*forNOw
   border-right: 1px solid #cac6c6;
   border-top-left-radius: 22px;
   border-bottom-left-radius: 22px;*/
@@ -326,14 +325,14 @@ color: #cac6c6 !important;
 /*SherinPOST*/
 
 .main-head {
-  margin-left: 18%;
+  margin-left: 37%;
   margin-bottom: -22%;
   margin-top: -7% !important;
 }
 .head-confirm {
   margin-top: -19% !important;
   margin-bottom: 13%;
-  margin-left: 10%;
+  margin-left: 21%;
   width: 92%;
 }
 .modal-open {
@@ -341,7 +340,7 @@ color: #cac6c6 !important;
   background: linear-gradient(to right, #12565f, #fffde4);
   width: 35%;
   height: 73vh;
-  margin-left: 16.5em;
+  margin-left: 23.5em;
   margin-top: 3em;
   padding: 3em;
   color: black;
@@ -366,12 +365,15 @@ color: #cac6c6 !important;
   margin-bottom: -3%;
   font-weight: 900;
   font-size: 50%;
-  margin-left: -60%;
+  margin-left: -10%;
   font-weight: bold;
+}
+.contents-modal {
+  margin-top: 12%;
 }
 .HotelModal p {
   margin-left: 50%;
-  margin-top: -16%;
+  margin-top: -12%;
   padding: 3%;
 }
 .HotelModal label {
@@ -393,7 +395,7 @@ color: #cac6c6 !important;
 .bookNow {
   margin-top: 18%;
   /* margin-bottom: -25%; */
-  margin-left: 3em;
+  margin-left: 30%;
 }
 .bookNow button {
   margin-right: -47px;
@@ -460,7 +462,8 @@ color: #cac6c6 !important;
   margin-top: 4%;
 }
 .Netbankingcontents {
-  margin-top: 2%;
+  margin-top: 6%;
+  height: 25em !important;
 }
 
 /* .ui.input {
@@ -586,20 +589,22 @@ color: #cac6c6 !important;
   margin-top: 4%;
 }
 .upiInput ::-webkit-input-placeholder {
- 
-    font-weight: lighter !important;
-    color:#AFB2B3 !important;
-
-}
-.cardNumber  ::-webkit-input-placeholder {
- 
   font-weight: lighter !important;
-  color:#AFB2B3 !important;
-
+  color: #afb2b3 !important;
 }
-.cvvContainer  ::-webkit-input-placeholder {
- 
+.cardNumber ::-webkit-input-placeholder {
   font-weight: lighter !important;
-  color:#AFB2B3 !important;
-
+  color: #afb2b3 !important;
+}
+.cvvContainer ::-webkit-input-placeholder {
+  font-weight: lighter !important;
+  color: #afb2b3 !important;
+}
+#selectedBank {
+  width: 45% !important;
+  margin-left: 5% !important;
+}
+.dropBank {
+  display: flex !important;
+  margin-top: 5%;
 }

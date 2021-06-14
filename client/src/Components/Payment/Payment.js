@@ -149,12 +149,11 @@ export class Payment extends Component {
     //     errorPassword: "required",
     //   });
     // }
-   
-      this.setState({
-        openNetBank: true,
-      });
-      this.handlePostApi();
-   
+
+    this.setState({
+      openNetBank: true,
+    });
+    this.handlePostApi();
   };
   //   handleNetBankChange=(e)=>{
   // this.setState({
@@ -229,7 +228,9 @@ export class Payment extends Component {
     this.props.hotelDetails([]);
     console.log("doubt ey");
   };
-
+  handleClose = () => {
+    this.props.history.push("/");
+  };
   render() {
     return (
       <div>
@@ -280,7 +281,6 @@ export class Payment extends Component {
                           fontSize: "18px",
                           color: "darkblue",
                           marginLeft: "3%",
-                          
                         }}
                       >
                         UPI
@@ -348,7 +348,6 @@ export class Payment extends Component {
                           this.state.errorName !== "" ? "firstError" : ""
                         }`}
                         onChange={this.handleInputChange2}
-                      
                       ></input>
                     </div>
                     <div className="forDivision">
@@ -435,7 +434,11 @@ export class Payment extends Component {
                             <label>Hotel </label>
                             <p>{this.props.customerDetails.hotelNow}</p>
                             <label> Booking ID</label>
-                            <p>{this.props.customerDetails.bookingId.toString().substring(0,11)}</p>
+                            <p>
+                              {this.props.customerDetails.bookingId
+                                .toString()
+                                .substring(0, 11)}
+                            </p>
                             <label>Amount </label>
                             <p>
                               {" "}
@@ -467,7 +470,11 @@ export class Payment extends Component {
                   <div className="PaymentButton">
                     <div className="lastDivPayment">
                       <div className="forPay">
-                        <p>Pay :{this.props.finalTotalPrice + (this.props.finalTotalPrice*0.02)}</p>
+                        <p>
+                          Pay :
+                          {this.props.finalTotalPrice +
+                            this.props.finalTotalPrice * 0.02}
+                        </p>
                       </div>
                       <div className="cancelButtonDiv">
                         <button
@@ -510,7 +517,11 @@ export class Payment extends Component {
                     <div className="PaymentButton">
                       <div className="lastDivPayment">
                         <div className="forPay">
-                          <p>Pay :{this.props.finalTotalPrice + (this.props.finalTotalPrice*0.02)}</p>
+                          <p>
+                            Pay :
+                            {this.props.finalTotalPrice +
+                              this.props.finalTotalPrice * 0.02}
+                          </p>
                         </div>
                         <div className="cancelButtonDiv">
                           <button
@@ -549,17 +560,21 @@ export class Payment extends Component {
                             </h2>
 
                             <div className="HotelModal">
-                            <label>Hotel </label>
-                            <p>{this.props.customerDetails.hotelNow}</p>
-                            <label> Booking ID</label>
-                            <p>{this.props.customerDetails.bookingId.toString().substring(0,11)}</p>
-                            <label>Amount </label>
-                            <p>
-                              {" "}
-                              Rs.
-                              {this.props.finalTotalPrice +
-                                this.props.finalTotalPrice * 0.02}
-                            </p>
+                              <label>Hotel </label>
+                              <p>{this.props.customerDetails.hotelNow}</p>
+                              <label> Booking ID</label>
+                              <p>
+                                {this.props.customerDetails.bookingId
+                                  .toString()
+                                  .substring(0, 11)}
+                              </p>
+                              <label>Amount </label>
+                              <p>
+                                {" "}
+                                Rs.
+                                {this.props.finalTotalPrice +
+                                  this.props.finalTotalPrice * 0.02}
+                              </p>
                               {/* <label>Payment Mode</label>
                             <p>Net Banking </p> */}
                             </div>
@@ -689,11 +704,39 @@ export class Payment extends Component {
                           ></input>
                         </div>
                       </div> */}
+                      <div className="dropBank">
+                        <p className="otherBank"> Others </p>
+                        <select
+                          name="bank"
+                          id="selectedBank"
+                          value={this.state.bankDrop}
+                          onChange={this.onBankChange}
+                        >
+                          <option selected>Others</option>
+                          <option value="Central Bank of India">
+                            Central Bank of India
+                          </option>
+                          <option value="ICICI">ICICI</option>
+                          <option value="IDBI">IDBI</option>
+                          <option value="Yes Bank">Yes Bank</option>
+                          <option value="Kotak Mahindra Bank">
+                            Kotak Mahindra Bank
+                          </option>
+                          <option value="Indusland Bank">Indusland Bank</option>
+                          <option value="Bank of India">Bank of India</option>
+                          <option value="Union Bank">Union Bank</option>
+                          <option value="Canara Bank">Canara Bank</option>
+                        </select>
+                      </div>
                     </form>
                     <div className="PaymentButton">
                       <div className="lastDivPayment">
                         <div className="forPay">
-                          <p>Pay :{this.props.finalTotalPrice + (this.props.finalTotalPrice*0.02)}</p>
+                          <p>
+                            Pay :
+                            {this.props.finalTotalPrice +
+                              this.props.finalTotalPrice * 0.02}
+                          </p>
                         </div>
                         <div className="cancelButtonDiv">
                           <button
@@ -731,10 +774,14 @@ export class Payment extends Component {
                           </h2>
 
                           <div className="HotelModal">
-                          <label>Hotel </label>
+                            <label>Hotel </label>
                             <p>{this.props.customerDetails.hotelNow}</p>
                             <label> Booking ID</label>
-                            <p>{this.props.customerDetails.bookingId.toString().substring(0,11)}</p>
+                            <p>
+                              {this.props.customerDetails.bookingId
+                                .toString()
+                                .substring(0, 11)}
+                            </p>
                             <label>Amount </label>
                             <p>
                               {" "}
@@ -742,9 +789,7 @@ export class Payment extends Component {
                               {this.props.finalTotalPrice +
                                 this.props.finalTotalPrice * 0.02}
                             </p>
-                            
                           </div>
-                         
                         </div>
 
                         <div className="bookNow">
