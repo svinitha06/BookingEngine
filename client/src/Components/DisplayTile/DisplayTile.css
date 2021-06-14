@@ -91,7 +91,7 @@
   position: relative;
   border: none;
   height: 20% !important;
-  background-color: rgb(8 105 117) !important;
+  background-color: #3a3138 !important;
   /* background-color: rgba(117, 162, 179, 0.8) !important; */
 
   /* box-shadow: 4px 4px 12px #eee; */
@@ -172,7 +172,7 @@ h6 {
   font-weight: 500 !important;
   border-radius: 0px !important;
   color: white !important;
-  background: rgb(8 105 117) !important;
+  background: #3a3138 !important;
   /* background: #90b4c2 !important; */
   text-align: center !important;
   position: relative !important;
@@ -183,7 +183,7 @@ h6 {
 }
 .btn-placement .ui.button.reserve:hover {
   color: black !important;
-  background-color: transparent !important;
+  background-color: orange !important;
   opacity: 0.7;
   border: 1px solid #565656 !important;
 }
@@ -194,7 +194,7 @@ h6 {
 .total-price h3 span {
   margin-left: 61.5% !important;
   font-weight: 600;
-  color: #0c6c6f;
+  color: #3a3138;
 }
 .total-price h3 {
   margin-left: 34%;
@@ -215,7 +215,7 @@ a.ui.button.reserve-left {
   font-weight: 500 !important;
 
   color: white !important;
-  background: rgb(8 105 117) !important;
+  background: #3a3138 !important;
   /* background: #90b4c2 !important; */
   border: none !important;
 
@@ -226,7 +226,7 @@ a.ui.button.reserve-left {
 }
 .btn-placement div .ui.button:hover {
   color: black !important;
-  background-color: transparent !important;
+  background-color: orange !important;
   opacity: 0.7;
   border: 1px solid #565656 !important;
 }
@@ -276,7 +276,7 @@ a.ui.button.reserve-left {
 }
 .property-center h1 {
   font-size: 3rem;
-  color: #086974 !important;
+  color: #3a3138 !important;
 }
 .rate-container h5 {
   margin-left: 3px;
@@ -286,7 +286,7 @@ a.ui.button.reserve-left {
 }
 .rate-container h2 {
   margin-bottom: 0px !important;
-  color: #2f708a !important;
+  color: #3a3138 !important;
 }
 .rate-container {
   display: flex;
@@ -308,5 +308,26 @@ a.ui.button.reserve-left {
 .roomtypeHead p {
   font-size: 25px !important;
   font-weight: 600 !important;
-  color: #086974 !important;
+  color: #3a3138 !important;
   }
+
+
+.roomDetailsTwo .d-flex button {
+  /* border: 1px solid rgb(3, 3, 3) !important; */
+  width: 60% !important;
+  /* border-radius: 22px !important; */
+  padding: 6.5%;
+  border-radius: 0px !important;
+  background-color: transparent;
+  background-color: whitesmoke !important;
+}
+
+.e-input-group, .e-input-group.e-control-wrapper .e-date-range-wrapper .e-valid-input{
+  padding: 14px !important;
+  background-color: #f3f3f3 !important;
+  margin-left: 7.5%;
+  margin-right: 1.25px;
+  margin-top: -1.5px;
+  height: 4.5em;
+  border-radius: 0px !important;
+}
