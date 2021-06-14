@@ -12,6 +12,11 @@ const propertyMasterSchema = new mongoose.Schema({
         required: false
     },
 
+    name_: {
+        type: String,
+        required: false
+    },
+
     Image: {
         type: Array,
         required: false
