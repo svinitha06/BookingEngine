@@ -37,7 +37,7 @@ pipeline{
             steps{
                 sh 'docker stop Bookingengine-fe'
                 sh 'docker rm Bookingengine-fe'
-                sh 'docker run --name Bookingengine-fe -p 3000:3000 localhost:12012/booking-fe:${BUILD_NUMBER}'}
+                sh 'docker run -d --name Bookingengine-fe -p 3000:3000 localhost:12012/booking-fe:${BUILD_NUMBER}'}
             
             }
     }
