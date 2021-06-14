@@ -35,7 +35,7 @@ pipeline{
                 sh 'docker pull localhost:12012/bookingengine-be:${BUILD_NUMBER}'
                 sh 'docker stop Booking-backend'
                 sh 'docker rm Booking-backend'
-                sh 'docker run --name Booking-backend -p 5000:5000 localhost:12012/bookingengine-be:${BUILD_NUMBER}'
+                sh 'docker run -d --name Booking-backend -p 5000:5000 localhost:12012/bookingengine-be:${BUILD_NUMBER}'
             }
         }
     }

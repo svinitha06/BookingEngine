@@ -62,6 +62,7 @@ router.post("/addProperty", async (req, res) => {
             var newProperty = new propertyMaster({
                 PropertyId: newCount.count,
                 name: req.body.name,
+                name_: req.body.name_,                
                 Image: req.body.Image,
                 location: req.body.location,
                 description: req.body.description,
@@ -84,6 +85,7 @@ router.post("/addProperty", async (req, res) => {
                     var newProperty = new propertyMaster({
                         PropertyId: 1,
                         name: req.body.name,
+                        name_: req.body.name_,
                         Image: req.body.Image,
                         location: req.body.location,
                         description: req.body.description,
@@ -154,7 +156,7 @@ router.get('/Property/:location', async (req, res) => {
         const post = await propertyMaster.find({ location: (req.params.location) });
         if (post.length === 0) {
             //res.status(404).send("Hotels for location " + req.params.location + " not found")
-            const prop = await propertyMaster.find({ name: (req.params.location)});
+            const prop = await propertyMaster.find({ name_: (req.params.location)});
             res.json(prop);
         }
         else
