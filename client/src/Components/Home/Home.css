@@ -2,9 +2,9 @@
   background: #f3f3f3;
 }
 .banner {
-  width: 100%;
-  height: 76vh;
-  margin-left: -9%;
+  width: 100% !important;
+  height: 100% !important;
+  margin-bottom: 9%;
 }
 .carousel-control-next:focus,
 .carousel-control-next:hover,
@@ -18,9 +18,12 @@
 }
 
 .homeContainer {
-  width: 82%;
+  /* width: 82%; */
+  width: 75%;
+
   /* margin-top: 6em; */
-  margin-left: 6em;
+  /* margin-left: 6em; */
+  margin-left: 10%;
   border-radius: 1em;
   height: 24em !important;
   margin-bottom: 6em;
@@ -63,43 +66,34 @@
   margin-left: -15em;
 }
 .Home-head {
-  display: flex;
-  margin: 0px;
   justify-content: center;
   position: absolute;
-  top: 75.5%;
-  /* border: 2px solid white; */
-  /* box-shadow: 6px 4px 5px burlywood; */
-  /* background: rgba(180, 243, 250, 0.2) !important; */
-  padding-top: 12px;
-  /* border-radius: 75px; */
-  /* background-color:  */
-
-  background: rgba(8, 105, 116, 0.8) !important;
-  /* background-color: rgb(8, 105, 117,0.8); */
+  top: 70%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background: rgb(255 255 255) !important;
   width: 85% !important;
   margin-left: 8%;
-  /* /* opacity: 0.9; */
 }
 
 .searchButton {
   padding: 4px;
   font-size: medium;
+  font-weight: 100 !important;
 }
 .nameDes h1 {
   margin-top: 6px !important;
   font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
 }
 .e-date-range-wrapper {
-  border: 1px solid black !important;
+  /* border: 1px solid #bbbaba !important; */
   padding: 14px !important;
-
+  border: none !important;
   background-color: #f3f3f3 !important;
   margin-left: 7.5%;
   margin-right: 1.25px;
   margin-top: -1.5px;
   height: 4.5em;
-  border-radius: 22px !important;
 }
 ::-webkit-input-placeholder {
   color: black !important;
@@ -127,7 +121,7 @@
   /* border-radius: 22px !important; */
   /* background-color: rgba(162, 255, 250, 0.4) !important; */
   margin-bottom: 10px !important;
-  border: 1px solid black !important;
+  border: 1px solid #bbbaba !important;
   background-color: #edeff7 !important;
 }
 .pin {
@@ -138,13 +132,14 @@
   font-size: 16px;
 }
 .wrapper {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40% 60%;
+
   grid-template-columns: 50% 50% !important;
+  grid-template-columns: 55% 45% !important;
+
   grid-gap: 1em;
   grid-auto-rows: minmax(100px, auto);
-  margin-left: 210px;
+  margin-left: 18%;
 }
 .nameDes {
   margin-left: -9em;
@@ -169,6 +164,9 @@
 .roomText {
   width: 0%;
 }
+.roomText p {
+  font-weight: 100 !important;
+}
 .menu-drop {
   padding: 5px;
   font-size: 19px;
@@ -186,7 +184,8 @@
   border: none;
   outline: none;
   color: #fff;
-  background-color: rgb(8, 105, 117, 0.8);
+  background-color: #3a3138;
+  /* background-color: rgb(8, 105, 117, 0.8); */
   /* background-color: rgba(117, 162, 179, 0.8); */
   /* border: 1px solid transparent; */
   transition: all 0.3s;
@@ -279,11 +278,14 @@
 .ui.button {
   background: #f3f3f3 !important;
   color: black !important;
-  border-radius: 22px !important;
+  border-radius: 0px !important;
+  /* border: 1px solid #bbbaba !important; */
+  border: none !important;
 }
 .checkButton {
   margin-top: 3px;
   padding-right: 12px;
+  margin-right: 5%;
 }
 /* .city-input{
     border-radius: 22px !important;
@@ -301,13 +303,13 @@
   height: 88%;
   margin-left: 0em;
   margin-right: 0.5em;
-  border-radius: 22px;
+  /* border-radius: 22px; */
   margin-top: -2px;
-  border: 1px solid black;
+  /* border: 1px solid #bbbaba; */
   color: black !important;
   font-weight: 700 !important;
   font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
-
+  border: none !important;
   /* margin-right: 1em; */
   /* padding-right: 1em; */
 }
@@ -470,12 +472,12 @@ p h1 h6 {
   background: #90b4c2;
 }
 .img_banner {
-  height: 64vh;
-  width: 92.25%;
-  margin-left: 10%;
-  margin-top: 1%;
+  width: 100%;
+  /* margin-left: 10%; */
+  /* margin-top: 1%; */
   box-shadow: 5px 9px 20px 3px lightslategrey;
-  border-radius: 32px;
+  /* border-radius: 32px; */
+  height: 64vh;
 }
 @media only screen and (max-width: 768px) {
   .homeDiv {
@@ -484,6 +486,65 @@ p h1 h6 {
     margin-bottom: 8vh;
   }
 }
-input#browser {
+/* input#browser {
   border-radius: 22px !important;
+} */
+.headOne {
+  font-size: 50px;
+  display: inline;
+  color: white;
+}
+.headTwo {
+  font-size: 76px;
+  font-style: italic;
+  display: inline;
+  color: #c06a06;
+  margin-left: 10%;
+  margin-top: -4%;
+  margin-right: 10%;
+}
+.textInsideIt {
+  top: 28% !important;
+  margin-left: 35%;
+  position: absolute;
+  display: flex;
+}
+
+.forIcons {
+  position: absolute;
+  width: 23%;
+  top: 51%;
+  display: flex;
+  margin-left: 39%;
+  flex-direction: row;
+  /* display: grid; */
+  /* grid-template-columns: 33% 33% 33%; */
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  background: rgb(33 31 31 / 50%);
+}
+.colorGrey {
+  color: lightgrey;
+  font-weight: 100;
+  font-size: 20px;
+}
+.wifi,
+.coffee,
+.gym {
+  margin-right: 5%;
+}
+#enterCity {
+  /* margin-left: -9%; */
+  margin-right: 5%;
+}
+#homeDate {
+  margin-right: 6%;
+}
+#enterCity ::placeholder {
+  font-weight: 100 !important;
+}
+#homeDate ::placeholder,
+#homeDate input {
+  font-weight: 100 !important;
 }

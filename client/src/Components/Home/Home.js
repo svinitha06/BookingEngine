@@ -38,6 +38,12 @@ import {
 import { bindActionCreators } from "redux";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 import * as db from "../../api/index";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWifi,
+  faCoffee,
+  faDumbbell,
+} from "@fortawesome/free-solid-svg-icons";
 
 let searchValidator = null;
 class Home extends React.Component {
@@ -322,10 +328,35 @@ class Home extends React.Component {
           <div className="banner">
             <img
               src={tryL}
-              width="110%"
-              style={{ height: "64vh" }}
+              // width="110%"
+              // style={{ height: "64vh" }}
               className="img_banner"
             ></img>
+          </div>
+          <div className="HoverText">
+            <div className="textInsideIt">
+              <p className="headOne">Golden </p>
+              <p className="headTwo">Summer</p>
+              <p className="headOne">Offer</p>
+            </div>
+            <div className="forIcons">
+              <div className="wifi">
+                <FontAwesomeIcon icon={faWifi} size="3x" color="lightgrey" />
+                <p className="colorGrey">Free Wifi</p>
+              </div>
+              <div className="coffee">
+                <FontAwesomeIcon icon={faCoffee} size="3x" color="lightgrey" />
+                <p className="colorGrey">Breakfast</p>
+              </div>
+              <div className="gym">
+                <FontAwesomeIcon
+                  icon={faDumbbell}
+                  size="3x"
+                  color="lightgrey"
+                />
+                <p className="colorGrey">Gym</p>
+              </div>
+            </div>
           </div>
           <div
             className={`date ${this.state.dateError !== "" ? "dateError" : ""}`}
@@ -334,28 +365,25 @@ class Home extends React.Component {
               className="Home-head d-flex w-98"
               style={{ width: "-webkit-fill-available" }}
             >
-              <div className="d-flex">
+              <div className="d-flex" id="enterCity">
                 <input
                   list="browsers"
                   name="browser"
                   id="browser"
                   onChange={(e) => {
-                    this.handleFilter(
-                      e.target.value
-                      // .toLowerCase()
-                    );
+                    this.handleFilter(e.target.value.toLowerCase());
                   }}
                   className={`${
                     this.state.cityError !== "" ? "cityError" : ""
                   }`}
-                  placeholder=" Enter City"
+                  placeholder=" Enter City / Hotel Name"
                 ></input>
 
                 {this.state.cityError !== "" && (
                   <ErrorIcon color="secondary" className="ml-2 mt-4" />
                 )}
               </div>
-              <div className="d-flex datePickerHome">
+              <div className="d-flex datePickerHome" id="homeDate">
                 <DateRangePickerComponent
                   placeholder="enter date"
                   startDate={this.state.start}
