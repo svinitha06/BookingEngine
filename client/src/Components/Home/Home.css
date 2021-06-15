@@ -185,7 +185,8 @@
   border: none;
   outline: none;
   color: #fff;
-  background-color: #3a3138;
+  background: #801202 !important;
+  /* background-color: #3a3138; */
   /* background-color: rgb(8, 105, 117, 0.8); */
   /* background-color: rgba(117, 162, 179, 0.8); */
   /* border: 1px solid transparent; */
@@ -555,7 +556,7 @@ p h1 h6 {
   font-weight: 100 !important;
 }
 .checkButton button {
-  background: #3a3138 !important;
+  background: #801202 !important;
 }
 .checkButton button p {
   color: white !important;
@@ -564,5 +565,5 @@ p h1 h6 {
   background: #e6a964 !important;
 }
 .my-div .ui.segment {
-  background: rgb(51, 27, 3);
+  background: #4c1911;
 }

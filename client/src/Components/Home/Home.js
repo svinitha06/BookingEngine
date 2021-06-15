@@ -70,6 +70,7 @@ class Home extends React.Component {
       flag: true,
       errorAPI: false,
       errorOffline: false,
+      timeOutId: 0,
     };
   }
   componentDidMount() {
@@ -261,6 +262,7 @@ class Home extends React.Component {
     });
   };
   handleFilter = async (e) => {
+    clearTimeout(this.state.timeOutId);
     this.setState({
       searchValue: e,
       cityError: "",
@@ -277,7 +279,10 @@ class Home extends React.Component {
     // } else {
     //   clearTimeout(searchValidator);
     // }
-    this.getLocation(e);
+    const timeOut = setTimeout(() => this.getLocation(e), 900);
+    this.setState({
+      timeOutId: timeOut,
+    });
     console.log("check check check filter");
   };
   getLocation = async (data) => {
