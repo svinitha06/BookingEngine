@@ -146,8 +146,12 @@ router.get("/Property/:location", async (req, res) => {
     const post = await propertyMaster.find({ location: req.params.location });
     if (post.length === 0) {
       //res.status(404).send("Hotels for location " + req.params.location + " not found")
-      const prop = await propertyMaster.find({ name_: req.params.location });
-      res.json(prop);
+      let partialToMatch = new RegExp(req.params.location, "i");
+      propertyMaster.find({ name_: partialToMatch }, function (err, found) {
+        if (found) {
+          res.send(found);
+        }
+      });
     } else res.json(post);
   } catch (err) {
     res.status(400).send(err);
