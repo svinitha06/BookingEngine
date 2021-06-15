@@ -47,7 +47,7 @@ router.post("/addProperty", async (req, res) => {
             field: "PropertyId",
         });
         console.log("oldCount", oldCount);
-        if (oldCount!== null) {
+        if (oldCount !== null) {
             var newCount = await counters.findOneAndUpdate(
                 {
                     field: "PropertyId",
@@ -62,7 +62,7 @@ router.post("/addProperty", async (req, res) => {
             var newProperty = new propertyMaster({
                 PropertyId: newCount.count,
                 name: req.body.name,
-                name_: req.body.name_,                
+                name_: req.body.name_,
                 Image: req.body.Image,
                 location: req.body.location,
                 description: req.body.description,
@@ -80,27 +80,27 @@ router.post("/addProperty", async (req, res) => {
                 field: "PropertyId",
                 count: 1
             })
-            newCount.save().then(function(err1,count) {
-                
-                    var newProperty = new propertyMaster({
-                        PropertyId: 1,
-                        name: req.body.name,
-                        name_: req.body.name_,
-                        Image: req.body.Image,
-                        location: req.body.location,
-                        description: req.body.description,
-                        ratings: req.body.ratings,
-                        website: req.body.website,
-                        contact: req.body.contact,
-                        Address: req.body.Address,
-                    });
+            newCount.save().then(function (err1, count) {
 
-                    newProperty.save(function (err, Person) {
-                        console.log("1", err)
-                        if (err) res.status("400").send(err);
-                        else res.send(Person);
-                    });
-               
+                var newProperty = new propertyMaster({
+                    PropertyId: 1,
+                    name: req.body.name,
+                    name_: req.body.name_,
+                    Image: req.body.Image,
+                    location: req.body.location,
+                    description: req.body.description,
+                    ratings: req.body.ratings,
+                    website: req.body.website,
+                    contact: req.body.contact,
+                    Address: req.body.Address,
+                });
+
+                newProperty.save(function (err, Person) {
+                    console.log("1", err)
+                    if (err) res.status("400").send(err);
+                    else res.send(Person);
+                });
+
             }).catch((err) => {
                 res.status(400).send(err);
             })
@@ -119,7 +119,7 @@ router.post("/addProperty", async (req, res) => {
 router.get('/Property/search', async (req, res) => {
     try {
         let props = await propertyMaster.find({ location: (req.headers.location) });
-        
+
         let newProps = []
         await props.forEach(async (prop) => {
 
@@ -156,10 +156,13 @@ router.get('/Property/:location', async (req, res) => {
         const post = await propertyMaster.find({ location: (req.params.location) });
         if (post.length === 0) {
             //res.status(404).send("Hotels for location " + req.params.location + " not found")
-            const prop = await propertyMaster.find({ name_: (req.params.location)});
-            res.json(prop);
-        }
-        else
+            let partialToMatch = new RegExp(req.params.location, 'i');
+            propertyMaster.find({name_: partialToMatch }, function (err, found) {
+                if (found) {
+                    res.send(found)
+                }
+            })
+        } else
             res.json(post);
     } catch (err) {
         res.status(400).send(err)
@@ -167,7 +170,5 @@ router.get('/Property/:location', async (req, res) => {
 });
 
 
-
 module.exports = router;
-
 
