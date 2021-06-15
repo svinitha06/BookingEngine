@@ -273,7 +273,10 @@
   margin-left: 5px;
 }
 .ui.circular.button {
-  border-radius: 10em;
+  /* border-radius: 10em;
+  box-shadow: 4px 3px 2px !important; */
+  background: #3a3138;
+  color: white !important;
   box-shadow: 4px 3px 2px !important;
 }
 .ui.button {
@@ -467,10 +470,10 @@ p h1 h6 {
   margin-bottom: 3%;
 }
 .MuiMenu-list {
-  outline: 0;
+  /* outline: 0; */
   border: none !important;
-  border-radius: 33px;
-  background: #90b4c2;
+  /* border-radius: 33px; */
+  background: #eceff5;
 }
 .img_banner {
   width: 100%;

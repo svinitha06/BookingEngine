@@ -1,5 +1,6 @@
 .displayOne {
   background: #f3f3f3 !important;
+  margin-top: 5%;
 }
 .homeContainerOne {
   width: 80%;
@@ -156,9 +157,8 @@ h6 {
 .include-food label {
   margin-bottom: 6px;
 }
-.include-food{
+.include-food {
   margin-top: 6% !important;
-
 }
 .btn-placement .ui.button.reserve {
   /* display: inline-block !important; */
@@ -231,8 +231,14 @@ a.ui.button.reserve-left {
   border: 1px solid #565656 !important;
 }
 .containerBasic {
-  background-color: rgb(8 105 116) !important;
-  opacity: 0.7;
+  background-color: rgb(255 255 255) !important;
+  width: 61%;
+  /* opacity: 0.7; */
+  margin-left: 19%;
+  top: 51%;
+  /* margin-bottom: 6%; */
+  padding: 1%;
+  position: absolute;
 }
 /* .reserve :hover,.reserve-left :hover{
 
@@ -309,22 +315,22 @@ a.ui.button.reserve-left {
   font-size: 25px !important;
   font-weight: 600 !important;
   color: #3a3138 !important;
-  }
-
-
-.roomDetailsTwo .d-flex button {
-  /* border: 1px solid rgb(3, 3, 3) !important; */
-  width: 60% !important;
-  /* border-radius: 22px !important; */
-  padding: 6.5%;
-  border-radius: 0px !important;
-  background-color: transparent;
-  background-color: whitesmoke !important;
 }
 
-.e-input-group, .e-input-group.e-control-wrapper .e-date-range-wrapper .e-valid-input{
+.roomDetailsTwo .d-flex button {
+  width: 85% !important;
+  /* border-radius: 22px !important; */
+  padding: 11.5%;
+  border-radius: 0px !important;
+  border: none !important;
+  background-color: transparent;
+  background-color: #eceff5 !important;
+}
+
+.e-input-group,
+.e-input-group.e-control-wrapper .e-date-range-wrapper .e-valid-input {
   padding: 14px !important;
-  background-color: #f3f3f3 !important;
+  background-color: #eceff6 !important;
   margin-left: 7.5%;
   margin-right: 1.25px;
   margin-top: -1.5px;
