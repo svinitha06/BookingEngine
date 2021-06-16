@@ -1488,10 +1488,9 @@ a.ui.button.submit-form {
 }
 .submit-form button:hover,
 a.ui.button.submit-form:hover {
-  color: black !important;
-  background-color: orange !important;
-  opacity: 0.7 !important;
-  border: 1px solid #565656 !important;
+  color: white !important;
+  opacity: 1;
+  background-color: rgb(153, 1, 1) !important;
 }
 /* HOTEL DETAILS CSS - NOT TO DELETE */
 .hotelHeading {
@@ -1648,11 +1647,10 @@ a.ui.button.submit-form:hover {
 }
 
 .submit-form button:hover {
-  color: black !important;
-  background-color: transparent;
-  opacity: 0.7;
-  border: 1px solid #565656;
-  margin-left: 3%;
+  color: white !important;
+  opacity: 1;
+  background-color: rgb(153, 1, 1) !important;
+  /* margin-left: 3%; */
 }
 
 .detailContainer {
@@ -1749,7 +1747,7 @@ a.ui.button.submit-form {
   opacity: 0.7;
   width: 3.5%;
   /* padding-left: 0.5%; */
-  padding-right: 11px;
+  /* padding-right: 11px; */
   color: white;
   padding-right: -10%;
   cursor: pointer;

@@ -195,10 +195,10 @@
   /* cursor: pointer; */
 }
 .viewDetails button:hover {
-  color: black !important;
-  background-color: orange;
-  opacity: 0.7;
-  border: 1px solid #565656;
+  color: white !important;
+  background-color: rgb(153, 1, 1) !important;
+  opacity: 1;
+  /* border: 1px solid #565656; */
 }
 .starFill {
   /* margin-left: 10em; */
@@ -337,7 +337,7 @@ p h1 h6 {
 .noProp {
   margin-left: 16em;
   margin-top: 1em !important;
-  color: red;
+  color: black;
   font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
   border: 1px solid black;
   height: 50px;
@@ -459,7 +459,7 @@ p h1 h6 {
   opacity: 0.7;
   width: 3.5%;
   /* padding-left: 0.5%; */
-  padding-right: 0.5px;
+  /* padding-right: 0.5px; */
   color: white;
   padding-right: -10%;
   cursor: pointer;
@@ -561,9 +561,9 @@ p h1 h6 {
 .checkButton button p {
   color: white !important;
 }
-.checkButton button :hover {
+/* .checkButton button :hover {
   background: #e6a964 !important;
-}
+} */
 .my-div .ui.segment {
   background: #4c1911;
 }
