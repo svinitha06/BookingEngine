@@ -53,19 +53,19 @@ export class BasicLayout extends Component {
       clicked: false,
       open: false,
       city: "",
-      start:null,
-      end:null
+      start: null,
+      end: null,
+      numOfDays: 0,
     };
   }
   // getRoomNum = (numOfRooms) => {
   //   console.log("checking it", numOfRooms);
   // };
   componentDidMount() {
-   
     if (true) {
       window.scroll(0, 0);
     }
-    
+
     this.setState({
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
@@ -211,7 +211,21 @@ export class BasicLayout extends Component {
       clicked: false,
     });
 
-   
+    var date1 = this.props.dateRange.start;
+    var date2 = this.props.dateRange.end;
+    console.log("date1 = ", date1);
+    console.log("date2 = ", date2);
+
+    this.setState({
+      numOfDays: (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24),
+    });
+    console.log("numOfDays = ", this.state.numOfDays);
+    this.props.date({
+      start: e.value[0],
+      end: e.value[1],
+      numOfDay: this.state.numOfDays,
+    });
+    console.log("dateProp", this.props.dateRange);
   };
   render() {
     const minValue = new Date(
@@ -219,11 +233,11 @@ export class BasicLayout extends Component {
       new Date().getMonth(),
       new Date().getDate()
     );
-    
+
     // <Route exact path="/">
     //   {window.location.reload ? <Redirect to="/" /> : null}
     // </Route>;
-    
+
     return (
       <div className="basiclayoutClass">
         <div className="adjustHeight">
@@ -348,7 +362,7 @@ export class BasicLayout extends Component {
       // this.props.history.push("/")
     window.location.replace('http://localhost:3000/')
      } */}
-     {/* {!window.location.reload ? null :window.location.assign('http://localhost:3000/')} */}
+        {/* {!window.location.reload ? null :window.location.assign('http://localhost:3000/')} */}
       </div>
     );
   }

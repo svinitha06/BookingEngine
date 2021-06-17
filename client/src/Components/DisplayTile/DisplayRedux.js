@@ -51,7 +51,7 @@ import {
   roomTypesRate,
   bookingDetails,
   additionOfPrices,
-  hotelDetails
+  hotelDetails,
 } from "../../actions/index";
 
 class DisplayRedux extends Component {
@@ -70,6 +70,7 @@ class DisplayRedux extends Component {
       priceArray: [],
       finalTotalPrice: 0,
       isDisable: true,
+      // numOfDays:0,
     };
   }
 
@@ -77,15 +78,16 @@ class DisplayRedux extends Component {
     if (true) {
       window.scroll(0, 0);
     }
-    if(this.props.propertyList.length===0){
-      this.props.history.push("/")
+    if (this.props.propertyList.length === 0) {
+      this.props.history.push("/");
     }
-    var env=process.env.NODE_ENV||'development';
-var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.ngrok.io"
+    var env = process.env.NODE_ENV || "development";
+    var host =
+      env === "development"
+        ? "http://localhost:5000"
+        : "http://9a9e6e820483.ngrok.io";
     axios
-      .get(
-        `${host}/rooms/getRoomType/${this.props.match.params.id}`
-      )
+      .get(`${host}/rooms/getRoomType/${this.props.match.params.id}`)
       .then((responseOfApi) => {
         this.props.roomDetails(responseOfApi.data);
         this.setState({
@@ -110,8 +112,11 @@ var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.
     this.getSomething(this.props.match.params.id);
   }
   getSomething = async (id) => {
-    var env=process.env.NODE_ENV||'development';
-    var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.ngrok.io"
+    var env = process.env.NODE_ENV || "development";
+    var host =
+      env === "development"
+        ? "http://localhost:5000"
+        : "http://9a9e6e820483.ngrok.io";
     let res = await axios({
       method: "get",
       url: `${host}/rate/getplan`,
@@ -172,6 +177,7 @@ var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.
         }
       });
     });
+    t = t * this.props.dateRange.numOfDay;
     return t;
   };
   handleChange = (id) => {
@@ -192,7 +198,6 @@ var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.
       return true;
     }
     return false;
-
   };
   checkEnable = () => {
     var temp = this.calculateTotal();
@@ -232,8 +237,8 @@ var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.
     // } else {
     //   console.info("This page is not reloaded");
     // }
-//     if(window.location.reload)  {this.props.history.push("/")
-// }
+    //     if(window.location.reload)  {this.props.history.push("/")
+    // }
 
     return (
       <div className="displayOne">
@@ -257,12 +262,9 @@ var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.
               <div className="displayContentTwo">
                 {this.state.list.map((post, index) => {
                   let room = 0;
-                  let total = 0;
-                  let i = 0;
+
                   let isCheck = false;
-                  let p = 0;
-                  var rate1 = 0;
-                  var k = 0;
+
                   var price = 0;
                   var finalPrice = 0;
                   var finalEP = 0;
@@ -463,7 +465,6 @@ const mapDispatchToProps = (dispatch) => {
     property: bindActionCreators(property, dispatch),
     additionOfPrices: bindActionCreators(additionOfPrices, dispatch),
     hotelDetails: bindActionCreators(hotelDetails, dispatch),
-
   };
 };
 const mapStateToProps = (state) => {

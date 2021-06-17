@@ -71,6 +71,7 @@ class Home extends React.Component {
       errorAPI: false,
       errorOffline: false,
       timeOutId: 0,
+      numOfDays: 1,
     };
   }
   componentDidMount() {
@@ -81,11 +82,16 @@ class Home extends React.Component {
       start: this.props.dateRange.start,
       end: this.props.dateRange.end,
     });
+
     if (this.state.flag) {
       const today = new Date();
       const tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
-      this.props.date({ start: new Date(), end: tomorrow });
+      this.props.date({
+        start: new Date(),
+        end: tomorrow,
+        numOfDay: this.state.numOfDays,
+      });
       this.setState({
         start: today,
         end: tomorrow,
@@ -120,6 +126,7 @@ class Home extends React.Component {
     this.props.date({
       start: e.value[0],
       end: e.value[1],
+      numOfDay: this.state.numOfDays,
       dateError: "",
     });
 
@@ -130,9 +137,22 @@ class Home extends React.Component {
       dateError: "",
       clicked: false,
     });
+    var date1 = this.props.dateRange.start;
+    var date2 = this.props.dateRange.end;
+    console.log("date1 = ", date1);
+    console.log("date2 = ", date2);
 
-    console.log("Handle date", this.state.start);
-    console.log("dateObj", this.state.dateObj);
+    this.setState({
+      numOfDays: (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24),
+    });
+    console.log("numOfDays = ", this.state.numOfDays);
+    this.props.date({
+      start: e.value[0],
+      end: e.value[1],
+      numOfDay: this.state.numOfDays,
+      dateError: "",
+    });
+    console.log("dateProp", this.props.dateRange);
   };
   handleValidate = async () => {
     if (this.state.searchValue === "") {
