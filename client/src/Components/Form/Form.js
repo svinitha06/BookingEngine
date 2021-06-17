@@ -25,12 +25,17 @@ export class Form extends Component {
     super(props);
 
     this.state = {
-      firstName: this.props.customerDetails?split(this.props.customerDetails.guestName, " ")[0]:"",
-      lastName: this.props.customerDetails?split(this.props.customerDetails.guestName, " ")[1]:"",
-      email:  "",
-      contact: this.props.customerDetails?this.props.customerDetails.mobile : "",
+      firstName: this.props.customerDetails
+        ? split(this.props.customerDetails.guestName, " ")[0]
+        : "",
+      lastName: this.props.customerDetails
+        ? split(this.props.customerDetails.guestName, " ")[1]
+        : "",
+      email: "",
       gender: "male",
-      address: this.props.customerDetails?this.props.customerDetails.address : "",
+      address: this.props.customerDetails
+        ? this.props.customerDetails.address
+        : "",
       firstError: "",
       lastError: "",
       emailError: "",
@@ -48,9 +53,11 @@ export class Form extends Component {
       openPost: false,
       errorPostOffline: false,
       openOffline: false,
-      
     };
-    console.log(this.props.customerDetails?this.props.customerDetails.guestName:"","find")
+    console.log(
+      this.props.customerDetails ? this.props.customerDetails.guestName : "",
+      "find"
+    );
   }
   componentDidMount() {
     if (true) {
@@ -108,7 +115,7 @@ export class Form extends Component {
     this.setState({
       contact: event.target.value,
       contactError: "",
-      alphaError:"",
+      alphaError: "",
     });
     if (this.state.contact === "") {
       this.setState({
@@ -130,13 +137,21 @@ export class Form extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const ascii = this.state.contact ? this.state.contact.charCodeAt(0) : "";
-    console.log(this.state,"123")
-    if (this.state.firstName === null|| this.state.firstName === undefined|| this.state.firstName === "" ) {
+    console.log(this.state, "123");
+    if (
+      this.state.firstName === null ||
+      this.state.firstName === undefined ||
+      this.state.firstName === ""
+    ) {
       this.setState({
         firstError: "Enter Firstname",
       });
     }
-    if (this.state.lastName === null || this.state.lastName === undefined|| this.state.firstName === "") {
+    if (
+      this.state.lastName === null ||
+      this.state.lastName === undefined ||
+      this.state.firstName === ""
+    ) {
       this.setState({
         lastError: "Enter Lastname",
       });
@@ -151,17 +166,26 @@ export class Form extends Component {
       });
     }
 
-    if (this.state.address === null|| this.state.address === undefined|| this.state.address === "" ) {
+    if (
+      this.state.address === null ||
+      this.state.address === undefined ||
+      this.state.address === ""
+    ) {
       this.setState({
         addressError: "Enter address",
       });
     }
-    if (this.state.contact&&this.state.contact.length == 10 ) {
+    if (this.state.contact && this.state.contact.length == 10) {
       this.setState({
         contactError: "",
-      
       });
-    } else if (ascii < "47" || ascii > "57"|| this.state.contact === null ||this.state.contact === undefined|| this.state.contact === "") {
+    } else if (
+      ascii < "47" ||
+      ascii > "57" ||
+      this.state.contact === null ||
+      this.state.contact === undefined ||
+      this.state.contact === ""
+    ) {
       this.setState({
         contactError: "",
         alphaError: "Enter 10 digits",
@@ -322,7 +346,8 @@ export class Form extends Component {
                                     ? "firstError"
                                     : ""
                                 }`}
-                                placeholder="Enter Last Name"></input>
+                                placeholder="Enter Last Name"
+                              ></input>
                               {this.state.lastError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
@@ -349,7 +374,8 @@ export class Form extends Component {
                                     ? "firstError"
                                     : ""
                                 }`}
-                                placeholder="10 Digits Only"></input>
+                                placeholder="10 Digits Only"
+                              ></input>
                               {this.state.contactError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
@@ -387,7 +413,8 @@ export class Form extends Component {
                                     ? "firstError"
                                     : ""
                                 }`}
-                                placeholder="abc@y.com"></input>
+                                placeholder="abc@y.com"
+                              ></input>
                               {this.state.emailError !== "" && (
                                 <ErrorIcon
                                   color="secondary"
@@ -421,7 +448,8 @@ export class Form extends Component {
                                       ? "firstError"
                                       : ""
                                   }`}
-                                  placeholder="Enter Address"></input>
+                                  placeholder="Enter Address"
+                                ></input>
                                 {this.state.addressError !== "" && (
                                   <ErrorIcon
                                     color="secondary"
@@ -597,20 +625,23 @@ export class Form extends Component {
                           </div>
                           <div className="priceDetailsContainerTwo">
                             <div style={{ color: "red", fontWeight: "600" }}>
-                              Discount (16%)
+                              Discount (15%)
                             </div>
                             <div></div>
                             <div></div>
-                            <div>{this.state.thePrice * 0.16}</div>
+                            <div>{this.state.thePrice * 0.15}</div>
                           </div>
                         </div>
                         <div>
                           <div className="priceContainerTwo">
-                            <p className="needSpace">TOTAL</p>
-                            <p style={{ marginLeft: "52%" }}>
+                            <p className="needSpace">TOTAL PAY</p>
+                            <p
+                              clasName="totalPayColor"
+                              style={{ marginLeft: "52%" }}
+                            >
                               {this.state.thePrice +
                                 this.state.thePrice * 0.18 -
-                                this.state.thePrice * 0.16}
+                                this.state.thePrice * 0.15}
                             </p>
                           </div>
                         </div>

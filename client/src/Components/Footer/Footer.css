@@ -1,5 +1,5 @@
 .main-footer {
-  background-color: #4c1911 !important;
+  background-color: #800509 !important;
   /* opacity: 0; */
   padding-top: 3em;
   position: relative;
@@ -9,4 +9,7 @@
 }
 .col {
   padding-left: 95px !important;
+}
+.row p {
+  margin-left: 18%;
 }

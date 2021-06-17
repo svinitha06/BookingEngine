@@ -1469,7 +1469,7 @@ select {
   outline: none;
   color: #fff;
   /* background-color: rgba(117, 162, 179, 0.8); */
-  background-color: #801202 !important;
+  background-color: #990202 !important;
   /* transition: all 0.3s; */
   font-size: 16px;
 }
@@ -1480,7 +1480,7 @@ a.ui.button.submit-form {
   border: none !important;
   outline: none !important;
   color: #fff !important;
-  background-color: #801202 !important;
+  background-color: #990202 !important;
   /* background-color: rgb(144, 181, 193) !important; */
   /* transition: all 0.3s !important; */
   font-size: 16px !important;
@@ -1490,7 +1490,8 @@ a.ui.button.submit-form {
 a.ui.button.submit-form:hover {
   color: white !important;
   opacity: 1;
-  background-color: rgb(153, 1, 1) !important;
+  /* background-color: #990202 !important; */
+  background-color: rgb(179, 18, 18) !important;
 }
 /* HOTEL DETAILS CSS - NOT TO DELETE */
 .hotelHeading {
@@ -1616,7 +1617,9 @@ a.ui.button.submit-form:hover {
   margin-bottom: 2%;
   margin-right: 58%;
   margin-top: 1%;
+  color: #b10a14;
   margin-left: 5%;
+  width: 100% !important;
 }
 
 .priceContainerTwo {
@@ -1629,7 +1632,9 @@ a.ui.button.submit-form:hover {
   display: grid;
   grid-template-columns: 50% 50%;
 }
-
+.priceContainerTwo p {
+  color: #b10a14;
+}
 /* .contents-modal {
     margin-top: -1.75em;
     margin-left: 0.5em;
@@ -1649,7 +1654,8 @@ a.ui.button.submit-form:hover {
 .submit-form button:hover {
   color: white !important;
   opacity: 1;
-  background-color: rgb(153, 1, 1) !important;
+  /* background-color: rgb(153, 1, 1) !important; */
+  background-color: rgb(179, 18, 18) !important;
   /* margin-left: 3%; */
 }
 
@@ -1753,3 +1759,7 @@ a.ui.button.submit-form {
   cursor: pointer;
   /* padding: 0 !important; */
 }
+/* .totalPayColor,
+.totalPayColor p {
+  color: rgb(153, 1, 1);
+} */

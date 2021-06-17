@@ -444,7 +444,7 @@ export class Payment extends Component {
                               {" "}
                               Rs.
                               {this.props.finalTotalPrice +
-                                this.props.finalTotalPrice * 0.02}
+                                this.props.finalTotalPrice * 0.03}
                             </p>
                             {/* <label>Payment Mode</label>
                             <p>Net Banking </p> */}
@@ -473,7 +473,7 @@ export class Payment extends Component {
                         <p>
                           Pay :
                           {this.props.finalTotalPrice +
-                            this.props.finalTotalPrice * 0.02}
+                            this.props.finalTotalPrice * 0.03}
                         </p>
                       </div>
                       <div className="cancelButtonDiv">
@@ -520,7 +520,7 @@ export class Payment extends Component {
                           <p>
                             Pay :
                             {this.props.finalTotalPrice +
-                              this.props.finalTotalPrice * 0.02}
+                              this.props.finalTotalPrice * 0.03}
                           </p>
                         </div>
                         <div className="cancelButtonDiv">
@@ -573,7 +573,7 @@ export class Payment extends Component {
                                 {" "}
                                 Rs.
                                 {this.props.finalTotalPrice +
-                                  this.props.finalTotalPrice * 0.02}
+                                  this.props.finalTotalPrice * 0.03}
                               </p>
                               {/* <label>Payment Mode</label>
                             <p>Net Banking </p> */}
@@ -735,7 +735,7 @@ export class Payment extends Component {
                           <p>
                             Pay :
                             {this.props.finalTotalPrice +
-                              this.props.finalTotalPrice * 0.02}
+                              this.props.finalTotalPrice * 0.03}
                           </p>
                         </div>
                         <div className="cancelButtonDiv">
@@ -787,7 +787,7 @@ export class Payment extends Component {
                               {" "}
                               Rs.
                               {this.props.finalTotalPrice +
-                                this.props.finalTotalPrice * 0.02}
+                                this.props.finalTotalPrice * 0.03}
                             </p>
                           </div>
                         </div>

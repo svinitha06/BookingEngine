@@ -5,7 +5,7 @@ import { Button, Menu, MenuItem, Segment } from "semantic-ui-react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
 import "./Header.css";
-import icon from "./favicon.ico";
+import icon from "./logo2.png";
 export class Header extends Component {
   constructor(props) {
     super(props);

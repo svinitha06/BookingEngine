@@ -92,7 +92,7 @@
   position: relative;
   border: none;
   height: 20% !important;
-  background: #801202 !important;
+  background: #990202 !important;
   /* background-color: #3a3138 !important; */
   /* background-color: rgba(117, 162, 179, 0.8) !important; */
 
@@ -173,7 +173,7 @@ h6 {
   font-weight: 500 !important;
   border-radius: 0px !important;
   color: white !important;
-  background: #801202 !important;
+  background: #990202 !important;
   /* background: #90b4c2 !important; */
   text-align: center !important;
   position: relative !important;
@@ -185,7 +185,8 @@ h6 {
 .btn-placement .ui.button.reserve:hover {
   color: white !important;
   /* background-color: orange !important; */
-  background-color: rgb(153, 1, 1) !important;
+  /* background-color: rgb(153, 1, 1) !important; */
+  background-color: rgb(179, 18, 18) !important;
 
   opacity: 1;
   /* border: 1px solid #565656 !important; */
@@ -218,7 +219,7 @@ a.ui.button.reserve-left {
   font-weight: 500 !important;
 
   color: white !important;
-  background: #801202 !important;
+  background: #990202 !important;
   /* background: #90b4c2 !important; */
   border: none !important;
 
@@ -230,7 +231,8 @@ a.ui.button.reserve-left {
 .btn-placement div .ui.button:hover {
   color: white !important;
   opacity: 1;
-  background-color: rgb(153, 1, 1) !important;
+  /* background-color: rgb(153, 1, 1) !important; */
+  background-color: rgb(179, 18, 18) !important;
 
   /* border: 1px solid #565656 !important; */
 }
@@ -283,10 +285,11 @@ a.ui.button.reserve-left {
 }
 .property-center h3 {
   margin-top: 1px;
+  color: #990202;
 }
 .property-center h1 {
   font-size: 3rem;
-  color: #3a3138 !important;
+  color: #990202 !important;
 }
 .rate-container h5 {
   margin-left: 3px;
@@ -296,7 +299,7 @@ a.ui.button.reserve-left {
 }
 .rate-container h2 {
   margin-bottom: 0px !important;
-  color: #801202 !important;
+  color: #990202 !important;
 }
 .rate-container {
   display: flex;
@@ -318,7 +321,7 @@ a.ui.button.reserve-left {
 .roomtypeHead p {
   font-size: 25px !important;
   font-weight: 600 !important;
-  color: #801202 !important;
+  color: #990202 !important;
 }
 
 .roomDetailsTwo .d-flex button {

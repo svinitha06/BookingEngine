@@ -33,6 +33,7 @@ a.right.item.active {
 }
 .headline {
   font-family: Arial, Helvetica, sans-serif !important;
+  margin-left: 2%;
 }
 .my-div {
   width: 100%;
@@ -49,6 +50,11 @@ a.right.item.active {
 }
 .logo img {
   width: 17%;
+  width: 8% !important;
+  border-radius: 39px;
+}
+.logo {
+  width: 50%;
 }
 .logo p {
   font-weight: 600;

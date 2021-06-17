@@ -272,13 +272,6 @@ class Home extends React.Component {
       let res = await db.getproperty();
       this.props.property(res);
     }
-    // if (!searchValidator) {
-    //   searchValidator = setTimeout(() => {
-    //     this.getLocation(e);
-    //   }, 1000);
-    // } else {
-    //   clearTimeout(searchValidator);
-    // }
     const timeOut = setTimeout(() => this.getLocation(e), 900);
     this.setState({
       timeOutId: timeOut,
@@ -305,17 +298,7 @@ class Home extends React.Component {
     console.log(isExpanded);
     // expanded(true)
   }
-  // handleHomeClose = () => {
-  //   this.setState({
-  //     open: false,
-  //   });
-  // };
-  // handleViewErrorOff=()=>{
-  //   this.setState({
-  //     open:true,
-  //     errorOffline:true
-  //   })
-  // }
+
   render() {
     const minValue = new Date(
       new Date().getFullYear(),
@@ -613,10 +596,10 @@ class Home extends React.Component {
             <h2 className="noProp"> Sorry!! No properties available.</h2>
 
             <img className="image-error" src={giphy} alt="loading..."></img>
-            <p className="customMade2">
+            {/* <p className="customMade2">
               <i className="customMade">Related Search : </i>Check out the
               properties available{" "}
-            </p>
+            </p> */}
           </div>
         ) : null}
         {!this.props.propertyList.length && !isEmpty(this.state.searchValue)
@@ -630,7 +613,7 @@ class Home extends React.Component {
             Network error:Check your internet connection
           </h1>
         ) : null}
-        {!this.props.propertyList.length
+        {/* {!this.props.propertyList.length
           ? this.props.propertyEmptyList.map((data, index) => (
               <div className="homeContainer" key={index}>
                 <div className="wrapper">
@@ -675,7 +658,6 @@ class Home extends React.Component {
                       ))}
                     </p>
                     <ShowMoreText
-                      /* Default options */
                       lines={4}
                       more="Show more"
                       less="Show less"
@@ -727,7 +709,7 @@ class Home extends React.Component {
                 </div>
               </div>
             ))
-          : null}
+          : null} */}
       </div>
     );
   }

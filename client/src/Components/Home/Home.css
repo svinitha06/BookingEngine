@@ -84,7 +84,7 @@
 .nameDes h1 {
   margin-top: 6px !important;
   font-family: "Times New Roman", Helvetica, ui-rounded, Arial, sans-serif !important;
-  color: #3a3138 !important;
+  color: #801204 !important;
 }
 .e-date-range-wrapper {
   /* border: 1px solid #bbbaba !important; */
@@ -185,7 +185,7 @@
   border: none;
   outline: none;
   color: #fff;
-  background: #801202 !important;
+  background: rgb(153, 1, 1) !important;
   /* background-color: #3a3138; */
   /* background-color: rgb(8, 105, 117, 0.8); */
   /* background-color: rgba(117, 162, 179, 0.8); */
@@ -196,7 +196,7 @@
 }
 .viewDetails button:hover {
   color: white !important;
-  background-color: rgb(153, 1, 1) !important;
+  background-color: rgb(179, 18, 18) !important;
   opacity: 1;
   /* border: 1px solid #565656; */
 }
@@ -556,7 +556,7 @@ p h1 h6 {
   font-weight: 100 !important;
 }
 .checkButton button {
-  background: #801202 !important;
+  background: #990202 !important;
 }
 .checkButton button p {
   color: white !important;
@@ -565,5 +565,5 @@ p h1 h6 {
   background: #e6a964 !important;
 } */
 .my-div .ui.segment {
-  background: #4c1911;
+  background: #800509;
 }
