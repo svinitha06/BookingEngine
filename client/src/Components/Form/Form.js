@@ -218,6 +218,15 @@ export class Form extends Component {
         hotelName = data.name;
       }
     });
+    var detailsObj = [];
+    this.props.booking.map((items) => {
+      if (items.count > 0) {
+        console.log("count greter than 0 for = ", items.roomType);
+        detailsObj.push(items);
+        console.log("details Obj for >0 = ", detailsObj);
+      }
+      // console.log("details Obj for >0 = ", detailsObj);
+    });
     const data = {
       guestName: this.state.firstName + " " + this.state.lastName,
       email: this.state.email,
@@ -226,6 +235,7 @@ export class Form extends Component {
       address: this.state.address,
       checkIn: this.state.checkInDate,
       checkOut: this.state.checkOutDate,
+      detailsOfRooms: detailsObj,
       bookedDate: new Date().toLocaleDateString(),
       bookingId: new ObjectID(),
     };
