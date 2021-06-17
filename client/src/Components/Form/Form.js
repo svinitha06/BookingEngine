@@ -218,14 +218,26 @@ export class Form extends Component {
         hotelName = data.name;
       }
     });
-    var detailsObj = [];
+
+    var one = "";
+    var roomSelected = "";
+    var roomTotal = 0;
+    // var rCount = 0;
+
     this.props.booking.map((items) => {
       if (items.count > 0) {
-        console.log("count greter than 0 for = ", items.roomType);
-        detailsObj.push(items);
-        console.log("details Obj for >0 = ", detailsObj);
+        one = one.concat(items.roomType, ",");
+        roomSelected = one.slice(0, -1);
+        roomTotal = roomTotal + items.count;
+        console.log("number of rooms totl = ", roomTotal);
       }
+      console.log("selected  = ", roomSelected);
+
       // console.log("details Obj for >0 = ", detailsObj);
+      console.log(
+        "this.props.totalPriceInState.Amount",
+        this.props.finalTotalPrice + this.props.finalTotalPrice * 0.03
+      );
     });
     const data = {
       guestName: this.state.firstName + " " + this.state.lastName,
@@ -235,9 +247,13 @@ export class Form extends Component {
       address: this.state.address,
       checkIn: this.state.checkInDate,
       checkOut: this.state.checkOutDate,
-      detailsOfRooms: detailsObj,
+      // detailsOfRooms: detailsObj,
+      roomSelected: roomSelected,
+      roomTotal: roomTotal,
       bookedDate: new Date().toLocaleDateString(),
       bookingId: new ObjectID(),
+      totalPrice:
+        this.props.finalTotalPrice + this.props.finalTotalPrice * 0.03,
     };
 
     this.props.hotelDetails(data);

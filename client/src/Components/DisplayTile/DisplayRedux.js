@@ -191,6 +191,8 @@ class DisplayRedux extends Component {
   };
   handleReserve = () => {
     let theTotal = this.calculateTotal();
+    // theTotal = theTotal + theTotal * 0.03;
+    console.log("theTotal = ", theTotal);
     this.props.additionOfPrices({ Amount: theTotal });
 
     if (theTotal <= 0) {
