@@ -53,6 +53,7 @@ export class Form extends Component {
       openPost: false,
       errorPostOffline: false,
       openOffline: false,
+      detailState: "",
     };
     console.log(
       this.props.customerDetails ? this.props.customerDetails.guestName : "",
@@ -222,22 +223,38 @@ export class Form extends Component {
     var one = "";
     var roomSelected = "";
     var roomTotal = 0;
-    // var rCount = 0;
-
+    var two = 0;
+    var cnt = "";
+    var cnt2 = 0;
+    var r = 0,
+      f = "",
+      str = "";
+    var str2 = "";
     this.props.booking.map((items) => {
       if (items.count > 0) {
-        one = one.concat(items.roomType, ",");
+        cnt = items.roomType.toString().concat(" - ", items.count.toString());
+        if (items.isChecked) f = " Food Included";
+        else f = " Food Not Included";
+        str = cnt.concat(" Rooms - ", f);
+        // str = str.concat(" ", "/n");
+        str2 = str2.concat("\n", str);
+        console.log("str = ", str);
+        console.log("str2 = ", str2);
+
+        // console.log("detailState = ", this.state.detailState);
+        two = items.roomType;
+        one = two.concat(items.roomType, "");
         roomSelected = one.slice(0, -1);
         roomTotal = roomTotal + items.count;
-        console.log("number of rooms totl = ", roomTotal);
+        // console.log("number of rooms totl = ", roomTotal);
       }
-      console.log("selected  = ", roomSelected);
+      // console.log("selected  = ", roomSelected);
 
       // console.log("details Obj for >0 = ", detailsObj);
-      console.log(
-        "this.props.totalPriceInState.Amount",
-        this.props.finalTotalPrice + this.props.finalTotalPrice * 0.03
-      );
+      // console.log(
+      //   "this.props.totalPriceInState.Amount",
+      //   this.props.finalTotalPrice + this.props.finalTotalPrice * 0.03
+      // );
     });
     const data = {
       guestName: this.state.firstName + " " + this.state.lastName,
@@ -248,6 +265,7 @@ export class Form extends Component {
       checkIn: this.state.checkInDate,
       checkOut: this.state.checkOutDate,
       // detailsOfRooms: detailsObj,
+      stringValue: str2,
       roomSelected: roomSelected,
       roomTotal: roomTotal,
       bookedDate: new Date().toLocaleDateString(),
@@ -257,7 +275,7 @@ export class Form extends Component {
     };
 
     this.props.hotelDetails(data);
-    console.log(data, "hotelNow");
+    // console.log(data, "hotelNow");
   };
 
   handleClose = () => {
@@ -295,9 +313,9 @@ export class Form extends Component {
       textAlign: "center",
     };
     // this.setState({ proId: this.props.booking[0].propertyId });
-    console.log("Booking Prop", this.props.booking);
-    console.log(this.props, "demo");
-    console.log("propertyList prop ", this.props.propertyList);
+    // console.log("Booking Prop", this.props.booking);
+    // console.log(this.props, "demo");
+    // console.log("propertyList prop ", this.props.propertyList);
     // console.log("booking in render =", this.props.booking);
     const minValue = new Date(
       new Date().getFullYear(),

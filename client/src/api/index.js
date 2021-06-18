@@ -3,20 +3,21 @@ import axios from "axios";
 // import { roomDetails } from "../../src/actions/index";
 // let host="http://localhost:5000"
 
-var env=process.env.NODE_ENV||'production';
-var host = env === 'development' ? "http://localhost:5000":"http://9a9e6e820483.ngrok.io"
+var env = process.env.NODE_ENV || "production";
+var host =
+  env === "development"
+    ? "http://localhost:5000"
+    : "http://9a9e6e820483.ngrok.io";
 
 export const getproperty = async () => {
-  console.log("zedge",process.env.NODE_ENV)
+  console.log("zedge", process.env.NODE_ENV);
   const res = await axios.get(`${host}/property/Property`);
   return res.data;
 };
 
 export const getpropertyLocation = async (data) => {
-  const res = await axios.get(
-    `${host}/property/Property/${data}`
-  );
-  
+  const res = await axios.get(`${host}/property/Property/${data}`);
+
   return res.data;
 };
 export const getFilteredSearch = async (data) => {
@@ -33,20 +34,14 @@ export const getFilteredSearch = async (data) => {
   return res;
 };
 export const getpropertyRoom = async (data) => {
-  const res = await axios.get(
-    `${host}/rooms/getRoomType/${data}`
-  );
+  const res = await axios.get(`${host}/rooms/getRoomType/${data}`);
   return res.data;
 };
 export const getPostHotelDetails = async (data) => {
-  console.log(data,"hotel")
-  const res = await axios.post(
-    `${host}/book/Book`,data
-  
-  );
+  console.log(data, "hotel");
+  const res = await axios.post(`${host}/book/Book`, data);
   return res;
 };
-
 
 // const getRooomTypes = async () => {
 //   const resp = await axios.get("http://localhost:5000/rooms/getRoomTypes");

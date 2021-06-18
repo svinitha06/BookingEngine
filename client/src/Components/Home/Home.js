@@ -107,11 +107,6 @@ class Home extends React.Component {
   getcall = async () => {
     let res = await db.getproperty().catch((err) => {
       console.log("errorApi");
-      // return err
-      // this.setState({
-      //   errorAPI: !this.state.errorAPI,
-      //   // errorOffline: !this.state.errorOffline,
-      // });
     });
 
     this.props.property(res);
