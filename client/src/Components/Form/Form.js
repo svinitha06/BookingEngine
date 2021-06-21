@@ -53,7 +53,7 @@ export class Form extends Component {
       openPost: false,
       errorPostOffline: false,
       openOffline: false,
-      detailState: "",
+      // detailsOfRooms:[],
     };
     console.log(
       this.props.customerDetails ? this.props.customerDetails.guestName : "",
@@ -113,6 +113,7 @@ export class Form extends Component {
     });
   };
   handleContact = (event) => {
+    // this.state.contact.length <= 10;
     this.setState({
       contact: event.target.value,
       contactError: "",
@@ -181,7 +182,8 @@ export class Form extends Component {
         contactError: "",
       });
     } else if (
-      ascii < "47" ||
+      // this.state.contact.length < 10 ||
+      ascii < "48" ||
       ascii > "57" ||
       this.state.contact === null ||
       this.state.contact === undefined ||
@@ -230,11 +232,32 @@ export class Form extends Component {
       f = "",
       str = "";
     var str2 = "";
+    var detailsOfRooms = [];
+    // var detailsOfRooms1 = [];
+
+    var flag = "";
+    // detailsOfRooms = this.props.booking.map((data) => {
+    //   if (data.count > 0) {
+    //     if (data.isChecked) flag = "Food Included";
+    //     else flag = "Food Not Included";
+    //     return {
+    //       roomType: data.roomType,
+    //       count: data.count,
+    //       isChecked: flag,
+    //       priceO: data.priceO,
+    //       gst: this.props.finalTotalPrice * 0.18,
+    //       discount: this.props.finalTotalPrice * 0.15,
+    //     };
+    //   }
+    // });
+
+    // detailsOfRooms.push(details)
+    // console.log("onject =====", detailsOfRooms);
     this.props.booking.map((items) => {
       if (items.count > 0) {
         cnt = items.roomType.toString().concat(" - ", items.count.toString());
-        if (items.isChecked) f = " Food Included";
-        else f = " Food Not Included";
+        if (items.isChecked) f = " Food Included \n";
+        else f = " Food Not Included \n";
         str = cnt.concat(" Rooms - ", f);
         // str = str.concat(" ", "/n");
         str2 = str2.concat("\n", str);
@@ -246,8 +269,12 @@ export class Form extends Component {
         one = two.concat(items.roomType, "");
         roomSelected = one.slice(0, -1);
         roomTotal = roomTotal + items.count;
+        detailsOfRooms.push(items);
         // console.log("number of rooms totl = ", roomTotal);
       }
+      console.log("str2 outside  = ", str2);
+      console.log("detailsOfRooms outside  = ", detailsOfRooms);
+
       // console.log("selected  = ", roomSelected);
 
       // console.log("details Obj for >0 = ", detailsObj);
@@ -256,6 +283,14 @@ export class Form extends Component {
       //   this.props.finalTotalPrice + this.props.finalTotalPrice * 0.03
       // );
     });
+    detailsOfRooms.map((data, i) => {
+      if (data.isChecked == true) data.isChecked = "Excluded";
+      if (data.isChecked == false) data.isChecked = "Included";
+    });
+    console.log("detailsOfRooms new= ", detailsOfRooms);
+
+    // gst: this.props.finalTotalPrice * 0.18,
+    //       discount: this.props.finalTotalPrice * 0.15,
     const data = {
       guestName: this.state.firstName + " " + this.state.lastName,
       email: this.state.email,
@@ -264,10 +299,13 @@ export class Form extends Component {
       address: this.state.address,
       checkIn: this.state.checkInDate,
       checkOut: this.state.checkOutDate,
-      // detailsOfRooms: detailsObj,
+      detailsOfRooms: detailsOfRooms,
       stringValue: str2,
       roomSelected: roomSelected,
       roomTotal: roomTotal,
+      Amount: this.props.finalTotalPrice,
+      gstPrice: this.props.finalTotalPrice * 0.18,
+      discountPrice: this.props.finalTotalPrice * 0.15,
       bookedDate: new Date().toLocaleDateString(),
       bookingId: new ObjectID(),
       totalPrice:
@@ -411,6 +449,9 @@ export class Form extends Component {
                               {/* <div className="ui input"></div> */}
                               <input
                                 value={this.state.contact}
+                                type="text"
+                                pattern="\d*"
+                                maxLength="10"
                                 onChange={this.handleContact}
                                 className={`${
                                   this.state.contactError ||
