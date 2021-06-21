@@ -100,7 +100,7 @@ router.post("/Book", async (req, res) => {
         <p><strong>Check Out Date: </strong>${req.body.checkOut}</p>
         <p><strong>Booking ID: </strong>${req.body.bookingId}</p>
         <p><strong>Booked on: </strong>${req.body.bookedDate}</p>
-        <p><strong>Booked on: </strong>${orderDetails}</p>
+        <p>${orderDetails}</p>
       
       
         </body>

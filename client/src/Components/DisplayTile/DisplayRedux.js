@@ -84,7 +84,7 @@ class DisplayRedux extends Component {
     var env = process.env.NODE_ENV || "development";
     var host =
       env === "development"
-        ? "http://localhost:5000"
+        ? "http://07acc3938a1f.ngrok.io"
         : "http://9a9e6e820483.ngrok.io";
     axios
       .get(`${host}/rooms/getRoomType/${this.props.match.params.id}`)
@@ -115,7 +115,7 @@ class DisplayRedux extends Component {
     var env = process.env.NODE_ENV || "development";
     var host =
       env === "development"
-        ? "http://localhost:5000"
+        ? "http://07acc3938a1f.ngrok.io"
         : "http://9a9e6e820483.ngrok.io";
     let res = await axios({
       method: "get",
