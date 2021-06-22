@@ -1,18 +1,18 @@
 pipeline{
     agent any
     environment{
-        scannerHome= tool ("Sonar scanner")
+        scannerHome= tool ("scan")
     }
     stages {
         stage('checkout'){
             steps {
-                git branch: 'main',url: 'https://github.com/MS396584/BookingEngine.git'
+                git branch: 'main',url: 'https://github.com/VINITHAS06/BookingEngine.git'
             }
         }
        stage('Sonar Analysis'){
             steps {
-                 withSonarQubeEnv("Sonar_server") {
-               sh '${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sample -Dsonar.projectName=sample_Demo -Dsonar.sources=/var/lib/jenkins/workspace/Sample2/client/'
+                 withSonarQubeEnv("scan") {
+               sh '${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=booking-fe -Dsonar.projectName=sample_Demo -Dsonar.sources=client/'
                 }
             }
         }
@@ -24,20 +24,20 @@ pipeline{
                    }
       stage('Nexus'){
             steps {
-                sh 'docker tag booking-fe:1.0 localhost:12012/booking-fe:${BUILD_NUMBER}'
-                sh 'docker login -u admin -p admin@123 localhost:12012'
-                sh 'docker push localhost:12012/booking-fe:${BUILD_NUMBER}'
+                sh 'docker tag booking-fe:1.0 localhost:8095/booking-fe:${BUILD_NUMBER}'
+                sh 'docker login -u admin -p admin123 localhost:8095'
+                sh 'docker push localhost:8095/booking-fe:${BUILD_NUMBER}'
                    }
                     }
         stage('Pulling the Nexus'){
             steps{
-                sh 'docker pull localhost:12012/booking-fe:${BUILD_NUMBER}'}
+                sh 'docker pull localhost:8095/booking-fe:${BUILD_NUMBER}'}
         }
         stage('Running the container'){
             steps{
                 sh 'docker stop Bookingengine-fe'
                 sh 'docker rm Bookingengine-fe'
-                sh 'docker run -d --name Bookingengine-fe -p 3000:3000 localhost:12012/booking-fe:${BUILD_NUMBER}'}
+                sh 'docker run -d --name Bookingengine-fe -p 3000:3000 localhost:8095/booking-fe:${BUILD_NUMBER}'}
             
             }
     }
